@@ -29,6 +29,7 @@ import {DialogsModule} from './shared/dialogs/dialogs.module';
 import {DiscordEmbedModule} from './shared/discord-embed/discord-embed.module';
 import {registerDraconicLanguage} from './shared/monacoDraconic';
 import {ThemesModule} from './themes/themes.module';
+import { CommandsUiComponent } from './commands-ui/commands-ui.component';
 
 Sentry.init({dsn: 'https://af2b06560981446bb55f64b6f79fd520@sentry.io/1486249'});
 
@@ -59,6 +60,7 @@ const monacoConfig = {
     ErrorComponent,
     CommandsComponent,
     CommandDisplayComponent,
+    CommandsUiComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),

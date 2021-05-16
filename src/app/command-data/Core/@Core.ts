@@ -1,0 +1,12 @@
+import { CommandModule } from "../../schemas/Commands";
+import { ABOUT } from "./About";
+import { CHANGELOG } from "./Changelog";
+import { DDB } from "./DDB";
+import { INVITE } from "./Invite";
+import { PING } from "./Ping";
+
+export const CORE: CommandModule = {
+  name: "Core",
+  desc: "Core utilty and general commands.",
+  commands: [ABOUT, CHANGELOG, DDB, INVITE, PING],
+};

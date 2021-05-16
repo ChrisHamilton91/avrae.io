@@ -1,0 +1,53 @@
+<div class="background"></div>
+<div class="commands-ui-page">
+  <div class="container">
+    <div class="button-rows">
+      <!-- Modules -->
+      <div class="button-column">
+        <div *ngFor="let module of modules">
+          <button
+            type="button"
+            class="btn"
+            data-toggle="button"
+            aria-selected="true"
+            autocomplete="off"
+            (click)="setModule(module)"
+          >
+            {{ module.name }}
+          </button>
+        </div>
+      </div>
+      <!-- Main Commands -->
+      <div class="button-column" *ngIf="activeModule != null">
+        <div *ngFor="let command of activeModule.commands">
+          <button
+            type="button"
+            class="btn"
+            data-toggle="button"
+            aria-pressed="false"
+            autocomplete="off"
+            (click)="setCommand(command)"
+          >
+            {{ command.name }}
+          </button>
+          <div *ngIf="activeCommand != null && activeCommand === command">
+            <div *ngFor="let subcommand of command.subcommands">
+              <button
+                type="button"
+                class="btn"
+                data-toggle="button"
+                aria-pressed="false"
+                autocomplete="off"
+              >
+                {{ subcommand.name }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- SubCommands -->
+    </div>
+    <p *ngIf="activeModule != null">Module: {{ activeModule.name }}</p>
+    <p *ngIf="activeCommand != null">Command: {{ activeModule.name }}</p>
+  </div>
+</div>

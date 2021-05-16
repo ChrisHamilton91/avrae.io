@@ -1,0 +1,34 @@
+@import "../_variables.scss";
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: $black;
+  z-index: -999; // hacky way to override app background color for now
+}
+
+.commands-ui-page {
+  background: $black;
+  font-family: $font;
+  color: white;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.container {
+  margin: 16px;
+}
+
+.button-rows {
+  display: flex;
+  flex-direction: row;
+}
+
+.button-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}

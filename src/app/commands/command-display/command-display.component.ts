@@ -1,7 +1,7 @@
 import {isPlatformBrowser} from '@angular/common';
 import {AfterViewInit, Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Command, CommandArgument} from '../../schemas/Commands';
+import {Command, PrimaryArgument} from '../../schemas/Commands';
 import {debrace} from '../../shared/DisplayUtils';
 
 @Component({
@@ -13,7 +13,7 @@ export class CommandDisplayComponent implements OnInit, AfterViewInit {
   // exports
   debrace = debrace;
 
-  @Input() command: Command;
+  @Input() command: any;
   @Input() parentId: string;
   isBrowser: boolean;
   isOpen: boolean;
@@ -44,7 +44,7 @@ export class CommandDisplayComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getArgDescriptors(arg: CommandArgument): string {
+  getArgDescriptors(arg: PrimaryArgument): string {
     if (!arg.required && arg.default) {
       return ` (optional, default ${arg.default})`;
     } else if (!arg.required) {
