@@ -1,0 +1,14 @@
+<div *ngFor="let command of commands">
+  <commands-ui-button
+    [element]="command"
+    [active]="isActive(command)"
+    (click)="toggleActiveCommand(command)"
+  ></commands-ui-button>
+  <div *ngIf="isActive(command) && command.subcommands.length != 0">
+    <commands-ui-subcommand-buttons
+      [subcommands]="getSubcommands()"
+      [activeSubcommand]="activeSubcommand"
+      (activeSubcommandChange)="setActiveSubcommand($event)"
+    ></commands-ui-subcommand-buttons>
+  </div>
+</div>
