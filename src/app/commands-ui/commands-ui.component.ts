@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { COMMAND_MODULES } from "../command-data/CommandModules";
+import { sortByName } from "./constants";
 import {
   CommandModule,
   Command,
@@ -12,6 +13,7 @@ import {
   TargetArgument,
   Category,
   ValueType,
+  Argument,
 } from "../schemas/Commands";
 
 @Component({
@@ -26,7 +28,9 @@ export class CommandsUiComponent implements OnInit {
   modules: CommandModule[] = COMMAND_MODULES;
   activeModule: CommandModule;
   activeCommand: Command;
-  activeSubcommand: Command;
+  activeSubcommand: Subcommand;
+  activePrimaryArgs: PrimaryArgument[] = [];
+  activeSecondaryArgs: SecondaryArgument[] = [];
 
   constructor(private meta: Meta) {
     this.meta.updateTag({ name: "description", content: this.description });
@@ -43,15 +47,55 @@ export class CommandsUiComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  setModule(module: CommandModule): void {
+  setActiveModule(module: CommandModule) {
     this.activeModule = module;
+    this.activeCommand = null;
+    this.activeSubcommand = null;
+    this.activePrimaryArgs = [];
+    this.activeSecondaryArgs = [];
   }
 
-  setCommand(command: Command): void {
+  setActiveCommand(command: Command) {
     this.activeCommand = command;
+    this.activeSubcommand = null;
+    this.activePrimaryArgs = this.getRequiredArgs();
+    this.activeSecondaryArgs = [];
   }
 
-  setSubcommand(subcommand: Command): void {
+  setActiveSubcommand(subcommand: Subcommand) {
     this.activeSubcommand = subcommand;
+    this.activePrimaryArgs = this.getRequiredArgs();
+    this.activeSecondaryArgs = [];
+  }
+
+  setActivePrimaryArgs(primaryArgs: PrimaryArgument[]) {
+    this.activePrimaryArgs = primaryArgs;
+    this.activeSecondaryArgs = [];
+  }
+
+  getModules(): CommandModule[] {
+    return this.modules.sort(sortByName);
+  }
+
+  getCommands(): Command[] {
+    return this.activeModule
+      ? this.activeModule.commands.sort(sortByName)
+      : null;
+  }
+
+  getPrimaryArguments(): PrimaryArgument[] {
+    if (this.activeSubcommand)
+      return this.activeSubcommand.primaryArgs.sort(sortByName);
+    else if (this.activeCommand)
+      return this.activeCommand.primaryArgs.sort(sortByName);
+    else return [];
+  }
+
+  getRequiredArgs(): PrimaryArgument[] {
+    let requiredArgs = [];
+    for (let arg of this.getPrimaryArguments()) {
+      if (arg.required) requiredArgs.push(arg);
+    }
+    return requiredArgs;
   }
 }

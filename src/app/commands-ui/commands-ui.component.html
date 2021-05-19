@@ -1,53 +1,39 @@
 <div class="background"></div>
 <div class="commands-ui-page">
   <div class="container">
-    <div class="button-rows">
-      <!-- Modules -->
+    <div class="commands-ui-button-area">
       <div class="button-column">
-        <div *ngFor="let module of modules">
-          <button
-            type="button"
-            class="btn"
-            data-toggle="button"
-            aria-selected="true"
-            autocomplete="off"
-            (click)="setModule(module)"
-          >
-            {{ module.name }}
-          </button>
-        </div>
+        <commands-ui-module-buttons
+          class="button-group"
+          [modules]="getModules()"
+          [activeModule]="activeModule"
+          (activeModuleChange)="setActiveModule($event)"
+        >
+        </commands-ui-module-buttons>
       </div>
-      <!-- Main Commands -->
-      <div class="button-column" *ngIf="activeModule != null">
-        <div *ngFor="let command of activeModule.commands">
-          <button
-            type="button"
-            class="btn"
-            data-toggle="button"
-            aria-pressed="false"
-            autocomplete="off"
-            (click)="setCommand(command)"
-          >
-            {{ command.name }}
-          </button>
-          <div *ngIf="activeCommand != null && activeCommand === command">
-            <div *ngFor="let subcommand of command.subcommands">
-              <button
-                type="button"
-                class="btn"
-                data-toggle="button"
-                aria-pressed="false"
-                autocomplete="off"
-              >
-                {{ subcommand.name }}
-              </button>
-            </div>
-          </div>
-        </div>
+      <div class="button-column">
+        <commands-ui-command-buttons
+          class="button-group"
+          [commands]="getCommands()"
+          [activeCommand]="activeCommand"
+          (activeCommandChange)="setActiveCommand($event)"
+          [activeSubcommand]="activeSubcommand"
+          (activeSubcommandChange)="setActiveSubcommand($event)"
+        ></commands-ui-command-buttons>
       </div>
-      <!-- SubCommands -->
+      <div class="button-column">
+        <commands-ui-primary-arg-buttons
+          class="button-group"
+          [primaryArgs]="getPrimaryArguments()"
+          [activePrimaryArgs]="activePrimaryArgs"
+          (activePrimaryArgsChange)="setActivePrimaryArgs($event)"
+        >
+        </commands-ui-primary-arg-buttons>
+      </div>
     </div>
-    <p *ngIf="activeModule != null">Module: {{ activeModule.name }}</p>
-    <p *ngIf="activeCommand != null">Command: {{ activeModule.name }}</p>
   </div>
+  <p *ngIf="activeModule != null">{{ activeModule.name }}</p>
+  <p *ngIf="activeCommand != null">{{ activeCommand.name }}</p>
+  <p *ngIf="activeSubcommand != null">{{ activeSubcommand.name }}</p>
+  <p *ngFor="let arg of activePrimaryArgs">{{ arg.name }}</p>
 </div>

@@ -22,7 +22,7 @@
   margin: 16px;
 }
 
-.button-rows {
+.commands-ui-button-area {
   display: flex;
   flex-direction: row;
 }
@@ -30,5 +30,5 @@
 .button-column {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  margin: 10px;
 }
