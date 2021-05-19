@@ -1,0 +1,7 @@
+<div *ngFor="let module of modules">
+  <commands-ui-button
+    [element]="module"
+    [active]="isActive(module)"
+    (click)="toggleActiveModule(module)"
+  ></commands-ui-button>
+</div>
