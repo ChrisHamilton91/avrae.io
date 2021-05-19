@@ -9,16 +9,6 @@ import {
   ValueType,
 } from "../../schemas/Commands";
 
-//#region secondary arguments
-// const SECOONDARY_ARG: SecondaryArgument = {
-//   name: "",
-//   cmdString: "",
-//   valueType: ValueType.NONE,
-//   desc: "",
-//   example: "",
-// }
-//#endregion
-
 //#region primary arguments
 const NAME: PrimaryArgument = {
   name: "character name",
@@ -42,7 +32,7 @@ const DELETE_NAME: PrimaryArgument = {
 };
 
 const DELETE: Subcommand = {
-  name: "delete character",
+  name: "Delete Character",
   cmdStrings: ["delete"],
   shortDesc: "Deletes a character",
   longDesc: "",
@@ -54,7 +44,7 @@ const DELETE: Subcommand = {
 //#endregion
 //#region list
 const LIST: Subcommand = {
-  name: "list all characters",
+  name: "List All Characters",
   cmdStrings: ["list"],
   shortDesc: "Lists your characters",
   longDesc: "",

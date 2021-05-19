@@ -12,7 +12,7 @@ import {
 //#region subcommands
 //#region delete
 const DELETE: Subcommand = {
-  name: "delete description",
+  name: "Delete Portrait",
   cmdStrings: ["delete", "remove"],
   shortDesc: "Removes the character portrait, returning to the default.",
   longDesc: "",
@@ -34,7 +34,7 @@ const EDIT_URL: PrimaryArgument = {
 };
 
 const EDIT: Subcommand = {
-  name: "edit description",
+  name: "Update Portrait",
   cmdStrings: ["edit", "update"],
   shortDesc: "Updates the character portrait.",
   longDesc: "",

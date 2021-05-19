@@ -58,7 +58,7 @@ export class Command {
 /**
  * Represents a command that can appear after a top-level command, or another sub-command.
  * Overrides the behaviour of the parent command.
- * This class only exists for organization, it is exactly the same as a top-level command.
+ * This class only exists for organization.
  */
 export class Subcommand extends Command {}
 
