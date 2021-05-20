@@ -7,28 +7,35 @@
   bottom: 0;
   right: 0;
   background: $black;
-  z-index: -999; // hacky way to override app background color for now
+  z-index: -999;
 }
 
 .commands-ui-page {
   background: $black;
   font-family: $font;
   color: white;
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-.container {
-  margin: 16px;
 }
 
 .commands-ui-button-area {
   display: flex;
   flex-direction: row;
+  overflow: auto;
+  height: 75vh;
 }
 
 .button-column {
   display: flex;
   flex-direction: column;
   margin: 10px;
+}
+
+.output-area {
+  padding: 16px;
+}
+
+.button-column > h4 {
+  margin-top: 0;
+  margin-bottom: 6px;
+  margin-left: auto;
+  margin-right: auto;
 }

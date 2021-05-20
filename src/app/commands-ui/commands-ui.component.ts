@@ -2,7 +2,12 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { COMMAND_MODULES } from "../command-data/CommandModules";
-import { sortByName } from "./constants";
+import {
+  getShortest,
+  sortByName,
+  PrimaryArgValuePair,
+  SecondaryArgValuePair,
+} from "./globals";
 import {
   CommandModule,
   Command,
@@ -25,12 +30,19 @@ export class CommandsUiComponent implements OnInit {
   title = "Avrae Commands User Interface";
   description = "A user interface for constructing avrae commands";
 
+  prefix = "!";
   modules: CommandModule[] = COMMAND_MODULES;
   activeModule: CommandModule;
   activeCommand: Command;
   activeSubcommand: Subcommand;
-  activePrimaryArgs: PrimaryArgument[] = [];
-  activeSecondaryArgs: SecondaryArgument[] = [];
+  /**
+   * An array of primary argument - value pairs.
+   * The indexes co-incide with those of the command's primaryArgs array.
+   * If the element at the corresponding index is defined, the argument is active.
+   * If the element is undefined, it is inactive
+   * */
+  activePrimaryArgs: PrimaryArgValuePair[] = [];
+  activeSecondaryArgs: SecondaryArgValuePair[] = [];
 
   constructor(private meta: Meta) {
     this.meta.updateTag({ name: "description", content: this.description });
@@ -58,18 +70,18 @@ export class CommandsUiComponent implements OnInit {
   setActiveCommand(command: Command) {
     this.activeCommand = command;
     this.activeSubcommand = null;
-    this.activePrimaryArgs = this.getRequiredArgs();
+    this.activePrimaryArgs = this.newActivePrimaryArgs();
     this.activeSecondaryArgs = [];
   }
 
   setActiveSubcommand(subcommand: Subcommand) {
     this.activeSubcommand = subcommand;
-    this.activePrimaryArgs = this.getRequiredArgs();
+    this.activePrimaryArgs = this.newActivePrimaryArgs();
     this.activeSecondaryArgs = [];
   }
 
-  setActivePrimaryArgs(primaryArgs: PrimaryArgument[]) {
-    this.activePrimaryArgs = primaryArgs;
+  setActivePrimaryArgs(primaryArgValuePairs: PrimaryArgValuePair[]) {
+    this.activePrimaryArgs = primaryArgValuePairs;
     this.activeSecondaryArgs = [];
   }
 
@@ -91,11 +103,35 @@ export class CommandsUiComponent implements OnInit {
     else return [];
   }
 
-  getRequiredArgs(): PrimaryArgument[] {
-    let requiredArgs = [];
+  newActivePrimaryArgs(): PrimaryArgValuePair[] {
+    let activeArgs = [];
     for (let arg of this.getPrimaryArguments()) {
-      if (arg.required) requiredArgs.push(arg);
+      if (arg.required) activeArgs.push(new PrimaryArgValuePair(arg));
+      else activeArgs.push(undefined);
     }
-    return requiredArgs;
+    return activeArgs;
+  }
+
+  getCommandString(): string {
+    let cmdString = this.prefix;
+
+    if (!this.activeCommand) return cmdString;
+    else cmdString += getShortest(this.activeCommand.cmdStrings);
+
+    if (this.activeSubcommand)
+      cmdString += " " + getShortest(this.activeSubcommand.cmdStrings);
+
+    cmdString += this.getPrimaryArgsString();
+    // cmdString += this.getSecondaryArgsString();
+    return cmdString;
+  }
+
+  getPrimaryArgsString(): string {
+    if (this.activePrimaryArgs.length == 0) return "";
+    let cmdString = "";
+    for (let pair of this.activePrimaryArgs) {
+      if (pair && pair.value) cmdString += " " + pair.value;
+    }
+    return cmdString;
   }
 }

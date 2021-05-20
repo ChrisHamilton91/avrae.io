@@ -3,8 +3,8 @@
   <div class="container">
     <div class="commands-ui-button-area">
       <div class="button-column">
+        <h4>MODULES</h4>
         <commands-ui-module-buttons
-          class="button-group"
           [modules]="getModules()"
           [activeModule]="activeModule"
           (activeModuleChange)="setActiveModule($event)"
@@ -12,8 +12,8 @@
         </commands-ui-module-buttons>
       </div>
       <div class="button-column">
+        <h4>COMMANDS</h4>
         <commands-ui-command-buttons
-          class="button-group"
           [commands]="getCommands()"
           [activeCommand]="activeCommand"
           (activeCommandChange)="setActiveCommand($event)"
@@ -22,8 +22,8 @@
         ></commands-ui-command-buttons>
       </div>
       <div class="button-column">
+        <h4>ARGUMENTS</h4>
         <commands-ui-primary-arg-buttons
-          class="button-group"
           [primaryArgs]="getPrimaryArguments()"
           [activePrimaryArgs]="activePrimaryArgs"
           (activePrimaryArgsChange)="setActivePrimaryArgs($event)"
@@ -31,9 +31,10 @@
         </commands-ui-primary-arg-buttons>
       </div>
     </div>
+    <div class="output-area">
+      <commands-ui-output-area
+        [commandString]="getCommandString()"
+      ></commands-ui-output-area>
+    </div>
   </div>
-  <p *ngIf="activeModule != null">{{ activeModule.name }}</p>
-  <p *ngIf="activeCommand != null">{{ activeCommand.name }}</p>
-  <p *ngIf="activeSubcommand != null">{{ activeSubcommand.name }}</p>
-  <p *ngFor="let arg of activePrimaryArgs">{{ arg.name }}</p>
 </div>
