@@ -7,6 +7,7 @@ import { PING } from "./Ping";
 
 export const CORE: CommandModule = {
   name: "Core",
-  desc: "Core utilty and general commands.",
+  shortDesc: "Core utilty and general commands.",
+  longDesc: "",
   commands: [ABOUT, CHANGELOG, DDB, INVITE, PING],
 };

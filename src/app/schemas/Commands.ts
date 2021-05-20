@@ -27,7 +27,9 @@ export class CommandModule {
   /** The name of the command module */
   name: string;
   /** A short description of the command module */
-  desc: string;
+  shortDesc: string;
+  /** An optional, more in-depth description */
+  longDesc: string;
   /** An array of all commands within the module*/
   commands: Command[];
 }
@@ -42,7 +44,7 @@ export class Command {
   shortDesc: string;
   /** An optional, more in-depth description */
   longDesc: string;
-  /** An array of primary arguments */
+  /** An array of primary arguments - these must be in the proper order in the array */
   primaryArgs: PrimaryArgument[];
   /** An array of secondary arguments */
   secondaryArgs: SecondaryArgument[];

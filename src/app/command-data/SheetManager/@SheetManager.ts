@@ -15,7 +15,9 @@ import { UPDATE } from "./Update";
 
 export const SHEET_MANAGER: CommandModule = {
   name: "SheetManager",
-  desc: "Commands to load a character sheet into Avrae, and supporting commands to modify the character, as well as basic macros.",
+  shortDesc:
+    "Commands to load a character sheet into Avrae, supporting commands to modify the character, and basic macros.",
+  longDesc: "",
   commands: [
     ATTACK,
     BEYOND,

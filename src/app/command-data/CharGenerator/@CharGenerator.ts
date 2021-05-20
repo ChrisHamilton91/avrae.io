@@ -4,6 +4,7 @@ import { RANDCHAR } from "./Randchar";
 
 export const CHAR_GENERATOR: CommandModule = {
   name: "CharGenerator",
-  desc: "Random character generator",
+  shortDesc: "Random character generator",
+  longDesc: "",
   commands: [RANDCHAR, RANDNAME],
 };

@@ -5,37 +5,44 @@ import { SHEET_MANAGER } from "./SheetManager/@SheetManager";
 
 export const CUSTOMIZATION: CommandModule = {
   name: "Customization",
-  desc: "Commands to help streamline using the bot.",
+  shortDesc: "Commands to help streamline using the bot.",
+  longDesc: "",
   commands: [],
 };
 
 export const DICE: CommandModule = {
   name: "Dice",
-  desc: "Dice and math related commands.",
+  shortDesc: "Dice and math related commands.",
+  longDesc: "",
   commands: [],
 };
 
 export const GAMELOG: CommandModule = {
   name: "GameLog",
-  desc: "Link your D&D Beyond campaign to a Discord channel to see players' rolls in real time!",
+  shortDesc:
+    "Link your D&D Beyond campaign to a Discord channel to see players' rolls in real time!",
+  longDesc: "",
   commands: [],
 };
 
 export const GAMETRACK: CommandModule = {
   name: "GameTrack",
-  desc: "Commands to help track game resources.",
+  shortDesc: "Commands to help track game resources.",
+  longDesc: "",
   commands: [],
 };
 
 export const HOMEBREW: CommandModule = {
   name: "Homebrew",
-  desc: "Commands to manage homebrew in Avrae.",
+  shortDesc: "Commands to manage homebrew in Avrae.",
+  longDesc: "",
   commands: [],
 };
 
 export const INIT_TRACKER: CommandModule = {
   name: "InitTracker",
-  desc:
+  shortDesc: "Initiative tracking commands. Use !help init for more details.",
+  longDesc:
     `Initiative tracking commands. Use !help init for more details.` +
     `\nTo use, first start combat in a channel by saying "!init begin".` +
     `\nThen, each combatant should add themselves to the combat with "!init add <MOD> <NAME>".` +
@@ -49,19 +56,22 @@ export const INIT_TRACKER: CommandModule = {
 
 export const LOOKUP: CommandModule = {
   name: "Lookup",
-  desc: "Commands to help look up items, status effects, rules, etc.",
+  shortDesc: "Commands to help look up items, status effects, rules, etc.",
+  longDesc: "",
   commands: [],
 };
 
 export const PBP_UTILS: CommandModule = {
   name: "PBPUtils",
-  desc: "Commands to help streamline playing-by-post over Discord.",
+  shortDesc: "Commands to help streamline playing-by-post over Discord.",
+  longDesc: "",
   commands: [],
 };
 
 export const TUTORIALS: CommandModule = {
   name: "Tutorials",
-  desc: "Commands to help learn how to use the bot.",
+  shortDesc: "Commands to help learn how to use the bot.",
+  longDesc: "",
   commands: [],
 };
 
