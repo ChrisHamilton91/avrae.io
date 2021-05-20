@@ -5,7 +5,7 @@ import {
   CommandModule,
   Subcommand,
 } from "src/app/schemas/Commands";
-import { sortByName } from "../constants";
+import { sortByName } from "../globals";
 
 @Component({
   selector: "commands-ui-command-buttons",

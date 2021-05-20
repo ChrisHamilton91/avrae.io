@@ -1,9 +1,7 @@
 <div *ngFor="let primaryArg of primaryArgs">
-  <commands-ui-button
-    [element]="primaryArg"
-    [activeStyle]="getActiveStyle(primaryArg)"
-    [inactiveStyle]="inactiveOptionalArgStyle"
+  <commands-ui-single-primary-arg-button
+    [primaryArg]="primaryArg"
     [active]="isActive(primaryArg)"
     (click)="toggleActivePrimaryArg(primaryArg)"
-  ></commands-ui-button>
+  ></commands-ui-single-primary-arg-button>
 </div>

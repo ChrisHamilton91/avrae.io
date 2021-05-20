@@ -30,13 +30,16 @@ import { DiscordEmbedModule } from "./shared/discord-embed/discord-embed.module"
 import { registerDraconicLanguage } from "./shared/monacoDraconic";
 import { ThemesModule } from "./themes/themes.module";
 import { CommandsUiComponent } from "./commands-ui/commands-ui.component";
-import { ButtonComponent } from "./commands-ui/button/button.component";
 import { MatButtonModule } from "@angular/material/button";
 import { ModuleButtonsComponent } from "./commands-ui/module-buttons/module-buttons.component";
-import { CommandButtonsComponent } from './commands-ui/command-buttons/command-buttons.component';
-import { SubcommandButtonsComponent } from './commands-ui/command-buttons/subcommand-buttons/subcommand-buttons.component';
-import { PrimaryArgButtonsComponent } from './commands-ui/primary-arg-buttons/primary-arg-buttons.component';
-import { OutputAreaComponent } from './commands-ui/output-area/output-area.component';
+import { CommandButtonsComponent } from "./commands-ui/command-buttons/command-buttons.component";
+import { SubcommandButtonsComponent } from "./commands-ui/command-buttons/subcommand-buttons/subcommand-buttons.component";
+import { PrimaryArgButtonsComponent } from "./commands-ui/primary-arg-buttons/primary-arg-buttons.component";
+import { OutputAreaComponent } from "./commands-ui/output-area/output-area.component";
+import { SingleModuleButtonComponent } from "./commands-ui/module-buttons/single-module-button/single-module-button.component";
+import { SingleCommandButtonComponent } from "./commands-ui/command-buttons/single-command-button/single-command-button.component";
+import { SingleSubcommandButtonComponent } from './commands-ui/command-buttons/subcommand-buttons/single-subcommand-button/single-subcommand-button.component';
+import { SinglePrimaryArgButtonComponent } from './commands-ui/primary-arg-buttons/single-primary-arg-button/single-primary-arg-button.component';
 
 Sentry.init({
   dsn: "https://af2b06560981446bb55f64b6f79fd520@sentry.io/1486249",
@@ -70,12 +73,15 @@ const monacoConfig = {
     CommandsComponent,
     CommandDisplayComponent,
     CommandsUiComponent,
-    ButtonComponent,
     ModuleButtonsComponent,
     CommandButtonsComponent,
     SubcommandButtonsComponent,
     PrimaryArgButtonsComponent,
     OutputAreaComponent,
+    SingleModuleButtonComponent,
+    SingleCommandButtonComponent,
+    SingleSubcommandButtonComponent,
+    SinglePrimaryArgButtonComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),

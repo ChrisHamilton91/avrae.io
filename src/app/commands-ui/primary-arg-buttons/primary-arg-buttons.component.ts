@@ -6,11 +6,7 @@ import {
   PrimaryArgument,
   Subcommand,
 } from "src/app/schemas/Commands";
-import {
-  ACTIVE_REQUIRED_ARG_STYLE,
-  ACTIVE_OPTIONAL_ARG_STYLE,
-  INACTIVE_OPTIONAL_ARG_STYLE,
-} from "../constants";
+import { PrimaryArgValuePair } from "../globals";
 
 @Component({
   selector: "commands-ui-primary-arg-buttons",
@@ -18,12 +14,8 @@ import {
   styleUrls: ["./primary-arg-buttons.component.css"],
 })
 export class PrimaryArgButtonsComponent implements OnInit {
-  activeRequiredArgStyle = ACTIVE_REQUIRED_ARG_STYLE;
-  activeOptionalArgStyle = ACTIVE_OPTIONAL_ARG_STYLE;
-  inactiveOptionalArgStyle = INACTIVE_OPTIONAL_ARG_STYLE;
   @Input() primaryArgs: PrimaryArgument[];
-  //Only for optional args
-  @Input() activePrimaryArgs: PrimaryArgument[] = [];
+  @Input() activePrimaryArgs: PrimaryArgValuePair[] = [];
   @Output() activePrimaryArgsChange = new EventEmitter();
 
   constructor() {}
@@ -34,24 +26,25 @@ export class PrimaryArgButtonsComponent implements OnInit {
     //Required arguments are always active
     if (primaryArg.required) return;
     let removed = false;
+    //Check if arg is in active args array, remove if so
     this.activePrimaryArgs.forEach((item, index, array) => {
-      if (item === primaryArg) {
-        array.splice(index, 1);
+      if (item && item.arg === primaryArg) {
+        delete array[index];
         removed = true;
       }
     });
-    if (!removed) this.activePrimaryArgs.push(primaryArg);
+    if (!removed)
+      this.activePrimaryArgs.push(new PrimaryArgValuePair(primaryArg));
     this.activePrimaryArgsChange.emit(this.activePrimaryArgs);
   }
 
   isActive(primaryArg: PrimaryArgument): boolean {
     //Required arguments are always active
     if (primaryArg.required) return true;
-    else return this.activePrimaryArgs.includes(primaryArg);
-  }
-
-  getActiveStyle(primaryArg: PrimaryArgument): string {
-    if (primaryArg.required) return this.activeRequiredArgStyle;
-    else return this.activeOptionalArgStyle;
+    //Check if arg is in active args array
+    for (let pair of this.activePrimaryArgs) {
+      if (pair && pair.arg === primaryArg) return true;
+    }
+    return false;
   }
 }

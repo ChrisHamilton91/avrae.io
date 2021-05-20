@@ -1,11 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import {
-  Argument,
-  Command,
-  CommandModule,
-  Subcommand,
-} from "src/app/schemas/Commands";
-import { ACTIVE_SUBCMD_STYLE, INACTIVE_SUBCMD_STYLE } from "../../constants";
+import { Subcommand } from "src/app/schemas/Commands";
+import { ACTIVE_SUBCMD_STYLE, INACTIVE_SUBCMD_STYLE } from "../../globals";
 
 @Component({
   selector: "commands-ui-subcommand-buttons",
@@ -13,8 +8,6 @@ import { ACTIVE_SUBCMD_STYLE, INACTIVE_SUBCMD_STYLE } from "../../constants";
   styleUrls: ["./subcommand-buttons.component.css"],
 })
 export class SubcommandButtonsComponent implements OnInit {
-  inactiveStyle = INACTIVE_SUBCMD_STYLE;
-  activeStyle = ACTIVE_SUBCMD_STYLE;
   @Input() subcommands: Subcommand[];
   @Input() activeSubcommand: Subcommand;
   @Output() activeSubcommandChange = new EventEmitter();

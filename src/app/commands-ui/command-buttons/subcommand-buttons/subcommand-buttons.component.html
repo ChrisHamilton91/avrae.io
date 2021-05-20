@@ -1,9 +1,7 @@
 <div *ngFor="let subcommand of subcommands">
-  <commands-ui-button
-    [element]="subcommand"
-    [inactiveStyle]="inactiveStyle"
-    [activeStyle]="activeStyle"
+  <commands-ui-single-subcommand-button
+    [subcommand]="subcommand"
     [active]="isActive(subcommand)"
     (click)="toggleActiveSubcommand(subcommand)"
-  ></commands-ui-button>
+  ></commands-ui-single-subcommand-button>
 </div>

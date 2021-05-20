@@ -1,9 +1,9 @@
 <div *ngFor="let command of commands">
-  <commands-ui-button
-    [element]="command"
+  <commands-ui-single-command-button
+    [command]="command"
     [active]="isActive(command)"
     (click)="toggleActiveCommand(command)"
-  ></commands-ui-button>
+  ></commands-ui-single-command-button>
   <div *ngIf="isActive(command) && command.subcommands.length != 0">
     <commands-ui-subcommand-buttons
       [subcommands]="getSubcommands()"
