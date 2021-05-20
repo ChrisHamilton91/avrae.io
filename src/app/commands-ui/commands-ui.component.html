@@ -12,7 +12,7 @@
         </commands-ui-module-buttons>
       </div>
       <div class="button-column">
-        <h4>COMMANDS</h4>
+        <div *ngIf="activeModule"><h4>COMMANDS</h4></div>
         <commands-ui-command-buttons
           [commands]="getCommands()"
           [activeCommand]="activeCommand"
@@ -22,7 +22,7 @@
         ></commands-ui-command-buttons>
       </div>
       <div class="button-column">
-        <h4>ARGUMENTS</h4>
+        <div *ngIf="activeCommand"><h4>ARGUMENTS</h4></div>
         <commands-ui-primary-arg-buttons
           [primaryArgs]="getPrimaryArguments()"
           [activePrimaryArgs]="activePrimaryArgs"
