@@ -7,17 +7,20 @@ import {
 } from "../schemas/Commands";
 
 //Default styles
-export const DEFAULT_ACTIVE_STYLE = "background-color:lime;color:black;";
-export const DEFAULT_INACTIVE_STYLE = "background-color:blue;";
+export const DEFAULT_ACTIVE_STYLE = "background-color:#33aa33;color:black";
+export const DEFAULT_INACTIVE_STYLE = "background-color:#0033aa;";
 
 //Subcommand styles
-export const ACTIVE_SUBCMD_STYLE = "background-color:yellow;color:black;";
-export const INACTIVE_SUBCMD_STYLE = "background-color:dodgerblue;";
+export const ACTIVE_SUBCMD_STYLE = "background-color:green;color:black";
+export const INACTIVE_SUBCMD_STYLE = "background-color:#2255bb;";
 
 //Primary Argument styles
-export const ACTIVE_REQUIRED_ARG_STYLE = "background-color:orange;color:black;";
-export const ACTIVE_OPTIONAL_ARG_STYLE = "background-color:yellow;color:black;";
-export const INACTIVE_OPTIONAL_ARG_STYLE = "background-color:dodgerblue;";
+export const ACTIVE_REQUIRED_ARG_STYLE =
+  "background-color:#aa3333;color:black;";
+export const ACTIVE_OPTIONAL_ARG_STYLE = DEFAULT_ACTIVE_STYLE;
+export const INACTIVE_OPTIONAL_ARG_STYLE = DEFAULT_INACTIVE_STYLE;
+// export const ACTIVE_OPTIONAL_ARG_STYLE = "background-color:green;color:black;";
+// export const INACTIVE_OPTIONAL_ARG_STYLE = "background-color:#2255bb;";
 
 export class PrimaryArgValuePair {
   arg: PrimaryArgument;
