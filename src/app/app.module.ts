@@ -40,6 +40,7 @@ import { SingleModuleButtonComponent } from "./commands-ui/module-buttons/single
 import { SingleCommandButtonComponent } from "./commands-ui/command-buttons/single-command-button/single-command-button.component";
 import { SingleSubcommandButtonComponent } from './commands-ui/command-buttons/subcommand-buttons/single-subcommand-button/single-subcommand-button.component';
 import { SinglePrimaryArgButtonComponent } from './commands-ui/primary-arg-buttons/single-primary-arg-button/single-primary-arg-button.component';
+import { SinglePrimaryArgInputComponent } from './commands-ui/primary-arg-buttons/single-primary-arg-input/single-primary-arg-input.component';
 
 Sentry.init({
   dsn: "https://af2b06560981446bb55f64b6f79fd520@sentry.io/1486249",
@@ -82,6 +83,7 @@ const monacoConfig = {
     SingleCommandButtonComponent,
     SingleSubcommandButtonComponent,
     SinglePrimaryArgButtonComponent,
+    SinglePrimaryArgInputComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),

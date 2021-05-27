@@ -22,13 +22,15 @@
         ></commands-ui-command-buttons>
       </div>
       <div class="button-column">
-        <div *ngIf="activeCommand"><h4>ARGUMENTS</h4></div>
-        <commands-ui-primary-arg-buttons
-          [primaryArgs]="getPrimaryArguments()"
-          [activePrimaryArgs]="activePrimaryArgs"
-          (activePrimaryArgsChange)="setActivePrimaryArgs($event)"
-        >
-        </commands-ui-primary-arg-buttons>
+        <div *ngIf="arePrimaryArgs()">
+          <h4>PRIMARY ARGS</h4>
+          <commands-ui-primary-arg-buttons
+            [primaryArgs]="getPrimaryArguments()"
+            [activePrimaryArgs]="activePrimaryArgs"
+            (activePrimaryArgsChange)="setActivePrimaryArgs($event)"
+          >
+          </commands-ui-primary-arg-buttons>
+        </div>
       </div>
     </div>
     <div class="output-area">

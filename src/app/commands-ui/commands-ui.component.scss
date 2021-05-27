@@ -14,6 +14,7 @@
   background: $black;
   font-family: $font;
   color: white;
+  margin: 16px;
 }
 
 .commands-ui-button-area {
@@ -21,16 +22,19 @@
   flex-direction: row;
   overflow: auto;
   height: 75vh;
+  background: #182026;
 }
 
 .button-column {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   margin: 10px;
 }
 
 .output-area {
-  padding: 16px;
+  background: #182026;
+  padding: 0 16px;
+  margin: 16px 0;
 }
 
 .button-column h4 {

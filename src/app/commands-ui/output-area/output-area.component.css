@@ -1,9 +1,4 @@
-#form-field {
+.form-field {
   display: block;
   width: 100%;
-}
-
-#output-box {
-  resize: both;
-  display: block;
 }

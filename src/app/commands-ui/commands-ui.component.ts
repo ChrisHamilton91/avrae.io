@@ -96,18 +96,16 @@ export class CommandsUiComponent implements OnInit {
   }
 
   getPrimaryArguments(): PrimaryArgument[] {
-    if (this.activeSubcommand)
-      return this.activeSubcommand.primaryArgs.sort(sortByName);
-    else if (this.activeCommand)
-      return this.activeCommand.primaryArgs.sort(sortByName);
+    if (this.activeSubcommand) return this.activeSubcommand.primaryArgs;
+    else if (this.activeCommand) return this.activeCommand.primaryArgs;
     else return [];
   }
 
   newActivePrimaryArgs(): PrimaryArgValuePair[] {
     let activeArgs = [];
     for (let arg of this.getPrimaryArguments()) {
-      if (arg.required) activeArgs.push(new PrimaryArgValuePair(arg));
-      else activeArgs.push(undefined);
+      if (arg.required) activeArgs.push(new PrimaryArgValuePair(arg, true));
+      else activeArgs.push(new PrimaryArgValuePair(arg, false));
     }
     return activeArgs;
   }
@@ -129,9 +127,18 @@ export class CommandsUiComponent implements OnInit {
   getPrimaryArgsString(): string {
     if (this.activePrimaryArgs.length == 0) return "";
     let cmdString = "";
-    for (let pair of this.activePrimaryArgs) {
-      if (pair && pair.value) cmdString += " " + pair.value;
+    for (const pair of this.activePrimaryArgs) {
+      if (pair.active && pair.value) cmdString += " " + pair.value;
+      //If one command is left out, the next ones should not be added
+      else break;
     }
     return cmdString;
+  }
+
+  arePrimaryArgs(): boolean {
+    if (this.activeSubcommand)
+      return this.activeSubcommand.primaryArgs.length > 0;
+    else if (this.activeCommand)
+      return this.activeCommand.primaryArgs.length > 0;
   }
 }
