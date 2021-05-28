@@ -7,9 +7,11 @@ import {
   TargetArgument,
   Category,
   ValueType,
+  ClassTypes,
 } from "../../schemas/Commands";
 
 const V: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "show after update",
   cmdString: "-v",
   valueType: ValueType.TRUE,
@@ -19,6 +21,7 @@ const V: SecondaryArgument = {
 };
 
 const NOCC: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "no custom counters",
   cmdString: "-nocc",
   valueType: ValueType.TRUE,

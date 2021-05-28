@@ -7,10 +7,12 @@ import {
   TargetArgument,
   Category,
   ValueType,
+  ClassTypes,
 } from "../../schemas/Commands";
 
 //#region secondary arguments
 const ADV: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "advantage",
   cmdString: "adv",
   valueType: ValueType.TRUE,
@@ -20,6 +22,7 @@ const ADV: SecondaryArgument = {
 };
 
 const DIS: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "disadvantage",
   cmdString: "dis",
   valueType: ValueType.TRUE,
@@ -29,6 +32,7 @@ const DIS: SecondaryArgument = {
 };
 
 const B: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "bonus to hit",
   cmdString: "-b",
   valueType: ValueType.NUMBER,
@@ -38,6 +42,7 @@ const B: SecondaryArgument = {
 };
 
 const DC: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "set check dc",
   cmdString: "-dc",
   valueType: ValueType.NUMBER,
@@ -47,6 +52,7 @@ const DC: SecondaryArgument = {
 };
 
 const MC: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "minimum roll",
   cmdString: "-mc",
   valueType: ValueType.NUMBER,
@@ -56,6 +62,7 @@ const MC: SecondaryArgument = {
 };
 
 const RR: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "re-roll",
   cmdString: "-rr",
   valueType: ValueType.NUMBER,
@@ -65,6 +72,7 @@ const RR: SecondaryArgument = {
 };
 
 const STR: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "base: strength",
   cmdString: "str",
   valueType: ValueType.TRUE,
@@ -74,6 +82,7 @@ const STR: SecondaryArgument = {
 };
 
 const DEX: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "base: dexterity",
   cmdString: "dex",
   valueType: ValueType.TRUE,
@@ -83,6 +92,7 @@ const DEX: SecondaryArgument = {
 };
 
 const CON: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "base: constitution",
   cmdString: "con",
   valueType: ValueType.TRUE,
@@ -92,6 +102,7 @@ const CON: SecondaryArgument = {
 };
 
 const INT: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "base: intelligence",
   cmdString: "int",
   valueType: ValueType.TRUE,
@@ -101,6 +112,7 @@ const INT: SecondaryArgument = {
 };
 
 const WIS: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "base: wisdom",
   cmdString: "wis",
   valueType: ValueType.TRUE,
@@ -110,6 +122,7 @@ const WIS: SecondaryArgument = {
 };
 
 const CHA: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "base: charisma",
   cmdString: "cha",
   valueType: ValueType.TRUE,
@@ -119,6 +132,7 @@ const CHA: SecondaryArgument = {
 };
 
 const PHRASE: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "flavor text",
   cmdString: "-phrase",
   valueType: ValueType.STRING,
@@ -128,6 +142,7 @@ const PHRASE: SecondaryArgument = {
 };
 
 const TITLE: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "title",
   cmdString: "-title",
   valueType: ValueType.STRING,
@@ -137,6 +152,7 @@ const TITLE: SecondaryArgument = {
 };
 
 const F: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "create field",
   cmdString: "-f",
   valueType: ValueType.STRING,
@@ -146,6 +162,7 @@ const F: SecondaryArgument = {
 };
 
 const THUMB: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "add thumbnail",
   cmdString: "-thumb",
   valueType: ValueType.STRING,
@@ -155,6 +172,7 @@ const THUMB: SecondaryArgument = {
 };
 
 const H: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "hide name",
   cmdString: "-h",
   valueType: ValueType.TRUE,

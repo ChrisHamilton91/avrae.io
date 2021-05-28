@@ -7,10 +7,12 @@ import {
   TargetArgument,
   Category,
   ValueType,
+  ClassTypes,
 } from "../../schemas/Commands";
 
 //#region secondary arguments
 const COLOR: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "embed color",
   cmdString: "color",
   valueType: ValueType.STRING,
@@ -20,6 +22,7 @@ const COLOR: SecondaryArgument = {
 };
 
 const CRITON: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "crit on",
   cmdString: "criton",
   valueType: ValueType.NUMBER,
@@ -29,6 +32,7 @@ const CRITON: SecondaryArgument = {
 };
 
 const REROLL: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "re-roll",
   cmdString: "reroll",
   valueType: ValueType.NUMBER,
@@ -38,6 +42,7 @@ const REROLL: SecondaryArgument = {
 };
 
 const SRSLOTS: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "short rest spells",
   cmdString: "srslots",
   valueType: ValueType.BOOLEAN,
@@ -47,6 +52,7 @@ const SRSLOTS: SecondaryArgument = {
 };
 
 const EMBEDIMAGE: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "embed image",
   cmdString: "embedimage",
   valueType: ValueType.BOOLEAN,
@@ -56,6 +62,7 @@ const EMBEDIMAGE: SecondaryArgument = {
 };
 
 const CRITDICE: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "add crit dice",
   cmdString: "critdice",
   valueType: ValueType.NUMBER,
@@ -65,6 +72,7 @@ const CRITDICE: SecondaryArgument = {
 };
 
 const TALENT: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "reliable talent",
   cmdString: "talent",
   valueType: ValueType.BOOLEAN,

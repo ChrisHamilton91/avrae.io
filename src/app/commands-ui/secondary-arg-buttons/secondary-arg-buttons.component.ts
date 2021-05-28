@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import {
   Argument,
+  AttackArgument,
+  Category,
+  ClassTypes,
   Command,
   CommandModule,
   PrimaryArgument,
@@ -60,5 +63,29 @@ export class SecondaryArgButtonsComponent implements OnInit {
       if (pair && pair.arg === secondaryArg) pair.value = value;
     }
     this.activeSecondaryArgsChange.emit(this.activeSecondaryArgs);
+  }
+
+  areRegularSecondaryArgs(): boolean {
+    return this.secondaryArgs[0].type === ClassTypes.SECONDARY_ARGUMENT;
+  }
+
+  areAttackArgs(): boolean {
+    return (
+      this.secondaryArgs[0].type === ClassTypes.ATTACK_ARGUMENT ||
+      this.secondaryArgs[0].type === ClassTypes.TARGET_ARGUMENT
+    );
+  }
+
+  getCategories(): Category[] {
+    return Object.values(Category);
+  }
+
+  getAttackArgsByCategory(category: Category): AttackArgument[] {
+    const argsOfCategory = [];
+    for (const arg of this.secondaryArgs) {
+      if ((arg as AttackArgument).category === category)
+        argsOfCategory.push(arg);
+    }
+    return argsOfCategory;
   }
 }

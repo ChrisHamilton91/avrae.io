@@ -22,6 +22,13 @@ export enum Category {
   OTHER = "Other",
 }
 
+/** Use these enums to check for class types at runtime - necessary for differentiating secondary arguments */
+export enum ClassTypes {
+  SECONDARY_ARGUMENT,
+  ATTACK_ARGUMENT,
+  TARGET_ARGUMENT,
+}
+
 /** Represents a collection of Avrae commands */
 export class CommandModule {
   /** The name of the command module */
@@ -94,6 +101,8 @@ export class PrimaryArgument extends Argument {
  * Avrae recognizes these arguments by the their keys, which are stored in the cmdString property.
  */
 export class SecondaryArgument extends Argument {
+  /** For checking the class type at runtime */
+  type: ClassTypes;
   /** The command string that lets Avrae recognize this argument. ie. The key of the key-value pair. */
   cmdString: string;
   /** An optional example of how to use this argument */

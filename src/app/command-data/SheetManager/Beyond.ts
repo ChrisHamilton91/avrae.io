@@ -7,10 +7,12 @@ import {
   TargetArgument,
   Category,
   ValueType,
+  ClassTypes,
 } from "../../schemas/Commands";
 
 //#region secondary arguments
 const NOCC: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "no custom counters",
   cmdString: "-nocc",
   valueType: ValueType.TRUE,

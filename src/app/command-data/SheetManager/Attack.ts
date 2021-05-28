@@ -7,11 +7,13 @@ import {
   TargetArgument,
   Category,
   ValueType,
+  ClassTypes,
 } from "../../schemas/Commands";
 
 //#region (secondary) attack arguments
 //#region to hit
 const ADV: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "advantage",
   cmdString: "adv",
   valueType: ValueType.TRUE,
@@ -22,6 +24,7 @@ const ADV: AttackArgument = {
 };
 
 const DIS: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "disadvantage",
   cmdString: "dis",
   valueType: ValueType.TRUE,
@@ -32,6 +35,7 @@ const DIS: AttackArgument = {
 };
 
 const EA: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "elven accuracy",
   cmdString: "ea",
   valueType: ValueType.TRUE,
@@ -42,6 +46,7 @@ const EA: AttackArgument = {
 };
 
 const HIT: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "auto hit",
   cmdString: "hit",
   valueType: ValueType.TRUE,
@@ -52,6 +57,7 @@ const HIT: AttackArgument = {
 };
 
 const MISS: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "auto miss",
   cmdString: "miss",
   valueType: ValueType.TRUE,
@@ -62,6 +68,7 @@ const MISS: AttackArgument = {
 };
 
 const CRIT: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "auto crit",
   cmdString: "crit",
   valueType: ValueType.TRUE,
@@ -72,6 +79,7 @@ const CRIT: AttackArgument = {
 };
 
 const AC: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "set target ac",
   cmdString: "-ac",
   valueType: ValueType.NUMBER,
@@ -82,6 +90,7 @@ const AC: AttackArgument = {
 };
 
 const B: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "bonus to hit",
   cmdString: "-b",
   valueType: ValueType.NUMBER,
@@ -92,6 +101,7 @@ const B: AttackArgument = {
 };
 
 const CRITON: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "crit on",
   cmdString: "-criton",
   valueType: ValueType.NUMBER,
@@ -104,6 +114,7 @@ const CRITON: AttackArgument = {
 
 //#region saves
 const PASS: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "target succeeds save",
   cmdString: "pass",
   valueType: ValueType.TRUE,
@@ -114,6 +125,7 @@ const PASS: AttackArgument = {
 };
 
 const FAIL: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "target fails save",
   cmdString: "fail",
   valueType: ValueType.TRUE,
@@ -124,6 +136,7 @@ const FAIL: AttackArgument = {
 };
 
 const SADV: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "target has advantage",
   cmdString: "sadv",
   valueType: ValueType.TRUE,
@@ -134,6 +147,7 @@ const SADV: AttackArgument = {
 };
 
 const SDIS: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "target has disadvantage",
   cmdString: "fail",
   valueType: ValueType.TRUE,
@@ -144,6 +158,7 @@ const SDIS: AttackArgument = {
 };
 
 const DC: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "set save dc",
   cmdString: "-dc",
   valueType: ValueType.NUMBER,
@@ -154,6 +169,7 @@ const DC: AttackArgument = {
 };
 
 const SAVE: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "set save type",
   cmdString: "-save",
   valueType: ValueType.STRING,
@@ -166,6 +182,7 @@ const SAVE: AttackArgument = {
 
 //#region damage
 const MAX: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "max damage",
   cmdString: "max",
   valueType: ValueType.TRUE,
@@ -176,6 +193,7 @@ const MAX: AttackArgument = {
 };
 
 const NOCRIT: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "no crit damage",
   cmdString: "nocrit",
   valueType: ValueType.TRUE,
@@ -186,6 +204,7 @@ const NOCRIT: AttackArgument = {
 };
 
 const D: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "add damage",
   cmdString: "-d",
   valueType: ValueType.NUMBER,
@@ -196,6 +215,7 @@ const D: AttackArgument = {
 };
 
 const C: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "add crit damage",
   cmdString: "-c",
   valueType: ValueType.NUMBER,
@@ -206,6 +226,7 @@ const C: AttackArgument = {
 };
 
 const MI: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "minimum damage roll",
   cmdString: "-mi",
   valueType: ValueType.NUMBER,
@@ -218,6 +239,7 @@ const MI: AttackArgument = {
 
 //#region damage types
 const MAGICAL: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "magical damage type",
   cmdString: "magical",
   valueType: ValueType.TRUE,
@@ -228,6 +250,7 @@ const MAGICAL: AttackArgument = {
 };
 
 const DTYPE: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "set damage type",
   cmdString: "-dtype",
   valueType: ValueType.STRING,
@@ -238,6 +261,7 @@ const DTYPE: AttackArgument = {
 };
 
 const RESIST: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "resist damage type",
   cmdString: "-resist",
   valueType: ValueType.STRING,
@@ -248,6 +272,7 @@ const RESIST: AttackArgument = {
 };
 
 const IMMUNE: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "immune to damage type",
   cmdString: "-immune",
   valueType: ValueType.STRING,
@@ -258,6 +283,7 @@ const IMMUNE: AttackArgument = {
 };
 
 const VULN: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "vulnerable to damage type",
   cmdString: "-vuln",
   valueType: ValueType.STRING,
@@ -268,6 +294,7 @@ const VULN: AttackArgument = {
 };
 
 const NEUTRAL: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "neutral to damage type",
   cmdString: "-neutral",
   valueType: ValueType.STRING,
@@ -280,6 +307,7 @@ const NEUTRAL: AttackArgument = {
 
 //#region effects
 const DUR: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "duration of effect",
   cmdString: "-dur",
   valueType: ValueType.NUMBER,
@@ -292,6 +320,7 @@ const DUR: AttackArgument = {
 
 //#region counters
 const AMT: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "amount of resources",
   cmdString: "-amt",
   valueType: ValueType.NUMBER,
@@ -302,6 +331,7 @@ const AMT: AttackArgument = {
 };
 
 const L: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "spell level",
   cmdString: "-l",
   valueType: ValueType.NUMBER,
@@ -312,6 +342,7 @@ const L: AttackArgument = {
 };
 
 const I: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "no resources used",
   cmdString: "-i",
   valueType: ValueType.TRUE,
@@ -324,6 +355,7 @@ const I: AttackArgument = {
 
 //#region other
 const H: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "hide rolls",
   cmdString: "-h",
   valueType: ValueType.TRUE,
@@ -334,6 +366,7 @@ const H: AttackArgument = {
 };
 
 const PHRASE: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "flavor text",
   cmdString: "-phrase",
   valueType: ValueType.STRING,
@@ -344,6 +377,7 @@ const PHRASE: AttackArgument = {
 };
 
 const TITLE: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "title",
   cmdString: "-title",
   valueType: ValueType.STRING,
@@ -354,6 +388,7 @@ const TITLE: AttackArgument = {
 };
 
 const F: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "create field",
   cmdString: "-f",
   valueType: ValueType.STRING,
@@ -364,6 +399,7 @@ const F: AttackArgument = {
 };
 
 const THUMB: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "add thumbnail",
   cmdString: "-thumb",
   valueType: ValueType.STRING,
@@ -375,17 +411,8 @@ const THUMB: AttackArgument = {
 //#endregion
 
 //#region targeting
-const T: AttackArgument = {
-  name: "target",
-  cmdString: "-t",
-  valueType: ValueType.STRING,
-  desc: "Sets a target for the attack. Repeat this command to target multiple enemies.",
-  example: "",
-  category: Category.TARGETING,
-  ephemeral: false,
-};
-
 const RR: AttackArgument = {
+  type: ClassTypes.ATTACK_ARGUMENT,
   name: "re-roll",
   cmdString: "-rr",
   valueType: ValueType.NUMBER,
@@ -435,11 +462,15 @@ const COMMON_SECONDARY_ARGS = [
   THUMB,
 ];
 
-const T2: TargetArgument = {
+const T: TargetArgument = {
+  type: ClassTypes.TARGET_ARGUMENT,
   name: "target",
   cmdString: "-t",
   valueType: ValueType.STRING,
-  desc: `Sets a target, and also allows for specific args to apply to them. (e.g, -t "OR1|hit" to force the attack against OR1 to hit)`,
+  desc:
+    `Sets a target for the attack. ` +
+    `Repeat this command to target multiple enemies. ` +
+    `Allows for specific args to apply to each target. (e.g, -t "OR1|hit" to force the attack against OR1 to hit)`,
   example: "",
   category: Category.TARGETING,
   secondaryArgs: COMMON_SECONDARY_ARGS,
@@ -452,7 +483,7 @@ const T2: TargetArgument = {
 const NAME: PrimaryArgument = {
   name: "attack name",
   signature: "atk_name",
-  required: false,
+  required: true,
   valueType: ValueType.STRING,
   default: null,
   desc: "Name of the attack to be executed",
@@ -463,6 +494,7 @@ const NAME: PrimaryArgument = {
 //#region add
 //#region add secondary arguments
 const ADD_D: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "damage",
   cmdString: "-d",
   valueType: ValueType.NUMBER,
@@ -472,6 +504,7 @@ const ADD_D: SecondaryArgument = {
 };
 
 const ADD_B: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "bonus to-hit",
   cmdString: "-b",
   valueType: ValueType.NUMBER,
@@ -481,6 +514,7 @@ const ADD_B: SecondaryArgument = {
 };
 
 const ADD_DESC: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "description",
   cmdString: "-desc",
   valueType: ValueType.STRING,
@@ -490,6 +524,7 @@ const ADD_DESC: SecondaryArgument = {
 };
 
 const ADD_VERB: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "verb",
   cmdString: "-verb",
   valueType: ValueType.STRING,
@@ -499,6 +534,7 @@ const ADD_VERB: SecondaryArgument = {
 };
 
 const ADD_PROPER: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "proper noun",
   cmdString: "-proper",
   valueType: ValueType.TRUE,
@@ -508,6 +544,7 @@ const ADD_PROPER: SecondaryArgument = {
 };
 
 const ADD_CRITON: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "crit on",
   cmdString: "-criton",
   valueType: ValueType.NUMBER,
@@ -517,6 +554,7 @@ const ADD_CRITON: SecondaryArgument = {
 };
 
 const ADD_PHRASE: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "flavor text",
   cmdString: "-phrase",
   valueType: ValueType.NUMBER,
@@ -526,6 +564,7 @@ const ADD_PHRASE: SecondaryArgument = {
 };
 
 const ADD_THUMB: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "image url",
   cmdString: "-thumb",
   valueType: ValueType.STRING,
@@ -535,6 +574,7 @@ const ADD_THUMB: SecondaryArgument = {
 };
 
 const ADD_C: SecondaryArgument = {
+  type: ClassTypes.SECONDARY_ARGUMENT,
   name: "extra crit damage",
   cmdString: "-c",
   valueType: ValueType.STRING,
@@ -637,7 +677,7 @@ export const ATTACK: Command = {
   shortDesc: "Rolls an attack for the current active character.",
   longDesc: "",
   primaryArgs: [NAME],
-  secondaryArgs: [T, T2].concat(COMMON_SECONDARY_ARGS),
+  secondaryArgs: COMMON_SECONDARY_ARGS.concat([T]),
   subcommands: [ADD, DELETE, IMPORT, LIST],
   examples: [],
 };

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="button-input-container" *ngIf="areRegularSecondaryArgs()">
   <div class="button-column">
     <div *ngFor="let secondaryArg of secondaryArgs">
       <commands-ui-single-secondary-arg-button
@@ -15,6 +15,37 @@
         [style.opacity]="getInputOpacity(secondaryArg)"
         (valueChange)="setArgValue(secondaryArg, $event)"
       ></commands-ui-single-secondary-arg-input>
+    </div>
+  </div>
+</div>
+
+<div class="attack-args-container" *ngIf="areAttackArgs()">
+  <div class="button-input-container">
+    <div class="button-column">
+      <div *ngFor="let category of getCategories()">
+        <div class="category-header">{{ category }}</div>
+        <div *ngFor="let attackArg of getAttackArgsByCategory(category)">
+          <commands-ui-single-secondary-arg-button
+            [secondaryArg]="attackArg"
+            [active]="isActive(attackArg)"
+            (click)="toggleActiveSecondaryArg(attackArg)"
+          ></commands-ui-single-secondary-arg-button>
+        </div>
+      </div>
+    </div>
+    <div class="input-column">
+      <div *ngFor="let category of getCategories()">
+        <commands-ui-single-secondary-arg-input
+          [style.visibility]="'hidden'"
+        ></commands-ui-single-secondary-arg-input>
+        <div *ngFor="let attackArg of getAttackArgsByCategory(category)">
+          <commands-ui-single-secondary-arg-input
+            [style.visibility]="getInputVisibility(attackArg)"
+            [style.opacity]="getInputOpacity(attackArg)"
+            (valueChange)="setArgValue(attackArg, $event)"
+          ></commands-ui-single-secondary-arg-input>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,11 @@
-.container {
+.button-input-container {
   display: flex;
   flex-direction: row;
+}
+
+.attack-args-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .button-column {
@@ -11,6 +16,24 @@
 .input-column {
   display: flex;
   flex-direction: column;
+}
+
+.category-header {
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-width: 64px;
+  line-height: 36px;
+  padding: 0 8px;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
 }
 
 commands-ui-single-secondary-arg-input {

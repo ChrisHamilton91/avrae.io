@@ -19,6 +19,7 @@ import {
   Category,
   ValueType,
   Argument,
+  ClassTypes,
 } from "../schemas/Commands";
 
 @Component({
