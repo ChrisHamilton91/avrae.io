@@ -32,6 +32,17 @@
           </commands-ui-primary-arg-buttons>
         </div>
       </div>
+      <div class="button-column">
+        <div *ngIf="areSecondaryArgs()">
+          <h4>SECONDARY ARGS</h4>
+          <commands-ui-secondary-arg-buttons
+            [secondaryArgs]="getSecondaryArguments()"
+            [activeSecondaryArgs]="activeSecondaryArgs"
+            (activeSecondaryArgsChange)="setActiveSecondaryArgs($event)"
+          >
+          </commands-ui-secondary-arg-buttons>
+        </div>
+      </div>
     </div>
     <div class="output-area">
       <commands-ui-output-area

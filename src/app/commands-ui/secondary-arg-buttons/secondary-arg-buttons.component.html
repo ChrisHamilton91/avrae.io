@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="button-column">
+    <div *ngFor="let secondaryArg of secondaryArgs">
+      <commands-ui-single-secondary-arg-button
+        [secondaryArg]="secondaryArg"
+        [active]="isActive(secondaryArg)"
+        (click)="toggleActiveSecondaryArg(secondaryArg)"
+      ></commands-ui-single-secondary-arg-button>
+    </div>
+  </div>
+  <div class="input-column">
+    <div *ngFor="let secondaryArg of secondaryArgs">
+      <commands-ui-single-secondary-arg-input
+        [style.visibility]="getInputVisibility(secondaryArg)"
+        [style.opacity]="getInputOpacity(secondaryArg)"
+        (valueChange)="setArgValue(secondaryArg, $event)"
+      ></commands-ui-single-secondary-arg-input>
+    </div>
+  </div>
+</div>

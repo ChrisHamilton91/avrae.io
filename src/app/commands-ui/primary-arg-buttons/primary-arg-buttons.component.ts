@@ -15,7 +15,7 @@ import { PrimaryArgValuePair } from "../globals";
 })
 export class PrimaryArgButtonsComponent implements OnInit {
   @Input() primaryArgs: PrimaryArgument[];
-  @Input() activePrimaryArgs: PrimaryArgValuePair[] = [];
+  @Input() activePrimaryArgs: PrimaryArgValuePair[];
   @Output() activePrimaryArgsChange = new EventEmitter();
 
   constructor() {}

@@ -1,5 +1,5 @@
 //To introduce a new command, copy this template to the command module's directory
-//Go head first, ie. start by creating the top-level command, and listing the names of all arguments and sub-commands.
+//Start by creating the top-level command, and listing the names of all arguments and sub-commands.
 //This way the compiler will let you know if you missed implementing any components.
 
 // import {

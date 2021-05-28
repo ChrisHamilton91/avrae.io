@@ -63,26 +63,29 @@ export class CommandsUiComponent implements OnInit {
     this.activeModule = module;
     this.activeCommand = null;
     this.activeSubcommand = null;
-    this.activePrimaryArgs = [];
-    this.activeSecondaryArgs = [];
+    this.activePrimaryArgs = this.newActivePrimaryArgs();
+    this.activeSecondaryArgs = this.newActiveSecondaryArgs();
   }
 
   setActiveCommand(command: Command) {
     this.activeCommand = command;
     this.activeSubcommand = null;
     this.activePrimaryArgs = this.newActivePrimaryArgs();
-    this.activeSecondaryArgs = [];
+    this.activeSecondaryArgs = this.newActiveSecondaryArgs();
   }
 
   setActiveSubcommand(subcommand: Subcommand) {
     this.activeSubcommand = subcommand;
     this.activePrimaryArgs = this.newActivePrimaryArgs();
-    this.activeSecondaryArgs = [];
+    this.activeSecondaryArgs = this.newActiveSecondaryArgs();
   }
 
   setActivePrimaryArgs(primaryArgValuePairs: PrimaryArgValuePair[]) {
     this.activePrimaryArgs = primaryArgValuePairs;
-    this.activeSecondaryArgs = [];
+  }
+
+  setActiveSecondaryArgs(secondaryArgValuePairs: SecondaryArgValuePair[]) {
+    this.activeSecondaryArgs = secondaryArgValuePairs;
   }
 
   getModules(): CommandModule[] {
@@ -101,6 +104,14 @@ export class CommandsUiComponent implements OnInit {
     else return [];
   }
 
+  getSecondaryArguments(): SecondaryArgument[] {
+    if (this.activeSubcommand)
+      return this.activeSubcommand.secondaryArgs.sort(sortByName);
+    else if (this.activeCommand)
+      return this.activeCommand.secondaryArgs.sort(sortByName);
+    else return [];
+  }
+
   newActivePrimaryArgs(): PrimaryArgValuePair[] {
     let activeArgs = [];
     for (let arg of this.getPrimaryArguments()) {
@@ -110,22 +121,26 @@ export class CommandsUiComponent implements OnInit {
     return activeArgs;
   }
 
+  newActiveSecondaryArgs(): SecondaryArgValuePair[] {
+    let activeArgs = [];
+    for (let arg of this.getSecondaryArguments()) {
+      activeArgs.push(new SecondaryArgValuePair(arg, false));
+    }
+    return activeArgs;
+  }
+
   getCommandString(): string {
     let cmdString = this.prefix;
-
     if (!this.activeCommand) return cmdString;
     else cmdString += getShortest(this.activeCommand.cmdStrings);
-
     if (this.activeSubcommand)
       cmdString += " " + getShortest(this.activeSubcommand.cmdStrings);
-
     cmdString += this.getPrimaryArgsString();
-    // cmdString += this.getSecondaryArgsString();
+    cmdString += this.getSecondaryArgsString();
     return cmdString;
   }
 
   getPrimaryArgsString(): string {
-    if (this.activePrimaryArgs.length == 0) return "";
     let cmdString = "";
     for (const pair of this.activePrimaryArgs) {
       if (pair.active && pair.value) cmdString += " " + pair.value;
@@ -135,10 +150,28 @@ export class CommandsUiComponent implements OnInit {
     return cmdString;
   }
 
+  getSecondaryArgsString(): string {
+    let cmdString = "";
+    for (const pair of this.activeSecondaryArgs) {
+      if (pair.active && pair.value)
+        cmdString += " " + pair.arg.cmdString + " " + pair.value;
+    }
+    return cmdString;
+  }
+
   arePrimaryArgs(): boolean {
     if (this.activeSubcommand)
       return this.activeSubcommand.primaryArgs.length > 0;
     else if (this.activeCommand)
       return this.activeCommand.primaryArgs.length > 0;
+    else return false;
+  }
+
+  areSecondaryArgs(): boolean {
+    if (this.activeSubcommand)
+      return this.activeSubcommand.secondaryArgs.length > 0;
+    else if (this.activeCommand)
+      return this.activeCommand.secondaryArgs.length > 0;
+    else return false;
   }
 }

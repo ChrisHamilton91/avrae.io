@@ -35,9 +35,11 @@ export class PrimaryArgValuePair {
 export class SecondaryArgValuePair {
   arg: SecondaryArgument;
   value: null | number | string | boolean;
-  constructor(arg: SecondaryArgument) {
+  active: boolean;
+  constructor(arg: SecondaryArgument, active: boolean) {
     this.arg = arg;
     this.value = null;
+    this.active = active;
   }
 }
 
