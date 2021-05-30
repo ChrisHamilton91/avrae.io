@@ -14,54 +14,31 @@ import { PrimaryArgValuePair } from "../globals";
   styleUrls: ["./primary-arg-buttons.component.css"],
 })
 export class PrimaryArgButtonsComponent implements OnInit {
-  @Input() primaryArgs: PrimaryArgument[];
-  @Input() activePrimaryArgs: PrimaryArgValuePair[];
-  @Output() activePrimaryArgsChange = new EventEmitter();
+  @Input() primaryArgValuePairs: PrimaryArgValuePair[];
+  @Output() primaryArgValuePairsChange = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  getIndex(primaryArg: PrimaryArgument) {
-    //Index of primaryArgs coincides with activePrimaryArgs
-    const index = this.primaryArgs.indexOf(primaryArg);
-    if (index === -1)
-      throw Error(`${primaryArg.name} is not in the array of primaryArgs!`);
-    return index;
-  }
-
-  toggleActivePrimaryArg(primaryArg: PrimaryArgument) {
+  toggleActivePrimaryArg(pair: PrimaryArgValuePair) {
     //Required arguments are always active
-    if (primaryArg.required) return;
-    const index = this.getIndex(primaryArg);
-    this.activePrimaryArgs[index].active =
-      !this.activePrimaryArgs[index].active;
-    this.activePrimaryArgsChange.emit(this.activePrimaryArgs);
+    if (pair.arg.required) return;
+    this.primaryArgValuePairs[pair.index].active =
+      !this.primaryArgValuePairs[pair.index].active;
+    this.primaryArgValuePairsChange.emit(this.primaryArgValuePairs);
   }
 
-  isActive(primaryArg: PrimaryArgument): boolean {
-    //Required arguments are always active
-    if (primaryArg.required) return true;
-    const index = this.getIndex(primaryArg);
-    return this.activePrimaryArgs[index].active;
+  getInputVisibility(pair: PrimaryArgValuePair): string {
+    return pair.active ? "visible" : "hidden";
   }
 
-  getInputVisibility(primaryArg: PrimaryArgument): string {
-    return this.isActive(primaryArg) ? "visible" : "hidden";
+  getInputOpacity(pair: PrimaryArgValuePair): string {
+    return pair.active ? "1" : "0";
   }
 
-  getInputOpacity(primaryArg: PrimaryArgument): string {
-    return this.isActive(primaryArg) ? "1" : "0";
-  }
-
-  setArgValue(primaryArg: PrimaryArgument, value: string) {
-    if (!this.isActive(primaryArg))
-      throw Error(
-        `Tried to set value of ${primaryArg.name} but it is not active!`
-      );
-    for (const pair of this.activePrimaryArgs) {
-      if (pair && pair.arg === primaryArg) pair.value = value;
-    }
-    this.activePrimaryArgsChange.emit(this.activePrimaryArgs);
+  setArgValue(pair: PrimaryArgValuePair, value: string) {
+    this.primaryArgValuePairs[pair.index].value = value;
+    this.primaryArgValuePairsChange.emit(this.primaryArgValuePairs);
   }
 }

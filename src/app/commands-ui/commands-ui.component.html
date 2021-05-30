@@ -25,9 +25,8 @@
         <div *ngIf="arePrimaryArgs()">
           <h4>PRIMARY ARGS</h4>
           <commands-ui-primary-arg-buttons
-            [primaryArgs]="getPrimaryArguments()"
-            [activePrimaryArgs]="activePrimaryArgs"
-            (activePrimaryArgsChange)="setActivePrimaryArgs($event)"
+            [primaryArgValuePairs]="primaryArgValuePairs"
+            (primaryArgValuePairsChange)="setPrimaryArgValuePairs($event)"
           >
           </commands-ui-primary-arg-buttons>
         </div>
@@ -36,9 +35,8 @@
         <div *ngIf="areSecondaryArgs()">
           <h4>SECONDARY ARGS</h4>
           <commands-ui-secondary-arg-buttons
-            [secondaryArgs]="getSecondaryArguments()"
-            [activeSecondaryArgs]="activeSecondaryArgs"
-            (activeSecondaryArgsChange)="setActiveSecondaryArgs($event)"
+            [secondaryArgValuePairs]="secondaryArgValuePairs"
+            (secondaryArgValuePairsChange)="setSecondaryArgValuePairs($event)"
           >
           </commands-ui-secondary-arg-buttons>
         </div>

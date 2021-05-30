@@ -1,19 +1,19 @@
 <div class="button-input-container" *ngIf="areRegularSecondaryArgs()">
   <div class="button-column">
-    <div *ngFor="let secondaryArg of secondaryArgs">
+    <div *ngFor="let pair of secondaryArgValuePairs">
       <commands-ui-single-secondary-arg-button
-        [secondaryArg]="secondaryArg"
-        [active]="isActive(secondaryArg)"
-        (click)="toggleActiveSecondaryArg(secondaryArg)"
+        [secondaryArg]="pair.arg"
+        [active]="pair.active"
+        (click)="toggleActiveSecondaryArg(pair)"
       ></commands-ui-single-secondary-arg-button>
     </div>
   </div>
   <div class="input-column">
-    <div *ngFor="let secondaryArg of secondaryArgs">
+    <div *ngFor="let pair of secondaryArgValuePairs">
       <commands-ui-single-secondary-arg-input
-        [style.visibility]="getInputVisibility(secondaryArg)"
-        [style.opacity]="getInputOpacity(secondaryArg)"
-        (valueChange)="setArgValue(secondaryArg, $event)"
+        [style.visibility]="getInputVisibility(pair)"
+        [style.opacity]="getInputOpacity(pair)"
+        (valueChange)="setArgValue(pair, $event)"
       ></commands-ui-single-secondary-arg-input>
     </div>
   </div>
@@ -24,11 +24,11 @@
     <div class="button-column">
       <div *ngFor="let category of getCategories()">
         <div class="category-header">{{ category }}</div>
-        <div *ngFor="let attackArg of getAttackArgsByCategory(category)">
+        <div *ngFor="let pair of getAttackArgValuePairsByCategory(category)">
           <commands-ui-single-secondary-arg-button
-            [secondaryArg]="attackArg"
-            [active]="isActive(attackArg)"
-            (click)="toggleActiveSecondaryArg(attackArg)"
+            [secondaryArg]="pair.arg"
+            [active]="pair.active"
+            (click)="toggleActiveSecondaryArg(pair)"
           ></commands-ui-single-secondary-arg-button>
         </div>
       </div>
@@ -38,11 +38,11 @@
         <commands-ui-single-secondary-arg-input
           [style.visibility]="'hidden'"
         ></commands-ui-single-secondary-arg-input>
-        <div *ngFor="let attackArg of getAttackArgsByCategory(category)">
+        <div *ngFor="let pair of getAttackArgValuePairsByCategory(category)">
           <commands-ui-single-secondary-arg-input
-            [style.visibility]="getInputVisibility(attackArg)"
-            [style.opacity]="getInputOpacity(attackArg)"
-            (valueChange)="setArgValue(attackArg, $event)"
+            [style.visibility]="getInputVisibility(pair)"
+            [style.opacity]="getInputOpacity(pair)"
+            (valueChange)="setArgValue(pair, $event)"
           ></commands-ui-single-secondary-arg-input>
         </div>
       </div>

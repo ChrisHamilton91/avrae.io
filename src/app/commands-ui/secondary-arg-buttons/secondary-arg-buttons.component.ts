@@ -18,61 +18,42 @@ import { SecondaryArgValuePair } from "../globals";
   styleUrls: ["./secondary-arg-buttons.component.css"],
 })
 export class SecondaryArgButtonsComponent implements OnInit {
-  @Input() secondaryArgs: SecondaryArgument[];
-  @Input() activeSecondaryArgs: SecondaryArgValuePair[];
-  @Output() activeSecondaryArgsChange = new EventEmitter();
+  @Input() secondaryArgValuePairs: SecondaryArgValuePair[];
+  @Output() secondaryArgValuePairsChange = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  getIndex(secondaryArg: SecondaryArgument) {
-    //Index of secondaryArgs coincides with activeSecondaryArgs
-    const index = this.secondaryArgs.indexOf(secondaryArg);
-    if (index === -1)
-      throw Error(`${secondaryArg.name} is not in the array of secondaryArgs!`);
-    return index;
+  toggleActiveSecondaryArg(pair: SecondaryArgValuePair) {
+    this.secondaryArgValuePairs[pair.index].active =
+      !this.secondaryArgValuePairs[pair.index].active;
+    this.secondaryArgValuePairsChange.emit(this.secondaryArgValuePairs);
   }
 
-  toggleActiveSecondaryArg(secondaryArg: SecondaryArgument) {
-    const index = this.getIndex(secondaryArg);
-    this.activeSecondaryArgs[index].active =
-      !this.activeSecondaryArgs[index].active;
-    this.activeSecondaryArgsChange.emit(this.activeSecondaryArgs);
+  getInputVisibility(pair: SecondaryArgValuePair): string {
+    return pair.active ? "visible" : "hidden";
   }
 
-  isActive(secondaryArg: SecondaryArgument): boolean {
-    const index = this.getIndex(secondaryArg);
-    return this.activeSecondaryArgs[index].active;
+  getInputOpacity(pair: SecondaryArgValuePair): string {
+    return pair.active ? "1" : "0";
   }
 
-  getInputVisibility(secondaryArg: SecondaryArgument): string {
-    return this.isActive(secondaryArg) ? "visible" : "hidden";
-  }
-
-  getInputOpacity(secondaryArg: SecondaryArgument): string {
-    return this.isActive(secondaryArg) ? "1" : "0";
-  }
-
-  setArgValue(secondaryArg: SecondaryArgument, value: string) {
-    if (!this.isActive(secondaryArg))
-      throw Error(
-        `Tried to set value of ${secondaryArg.name} but it is not active!`
-      );
-    for (const pair of this.activeSecondaryArgs) {
-      if (pair && pair.arg === secondaryArg) pair.value = value;
-    }
-    this.activeSecondaryArgsChange.emit(this.activeSecondaryArgs);
+  setArgValue(pair: SecondaryArgValuePair, value: string) {
+    this.secondaryArgValuePairs[pair.index].value = value;
+    this.secondaryArgValuePairsChange.emit(this.secondaryArgValuePairs);
   }
 
   areRegularSecondaryArgs(): boolean {
-    return this.secondaryArgs[0].type === ClassTypes.SECONDARY_ARGUMENT;
+    return (
+      this.secondaryArgValuePairs[0].arg.type === ClassTypes.SECONDARY_ARGUMENT
+    );
   }
 
   areAttackArgs(): boolean {
     return (
-      this.secondaryArgs[0].type === ClassTypes.ATTACK_ARGUMENT ||
-      this.secondaryArgs[0].type === ClassTypes.TARGET_ARGUMENT
+      this.secondaryArgValuePairs[0].arg.type === ClassTypes.ATTACK_ARGUMENT ||
+      this.secondaryArgValuePairs[0].arg.type === ClassTypes.TARGET_ARGUMENT
     );
   }
 
@@ -80,12 +61,14 @@ export class SecondaryArgButtonsComponent implements OnInit {
     return Object.values(Category);
   }
 
-  getAttackArgsByCategory(category: Category): AttackArgument[] {
-    const argsOfCategory = [];
-    for (const arg of this.secondaryArgs) {
-      if ((arg as AttackArgument).category === category)
-        argsOfCategory.push(arg);
+  getAttackArgValuePairsByCategory(
+    category: Category
+  ): SecondaryArgValuePair[] {
+    const attackArgValuePairs = [];
+    for (const pair of this.secondaryArgValuePairs) {
+      if ((pair.arg as AttackArgument).category === category)
+        attackArgValuePairs.push(pair);
     }
-    return argsOfCategory;
+    return attackArgValuePairs;
   }
 }

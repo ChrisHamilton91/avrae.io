@@ -1,19 +1,19 @@
 <div class="container">
   <div class="button-column">
-    <div *ngFor="let primaryArg of primaryArgs">
+    <div *ngFor="let pair of primaryArgValuePairs">
       <commands-ui-single-primary-arg-button
-        [primaryArg]="primaryArg"
-        [active]="isActive(primaryArg)"
-        (click)="toggleActivePrimaryArg(primaryArg)"
+        [primaryArg]="pair.arg"
+        [active]="pair.active"
+        (click)="toggleActivePrimaryArg(pair)"
       ></commands-ui-single-primary-arg-button>
     </div>
   </div>
   <div class="input-column">
-    <div *ngFor="let primaryArg of primaryArgs">
+    <div *ngFor="let pair of primaryArgValuePairs">
       <commands-ui-single-primary-arg-input
-        [style.visibility]="getInputVisibility(primaryArg)"
-        [style.opacity]="getInputOpacity(primaryArg)"
-        (valueChange)="setArgValue(primaryArg, $event)"
+        [style.visibility]="getInputVisibility(pair)"
+        [style.opacity]="getInputOpacity(pair)"
+        (valueChange)="setArgValue(pair, $event)"
       ></commands-ui-single-primary-arg-input>
     </div>
   </div>

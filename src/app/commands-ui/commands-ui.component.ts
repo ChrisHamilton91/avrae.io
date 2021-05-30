@@ -36,14 +36,8 @@ export class CommandsUiComponent implements OnInit {
   activeModule: CommandModule;
   activeCommand: Command;
   activeSubcommand: Subcommand;
-  /**
-   * An array of primary argument - value pairs.
-   * The indexes co-incide with those of the command's primaryArgs array.
-   * If the element at the corresponding index is defined, the argument is active.
-   * If the element is undefined, it is inactive
-   * */
-  activePrimaryArgs: PrimaryArgValuePair[] = [];
-  activeSecondaryArgs: SecondaryArgValuePair[] = [];
+  primaryArgValuePairs: PrimaryArgValuePair[] = [];
+  secondaryArgValuePairs: SecondaryArgValuePair[] = [];
 
   constructor(private meta: Meta) {
     this.meta.updateTag({ name: "description", content: this.description });
@@ -62,31 +56,26 @@ export class CommandsUiComponent implements OnInit {
 
   setActiveModule(module: CommandModule) {
     this.activeModule = module;
-    this.activeCommand = null;
-    this.activeSubcommand = null;
-    this.activePrimaryArgs = this.newActivePrimaryArgs();
-    this.activeSecondaryArgs = this.newActiveSecondaryArgs();
+    this.setActiveCommand(null);
   }
 
   setActiveCommand(command: Command) {
     this.activeCommand = command;
-    this.activeSubcommand = null;
-    this.activePrimaryArgs = this.newActivePrimaryArgs();
-    this.activeSecondaryArgs = this.newActiveSecondaryArgs();
+    this.setActiveSubcommand(null);
   }
 
   setActiveSubcommand(subcommand: Subcommand) {
     this.activeSubcommand = subcommand;
-    this.activePrimaryArgs = this.newActivePrimaryArgs();
-    this.activeSecondaryArgs = this.newActiveSecondaryArgs();
+    this.primaryArgValuePairs = this.newPrimaryArgValuePairs();
+    this.secondaryArgValuePairs = this.newSecondaryArgValuePairs();
   }
 
-  setActivePrimaryArgs(primaryArgValuePairs: PrimaryArgValuePair[]) {
-    this.activePrimaryArgs = primaryArgValuePairs;
+  setPrimaryArgValuePairs(primaryArgValuePairs: PrimaryArgValuePair[]) {
+    this.primaryArgValuePairs = primaryArgValuePairs;
   }
 
-  setActiveSecondaryArgs(secondaryArgValuePairs: SecondaryArgValuePair[]) {
-    this.activeSecondaryArgs = secondaryArgValuePairs;
+  setSecondaryArgValuePairs(secondaryArgValuePairs: SecondaryArgValuePair[]) {
+    this.secondaryArgValuePairs = secondaryArgValuePairs;
   }
 
   getModules(): CommandModule[] {
@@ -113,21 +102,22 @@ export class CommandsUiComponent implements OnInit {
     else return [];
   }
 
-  newActivePrimaryArgs(): PrimaryArgValuePair[] {
-    let activeArgs = [];
-    for (let arg of this.getPrimaryArguments()) {
-      if (arg.required) activeArgs.push(new PrimaryArgValuePair(arg, true));
-      else activeArgs.push(new PrimaryArgValuePair(arg, false));
-    }
-    return activeArgs;
+  newPrimaryArgValuePairs(): PrimaryArgValuePair[] {
+    let argValuePairs = [];
+    this.getPrimaryArguments().forEach((arg, index) => {
+      if (arg.required)
+        argValuePairs.push(new PrimaryArgValuePair(arg, index, true));
+      else argValuePairs.push(new PrimaryArgValuePair(arg, index, false));
+    });
+    return argValuePairs;
   }
 
-  newActiveSecondaryArgs(): SecondaryArgValuePair[] {
-    let activeArgs = [];
-    for (let arg of this.getSecondaryArguments()) {
-      activeArgs.push(new SecondaryArgValuePair(arg, false));
-    }
-    return activeArgs;
+  newSecondaryArgValuePairs(): SecondaryArgValuePair[] {
+    let argValuePairs = [];
+    this.getSecondaryArguments().forEach((arg, index) => {
+      argValuePairs.push(new SecondaryArgValuePair(arg, index, false));
+    });
+    return argValuePairs;
   }
 
   getCommandString(): string {
@@ -143,7 +133,7 @@ export class CommandsUiComponent implements OnInit {
 
   getPrimaryArgsString(): string {
     let cmdString = "";
-    for (const pair of this.activePrimaryArgs) {
+    for (const pair of this.primaryArgValuePairs) {
       if (pair.active && pair.value) cmdString += " " + pair.value;
       //If one command is left out, the next ones should not be added
       else break;
@@ -151,28 +141,84 @@ export class CommandsUiComponent implements OnInit {
     return cmdString;
   }
 
+  getPrimaryArgStringOfTypeString(pair: SecondaryArgValuePair): string {
+    if (!pair.value) return "";
+    let value = pair.value as string;
+    let cmdString = " " + pair.arg.cmdString;
+    if (value.includes(" ")) value = `"${value}"`;
+    return cmdString + " " + value;
+  }
+
+  getPrimaryArgStringOfTypeNumber(pair: SecondaryArgValuePair): string {
+    if (!pair.value) return "";
+    const value = (pair.value as string).replace(/\s/g, "");
+    return " " + pair.arg.cmdString + " " + value;
+  }
+
+  getPrimaryArgStringOfTypeTrue(pair: SecondaryArgValuePair): string {
+    return " " + pair.arg.cmdString;
+  }
+
+  getPrimaryArgStringOfTypeBoolean(pair: SecondaryArgValuePair): string {
+    return " " + pair.arg.cmdString + " " + pair.value;
+  }
+
   getSecondaryArgsString(): string {
     let cmdString = "";
-    for (const pair of this.activeSecondaryArgs) {
-      if (pair.active && pair.value)
-        cmdString += " " + pair.arg.cmdString + " " + pair.value;
+    for (const pair of this.secondaryArgValuePairs) {
+      if (pair.active) {
+        switch (pair.arg.valueType) {
+          case ValueType.STRING:
+            cmdString += this.getSecondaryArgStringOfTypeString(pair);
+            break;
+          case ValueType.NUMBER:
+            cmdString += this.getSecondaryArgStringOfTypeNumber(pair);
+            break;
+          case ValueType.TRUE:
+            cmdString += this.getSecondaryArgStringOfTypeTrue(pair);
+            break;
+          case ValueType.BOOLEAN:
+            cmdString += this.getSecondaryArgStringOfTypeBoolean(pair);
+            break;
+          default:
+            throw Error(
+              `ValueType: ${
+                ValueType[pair.arg.valueType]
+              } not implemented in getSecondaryArgsString()!`
+            );
+        }
+      }
     }
     return cmdString;
   }
 
+  getSecondaryArgStringOfTypeString(pair: SecondaryArgValuePair): string {
+    if (!pair.value) return "";
+    let value = pair.value as string;
+    let cmdString = " " + pair.arg.cmdString;
+    if (value.includes(" ")) value = `"${value}"`;
+    return cmdString + " " + value;
+  }
+
+  getSecondaryArgStringOfTypeNumber(pair: SecondaryArgValuePair): string {
+    if (!pair.value) return "";
+    const value = (pair.value as string).replace(/\s/g, "");
+    return " " + pair.arg.cmdString + " " + value;
+  }
+
+  getSecondaryArgStringOfTypeTrue(pair: SecondaryArgValuePair): string {
+    return " " + pair.arg.cmdString;
+  }
+
+  getSecondaryArgStringOfTypeBoolean(pair: SecondaryArgValuePair): string {
+    return " " + pair.arg.cmdString + " " + pair.value;
+  }
+
   arePrimaryArgs(): boolean {
-    if (this.activeSubcommand)
-      return this.activeSubcommand.primaryArgs.length > 0;
-    else if (this.activeCommand)
-      return this.activeCommand.primaryArgs.length > 0;
-    else return false;
+    return this.primaryArgValuePairs.length > 0;
   }
 
   areSecondaryArgs(): boolean {
-    if (this.activeSubcommand)
-      return this.activeSubcommand.secondaryArgs.length > 0;
-    else if (this.activeCommand)
-      return this.activeCommand.secondaryArgs.length > 0;
-    else return false;
+    return this.secondaryArgValuePairs.length > 0;
   }
 }
