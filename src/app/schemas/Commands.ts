@@ -92,7 +92,7 @@ export class PrimaryArgument extends Argument {
   /** Whether or not this argument is requied for the command to execute */
   required: boolean;
   /** The default value of the argument if no value is passed by the user */
-  default: null | boolean | number | string;
+  default: null | number | string;
 }
 
 /**

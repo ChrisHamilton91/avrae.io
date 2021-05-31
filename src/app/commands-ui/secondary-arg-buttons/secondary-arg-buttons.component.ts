@@ -9,6 +9,7 @@ import {
   PrimaryArgument,
   SecondaryArgument,
   Subcommand,
+  ValueType,
 } from "src/app/schemas/Commands";
 import { SecondaryArgValuePair } from "../globals";
 
@@ -32,7 +33,8 @@ export class SecondaryArgButtonsComponent implements OnInit {
   }
 
   getInputVisibility(pair: SecondaryArgValuePair): string {
-    return pair.active ? "visible" : "hidden";
+    if (pair.arg.valueType === ValueType.TRUE) return "hidden";
+    else return pair.active ? "visible" : "hidden";
   }
 
   getInputOpacity(pair: SecondaryArgValuePair): string {

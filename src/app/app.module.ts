@@ -44,6 +44,8 @@ import { SinglePrimaryArgInputComponent } from './commands-ui/primary-arg-button
 import { SecondaryArgButtonsComponent } from './commands-ui/secondary-arg-buttons/secondary-arg-buttons.component';
 import { SingleSecondaryArgInputComponent } from './commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input.component';
 import { SingleSecondaryArgButtonComponent } from './commands-ui/secondary-arg-buttons/single-secondary-arg-button/single-secondary-arg-button.component';
+import { SingleSecondaryArgInputBoxComponent } from './commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-box/single-secondary-arg-input-box.component';
+import { SingleSecondaryArgInputToggleComponent } from './commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-toggle/single-secondary-arg-input-toggle.component';
 
 Sentry.init({
   dsn: "https://af2b06560981446bb55f64b6f79fd520@sentry.io/1486249",
@@ -90,6 +92,8 @@ const monacoConfig = {
     SecondaryArgButtonsComponent,
     SingleSecondaryArgInputComponent,
     SingleSecondaryArgButtonComponent,
+    SingleSecondaryArgInputBoxComponent,
+    SingleSecondaryArgInputToggleComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),

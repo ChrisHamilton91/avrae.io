@@ -1,7 +1,14 @@
-<input
-  type="input"
-  class="input-box"
-  spellcheck="false"
-  autocomplete="off"
-  (input)="changeValue($event)"
-/>
+<commands-ui-single-secondary-arg-input-box
+  *ngIf="isInputBox()"
+  (valueChange)="changeValue($event)"
+></commands-ui-single-secondary-arg-input-box>
+<commands-ui-single-secondary-arg-input-toggle
+  *ngIf="isToggle()"
+  (valueChange)="changeValue($event)"
+></commands-ui-single-secondary-arg-input-toggle>
+
+<!-- Hidden input-box for attack arg headers -->
+<commands-ui-single-secondary-arg-input-box
+  *ngIf="isHeader"
+  [style.visibility]="'hidden'"
+></commands-ui-single-secondary-arg-input-box>

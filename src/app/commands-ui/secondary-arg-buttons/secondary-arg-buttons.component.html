@@ -11,6 +11,7 @@
   <div class="input-column">
     <div *ngFor="let pair of secondaryArgValuePairs">
       <commands-ui-single-secondary-arg-input
+        [valueType]="pair.arg.valueType"
         [style.visibility]="getInputVisibility(pair)"
         [style.opacity]="getInputOpacity(pair)"
         (valueChange)="setArgValue(pair, $event)"
@@ -35,11 +36,13 @@
     </div>
     <div class="input-column">
       <div *ngFor="let category of getCategories()">
+        <!-- Hidden input element next to header -->
         <commands-ui-single-secondary-arg-input
-          [style.visibility]="'hidden'"
+          [isHeader]="true"
         ></commands-ui-single-secondary-arg-input>
         <div *ngFor="let pair of getAttackArgValuePairsByCategory(category)">
           <commands-ui-single-secondary-arg-input
+            [valueType]="pair.arg.valueType"
             [style.visibility]="getInputVisibility(pair)"
             [style.opacity]="getInputOpacity(pair)"
             (valueChange)="setArgValue(pair, $event)"
