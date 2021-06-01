@@ -2,28 +2,32 @@
 <div class="commands-ui-page">
   <div class="container">
     <div class="commands-ui-button-area">
-      <div class="button-column">
+      <div class="column-container">
         <h4>MODULES</h4>
-        <commands-ui-module-buttons
-          [modules]="getModules()"
-          [activeModule]="activeModule"
-          (activeModuleChange)="setActiveModule($event)"
-        >
-        </commands-ui-module-buttons>
+        <div class="button-column">
+          <commands-ui-module-buttons
+            [modules]="getModules()"
+            [activeModule]="activeModule"
+            (activeModuleChange)="setActiveModule($event)"
+          >
+          </commands-ui-module-buttons>
+        </div>
       </div>
-      <div class="button-column">
-        <div *ngIf="activeModule"><h4>COMMANDS</h4></div>
-        <commands-ui-command-buttons
-          [commands]="getCommands()"
-          [activeCommand]="activeCommand"
-          (activeCommandChange)="setActiveCommand($event)"
-          [activeSubcommand]="activeSubcommand"
-          (activeSubcommandChange)="setActiveSubcommand($event)"
-        ></commands-ui-command-buttons>
+      <div *ngIf="activeModule" class="column-container">
+        <h4>COMMANDS</h4>
+        <div class="button-column">
+          <commands-ui-command-buttons
+            [commands]="getCommands()"
+            [activeCommand]="activeCommand"
+            (activeCommandChange)="setActiveCommand($event)"
+            [activeSubcommand]="activeSubcommand"
+            (activeSubcommandChange)="setActiveSubcommand($event)"
+          ></commands-ui-command-buttons>
+        </div>
       </div>
-      <div class="button-column">
-        <div *ngIf="arePrimaryArgs()">
-          <h4>PRIMARY ARGS</h4>
+      <div *ngIf="arePrimaryArgs()" class="column-container">
+        <h4>PRIMARY ARGUMENTS</h4>
+        <div class="button-column">
           <commands-ui-primary-arg-buttons
             [primaryArgValuePairs]="primaryArgValuePairs"
             (primaryArgValuePairsChange)="setPrimaryArgValuePairs($event)"
@@ -31,9 +35,9 @@
           </commands-ui-primary-arg-buttons>
         </div>
       </div>
-      <div class="button-column">
-        <div *ngIf="areSecondaryArgs()">
-          <h4>SECONDARY ARGS</h4>
+      <div *ngIf="areSecondaryArgs()" class="column-container">
+        <h4>SECONDARY ARGUMENTS</h4>
+        <div class="button-column">
           <commands-ui-secondary-arg-buttons
             [secondaryArgValuePairs]="secondaryArgValuePairs"
             (secondaryArgValuePairsChange)="setSecondaryArgValuePairs($event)"
