@@ -8,11 +8,10 @@
           [modules]="getModules()"
           [activeModule]="activeModule"
           (activeModuleChange)="setActiveModule($event)"
-        >
-        </commands-ui-module-buttons>
+        ></commands-ui-module-buttons>
       </div>
-      <div class="button-column">
-        <div *ngIf="activeModule"><h4>COMMANDS</h4></div>
+      <div class="button-column" *ngIf="activeModule">
+        <h4>COMMANDS</h4>
         <commands-ui-command-buttons
           [commands]="getCommands()"
           [activeCommand]="activeCommand"
@@ -21,24 +20,19 @@
           (activeSubcommandChange)="setActiveSubcommand($event)"
         ></commands-ui-command-buttons>
       </div>
-      <div class="button-column">
-        <div *ngIf="arePrimaryArgs()">
-          <h4>PRIMARY ARGS</h4>
+      <div class="button-column" *ngIf="arePrimaryArgs() || areSecondaryArgs()">
+        <h4>ARGUMENTS</h4>
+        <div class="primary-arg-column" *ngIf="arePrimaryArgs()">
           <commands-ui-primary-arg-buttons
             [primaryArgValuePairs]="primaryArgValuePairs"
             (primaryArgValuePairsChange)="setPrimaryArgValuePairs($event)"
-          >
-          </commands-ui-primary-arg-buttons>
+          ></commands-ui-primary-arg-buttons>
         </div>
-      </div>
-      <div class="button-column">
-        <div *ngIf="areSecondaryArgs()">
-          <h4>SECONDARY ARGS</h4>
+        <div class="secondary-arg-column" *ngIf="areSecondaryArgs()">
           <commands-ui-secondary-arg-buttons
             [secondaryArgValuePairs]="secondaryArgValuePairs"
             (secondaryArgValuePairsChange)="setSecondaryArgValuePairs($event)"
-          >
-          </commands-ui-secondary-arg-buttons>
+          ></commands-ui-secondary-arg-buttons>
         </div>
       </div>
     </div>

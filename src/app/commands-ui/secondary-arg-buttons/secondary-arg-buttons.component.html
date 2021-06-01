@@ -1,5 +1,6 @@
 <div class="button-input-container" *ngIf="areRegularSecondaryArgs()">
   <div class="button-column">
+    <div class="main-header">SECONDARY</div>
     <div *ngFor="let pair of secondaryArgValuePairs">
       <commands-ui-single-secondary-arg-button
         [secondaryArg]="pair.arg"
@@ -9,6 +10,10 @@
     </div>
   </div>
   <div class="input-column">
+    <!-- Hidden input element next to main header -->
+    <commands-ui-single-secondary-arg-input
+      [isHeader]="true"
+    ></commands-ui-single-secondary-arg-input>
     <div *ngFor="let pair of secondaryArgValuePairs">
       <commands-ui-single-secondary-arg-input
         [valueType]="pair.arg.valueType"
@@ -23,6 +28,7 @@
 <div class="attack-args-container" *ngIf="areAttackArgs()">
   <div class="button-input-container">
     <div class="button-column">
+      <div class="main-header">SECONDARY</div>
       <div *ngFor="let category of getCategories()">
         <div class="category-header">{{ category }}</div>
         <div *ngFor="let pair of getAttackArgValuePairsByCategory(category)">
@@ -35,8 +41,12 @@
       </div>
     </div>
     <div class="input-column">
+      <!-- Hidden input element next to main header -->
+      <commands-ui-single-secondary-arg-input
+        [isHeader]="true"
+      ></commands-ui-single-secondary-arg-input>
       <div *ngFor="let category of getCategories()">
-        <!-- Hidden input element next to header -->
+        <!-- Hidden input element next to category header -->
         <commands-ui-single-secondary-arg-input
           [isHeader]="true"
         ></commands-ui-single-secondary-arg-input>
