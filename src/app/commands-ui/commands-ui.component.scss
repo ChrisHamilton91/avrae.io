@@ -20,7 +20,7 @@
 .commands-ui-button-area {
   display: flex;
   flex-direction: row;
-  overflow: hidden;
+  overflow: auto;
   height: 75vh;
   background: #182026;
 }
@@ -28,10 +28,12 @@
 .column-container {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   overflow: hidden;
 }
 
 .button-column {
+  display: flex;
   overflow: auto;
   //to allow for scrollbars
   padding-left: 8px;
@@ -50,7 +52,7 @@ h4 {
   margin-bottom: 6px;
   margin-left: auto;
   margin-right: auto;
-  //to allow for scrollbars (alignment)
+  //to align with button columns
   padding-left: 8px;
   padding-right: 22px;
 }
