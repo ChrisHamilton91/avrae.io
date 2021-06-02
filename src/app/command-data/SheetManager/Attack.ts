@@ -149,7 +149,7 @@ const SADV: AttackArgument = {
 const SDIS: AttackArgument = {
   type: ClassTypes.ATTACK_ARGUMENT,
   name: "target has disadvantage",
-  cmdString: "fail",
+  cmdString: "sdis",
   valueType: ValueType.TRUE,
   desc: "Gives the target disadvantage on the saving throw.",
   example: "",
