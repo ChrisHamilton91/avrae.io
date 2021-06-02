@@ -23,7 +23,7 @@ export const INACTIVE_OPTIONAL_ARG_STYLE = DEFAULT_INACTIVE_STYLE;
 
 export class PrimaryArgValuePair {
   arg: PrimaryArgument;
-  value: null | number | string | boolean;
+  value: string | boolean;
   index: number;
   active: boolean;
   constructor(arg: PrimaryArgument, index: number, active: boolean) {
@@ -36,7 +36,7 @@ export class PrimaryArgValuePair {
 
 export class SecondaryArgValuePair {
   arg: SecondaryArgument;
-  value: null | number | string | boolean;
+  value: string | boolean;
   index: number;
   active: boolean;
   constructor(arg: SecondaryArgument, index: number, active: boolean) {

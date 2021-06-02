@@ -1,4 +1,19 @@
-.form-field {
-  display: block;
+.container {
+  display: flex;
   width: 100%;
+}
+
+.output-box {
+  display: flex;
+  width: 100%;
+  color: #dcddde;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  line-height: 36px;
+  padding: 0 8px;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
+  background: #36393f;
 }

@@ -40,9 +40,10 @@
   padding-right: 22px;
 }
 
-.output-area {
+commands-ui-output-area {
+  display: flex;
   background: #182026;
-  padding: 0 16px;
+  padding: 16px;
   margin: 16px 0;
 }
 
