@@ -167,7 +167,9 @@ export class CommandsUiComponent implements OnInit {
   getPrimaryArgStringOfTypeString(pair: PrimaryArgValuePair): string {
     if (!pair.value) return "";
     let value = pair.value as string;
-    if (value.includes(" ")) value = `"${value}"`;
+    // If there's a space, surround in quotes (unless they are already there)
+    if (value.includes(" ") && !(value.startsWith('"') && value.endsWith('"')))
+      value = `"${value}"`;
     return " " + value;
   }
 
