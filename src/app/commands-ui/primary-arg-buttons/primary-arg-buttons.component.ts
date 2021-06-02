@@ -24,8 +24,21 @@ export class PrimaryArgButtonsComponent implements OnInit {
   toggleActivePrimaryArg(pair: PrimaryArgValuePair) {
     //Required arguments are always active
     if (pair.arg.required) return;
-    this.primaryArgValuePairs[pair.index].active =
-      !this.primaryArgValuePairs[pair.index].active;
+    // If active, deactivate all subsequent primary args including this one.
+    // If inactive, activate all previous primary args including this one.
+    // There shouldn't be any required args after an optional arg but it doesn't hurt to check.
+    if (this.primaryArgValuePairs[pair.index].active) {
+      for (const thisPair of this.primaryArgValuePairs.slice(pair.index)) {
+        if (!thisPair.arg.required) thisPair.active = false;
+      }
+    } else {
+      for (const thisPair of this.primaryArgValuePairs.slice(
+        0,
+        pair.index + 1
+      )) {
+        thisPair.active = true;
+      }
+    }
     this.primaryArgValuePairsChange.emit(this.primaryArgValuePairs);
   }
 
