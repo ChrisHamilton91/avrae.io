@@ -10,19 +10,36 @@
   z-index: -999;
 }
 
-.commands-ui-page {
+:host {
   background: $black;
   font-family: $font;
   color: white;
-  margin: 16px;
+  position: absolute;
+  padding: 16px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
-.commands-ui-button-area {
+.commands-ui-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-area-container {
+  flex: 1;
+  background: #182026;
+  overflow: auto;
+  padding: 8px 16px 16px 16px;
+}
+
+.button-area {
   display: flex;
   flex-direction: row;
   overflow: auto;
-  height: 75vh;
-  background: #182026;
+  height: 100%;
 }
 
 .column-container {

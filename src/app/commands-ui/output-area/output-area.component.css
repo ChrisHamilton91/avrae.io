@@ -7,10 +7,10 @@
   display: flex;
   width: 100%;
   color: #dcddde;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  line-height: 36px;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: inherit;
+  line-height: 40px;
   padding: 0 8px;
   border: 0;
   outline: 0;

@@ -1,7 +1,7 @@
 <div class="background"></div>
-<div class="commands-ui-page">
-  <div class="container">
-    <div class="commands-ui-button-area">
+<div class="commands-ui-container">
+  <div class="button-area-container">
+    <div class="button-area">
       <div class="column-container">
         <h4>MODULES</h4>
         <div class="button-column">
@@ -46,8 +46,8 @@
         </div>
       </div>
     </div>
-      <commands-ui-output-area
-        [commandString]="getCommandString()"
-      ></commands-ui-output-area>
   </div>
+  <commands-ui-output-area
+    [commandString]="getCommandString()"
+  ></commands-ui-output-area>
 </div>
