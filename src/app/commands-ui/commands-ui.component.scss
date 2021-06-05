@@ -51,10 +51,10 @@
 
 .button-column {
   display: flex;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   //to allow for scrollbars
-  padding-left: 8px;
-  padding-right: 22px;
+  padding: 0 20px;
 }
 
 commands-ui-output-area {
@@ -71,6 +71,5 @@ h4 {
   margin-left: auto;
   margin-right: auto;
   //to align with button columns
-  padding-left: 8px;
-  padding-right: 22px;
+  padding: 0 20px;
 }

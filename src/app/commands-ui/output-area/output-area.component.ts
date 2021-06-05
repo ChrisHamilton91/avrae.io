@@ -11,4 +11,8 @@ export class OutputAreaComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  // copyToClipboard() {
+  //   this.clipboard.writeText(this.commandString);
+  // }
 }
