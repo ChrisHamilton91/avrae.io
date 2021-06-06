@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Clipboard } from "@angular/cdk/clipboard";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "commands-ui-output-area",
@@ -7,12 +9,15 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class OutputAreaComponent implements OnInit {
   @Input() commandString: string;
+  @Input() value: string;
 
-  constructor() {}
+  constructor(private clipboard: Clipboard, private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
-  // copyToClipboard() {
-  //   this.clipboard.writeText(this.commandString);
-  // }
+  copyToClipboard() {
+    const success = this.clipboard.copy(this.value);
+    if (success) this.toastr.success("Copied to clipboard");
+    else this.toastr.error("Could not copy to clipboard...");
+  }
 }

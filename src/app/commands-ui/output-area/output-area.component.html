@@ -1,10 +1,18 @@
 <div class="container">
-  <input class="output-box" spellcheck="false" [value]="commandString" />
+  <input
+    class="output-box"
+    spellcheck="false"
+    [value]="commandString"
+    [(ngModel)]="value"
+  />
   <!-- SVG by Catalin Fertu, from flaticon.com -->
   <svg
     class="copy-button"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 699.428 699.428"
+    style="enable-background: new 0 0 699.428 699.428"
+    (click)="copyToClipboard()"
+    cursor="pointer"
   >
     >
     <path

@@ -26,4 +26,11 @@
   width: 30px;
   right: 5px;
   top: 5px;
+  background-color: transparent;
+  transition: filter 0.5s, fill 0.5s;
+}
+
+.copy-button:hover {
+  filter: drop-shadow(0 0 20px #07eded);
+  fill: #07eded;
 }
