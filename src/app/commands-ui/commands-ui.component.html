@@ -2,6 +2,7 @@
 <div class="commands-ui-container">
   <div class="button-area-container">
     <div class="button-area">
+      <!-- Module buttons -->
       <div class="column-container">
         <h4>MODULES</h4>
         <div class="button-column">
@@ -13,7 +14,15 @@
           </commands-ui-module-buttons>
         </div>
       </div>
-      <div *ngIf="activeModule" class="column-container">
+      <!-- Commands Buttons -->
+      <div
+        *ngIf="areCommands()"
+        class="column-container"
+        [@fadeIn]="commandsFadeIn"
+        (@fadeIn.done)="commandsFadeInDone($event.toState)"
+        [@fadeOut]="commandsFadeOut"
+        (@fadeOut.done)="commandsFadeOutDone($event.toState)"
+      >
         <h4>COMMANDS</h4>
         <div class="button-column">
           <commands-ui-command-buttons
@@ -25,7 +34,11 @@
           ></commands-ui-command-buttons>
         </div>
       </div>
-      <div *ngIf="arePrimaryArgs()" class="column-container">
+      <!-- Primary Arg Buttons -->
+      <div
+        *ngIf="arePrimaryArgs()"
+        class="column-container"
+      >
         <h4>PRIMARY ARGUMENTS</h4>
         <div class="button-column">
           <commands-ui-primary-arg-buttons
@@ -35,7 +48,10 @@
           </commands-ui-primary-arg-buttons>
         </div>
       </div>
-      <div *ngIf="areSecondaryArgs()" class="column-container">
+      <div
+        *ngIf="areSecondaryArgs()"
+        class="column-container"
+      >
         <h4>SECONDARY ARGUMENTS</h4>
         <div class="button-column">
           <commands-ui-secondary-arg-buttons

@@ -1,4 +1,12 @@
 import {
+  animate,
+  AnimationMetadata,
+  state,
+  style,
+  transition,
+  trigger,
+} from "@angular/animations";
+import {
   CommandModule,
   Command,
   Argument,
@@ -65,3 +73,15 @@ export function getShortest(array: string[]): string {
   }
   return shortest;
 }
+
+export const fadeInAnimation: AnimationMetadata[] = [
+  state("true", style({ opacity: 1 })),
+  state("false", style({})),
+  transition("* => true", [style({ opacity: 0 }), animate("0.5s ease-in")]),
+];
+
+export const fadeOutAnimation: AnimationMetadata[] = [
+  state("true", style({ opacity: 0 })),
+  state("false", style({})),
+  transition("* => true", [animate("0.5s ease-in")]),
+];

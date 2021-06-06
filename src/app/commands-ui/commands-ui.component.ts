@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { COMMAND_MODULES } from "../command-data/CommandModules";
@@ -7,6 +7,8 @@ import {
   sortByName,
   PrimaryArgValuePair,
   SecondaryArgValuePair,
+  fadeInAnimation,
+  fadeOutAnimation,
 } from "./globals";
 import {
   CommandModule,
@@ -21,11 +23,16 @@ import {
   Argument,
   ClassTypes,
 } from "../schemas/Commands";
+import { trigger, AnimationEvent } from "@angular/animations";
 
 @Component({
   selector: "avr-commands-ui",
   templateUrl: "./commands-ui.component.html",
   styleUrls: ["./commands-ui.component.scss"],
+  animations: [
+    trigger("fadeIn", fadeInAnimation),
+    trigger("fadeOut", fadeOutAnimation),
+  ],
 })
 export class CommandsUiComponent implements OnInit {
   title = "Avrae Commands User Interface";
@@ -38,8 +45,13 @@ export class CommandsUiComponent implements OnInit {
   activeSubcommand: Subcommand;
   primaryArgValuePairs: PrimaryArgValuePair[] = [];
   secondaryArgValuePairs: SecondaryArgValuePair[] = [];
+  commandsFadeIn = false;
+  commandsFadeOut = false;
 
-  constructor(private meta: Meta) {
+  constructor(
+    private meta: Meta,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
     this.meta.updateTag({ name: "description", content: this.description });
     this.meta.updateTag({ property: "og:title", content: this.title });
     this.meta.updateTag({
@@ -53,6 +65,47 @@ export class CommandsUiComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  //#region Fade Behaviour
+  /**
+   * Intended behaviour:
+   * Fade-in:
+   *   Occurs when the component's root element is changed and will be non-null (ie. commands fade in when module is changed and non-null).
+   *   Restarts from opacity: 0 if any fade animation is already in progress.
+   *   Caveat: This requires extra logic if a fade-in animation is already happening.
+   *   This is because angular does not think the animation state has changed.
+   *   We need to change the animation state to anything else, force change detection, then re-trigger fade-in.
+   * Fade out:
+   *   Occurs when a component's root is set to null (ie. commands fade out when module is set to null).
+   *   Caveat: root must be set to null AFTER the component fades out. Otherwise, sub-components will pop-out before animation completes.
+   */
+
+  commandsFadeInDone(setToTrue: string) {
+    if (setToTrue) this.commandsFadeIn = false;
+  }
+
+  commandsFadeOutDone(setToTrue: string) {
+    //If we've set fadeout to false elsewhere, don't nullify module - the animation has been cancelled
+    if (setToTrue && this.commandsFadeOut) {
+      this.commandsFadeOut = false;
+      this.activeModule = null;
+    }
+  }
+
+  setCommandsFadeState(module: CommandModule): void {
+    // Module is being set to non-null AND (is changing OR fade-out is in progress) - begin fade-in
+    if (module && (module != this.activeModule || this.commandsFadeOut)) {
+      this.commandsFadeOut = false;
+      this.commandsFadeIn = false;
+      this.changeDetectorRef.detectChanges();
+      this.commandsFadeIn = true;
+    }
+    // Module will be null AND wasn't before AND fade-out is not in progress - begin fade-out
+    else if (!module && this.activeModule && !this.commandsFadeOut) {
+      this.commandsFadeOut = true;
+    }
+  }
+  //#endregion
 
   getModules(): CommandModule[] {
     return this.modules.sort(sortByName);
@@ -79,7 +132,9 @@ export class CommandsUiComponent implements OnInit {
   }
 
   setActiveModule(module: CommandModule) {
-    this.activeModule = module;
+    this.setCommandsFadeState(module);
+    // If we are setting module to null, it will be done after fadeout
+    if (module) this.activeModule = module;
     this.setActiveCommand(null);
   }
 
@@ -118,6 +173,12 @@ export class CommandsUiComponent implements OnInit {
       argValuePairs.push(new SecondaryArgValuePair(arg, index, false));
     });
     return argValuePairs;
+  }
+
+  areCommands(): boolean {
+    // Don't remove component until fade-out is done
+    if (this.commandsFadeOut) return true;
+    return !!this.activeModule;
   }
 
   arePrimaryArgs(): boolean {
