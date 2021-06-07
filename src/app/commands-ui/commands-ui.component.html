@@ -38,6 +38,10 @@
       <div
         *ngIf="arePrimaryArgs()"
         class="column-container"
+        [@fadeIn]="primaryArgsFadeIn"
+        (@fadeIn.done)="primaryArgsFadeInDone($event.toState)"
+        [@fadeOut]="primaryArgsFadeOut"
+        (@fadeOut.done)="primaryArgsFadeOutDone($event.toState)"
       >
         <h4>PRIMARY ARGUMENTS</h4>
         <div class="button-column">
@@ -48,9 +52,14 @@
           </commands-ui-primary-arg-buttons>
         </div>
       </div>
+      <!-- Secondary Arg Buttons -->
       <div
         *ngIf="areSecondaryArgs()"
         class="column-container"
+        [@fadeIn]="secondaryArgsFadeIn"
+        (@fadeIn.done)="secondaryArgsFadeInDone($event.toState)"
+        [@fadeOut]="secondaryArgsFadeOut"
+        (@fadeOut.done)="secondaryArgsFadeOutDone($event.toState)"
       >
         <h4>SECONDARY ARGUMENTS</h4>
         <div class="button-column">
