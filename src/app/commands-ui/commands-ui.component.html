@@ -18,9 +18,9 @@
       <div
         *ngIf="areCommands()"
         class="column-container"
-        [@fadeIn]="commandsFadeIn"
+        [@fadeIn]="commandsFadingIn"
         (@fadeIn.done)="commandsFadeInDone($event.toState)"
-        [@fadeOut]="commandsFadeOut"
+        [@fadeOut]="commandsFadingOut"
         (@fadeOut.done)="commandsFadeOutDone($event.toState)"
       >
         <h4>COMMANDS</h4>
@@ -38,9 +38,9 @@
       <div
         *ngIf="arePrimaryArgs()"
         class="column-container"
-        [@fadeIn]="primaryArgsFadeIn"
+        [@fadeIn]="primaryArgsFadingIn"
         (@fadeIn.done)="primaryArgsFadeInDone($event.toState)"
-        [@fadeOut]="primaryArgsFadeOut"
+        [@fadeOut]="primaryArgsFadingOut"
         (@fadeOut.done)="primaryArgsFadeOutDone($event.toState)"
       >
         <h4>PRIMARY ARGUMENTS</h4>
@@ -56,9 +56,9 @@
       <div
         *ngIf="areSecondaryArgs()"
         class="column-container"
-        [@fadeIn]="secondaryArgsFadeIn"
+        [@fadeIn]="secondaryArgsFadingIn"
         (@fadeIn.done)="secondaryArgsFadeInDone($event.toState)"
-        [@fadeOut]="secondaryArgsFadeOut"
+        [@fadeOut]="secondaryArgsFadingOut"
         (@fadeOut.done)="secondaryArgsFadeOutDone($event.toState)"
       >
         <h4>SECONDARY ARGUMENTS</h4>

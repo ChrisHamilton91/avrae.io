@@ -45,12 +45,12 @@ export class CommandsUiComponent implements OnInit {
   activeSubcommand: Subcommand;
   primaryArgValuePairs: PrimaryArgValuePair[] = [];
   secondaryArgValuePairs: SecondaryArgValuePair[] = [];
-  commandsFadeIn = false;
-  commandsFadeOut = false;
-  primaryArgsFadeIn = false;
-  primaryArgsFadeOut = false;
-  secondaryArgsFadeIn = false;
-  secondaryArgsFadeOut = false;
+  commandsFadingIn = false;
+  commandsFadingOut = false;
+  primaryArgsFadingIn = false;
+  primaryArgsFadingOut = false;
+  secondaryArgsFadingIn = false;
+  secondaryArgsFadingOut = false;
 
   constructor(
     private meta: Meta,
@@ -70,7 +70,7 @@ export class CommandsUiComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //#region command data getters
+  //#region data getters
   getModules(): CommandModule[] {
     return this.modules.sort(sortByName);
   }
@@ -96,20 +96,49 @@ export class CommandsUiComponent implements OnInit {
   }
   //#endregion
 
-  //#region command data setters
+  //#region data setters
   setActiveModule(module: CommandModule) {
-    this.setCommandsFadeState(module);
-    // If we are setting activeModule to null, it will be done after commands fadeout
-    if (module) this.activeModule = module;
+    // If new module is non-null AND EITHER new module is different OR commands are currently fading out (ie. module will be null shortly))
+    if (module) {
+      if (module != this.activeModule || this.commandsFadingOut) {
+        this.activeModule = module;
+        this.commandsFadeInStart();
+      }
+    }
+    // If module is changing to null AND wasn't null before AND commands are not currently fading out
+    if (!module) {
+      if (this.activeModule && !this.commandsFadingOut) {
+        this.commandsFadeOutStart();
+      }
+    }
     this.setActiveCommand(null);
   }
 
   setActiveCommand(command: Command) {
-    this.setArgsFadeState(command);
-    // If we are setting activeCommand to null, it will be done after args fadeout
-    // However if there are no args, we set it to null here
-    if (command || !(this.arePrimaryArgs() || this.areSecondaryArgs()))
-      this.activeCommand = command;
+    if (command) {
+      if (
+        command !== this.activeCommand ||
+        this.primaryArgsFadingOut ||
+        this.secondaryArgsFadingOut
+      ) {
+        this.activeCommand = command;
+        if (command.primaryArgs.length > 0) this.primaryArgsFadeInStart();
+        if (command.secondaryArgs.length > 0) this.secondaryArgsFadeInStart();
+      }
+    }
+    if (!command) {
+      if (
+        this.activeCommand &&
+        !this.primaryArgsFadingOut &&
+        !this.secondaryArgsFadingOut
+      ) {
+        const arePrimaryArgs = this.activeCommand.primaryArgs.length > 0;
+        const areSecondaryArgs = this.activeCommand.secondaryArgs.length > 0;
+        if (arePrimaryArgs) this.primaryArgsFadeOutStart();
+        if (areSecondaryArgs) this.secondaryArgsFadeOutStart();
+        if (!(arePrimaryArgs || areSecondaryArgs)) this.activeCommand = null;
+      }
+    }
     this.setActiveSubcommand(null);
   }
 
@@ -149,19 +178,19 @@ export class CommandsUiComponent implements OnInit {
   //#region state checks
   areCommands(): boolean {
     // Don't remove component until fade-out is done
-    if (this.commandsFadeOut) return true;
+    if (this.commandsFadingOut) return true;
     else return !!this.activeModule;
   }
 
   arePrimaryArgs(): boolean {
     // Don't remove component until fade-out is done
-    if (this.primaryArgsFadeOut) return true;
+    if (this.primaryArgsFadingOut) return true;
     else return this.primaryArgValuePairs.length > 0;
   }
 
   areSecondaryArgs(): boolean {
     // Don't remove component until fade-out is done
-    if (this.secondaryArgsFadeOut) return true;
+    if (this.secondaryArgsFadingOut) return true;
     else return this.secondaryArgValuePairs.length > 0;
   }
   //#endregion
@@ -277,88 +306,80 @@ export class CommandsUiComponent implements OnInit {
   //   Restarts from opacity: 0 if any fade animation is already in progress.
   //   Caveat: This requires extra logic if a fade-in animation is already happening.
   //   This is because angular does not think the animation state has changed.
-  //   We need to change the animation state to anything else, force change detection, then re-trigger fade-in.
+  //   We need to change the animation state to false, force change detection, then re-trigger fade-in.
   // Fade out:
   //   Occurs when a component's root is set to null (ie. commands fade out when module is set to null).
   //   Caveat: root must be set to null AFTER the component fades out. Otherwise, sub-components will pop-out before animation completes.
 
+  commandsFadeInStart() {
+    this.commandsFadingOut = false;
+    this.commandsFadingIn = false;
+    this.changeDetectorRef.detectChanges();
+    this.commandsFadingIn = true;
+  }
+
   commandsFadeInDone(setToTrue: string) {
-    if (setToTrue) this.commandsFadeIn = false;
+    if (setToTrue) this.commandsFadingIn = false;
+  }
+
+  commandsFadeOutStart() {
+    this.commandsFadingOut = true;
   }
 
   commandsFadeOutDone(setToTrue: string) {
-    //If we've set fadeout to false elsewhere, don't nullify activeModule - the animation has been cancelled
-    if (setToTrue && this.commandsFadeOut) {
-      this.commandsFadeOut = false;
+    // Animation has been cancelled
+    if (!this.commandsFadingOut) return;
+    if (setToTrue) {
+      this.commandsFadingOut = false;
       this.activeModule = null;
     }
   }
 
+  primaryArgsFadeInStart() {
+    this.primaryArgsFadingIn = false;
+    this.primaryArgsFadingOut = false;
+    this.changeDetectorRef.detectChanges();
+    this.primaryArgsFadingIn = true;
+  }
+
   primaryArgsFadeInDone(setToTrue: string) {
-    if (setToTrue) this.primaryArgsFadeIn = false;
+    if (setToTrue) this.primaryArgsFadingIn = false;
+  }
+
+  primaryArgsFadeOutStart() {
+    this.primaryArgsFadingOut = true;
   }
 
   primaryArgsFadeOutDone(setToTrue: string) {
-    //If we've set fadeout to false elsewhere, don't nullify activeCommand - the animation has been cancelled
-    if (setToTrue && this.primaryArgsFadeOut) {
-      this.primaryArgsFadeOut = false;
+    // Animation has been cancelled
+    if (!this.primaryArgsFadingOut) return;
+    if (setToTrue) {
+      this.primaryArgsFadingOut = false;
       this.activeCommand = null;
     }
+  }
+
+  secondaryArgsFadeInStart() {
+    this.secondaryArgsFadingIn = false;
+    this.secondaryArgsFadingOut = false;
+    this.changeDetectorRef.detectChanges();
+    this.secondaryArgsFadingIn = true;
   }
 
   secondaryArgsFadeInDone(setToTrue: string) {
-    if (setToTrue) this.secondaryArgsFadeIn = false;
+    if (setToTrue) this.secondaryArgsFadingIn = false;
+  }
+
+  secondaryArgsFadeOutStart() {
+    this.secondaryArgsFadingOut = true;
   }
 
   secondaryArgsFadeOutDone(setToTrue: string) {
-    //If we've set fadeout to false elsewhere, don't nullify activeCommand - the animation has been cancelled
-    if (setToTrue && this.secondaryArgsFadeOut) {
-      this.secondaryArgsFadeOut = false;
+    // Animation has been cancelled
+    if (!this.secondaryArgsFadingOut) return;
+    if (setToTrue) {
+      this.secondaryArgsFadingOut = false;
       this.activeCommand = null;
-    }
-  }
-
-  setCommandsFadeState(module: CommandModule): void {
-    // If module is being set to non-null AND (is changing OR fade-out is in progress) - begin fade-in
-    if (module && (module != this.activeModule || this.commandsFadeOut)) {
-      this.commandsFadeOut = false;
-      this.commandsFadeIn = false;
-      this.changeDetectorRef.detectChanges();
-      this.commandsFadeIn = true;
-    }
-    // If module will be null AND wasn't before AND fade-out is not in progress - begin fade-out
-    else if (!module && this.activeModule && !this.commandsFadeOut) {
-      this.commandsFadeOut = true;
-    }
-  }
-
-  setArgsFadeState(command: Command): void {
-    // If command will be non-null AND (is changing OR fade-out is in progress) - begin fade-in
-    if (
-      command &&
-      (command != this.activeCommand ||
-        this.primaryArgsFadeOut ||
-        this.secondaryArgsFadeOut)
-    ) {
-      this.primaryArgsFadeIn = false;
-      this.primaryArgsFadeOut = false;
-      this.secondaryArgsFadeIn = false;
-      this.secondaryArgsFadeOut = false;
-      this.changeDetectorRef.detectChanges();
-      if (command.primaryArgs.length > 0) this.primaryArgsFadeIn = true;
-      if (command.secondaryArgs.length > 0) this.secondaryArgsFadeIn = true;
-    }
-    // If command will be null AND it wasn't before AND fade-out is not in progress - begin fade-out
-    else if (
-      !command &&
-      this.activeCommand &&
-      !this.primaryArgsFadeOut &&
-      !this.secondaryArgsFadeOut
-    ) {
-      if (this.activeCommand.primaryArgs.length > 0)
-        this.primaryArgsFadeOut = true;
-      if (this.activeCommand.secondaryArgs.length > 0)
-        this.secondaryArgsFadeOut = true;
     }
   }
   //#endregion
