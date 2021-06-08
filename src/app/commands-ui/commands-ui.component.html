@@ -16,7 +16,7 @@
       </div>
       <!-- Commands Buttons -->
       <div
-        *ngIf="areCommands()"
+        *ngIf="areCommandButtons()"
         class="column-container"
         [@fadeIn]="commandsFadingIn"
         (@fadeIn.done)="commandsFadeInDone($event.toState)"
@@ -31,12 +31,16 @@
             (activeCommandChange)="setActiveCommand($event)"
             [activeSubcommand]="activeSubcommand"
             (activeSubcommandChange)="setActiveSubcommand($event)"
+            [subcommandsFadingIn]="subcommandsFadingIn"
+            (subcommandsFadeInDoneEmitter)="subcommandsFadeInDone($event)"
+            [subcommandsFadingOut]="subcommandsFadingOut"
+            (subcommandsFadeOutDoneEmitter)="subcommandsFadeOutDone($event)"
           ></commands-ui-command-buttons>
         </div>
       </div>
       <!-- Primary Arg Buttons -->
       <div
-        *ngIf="arePrimaryArgs()"
+        *ngIf="arePrimaryArgButtons()"
         class="column-container"
         [@fadeIn]="primaryArgsFadingIn"
         (@fadeIn.done)="primaryArgsFadeInDone($event.toState)"
@@ -54,7 +58,7 @@
       </div>
       <!-- Secondary Arg Buttons -->
       <div
-        *ngIf="areSecondaryArgs()"
+        *ngIf="areSecondaryArgButtons()"
         class="column-container"
         [@fadeIn]="secondaryArgsFadingIn"
         (@fadeIn.done)="secondaryArgsFadeInDone($event.toState)"

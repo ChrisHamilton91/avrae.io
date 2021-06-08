@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { COMMAND_MODULES } from "../command-data/CommandModules";
@@ -47,6 +47,8 @@ export class CommandsUiComponent implements OnInit {
   secondaryArgValuePairs: SecondaryArgValuePair[] = [];
   commandsFadingIn = false;
   commandsFadingOut = false;
+  subcommandsFadingIn = false;
+  subcommandsFadingOut = false;
   primaryArgsFadingIn = false;
   primaryArgsFadingOut = false;
   secondaryArgsFadingIn = false;
@@ -98,14 +100,12 @@ export class CommandsUiComponent implements OnInit {
 
   //#region data setters
   setActiveModule(module: CommandModule) {
-    // If new module is non-null AND EITHER new module is different OR commands are currently fading out (ie. module will be null shortly))
     if (module) {
       if (module != this.activeModule || this.commandsFadingOut) {
         this.activeModule = module;
         this.commandsFadeInStart();
       }
     }
-    // If module is changing to null AND wasn't null before AND commands are not currently fading out
     if (!module) {
       if (this.activeModule && !this.commandsFadingOut) {
         this.commandsFadeOutStart();
@@ -115,31 +115,40 @@ export class CommandsUiComponent implements OnInit {
   }
 
   setActiveCommand(command: Command) {
-    if (command) {
-      if (
-        command !== this.activeCommand ||
-        this.primaryArgsFadingOut ||
-        this.secondaryArgsFadingOut
-      ) {
-        this.activeCommand = command;
-        if (command.primaryArgs.length > 0) this.primaryArgsFadeInStart();
-        if (command.secondaryArgs.length > 0) this.secondaryArgsFadeInStart();
-      }
-    }
-    if (!command) {
-      if (
-        this.activeCommand &&
-        !this.primaryArgsFadingOut &&
-        !this.secondaryArgsFadingOut
-      ) {
-        const arePrimaryArgs = this.activeCommand.primaryArgs.length > 0;
-        const areSecondaryArgs = this.activeCommand.secondaryArgs.length > 0;
-        if (arePrimaryArgs) this.primaryArgsFadeOutStart();
-        if (areSecondaryArgs) this.secondaryArgsFadeOutStart();
-        if (!(arePrimaryArgs || areSecondaryArgs)) this.activeCommand = null;
-      }
-    }
+    if (command) this.setActiveCommandToNonNull(command);
+    else this.setActiveCommandToNull();
     this.setActiveSubcommand(null);
+  }
+
+  setActiveCommandToNonNull(command: Command) {
+    if (
+      command !== this.activeCommand ||
+      this.subcommandsFadingOut ||
+      this.primaryArgsFadingOut ||
+      this.secondaryArgsFadingOut
+    ) {
+      this.activeCommand = command;
+      this.subcommandsFadeInStart();
+      this.primaryArgsFadeInStart();
+      this.secondaryArgsFadeInStart();
+    }
+  }
+
+  setActiveCommandToNull() {
+    if (
+      this.activeCommand &&
+      !this.primaryArgsFadingOut &&
+      !this.secondaryArgsFadingOut
+    ) {
+      const areSubcommands = this.activeCommand.subcommands.length > 0;
+      const arePrimaryArgs = this.activeCommand.primaryArgs.length > 0;
+      const areSecondaryArgs = this.activeCommand.secondaryArgs.length > 0;
+      if (areSubcommands) this.subcommandsFadeOutStart();
+      if (arePrimaryArgs) this.primaryArgsFadeOutStart();
+      if (areSecondaryArgs) this.secondaryArgsFadeOutStart();
+      if (!(areSubcommands || arePrimaryArgs || areSecondaryArgs))
+        this.activeCommand = null;
+    }
   }
 
   setActiveSubcommand(subcommand: Subcommand) {
@@ -176,26 +185,23 @@ export class CommandsUiComponent implements OnInit {
   //#endregion
 
   //#region state checks
-  areCommands(): boolean {
-    // Don't remove component until fade-out is done
+  areCommandButtons(): boolean {
     if (this.commandsFadingOut) return true;
     else return !!this.activeModule;
   }
 
-  arePrimaryArgs(): boolean {
-    // Don't remove component until fade-out is done
+  arePrimaryArgButtons(): boolean {
     if (this.primaryArgsFadingOut) return true;
     else return this.primaryArgValuePairs.length > 0;
   }
 
-  areSecondaryArgs(): boolean {
-    // Don't remove component until fade-out is done
+  areSecondaryArgButtons(): boolean {
     if (this.secondaryArgsFadingOut) return true;
     else return this.secondaryArgValuePairs.length > 0;
   }
   //#endregion
 
-  //#region command string building
+  //#region output string building
   getCommandString(): string {
     let cmdString = this.prefix;
     if (!this.activeCommand) return cmdString;
@@ -332,6 +338,30 @@ export class CommandsUiComponent implements OnInit {
     if (setToTrue) {
       this.commandsFadingOut = false;
       this.activeModule = null;
+    }
+  }
+
+  subcommandsFadeInStart() {
+    this.subcommandsFadingOut = false;
+    this.subcommandsFadingIn = false;
+    this.changeDetectorRef.detectChanges();
+    this.subcommandsFadingIn = true;
+  }
+
+  subcommandsFadeInDone(setToTrue: string) {
+    if (setToTrue) this.subcommandsFadingIn = false;
+  }
+
+  subcommandsFadeOutStart() {
+    this.subcommandsFadingOut = true;
+  }
+
+  subcommandsFadeOutDone(setToTrue: string) {
+    // Animation has been cancelled
+    if (!this.subcommandsFadingOut) return;
+    if (setToTrue && this.subcommandsFadingOut) {
+      this.subcommandsFadingOut = false;
+      this.activeCommand = null;
     }
   }
 

@@ -29,44 +29,20 @@ export class CommandButtonsComponent implements OnInit {
   @Input() commands: Command[];
   @Input() activeCommand: Command;
   @Input() activeSubcommand: Subcommand;
+  @Input() subcommandsFadingIn = false;
+  @Input() subcommandsFadingOut = false;
   @Output() activeCommandChange = new EventEmitter();
   @Output() activeSubcommandChange = new EventEmitter();
-  subcommandsFadingIn = false;
-  subcommandsFadingOut = false;
+  @Output() subcommandsFadeInDoneEmitter = new EventEmitter();
+  @Output() subcommandsFadeOutDoneEmitter = new EventEmitter();
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   toggleActiveCommand(command: Command) {
-    if (command != this.activeCommand || this.subcommandsFadingOut) {
-      this.activeCommand = command;
-      this.activeCommandChange.emit(this.activeCommand);
-      this.subcommandsFadeInStart();
-    } else {
-      if (this.areSubcommands()) this.subcommandsFadeOutStart();
-      else {
-        this.activeCommand = null;
-        this.activeCommandChange.emit(this.activeCommand);
-      }
-    }
-  }
-
-  areArguments() {
-    if (this.activeSubcommand)
-      return (
-        this.activeSubcommand.primaryArgs.length > 0 ||
-        this.activeSubcommand.secondaryArgs.length > 0
-      );
-    else if (this.activeCommand)
-      return (
-        this.activeCommand.primaryArgs.length > 0 ||
-        this.activeCommand.secondaryArgs.length > 0
-      );
-  }
-
-  areSubcommands() {
-    return this.activeCommand.subcommands.length > 0;
+    if (command === this.activeCommand) this.activeCommandChange.emit(null);
+    else this.activeCommandChange.emit(command);
   }
 
   isActive(command: Command) {
@@ -85,28 +61,10 @@ export class CommandButtonsComponent implements OnInit {
   }
 
   subcommandsFadeInDone(setToTrue: string) {
-    if (setToTrue) this.subcommandsFadingIn = false;
+    this.subcommandsFadeInDoneEmitter.emit(setToTrue);
   }
 
   subcommandsFadeOutDone(setToTrue: string) {
-    // If we've set fadingOut to false elsewhere, don't nullify activeCommand - the animation has been cancelled
-    if (setToTrue && this.subcommandsFadingOut) {
-      this.subcommandsFadingOut = false;
-      this.activeCommand = null;
-    }
-  }
-
-  async subcommandsFadeInStart() {
-    this.subcommandsFadingOut = false;
-    this.subcommandsFadingIn = false;
-    // Await is necessary for the change detection to work
-    await this.changeDetectorRef.detectChanges();
-    this.subcommandsFadingIn = true;
-  }
-
-  subcommandsFadeOutStart() {
-    // Need to emit null to synchronize with argument fade-outs
-    if (this.areArguments()) this.activeCommandChange.emit(null);
-    this.subcommandsFadingOut = true;
+    this.subcommandsFadeOutDoneEmitter.emit(setToTrue);
   }
 }
