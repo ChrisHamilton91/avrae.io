@@ -319,14 +319,14 @@ export class CommandsUiComponent implements OnInit {
   }
 
   setCommandsFadeState(module: CommandModule): void {
-    // Module is being set to non-null AND (is changing OR fade-out is in progress) - begin fade-in
+    // If module is being set to non-null AND (is changing OR fade-out is in progress) - begin fade-in
     if (module && (module != this.activeModule || this.commandsFadeOut)) {
       this.commandsFadeOut = false;
       this.commandsFadeIn = false;
       this.changeDetectorRef.detectChanges();
       this.commandsFadeIn = true;
     }
-    // Module will be null AND wasn't before AND fade-out is not in progress - begin fade-out
+    // If module will be null AND wasn't before AND fade-out is not in progress - begin fade-out
     else if (!module && this.activeModule && !this.commandsFadeOut) {
       this.commandsFadeOut = true;
     }
@@ -345,8 +345,8 @@ export class CommandsUiComponent implements OnInit {
       this.secondaryArgsFadeIn = false;
       this.secondaryArgsFadeOut = false;
       this.changeDetectorRef.detectChanges();
-      this.primaryArgsFadeIn = true;
-      this.secondaryArgsFadeIn = true;
+      if (command.primaryArgs.length > 0) this.primaryArgsFadeIn = true;
+      if (command.secondaryArgs.length > 0) this.secondaryArgsFadeIn = true;
     }
     // If command will be null AND it wasn't before AND fade-out is not in progress - begin fade-out
     else if (
@@ -355,8 +355,10 @@ export class CommandsUiComponent implements OnInit {
       !this.primaryArgsFadeOut &&
       !this.secondaryArgsFadeOut
     ) {
-      if (this.arePrimaryArgs()) this.primaryArgsFadeOut = true;
-      if (this.areSecondaryArgs()) this.secondaryArgsFadeOut = true;
+      if (this.activeCommand.primaryArgs.length > 0)
+        this.primaryArgsFadeOut = true;
+      if (this.activeCommand.secondaryArgs.length > 0)
+        this.secondaryArgsFadeOut = true;
     }
   }
   //#endregion
