@@ -284,10 +284,11 @@ export class CommandsUiComponent implements OnInit {
     }
   }
 
-  subcommandsFadeInStart() {
+  async subcommandsFadeInStart() {
     this.subcommandsFadingOut = false;
     this.subcommandsFadingIn = false;
-    this.changeDetectorRef.detectChanges();
+    // await is needed for this change detection to trigger properly - who knows why
+    await this.changeDetectorRef.detectChanges();
     this.subcommandsFadingIn = true;
   }
 
