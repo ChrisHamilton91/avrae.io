@@ -162,9 +162,9 @@ export class CommandsUiComponent implements OnInit {
       !this.primaryArgsFadingOut &&
       !this.secondaryArgsFadingOut
     ) {
-      const areSubcommands = this.activeCommand.subcommands.length > 0;
-      const arePrimaryArgs = this.activeCommand.primaryArgs.length > 0;
-      const areSecondaryArgs = this.activeCommand.secondaryArgs.length > 0;
+      const areSubcommands = this.areSubcommands();
+      const arePrimaryArgs = this.arePrimaryArgs();
+      const areSecondaryArgs = this.areSecondaryArgs();
       if (areSubcommands) this.subcommandsFadeOutStart();
       if (arePrimaryArgs) this.primaryArgsFadeOutStart();
       if (areSecondaryArgs) this.secondaryArgsFadeOutStart();
@@ -229,6 +229,22 @@ export class CommandsUiComponent implements OnInit {
   areSecondaryArgButtons(): boolean {
     if (this.secondaryArgsFadingOut) return true;
     else return this.secondaryArgValuePairs.length > 0;
+  }
+
+  areSubcommands(): boolean {
+    return this.activeCommand.subcommands.length > 0;
+  }
+
+  arePrimaryArgs() {
+    if (this.activeSubcommand)
+      return this.activeSubcommand.primaryArgs.length > 0;
+    else return this.activeCommand.primaryArgs.length > 0;
+  }
+
+  areSecondaryArgs() {
+    if (this.activeSubcommand)
+      return this.activeSubcommand.secondaryArgs.length > 0;
+    else return this.activeCommand.secondaryArgs.length > 0;
   }
   //#endregion
 
