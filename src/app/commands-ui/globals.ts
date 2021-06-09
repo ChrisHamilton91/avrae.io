@@ -74,16 +74,23 @@ export function getShortest(array: string[]): string {
   return shortest;
 }
 
+// Need to make sure leaving and entering animations are synchronized, as events are triggered on their completion
+const enteringTime = "0.2s";
+const leavingTime = "0.2s";
+
 export const fadeInAnimation: AnimationMetadata[] = [
   state("true", style({ opacity: 1 })),
   state("false", style({})),
-  transition("* => true", [style({ opacity: 0 }), animate("0.2s ease-in")]),
+  transition("* => true", [
+    style({ opacity: 0 }),
+    animate(`${enteringTime} ease-in`),
+  ]),
 ];
 
 export const fadeOutAnimation: AnimationMetadata[] = [
   state("true", style({ opacity: 0 })),
   state("false", style({})),
-  transition("* => true", [animate("0.1s ease-in")]),
+  transition("* => true", [animate(`${leavingTime} ease-out`)]),
 ];
 
 const shrunk = style({
@@ -102,11 +109,11 @@ const grown = style({
 export const dropDownAnimation: AnimationMetadata[] = [
   state("true", grown),
   state("false", style({})),
-  transition("* => true", [shrunk, animate("0.2s ease-in")]),
+  transition("* => true", [shrunk, animate(`${enteringTime} ease-in`)]),
 ];
 
 export const shrinkUpAnimation: AnimationMetadata[] = [
   state("true", shrunk),
   state("false", style({})),
-  transition("* => true", [grown, animate("0.1s ease-out")]),
+  transition("* => true", [grown, animate(`${leavingTime} ease-out`)]),
 ];

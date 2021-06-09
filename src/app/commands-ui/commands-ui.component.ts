@@ -53,6 +53,7 @@ export class CommandsUiComponent implements OnInit {
   primaryArgsFadingOut = false;
   secondaryArgsFadingIn = false;
   secondaryArgsFadingOut = false;
+  queuedCommand: Command;
 
   constructor(
     private meta: Meta,
@@ -149,10 +150,17 @@ export class CommandsUiComponent implements OnInit {
       this.primaryArgsFadingOut ||
       this.secondaryArgsFadingOut
     ) {
-      this.activeCommand = command;
-      this.subcommandsGrowStart();
-      this.primaryArgsFadeInStart();
-      this.secondaryArgsFadeInStart();
+      // Collapse open subcommands before switching commands
+      // activeCommand will be switched after subcommands shrink
+      if (this.areSubcommands()) {
+        this.queuedCommand = command;
+        this.setActiveCommandToNull();
+      } else {
+        this.activeCommand = command;
+        this.subcommandsGrowStart();
+        this.primaryArgsFadeInStart();
+        this.secondaryArgsFadeInStart();
+      }
     }
   }
 
@@ -232,19 +240,24 @@ export class CommandsUiComponent implements OnInit {
   }
 
   areSubcommands(): boolean {
-    return this.activeCommand.subcommands.length > 0;
+    if (this.activeCommand) return this.activeCommand.subcommands.length > 0;
+    else return false;
   }
 
   arePrimaryArgs() {
     if (this.activeSubcommand)
       return this.activeSubcommand.primaryArgs.length > 0;
-    else return this.activeCommand.primaryArgs.length > 0;
+    else if (this.activeCommand)
+      return this.activeCommand.primaryArgs.length > 0;
+    else return false;
   }
 
   areSecondaryArgs() {
     if (this.activeSubcommand)
       return this.activeSubcommand.secondaryArgs.length > 0;
-    else return this.activeCommand.secondaryArgs.length > 0;
+    else if (this.activeCommand)
+      return this.activeCommand.secondaryArgs.length > 0;
+    else return false;
   }
   //#endregion
 
@@ -273,11 +286,10 @@ export class CommandsUiComponent implements OnInit {
     }
   }
 
-  async subcommandsGrowStart() {
+  subcommandsGrowStart() {
     this.subcommandsShrinking = false;
     this.subcommandsGrowing = false;
-    // await is needed for this change detection to trigger properly - who knows why
-    await this.changeDetectorRef.detectChanges();
+    this.changeDetectorRef.detectChanges();
     this.subcommandsGrowing = true;
   }
 
@@ -292,9 +304,13 @@ export class CommandsUiComponent implements OnInit {
   subcommandsShrinkDone(setToTrue: string) {
     // Animation has been cancelled
     if (!this.subcommandsShrinking) return;
-    if (setToTrue && this.subcommandsShrinking) {
+    if (setToTrue) {
       this.subcommandsShrinking = false;
       this.activeCommand = null;
+      if (this.queuedCommand) {
+        this.setActiveCommand(this.queuedCommand);
+        this.queuedCommand = null;
+      }
     }
   }
 
