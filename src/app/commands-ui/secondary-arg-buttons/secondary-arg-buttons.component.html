@@ -1,3 +1,4 @@
+<!-- If regular secondary args -->
 <div class="button-input-container" *ngIf="areRegularSecondaryArgs()">
   <div class="button-column">
     <div *ngFor="let pair of secondaryArgValuePairs">
@@ -20,6 +21,7 @@
   </div>
 </div>
 
+<!-- If attack args -->
 <div class="attack-args-container" *ngIf="areAttackArgs()">
   <div class="button-input-container">
     <div class="button-column">

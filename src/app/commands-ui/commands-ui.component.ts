@@ -96,22 +96,44 @@ export class CommandsUiComponent implements OnInit {
       return this.activeCommand.secondaryArgs.sort(sortByName);
     else return [];
   }
+
+  getNewPrimaryArgValuePairs(): PrimaryArgValuePair[] {
+    const argValuePairs = [];
+    this.getPrimaryArguments().forEach((arg, index) => {
+      if (arg.required)
+        argValuePairs.push(new PrimaryArgValuePair(arg, index, true));
+      else argValuePairs.push(new PrimaryArgValuePair(arg, index, false));
+    });
+    return argValuePairs;
+  }
+
+  getNewSecondaryArgValuePairs(): SecondaryArgValuePair[] {
+    const argValuePairs = [];
+    this.getSecondaryArguments().forEach((arg, index) => {
+      argValuePairs.push(new SecondaryArgValuePair(arg, index, false));
+    });
+    return argValuePairs;
+  }
   //#endregion
 
   //#region data setters
   setActiveModule(module: CommandModule) {
-    if (module) {
-      if (module != this.activeModule || this.commandsFadingOut) {
-        this.activeModule = module;
-        this.commandsFadeInStart();
-      }
-    }
-    if (!module) {
-      if (this.activeModule && !this.commandsFadingOut) {
-        this.commandsFadeOutStart();
-      }
-    }
+    if (module) this.setActiveModuleToNonNull(module);
+    if (!module) this.setActiveModuleToNull();
     this.setActiveCommand(null);
+  }
+
+  setActiveModuleToNonNull(module: CommandModule) {
+    if (module != this.activeModule || this.commandsFadingOut) {
+      this.activeModule = module;
+      this.commandsFadeInStart();
+    }
+  }
+
+  setActiveModuleToNull() {
+    if (this.activeModule && !this.commandsFadingOut) {
+      this.commandsFadeOutStart();
+    }
   }
 
   setActiveCommand(command: Command) {
@@ -152,9 +174,36 @@ export class CommandsUiComponent implements OnInit {
   }
 
   setActiveSubcommand(subcommand: Subcommand) {
-    this.activeSubcommand = subcommand;
-    this.primaryArgValuePairs = this.newPrimaryArgValuePairs();
-    this.secondaryArgValuePairs = this.newSecondaryArgValuePairs();
+    if (subcommand) this.setActiveSubcommandToNonNull(subcommand);
+    else this.setActiveSubcommandToNull();
+    this.primaryArgValuePairs = this.getNewPrimaryArgValuePairs();
+    this.secondaryArgValuePairs = this.getNewSecondaryArgValuePairs();
+  }
+
+  setActiveSubcommandToNonNull(subcommand: Subcommand) {
+    if (this.subcommandsFadingOut) return;
+    if (
+      subcommand !== this.activeSubcommand ||
+      this.primaryArgsFadingOut ||
+      this.secondaryArgsFadingOut
+    ) {
+      this.activeSubcommand = subcommand;
+      this.primaryArgsFadeInStart();
+      this.secondaryArgsFadeInStart();
+    }
+  }
+
+  setActiveSubcommandToNull() {
+    if (this.subcommandsFadingOut) return;
+    if (
+      this.activeSubcommand &&
+      !this.primaryArgsFadingOut &&
+      !this.secondaryArgsFadingOut
+    ) {
+      this.activeSubcommand = null;
+      this.primaryArgsFadeInStart();
+      this.secondaryArgsFadeInStart();
+    }
   }
 
   setPrimaryArgValuePairs(primaryArgValuePairs: PrimaryArgValuePair[]) {
@@ -163,24 +212,6 @@ export class CommandsUiComponent implements OnInit {
 
   setSecondaryArgValuePairs(secondaryArgValuePairs: SecondaryArgValuePair[]) {
     this.secondaryArgValuePairs = secondaryArgValuePairs;
-  }
-
-  newPrimaryArgValuePairs(): PrimaryArgValuePair[] {
-    const argValuePairs = [];
-    this.getPrimaryArguments().forEach((arg, index) => {
-      if (arg.required)
-        argValuePairs.push(new PrimaryArgValuePair(arg, index, true));
-      else argValuePairs.push(new PrimaryArgValuePair(arg, index, false));
-    });
-    return argValuePairs;
-  }
-
-  newSecondaryArgValuePairs(): SecondaryArgValuePair[] {
-    const argValuePairs = [];
-    this.getSecondaryArguments().forEach((arg, index) => {
-      argValuePairs.push(new SecondaryArgValuePair(arg, index, false));
-    });
-    return argValuePairs;
   }
   //#endregion
 
@@ -198,6 +229,117 @@ export class CommandsUiComponent implements OnInit {
   areSecondaryArgButtons(): boolean {
     if (this.secondaryArgsFadingOut) return true;
     else return this.secondaryArgValuePairs.length > 0;
+  }
+  //#endregion
+
+  //#region fade animation behaviour
+  // Intended behaviour:
+  // Fade-in:
+  //   Occurs when the component's root element is changed and will be non-null (ie. commands fade in when module is changed and non-null).
+  //   Restarts from opacity: 0 if any fade animation is already in progress.
+  //   Caveat: This requires extra logic if a fade-in animation is already happening.
+  //   This is because angular does not think the animation state has changed.
+  //   We need to change the animation state to false, force change detection, then re-trigger fade-in.
+  // Fade out:
+  //   Occurs when a component's root is set to null (ie. commands fade out when module is set to null).
+  //   Caveat: root must be set to null AFTER the component fades out. Otherwise, sub-components will pop-out before animation completes.
+
+  commandsFadeInStart() {
+    this.commandsFadingOut = false;
+    this.commandsFadingIn = false;
+    this.changeDetectorRef.detectChanges();
+    this.commandsFadingIn = true;
+  }
+
+  commandsFadeInDone(setToTrue: string) {
+    if (setToTrue) this.commandsFadingIn = false;
+  }
+
+  commandsFadeOutStart() {
+    this.commandsFadingOut = true;
+  }
+
+  commandsFadeOutDone(setToTrue: string) {
+    // Animation has been cancelled
+    if (!this.commandsFadingOut) return;
+    if (setToTrue) {
+      this.commandsFadingOut = false;
+      this.activeModule = null;
+    }
+  }
+
+  subcommandsFadeInStart() {
+    this.subcommandsFadingOut = false;
+    this.subcommandsFadingIn = false;
+    this.changeDetectorRef.detectChanges();
+    this.subcommandsFadingIn = true;
+  }
+
+  subcommandsFadeInDone(setToTrue: string) {
+    if (setToTrue) this.subcommandsFadingIn = false;
+  }
+
+  subcommandsFadeOutStart() {
+    this.subcommandsFadingOut = true;
+  }
+
+  subcommandsFadeOutDone(setToTrue: string) {
+    // Animation has been cancelled
+    if (!this.subcommandsFadingOut) return;
+    if (setToTrue && this.subcommandsFadingOut) {
+      this.subcommandsFadingOut = false;
+      this.activeCommand = null;
+    }
+  }
+
+  primaryArgsFadeInStart() {
+    this.primaryArgsFadingIn = false;
+    this.primaryArgsFadingOut = false;
+    this.changeDetectorRef.detectChanges();
+    this.primaryArgsFadingIn = true;
+  }
+
+  primaryArgsFadeInDone(setToTrue: string) {
+    if (setToTrue) this.primaryArgsFadingIn = false;
+  }
+
+  primaryArgsFadeOutStart() {
+    this.primaryArgsFadingOut = true;
+  }
+
+  primaryArgsFadeOutDone(setToTrue: string) {
+    // Animation has been cancelled
+    if (!this.primaryArgsFadingOut) return;
+    if (setToTrue) {
+      this.primaryArgsFadingOut = false;
+      if (this.activeSubcommand) this.activeSubcommand = null;
+      else this.activeCommand = null;
+    }
+  }
+
+  secondaryArgsFadeInStart() {
+    this.secondaryArgsFadingIn = false;
+    this.secondaryArgsFadingOut = false;
+    this.changeDetectorRef.detectChanges();
+    this.secondaryArgsFadingIn = true;
+  }
+
+  secondaryArgsFadeInDone(setToTrue: string) {
+    if (setToTrue) this.secondaryArgsFadingIn = false;
+  }
+
+  secondaryArgsFadeOutStart() {
+    this.secondaryArgsFadingOut = true;
+  }
+
+  secondaryArgsFadeOutDone(setToTrue: string) {
+    // Animation has been cancelled
+    if (!this.secondaryArgsFadingOut) return;
+    if (setToTrue) {
+      this.secondaryArgsFadingOut = false;
+      if (this.activeSubcommand) this.activeSubcommand = null;
+      else this.activeCommand = null;
+    }
   }
   //#endregion
 
@@ -302,115 +444,6 @@ export class CommandsUiComponent implements OnInit {
 
   getSecondaryArgStringOfTypeBoolean(pair: SecondaryArgValuePair): string {
     return " " + pair.arg.cmdString + " " + pair.value;
-  }
-  //#endregion
-
-  //#region fade animation behaviour
-  // Intended behaviour:
-  // Fade-in:
-  //   Occurs when the component's root element is changed and will be non-null (ie. commands fade in when module is changed and non-null).
-  //   Restarts from opacity: 0 if any fade animation is already in progress.
-  //   Caveat: This requires extra logic if a fade-in animation is already happening.
-  //   This is because angular does not think the animation state has changed.
-  //   We need to change the animation state to false, force change detection, then re-trigger fade-in.
-  // Fade out:
-  //   Occurs when a component's root is set to null (ie. commands fade out when module is set to null).
-  //   Caveat: root must be set to null AFTER the component fades out. Otherwise, sub-components will pop-out before animation completes.
-
-  commandsFadeInStart() {
-    this.commandsFadingOut = false;
-    this.commandsFadingIn = false;
-    this.changeDetectorRef.detectChanges();
-    this.commandsFadingIn = true;
-  }
-
-  commandsFadeInDone(setToTrue: string) {
-    if (setToTrue) this.commandsFadingIn = false;
-  }
-
-  commandsFadeOutStart() {
-    this.commandsFadingOut = true;
-  }
-
-  commandsFadeOutDone(setToTrue: string) {
-    // Animation has been cancelled
-    if (!this.commandsFadingOut) return;
-    if (setToTrue) {
-      this.commandsFadingOut = false;
-      this.activeModule = null;
-    }
-  }
-
-  subcommandsFadeInStart() {
-    this.subcommandsFadingOut = false;
-    this.subcommandsFadingIn = false;
-    this.changeDetectorRef.detectChanges();
-    this.subcommandsFadingIn = true;
-  }
-
-  subcommandsFadeInDone(setToTrue: string) {
-    if (setToTrue) this.subcommandsFadingIn = false;
-  }
-
-  subcommandsFadeOutStart() {
-    this.subcommandsFadingOut = true;
-  }
-
-  subcommandsFadeOutDone(setToTrue: string) {
-    // Animation has been cancelled
-    if (!this.subcommandsFadingOut) return;
-    if (setToTrue && this.subcommandsFadingOut) {
-      this.subcommandsFadingOut = false;
-      this.activeCommand = null;
-    }
-  }
-
-  primaryArgsFadeInStart() {
-    this.primaryArgsFadingIn = false;
-    this.primaryArgsFadingOut = false;
-    this.changeDetectorRef.detectChanges();
-    this.primaryArgsFadingIn = true;
-  }
-
-  primaryArgsFadeInDone(setToTrue: string) {
-    if (setToTrue) this.primaryArgsFadingIn = false;
-  }
-
-  primaryArgsFadeOutStart() {
-    this.primaryArgsFadingOut = true;
-  }
-
-  primaryArgsFadeOutDone(setToTrue: string) {
-    // Animation has been cancelled
-    if (!this.primaryArgsFadingOut) return;
-    if (setToTrue) {
-      this.primaryArgsFadingOut = false;
-      this.activeCommand = null;
-    }
-  }
-
-  secondaryArgsFadeInStart() {
-    this.secondaryArgsFadingIn = false;
-    this.secondaryArgsFadingOut = false;
-    this.changeDetectorRef.detectChanges();
-    this.secondaryArgsFadingIn = true;
-  }
-
-  secondaryArgsFadeInDone(setToTrue: string) {
-    if (setToTrue) this.secondaryArgsFadingIn = false;
-  }
-
-  secondaryArgsFadeOutStart() {
-    this.secondaryArgsFadingOut = true;
-  }
-
-  secondaryArgsFadeOutDone(setToTrue: string) {
-    // Animation has been cancelled
-    if (!this.secondaryArgsFadingOut) return;
-    if (setToTrue) {
-      this.secondaryArgsFadingOut = false;
-      this.activeCommand = null;
-    }
   }
   //#endregion
 }

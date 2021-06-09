@@ -50,7 +50,6 @@ export class CommandButtonsComponent implements OnInit {
   }
 
   setActiveSubcommand(subcommand: Subcommand) {
-    this.activeSubcommand = subcommand;
     this.activeSubcommandChange.emit(subcommand);
   }
 

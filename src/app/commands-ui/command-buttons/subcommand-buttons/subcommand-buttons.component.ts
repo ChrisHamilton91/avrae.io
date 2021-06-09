@@ -17,9 +17,9 @@ export class SubcommandButtonsComponent implements OnInit {
   ngOnInit(): void {}
 
   toggleActiveSubcommand(subcommand: Subcommand) {
-    if (this.activeSubcommand === subcommand) this.activeSubcommand = null;
-    else this.activeSubcommand = subcommand;
-    this.activeSubcommandChange.emit(this.activeSubcommand);
+    if (this.activeSubcommand === subcommand)
+      this.activeSubcommandChange.emit(null);
+    else this.activeSubcommandChange.emit(subcommand);
   }
 
   isActive(subcommand: Subcommand) {
