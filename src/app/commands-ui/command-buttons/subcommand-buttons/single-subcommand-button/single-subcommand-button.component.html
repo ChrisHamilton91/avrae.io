@@ -1,4 +1,8 @@
 <button
+  [@grow]="subcommandsGrowing"
+  (@grow.done)="subcommandsGrowDone($event.toState)"
+  [@shrink]="subcommandsShrinking"
+  (@shrink.done)="subcommandsShrinkDone($event.toState)"
   mat-raised-button
   [matTooltip]="getTooltip()"
   matTooltipPosition="right"

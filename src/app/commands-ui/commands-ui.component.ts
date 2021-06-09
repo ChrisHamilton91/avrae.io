@@ -47,8 +47,8 @@ export class CommandsUiComponent implements OnInit {
   secondaryArgValuePairs: SecondaryArgValuePair[] = [];
   commandsFadingIn = false;
   commandsFadingOut = false;
-  subcommandsFadingIn = false;
-  subcommandsFadingOut = false;
+  subcommandsGrowing = false;
+  subcommandsShrinking = false;
   primaryArgsFadingIn = false;
   primaryArgsFadingOut = false;
   secondaryArgsFadingIn = false;
@@ -145,12 +145,12 @@ export class CommandsUiComponent implements OnInit {
   setActiveCommandToNonNull(command: Command) {
     if (
       command !== this.activeCommand ||
-      this.subcommandsFadingOut ||
+      this.subcommandsShrinking ||
       this.primaryArgsFadingOut ||
       this.secondaryArgsFadingOut
     ) {
       this.activeCommand = command;
-      this.subcommandsFadeInStart();
+      this.subcommandsGrowStart();
       this.primaryArgsFadeInStart();
       this.secondaryArgsFadeInStart();
     }
@@ -165,7 +165,7 @@ export class CommandsUiComponent implements OnInit {
       const areSubcommands = this.areSubcommands();
       const arePrimaryArgs = this.arePrimaryArgs();
       const areSecondaryArgs = this.areSecondaryArgs();
-      if (areSubcommands) this.subcommandsFadeOutStart();
+      if (areSubcommands) this.subcommandsShrinkStart();
       if (arePrimaryArgs) this.primaryArgsFadeOutStart();
       if (areSecondaryArgs) this.secondaryArgsFadeOutStart();
       if (!(areSubcommands || arePrimaryArgs || areSecondaryArgs))
@@ -181,7 +181,7 @@ export class CommandsUiComponent implements OnInit {
   }
 
   setActiveSubcommandToNonNull(subcommand: Subcommand) {
-    if (this.subcommandsFadingOut) return;
+    if (this.subcommandsShrinking) return;
     if (
       subcommand !== this.activeSubcommand ||
       this.primaryArgsFadingOut ||
@@ -194,7 +194,7 @@ export class CommandsUiComponent implements OnInit {
   }
 
   setActiveSubcommandToNull() {
-    if (this.subcommandsFadingOut) return;
+    if (this.subcommandsShrinking) return;
     if (
       this.activeSubcommand &&
       !this.primaryArgsFadingOut &&
@@ -248,18 +248,7 @@ export class CommandsUiComponent implements OnInit {
   }
   //#endregion
 
-  //#region fade animation behaviour
-  // Intended behaviour:
-  // Fade-in:
-  //   Occurs when the component's root element is changed and will be non-null (ie. commands fade in when module is changed and non-null).
-  //   Restarts from opacity: 0 if any fade animation is already in progress.
-  //   Caveat: This requires extra logic if a fade-in animation is already happening.
-  //   This is because angular does not think the animation state has changed.
-  //   We need to change the animation state to false, force change detection, then re-trigger fade-in.
-  // Fade out:
-  //   Occurs when a component's root is set to null (ie. commands fade out when module is set to null).
-  //   Caveat: root must be set to null AFTER the component fades out. Otherwise, sub-components will pop-out before animation completes.
-
+  //#region animation behaviour
   commandsFadeInStart() {
     this.commandsFadingOut = false;
     this.commandsFadingIn = false;
@@ -284,27 +273,27 @@ export class CommandsUiComponent implements OnInit {
     }
   }
 
-  async subcommandsFadeInStart() {
-    this.subcommandsFadingOut = false;
-    this.subcommandsFadingIn = false;
+  async subcommandsGrowStart() {
+    this.subcommandsShrinking = false;
+    this.subcommandsGrowing = false;
     // await is needed for this change detection to trigger properly - who knows why
     await this.changeDetectorRef.detectChanges();
-    this.subcommandsFadingIn = true;
+    this.subcommandsGrowing = true;
   }
 
-  subcommandsFadeInDone(setToTrue: string) {
-    if (setToTrue) this.subcommandsFadingIn = false;
+  subcommandsGrowDone(setToTrue: string) {
+    if (setToTrue) this.subcommandsGrowing = false;
   }
 
-  subcommandsFadeOutStart() {
-    this.subcommandsFadingOut = true;
+  subcommandsShrinkStart() {
+    this.subcommandsShrinking = true;
   }
 
-  subcommandsFadeOutDone(setToTrue: string) {
+  subcommandsShrinkDone(setToTrue: string) {
     // Animation has been cancelled
-    if (!this.subcommandsFadingOut) return;
-    if (setToTrue && this.subcommandsFadingOut) {
-      this.subcommandsFadingOut = false;
+    if (!this.subcommandsShrinking) return;
+    if (setToTrue && this.subcommandsShrinking) {
+      this.subcommandsShrinking = false;
       this.activeCommand = null;
     }
   }

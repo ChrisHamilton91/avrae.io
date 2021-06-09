@@ -85,3 +85,28 @@ export const fadeOutAnimation: AnimationMetadata[] = [
   state("false", style({})),
   transition("* => true", [animate("0.1s ease-in")]),
 ];
+
+const shrunk = style({
+  flexBasis: 0,
+  marginTop: "-2px",
+  marginBottom: "-2px",
+});
+
+const grown = style({
+  flexBasis: "36px",
+  marginTop: "1px",
+  marginBottom: "1px",
+});
+
+//Animations are smoother if you explicitly give both starting and ending values - saves getting them from the dom
+export const dropDownAnimation: AnimationMetadata[] = [
+  state("true", grown),
+  state("false", style({})),
+  transition("* => true", [shrunk, animate("0.2s ease-in")]),
+];
+
+export const shrinkUpAnimation: AnimationMetadata[] = [
+  state("true", shrunk),
+  state("false", style({})),
+  transition("* => true", [grown, animate("0.1s ease-out")]),
+];

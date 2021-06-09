@@ -31,10 +31,10 @@
             (activeCommandChange)="setActiveCommand($event)"
             [activeSubcommand]="activeSubcommand"
             (activeSubcommandChange)="setActiveSubcommand($event)"
-            [subcommandsFadingIn]="subcommandsFadingIn"
-            (subcommandsFadeInDoneEmitter)="subcommandsFadeInDone($event)"
-            [subcommandsFadingOut]="subcommandsFadingOut"
-            (subcommandsFadeOutDoneEmitter)="subcommandsFadeOutDone($event)"
+            [subcommandsGrowing]="subcommandsGrowing"
+            (subcommandsGrowDoneEmitter)="subcommandsGrowDone($event)"
+            [subcommandsShrinking]="subcommandsShrinking"
+            (subcommandsShrinkDoneEmitter)="subcommandsShrinkDone($event)"
           ></commands-ui-command-buttons>
         </div>
       </div>

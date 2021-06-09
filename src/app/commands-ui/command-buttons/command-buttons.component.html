@@ -4,14 +4,12 @@
     [active]="isActive(command)"
     (click)="toggleActiveCommand(command)"
   ></commands-ui-single-command-button>
-  <div
-    *ngIf="isActive(command) && command.subcommands.length != 0"
-    [@fadeIn]="subcommandsFadingIn"
-    (@fadeIn.done)="subcommandsFadeInDone($event.toState)"
-    [@fadeOut]="subcommandsFadingOut"
-    (@fadeOut.done)="subcommandsFadeOutDone($event.toState)"
-  >
+  <div *ngIf="isActive(command) && command.subcommands.length != 0">
     <commands-ui-subcommand-buttons
+      [subcommandsGrowing]="subcommandsGrowing"
+      (subcommandsGrowDoneEmitter)="subcommandsGrowDone($event)"
+      [subcommandsShrinking]="subcommandsShrinking"
+      (subcommandsShrinkDoneEmitter)="subcommandsShrinkDone($event)"
       [subcommands]="getSubcommands()"
       [activeSubcommand]="activeSubcommand"
       (activeSubcommandChange)="setActiveSubcommand($event)"

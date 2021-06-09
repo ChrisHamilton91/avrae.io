@@ -29,12 +29,12 @@ export class CommandButtonsComponent implements OnInit {
   @Input() commands: Command[];
   @Input() activeCommand: Command;
   @Input() activeSubcommand: Subcommand;
-  @Input() subcommandsFadingIn = false;
-  @Input() subcommandsFadingOut = false;
+  @Input() subcommandsGrowing = false;
+  @Input() subcommandsShrinking = false;
   @Output() activeCommandChange = new EventEmitter();
   @Output() activeSubcommandChange = new EventEmitter();
-  @Output() subcommandsFadeInDoneEmitter = new EventEmitter();
-  @Output() subcommandsFadeOutDoneEmitter = new EventEmitter();
+  @Output() subcommandsGrowDoneEmitter = new EventEmitter();
+  @Output() subcommandsShrinkDoneEmitter = new EventEmitter();
 
   constructor() {}
 
@@ -59,11 +59,11 @@ export class CommandButtonsComponent implements OnInit {
     } else return null;
   }
 
-  subcommandsFadeInDone(setToTrue: string) {
-    this.subcommandsFadeInDoneEmitter.emit(setToTrue);
+  subcommandsGrowDone(setToTrue: string) {
+    this.subcommandsGrowDoneEmitter.emit(setToTrue);
   }
 
-  subcommandsFadeOutDone(setToTrue: string) {
-    this.subcommandsFadeOutDoneEmitter.emit(setToTrue);
+  subcommandsShrinkDone(setToTrue: string) {
+    this.subcommandsShrinkDoneEmitter.emit(setToTrue);
   }
 }

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Subcommand } from "src/app/schemas/Commands";
-import { ACTIVE_SUBCMD_STYLE, INACTIVE_SUBCMD_STYLE } from "../../globals";
 
 @Component({
   selector: "commands-ui-subcommand-buttons",
@@ -10,7 +9,11 @@ import { ACTIVE_SUBCMD_STYLE, INACTIVE_SUBCMD_STYLE } from "../../globals";
 export class SubcommandButtonsComponent implements OnInit {
   @Input() subcommands: Subcommand[];
   @Input() activeSubcommand: Subcommand;
+  @Input() subcommandsGrowing = false;
+  @Input() subcommandsShrinking = false;
   @Output() activeSubcommandChange = new EventEmitter();
+  @Output() subcommandsGrowDoneEmitter = new EventEmitter();
+  @Output() subcommandsShrinkDoneEmitter = new EventEmitter();
 
   constructor() {}
 
@@ -24,5 +27,13 @@ export class SubcommandButtonsComponent implements OnInit {
 
   isActive(subcommand: Subcommand) {
     return this.activeSubcommand ? subcommand === this.activeSubcommand : false;
+  }
+
+  subcommandsGrowDone(setToTrue: string) {
+    this.subcommandsGrowDoneEmitter.emit(setToTrue);
+  }
+
+  subcommandsShrinkDone(setToTrue: string) {
+    this.subcommandsShrinkDoneEmitter.emit(setToTrue);
   }
 }

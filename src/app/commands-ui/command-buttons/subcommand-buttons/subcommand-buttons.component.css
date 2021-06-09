@@ -1,1 +1,4 @@
-
+commands-ui-single-subcommand-button {
+  display: flex;
+  flex-direction: column;
+}
