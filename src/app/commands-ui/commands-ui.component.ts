@@ -241,18 +241,15 @@ export class CommandsUiComponent implements OnInit {
 
   //#region state checks
   areCommandButtons(): boolean {
-    if (this.commandsFadingOut) return true;
-    else return !!this.activeModule;
+    return !!this.activeModule;
   }
 
   arePrimaryArgButtons(): boolean {
-    if (this.primaryArgsFadingOut) return true;
-    else return this.primaryArgValuePairs.length > 0;
+    return this.primaryArgValuePairs.length > 0;
   }
 
   areSecondaryArgButtons(): boolean {
-    if (this.secondaryArgsFadingOut) return true;
-    else return this.secondaryArgValuePairs.length > 0;
+    return this.secondaryArgValuePairs.length > 0;
   }
 
   areSubcommands(): boolean {
