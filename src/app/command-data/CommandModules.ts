@@ -2,6 +2,7 @@ import { CommandModule } from "../schemas/Commands";
 import { CHAR_GENERATOR } from "./CharGenerator/@CharGenerator";
 import { CORE } from "./Core/@Core";
 import { GAMELOG } from "./GameLog/@GameLog";
+import { PBP_UTILS } from "./PBPUtils/@PBPUtils";
 import { SHEET_MANAGER } from "./SheetManager/@SheetManager";
 
 export const CUSTOMIZATION: CommandModule = {
@@ -50,13 +51,6 @@ export const INIT_TRACKER: CommandModule = {
 export const LOOKUP: CommandModule = {
   name: "Lookup",
   shortDesc: "Commands to help look up items, status effects, rules, etc.",
-  longDesc: "",
-  commands: [],
-};
-
-export const PBP_UTILS: CommandModule = {
-  name: "PBPUtils",
-  shortDesc: "Commands to help streamline playing-by-post over Discord.",
   longDesc: "",
   commands: [],
 };
