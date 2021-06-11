@@ -1,6 +1,7 @@
 import { CommandModule } from "../schemas/Commands";
 import { CHAR_GENERATOR } from "./CharGenerator/@CharGenerator";
 import { CORE } from "./Core/@Core";
+import { GAMELOG } from "./GameLog/@GameLog";
 import { SHEET_MANAGER } from "./SheetManager/@SheetManager";
 
 export const CUSTOMIZATION: CommandModule = {
@@ -13,14 +14,6 @@ export const CUSTOMIZATION: CommandModule = {
 export const DICE: CommandModule = {
   name: "Dice",
   shortDesc: "Dice and math related commands.",
-  longDesc: "",
-  commands: [],
-};
-
-export const GAMELOG: CommandModule = {
-  name: "GameLog",
-  shortDesc:
-    "Link your D&D Beyond campaign to a Discord channel to see players' rolls in real time!",
   longDesc: "",
   commands: [],
 };
