@@ -3,7 +3,7 @@
     class="output-box"
     spellcheck="false"
     [value]="commandString"
-    (ngModel)="(value)"
+    (input)="userInput($event.target)"
   />
   <!-- SVG by Catalin Fertu, from flaticon.com -->
   <svg
