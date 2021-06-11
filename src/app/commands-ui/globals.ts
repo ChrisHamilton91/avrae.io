@@ -75,8 +75,8 @@ export function getShortest(array: string[]): string {
 }
 
 // Need to make sure leaving and entering animations are synchronized, as events are triggered on their completion
-const enteringTime = "0.2s";
-const leavingTime = "0.2s";
+const enteringTime = "0.15s";
+const leavingTime = "0.15s";
 
 export const fadeInAnimation: AnimationMetadata[] = [
   state("true", style({ opacity: 1 })),
