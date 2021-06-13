@@ -11,26 +11,31 @@ import {
 } from "../../schemas/Commands";
 import { SAVE_ARGS } from "../@Common/SaveArguments";
 
-//#region primary arguments
+const NAME: PrimaryArgument = {
+  name: "name",
+  signature: "ability",
+  required: true,
+  valueType: ValueType.STRING,
+  default: null,
+  desc: "The name of the monster making the save.",
+};
+
 const ABILITY: PrimaryArgument = {
   name: "ability",
   signature: "ability",
   required: true,
   valueType: ValueType.STRING,
   default: null,
-  desc: "The ability of the saving throw. (ie. dexterity, strength, charisma)",
+  desc: "The ability of the saving throw. (ie. dexterity, strength, charisma).",
 };
-//#endregion
 
-//#region command
-export const SAVE: Command = {
-  name: "Saving Throw",
-  cmdStrings: ["s", "save"],
-  shortDesc: "Rolls a save for your current active character.",
+export const MONSAVE: Command = {
+  name: "Monster Save",
+  cmdStrings: ["monsave", "ms", "monster_save"],
+  shortDesc: "Rolls a save for a monster.",
   longDesc: "",
-  primaryArgs: [ABILITY],
+  primaryArgs: [NAME, ABILITY],
   secondaryArgs: SAVE_ARGS,
   subcommands: [],
   examples: [],
 };
-//#endregion

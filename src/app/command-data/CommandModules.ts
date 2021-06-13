@@ -1,6 +1,7 @@
 import { CommandModule } from "../schemas/Commands";
 import { CHAR_GENERATOR } from "./CharGenerator/@CharGenerator";
 import { CORE } from "./Core/@Core";
+import { DICE } from "./Dice/@Dice";
 import { GAMELOG } from "./GameLog/@GameLog";
 import { PBP_UTILS } from "./PBPUtils/@PBPUtils";
 import { SHEET_MANAGER } from "./SheetManager/@SheetManager";
@@ -9,13 +10,6 @@ import { TUTORIALS } from "./Tutorials/@Tutorials";
 export const CUSTOMIZATION: CommandModule = {
   name: "Customization",
   shortDesc: "Commands to help streamline using the bot.",
-  longDesc: "",
-  commands: [],
-};
-
-export const DICE: CommandModule = {
-  name: "Dice",
-  shortDesc: "Dice and math related commands.",
   longDesc: "",
   commands: [],
 };

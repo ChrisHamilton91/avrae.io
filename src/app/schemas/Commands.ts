@@ -12,6 +12,7 @@ export enum ValueType {
 
 /** These are categories to sort out the large list of arguments that can be passed to the attack command */
 export enum Category {
+  SPELLCASTING = "Spellcasting",
   TARGETING = "Targeting",
   TO_HIT = "To Hit",
   SAVES = "Saves",
