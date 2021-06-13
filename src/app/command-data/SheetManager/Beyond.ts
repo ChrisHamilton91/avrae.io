@@ -38,7 +38,7 @@ export const BEYOND: Command = {
   name: "Import D&D Beyond",
   cmdStrings: ["beyond"],
   shortDesc:
-    "Loads a character sheet from [D&D Beyond](https://www.dndbeyond.com/), resetting all settings.",
+    "Loads a character sheet from https://www.dndbeyond.com/, resetting all settings.",
   longDesc: "",
   primaryArgs: [URL],
   secondaryArgs: [NOCC],

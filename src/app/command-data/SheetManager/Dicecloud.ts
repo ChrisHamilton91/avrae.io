@@ -33,7 +33,7 @@ export const DICECLOUD: Command = {
   name: "Import Dicecloud",
   cmdStrings: ["dicecloud"],
   shortDesc:
-    "Loads a character sheet from [Dicecloud](https://dicecloud.com/), resetting all settings.",
+    "Loads a character sheet from https://dicecloud.com/, resetting all settings.",
   longDesc: "",
   primaryArgs: [URL],
   secondaryArgs: [NOCC],

@@ -4,6 +4,7 @@ import { CORE } from "./Core/@Core";
 import { GAMELOG } from "./GameLog/@GameLog";
 import { PBP_UTILS } from "./PBPUtils/@PBPUtils";
 import { SHEET_MANAGER } from "./SheetManager/@SheetManager";
+import { TUTORIALS } from "./Tutorials/@Tutorials";
 
 export const CUSTOMIZATION: CommandModule = {
   name: "Customization",
@@ -51,13 +52,6 @@ export const INIT_TRACKER: CommandModule = {
 export const LOOKUP: CommandModule = {
   name: "Lookup",
   shortDesc: "Commands to help look up items, status effects, rules, etc.",
-  longDesc: "",
-  commands: [],
-};
-
-export const TUTORIALS: CommandModule = {
-  name: "Tutorials",
-  shortDesc: "Commands to help learn how to use the bot.",
   longDesc: "",
   commands: [],
 };

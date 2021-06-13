@@ -11,10 +11,12 @@
 //   TargetArgument,
 //   Category,
 //   ValueType,
+//   ClassTypes,
 // } from "../../schemas/Commands";
 
 //#region secondary arguments
 // const SECONDARY_ARG: SecondaryArgument = {
+//   type: ClassTypes.SECONDARY_ARGUMENT,
 //   name: "",
 //   cmdString: "",
 //   valueType: ValueType.STRING,
