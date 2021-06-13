@@ -4,6 +4,7 @@ import { CORE } from "./Core/@Core";
 import { DICE } from "./Dice/@Dice";
 import { GAMELOG } from "./GameLog/@GameLog";
 import { GAMETRACK } from "./GameTrack/@GameTrack";
+import { LOOKUP } from "./Lookup/@Lookup";
 import { PBP_UTILS } from "./PBPUtils/@PBPUtils";
 import { SHEET_MANAGER } from "./SheetManager/@SheetManager";
 import { TUTORIALS } from "./Tutorials/@Tutorials";
@@ -34,13 +35,6 @@ export const INIT_TRACKER: CommandModule = {
     `\nThen, you can proceed through combat with "!init next".` +
     `\nOnce combat ends, end combat with "!init end".` +
     `\nFor more help, the !help command shows applicable arguments for each command.`,
-  commands: [],
-};
-
-export const LOOKUP: CommandModule = {
-  name: "Lookup",
-  shortDesc: "Commands to help look up items, status effects, rules, etc.",
-  longDesc: "",
   commands: [],
 };
 

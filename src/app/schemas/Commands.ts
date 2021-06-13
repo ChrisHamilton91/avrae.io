@@ -88,7 +88,10 @@ export class Argument {
  * Avrae recognizes these arguments by the order that they appear after a command.
  */
 export class PrimaryArgument extends Argument {
-  /** A shortened version of the argument's name, for use in in command signatures like '![attack|a] [atk_name] [args]' */
+  /**
+   * A shortened version of the argument's name, for use in in command signatures like '![attack|a] [atk_name] [args]'
+   * Used as a command string for arguments with valueType: TRUE
+   */
   signature: string;
   /** Whether or not this argument is requied for the command to execute */
   required: boolean;
