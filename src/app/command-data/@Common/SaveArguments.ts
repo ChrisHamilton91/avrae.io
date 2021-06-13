@@ -56,7 +56,7 @@ const RR: SecondaryArgument = {
   name: "re-roll",
   cmdString: "-rr",
   valueType: ValueType.NUMBER,
-  desc: "How many saves to roll. (Does not apply to Death Saves).",
+  desc: "How many saves to roll.",
   example: "",
   ephemeral: false,
 };

@@ -420,6 +420,9 @@ export class CommandsUiComponent implements OnInit {
           case ValueType.NUMBER:
             cmdString += this.getPrimaryArgStringOfTypeNumber(pair);
             break;
+          case ValueType.TRUE:
+            cmdString += this.getPrimaryArgStringOfTypeTrue(pair);
+            break;
           default:
             throw Error(
               `ValueType: ${
@@ -445,6 +448,10 @@ export class CommandsUiComponent implements OnInit {
     if (!pair.value) return "";
     const value = (pair.value as string).replace(/\s/g, "");
     return " " + value;
+  }
+
+  getPrimaryArgStringOfTypeTrue(pair: PrimaryArgValuePair): string {
+    return " " + pair.arg.signature;
   }
 
   getSecondaryArgsString(): string {

@@ -35,7 +35,7 @@ const SPELL_NAME: PrimaryArgument = {
 //#region command
 export const MONCAST: Command = {
   name: "Monster Spell",
-  cmdStrings: ["moncast"],
+  cmdStrings: ["moncast", "mcast", "monster_cast"],
   shortDesc: "Casts a spell as a monster.",
   longDesc: "",
   primaryArgs: [MONSTER_NAME, SPELL_NAME],
