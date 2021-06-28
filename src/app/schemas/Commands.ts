@@ -10,8 +10,8 @@ export enum ValueType {
   BOOLEAN,
 }
 
-/** These are categories to sort out the large list of arguments that can be passed to the attack command */
-export enum Category {
+/** These are categories to sort out the list of attack arguments */
+export enum AttackCategory {
   SPELLCASTING = "Spellcasting",
   TARGETING = "Targeting",
   TO_HIT = "To Hit",
@@ -23,11 +23,19 @@ export enum Category {
   OTHER = "Other",
 }
 
+/** These are categories to sort out the list of effect arguments */
+export enum EffectCategory {
+  GENERAL = "General",
+  ATTACKS = "Attacks",
+  RESISTS = "Resists",
+}
+
 /** Use these enums to check for class types at runtime - necessary for differentiating secondary arguments */
 export enum ClassTypes {
   SECONDARY_ARGUMENT,
   ATTACK_ARGUMENT,
   TARGET_ARGUMENT,
+  EFFECT_ARGUMENT,
 }
 
 /** Represents a collection of Avrae commands */
@@ -122,7 +130,7 @@ export class SecondaryArgument extends Argument {
 /** An argument specifically for the attack command */
 export class AttackArgument extends SecondaryArgument {
   /** The category of attack argument, for organization */
-  category: Category;
+  category: AttackCategory;
 }
 
 /**
@@ -133,4 +141,10 @@ export class AttackArgument extends SecondaryArgument {
 export class TargetArgument extends AttackArgument {
   /** An array of arguments that can be passed to this argument, besides the target itself. */
   secondaryArgs: SecondaryArgument[];
+}
+
+/** An argument specifically for the effect command */
+export class EffectArgument extends SecondaryArgument {
+  /** The category of effect argument, for organization */
+  category: EffectCategory;
 }

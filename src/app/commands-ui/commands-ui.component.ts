@@ -18,7 +18,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  Category,
+  AttackCategory,
   ValueType,
   Argument,
   ClassTypes,

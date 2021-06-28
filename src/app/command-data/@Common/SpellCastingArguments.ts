@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  Category,
+  AttackCategory,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,7 +18,7 @@ const I: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Ignores Spellbook restrictions (e.g. when casting from an item, as a ritual, etc.).",
   example: "",
-  category: Category.SPELLCASTING,
+  category: AttackCategory.SPELLCASTING,
   ephemeral: false,
 };
 
@@ -29,7 +29,7 @@ const L: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Specifies the level to cast the spell at.",
   example: "",
-  category: Category.SPELLCASTING,
+  category: AttackCategory.SPELLCASTING,
   ephemeral: false,
 };
 
@@ -40,7 +40,7 @@ const MOD: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Overrides the value of the spellcasting ability modifier.",
   example: "",
-  category: Category.SPELLCASTING,
+  category: AttackCategory.SPELLCASTING,
   ephemeral: false,
 };
 
@@ -51,7 +51,7 @@ const WITH: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Uses a different ability base for DC/AB (int, wis, cha... will not account for extra bonuses).",
   example: "",
-  category: Category.SPELLCASTING,
+  category: AttackCategory.SPELLCASTING,
   ephemeral: false,
 };
 
@@ -62,7 +62,7 @@ const NOCONC: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Ignores concentration requirements.",
   example: "",
-  category: Category.SPELLCASTING,
+  category: AttackCategory.SPELLCASTING,
   ephemeral: false,
 };
 //#endregion

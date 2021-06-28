@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  Category,
+  AttackCategory,
   ValueType,
 } from "../../schemas/Commands";
 

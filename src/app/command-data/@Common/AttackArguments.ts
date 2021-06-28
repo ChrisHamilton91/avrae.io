@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  Category,
+  AttackCategory,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,7 +18,7 @@ const ADV: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Give advantage to the attack roll(s)",
   example: "",
-  category: Category.TO_HIT,
+  category: AttackCategory.TO_HIT,
   ephemeral: true,
 };
 
@@ -29,7 +29,7 @@ const DIS: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Give disadvantage to the attack roll(s)",
   example: "",
-  category: Category.TO_HIT,
+  category: AttackCategory.TO_HIT,
   ephemeral: true,
 };
 
@@ -40,7 +40,7 @@ const EA: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Elven Accuracy, double advantage on the attack roll.",
   example: "",
-  category: Category.TO_HIT,
+  category: AttackCategory.TO_HIT,
   ephemeral: true,
 };
 
@@ -51,7 +51,7 @@ const HIT: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "The attack automatically hits.",
   example: "",
-  category: Category.TO_HIT,
+  category: AttackCategory.TO_HIT,
   ephemeral: true,
 };
 
@@ -62,7 +62,7 @@ const MISS: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "The attack automatically misses.",
   example: "",
-  category: Category.TO_HIT,
+  category: AttackCategory.TO_HIT,
   ephemeral: true,
 };
 
@@ -73,7 +73,7 @@ const CRIT: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "The attack automatically crits.",
   example: "",
-  category: Category.TO_HIT,
+  category: AttackCategory.TO_HIT,
   ephemeral: true,
 };
 
@@ -84,7 +84,7 @@ const AC: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Overrides target AC (armor class).",
   example: "",
-  category: Category.TO_HIT,
+  category: AttackCategory.TO_HIT,
   ephemeral: false,
 };
 
@@ -95,7 +95,7 @@ const B: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Adds a bonus to hit.",
   example: "",
-  category: Category.TO_HIT,
+  category: AttackCategory.TO_HIT,
   ephemeral: true,
 };
 
@@ -106,7 +106,7 @@ const CRITON: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "The number the attack crits on if rolled on or above.",
   example: "",
-  category: Category.TO_HIT,
+  category: AttackCategory.TO_HIT,
   ephemeral: false,
 };
 //#endregion
@@ -119,7 +119,7 @@ const PASS: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Target automatically succeeds the saving throw.",
   example: "",
-  category: Category.SAVES,
+  category: AttackCategory.SAVES,
   ephemeral: true,
 };
 
@@ -130,7 +130,7 @@ const FAIL: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Target automatically fails the saving throw.",
   example: "",
-  category: Category.SAVES,
+  category: AttackCategory.SAVES,
   ephemeral: true,
 };
 
@@ -141,7 +141,7 @@ const SADV: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Gives the target advantage on the saving throw.",
   example: "",
-  category: Category.SAVES,
+  category: AttackCategory.SAVES,
   ephemeral: false,
 };
 
@@ -152,7 +152,7 @@ const SDIS: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Gives the target disadvantage on the saving throw.",
   example: "",
-  category: Category.SAVES,
+  category: AttackCategory.SAVES,
   ephemeral: false,
 };
 
@@ -163,7 +163,7 @@ const DC: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Overrides the DC of the save. Prefix the number with '+' or '-' to increment or decrement dc instead.",
   example: "",
-  category: Category.SAVES,
+  category: AttackCategory.SAVES,
   ephemeral: false,
 };
 
@@ -174,7 +174,7 @@ const SAVE: AttackArgument = {
   valueType: ValueType.STRING,
   desc: "Overrides the spell save type (e.g. -save str).",
   example: "",
-  category: Category.SAVES,
+  category: AttackCategory.SAVES,
   ephemeral: false,
 };
 //#endregion
@@ -187,7 +187,7 @@ const MAX: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Maximizes damage rolls.",
   example: "",
-  category: Category.DAMAGE,
+  category: AttackCategory.DAMAGE,
   ephemeral: true,
 };
 
@@ -198,7 +198,7 @@ const NOCRIT: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Does not double the dice on a crit.",
   example: "",
-  category: Category.DAMAGE,
+  category: AttackCategory.DAMAGE,
   ephemeral: true,
 };
 
@@ -209,7 +209,7 @@ const D: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Adds additional damage",
   example: "",
-  category: Category.DAMAGE,
+  category: AttackCategory.DAMAGE,
   ephemeral: true,
 };
 
@@ -220,7 +220,7 @@ const C: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Adds additional damage for when the attack crits, not doubled.",
   example: "",
-  category: Category.DAMAGE,
+  category: AttackCategory.DAMAGE,
   ephemeral: true,
 };
 
@@ -231,7 +231,7 @@ const MI: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Minimum value of each die on the damage roll.",
   example: "",
-  category: Category.DAMAGE,
+  category: AttackCategory.DAMAGE,
   ephemeral: true,
 };
 //#endregion
@@ -244,7 +244,7 @@ const MAGICAL: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Makes the damage type of the attack magical.",
   example: "",
-  category: Category.DAMAGE_TYPES,
+  category: AttackCategory.DAMAGE_TYPES,
   ephemeral: true,
 };
 
@@ -255,7 +255,7 @@ const DTYPE: AttackArgument = {
   valueType: ValueType.STRING,
   desc: "Changes all damage types to a new damage type. Separate two types with '>' to only modify one damage type (e.g. -dtype fire>cold)",
   example: "",
-  category: Category.DAMAGE_TYPES,
+  category: AttackCategory.DAMAGE_TYPES,
   ephemeral: true,
 };
 
@@ -266,7 +266,7 @@ const RESIST: AttackArgument = {
   valueType: ValueType.STRING,
   desc: "Gives the target resistance to the given damage type.",
   example: "",
-  category: Category.DAMAGE_TYPES,
+  category: AttackCategory.DAMAGE_TYPES,
   ephemeral: true,
 };
 
@@ -277,7 +277,7 @@ const IMMUNE: AttackArgument = {
   valueType: ValueType.STRING,
   desc: "Gives the target immunity to the given damage type.",
   example: "",
-  category: Category.DAMAGE_TYPES,
+  category: AttackCategory.DAMAGE_TYPES,
   ephemeral: true,
 };
 
@@ -288,7 +288,7 @@ const VULN: AttackArgument = {
   valueType: ValueType.STRING,
   desc: "Gives the target vulnerability to the given damage type.",
   example: "",
-  category: Category.DAMAGE_TYPES,
+  category: AttackCategory.DAMAGE_TYPES,
   ephemeral: true,
 };
 
@@ -299,7 +299,7 @@ const NEUTRAL: AttackArgument = {
   valueType: ValueType.STRING,
   desc: "Removes the target's immunity, resistance, or vulnerability to the given damage type.",
   example: "",
-  category: Category.DAMAGE_TYPES,
+  category: AttackCategory.DAMAGE_TYPES,
   ephemeral: true,
 };
 //#endregion
@@ -312,7 +312,7 @@ const DUR: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Overrides the duration of any effect applied by the attack.",
   example: "",
-  category: Category.EFFECTS,
+  category: AttackCategory.EFFECTS,
   ephemeral: false,
 };
 //#endregion
@@ -325,7 +325,7 @@ const AMT: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Overrides the amount of the resource used.",
   example: "",
-  category: Category.COUNTERS,
+  category: AttackCategory.COUNTERS,
   ephemeral: false,
 };
 
@@ -336,7 +336,7 @@ const L: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "Specifies the level of the spell slot to use.",
   example: "",
-  category: Category.COUNTERS,
+  category: AttackCategory.COUNTERS,
   ephemeral: false,
 };
 
@@ -347,7 +347,7 @@ const I: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Skips using any resources.",
   example: "",
-  category: Category.COUNTERS,
+  category: AttackCategory.COUNTERS,
   ephemeral: false,
 };
 //#endregion
@@ -360,7 +360,7 @@ const H: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Hides rolled values.",
   example: "",
-  category: Category.OTHER,
+  category: AttackCategory.OTHER,
   ephemeral: false,
 };
 
@@ -371,7 +371,7 @@ const PHRASE: AttackArgument = {
   valueType: ValueType.STRING,
   desc: "Adds flavor text.",
   example: "",
-  category: Category.OTHER,
+  category: AttackCategory.OTHER,
   ephemeral: false,
 };
 
@@ -382,7 +382,7 @@ const TITLE: AttackArgument = {
   valueType: ValueType.STRING,
   desc: "Changes the title of the attack. Replaces [name] with attacker's name and [aname] with the attack's name.",
   example: "",
-  category: Category.OTHER,
+  category: AttackCategory.OTHER,
   ephemeral: false,
 };
 
@@ -393,7 +393,7 @@ const F: AttackArgument = {
   valueType: ValueType.STRING,
   desc: `Creates a field in the embed with the given title and text. Syntax: "Field Title|Field Text"`,
   example: "",
-  category: Category.OTHER,
+  category: AttackCategory.OTHER,
   ephemeral: false,
 };
 
@@ -404,7 +404,7 @@ const THUMB: AttackArgument = {
   valueType: ValueType.STRING,
   desc: "Pass in an image url to add a thumbnail to the attack",
   example: "",
-  category: Category.OTHER,
+  category: AttackCategory.OTHER,
   ephemeral: false,
 };
 //#endregion
@@ -417,7 +417,7 @@ const RR: AttackArgument = {
   valueType: ValueType.NUMBER,
   desc: "How many attacks to make at each target.",
   example: "",
-  category: Category.TARGETING,
+  category: AttackCategory.TARGETING,
   ephemeral: false,
 };
 
@@ -431,7 +431,7 @@ const T: TargetArgument = {
     `Repeat this command to target multiple enemies. ` +
     `Allows for specific args to apply to each target. (e.g, -t "OR1|hit" to force the attack against OR1 to hit)`,
   example: "",
-  category: Category.TARGETING,
+  category: AttackCategory.TARGETING,
   //These are assumed to be sorted by category - **SO MAKE SURE THEY ARE!!**
   secondaryArgs: [
     RR,

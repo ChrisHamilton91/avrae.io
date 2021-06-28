@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import {
   Argument,
   AttackArgument,
-  Category,
+  AttackCategory,
   ClassTypes,
   Command,
   CommandModule,
@@ -59,12 +59,12 @@ export class SecondaryArgButtonsComponent implements OnInit {
     );
   }
 
-  getCategories(): Category[] {
-    return Object.values(Category);
+  getCategories(): AttackCategory[] {
+    return Object.values(AttackCategory);
   }
 
-  getAttackArgValuePairsByCategory(
-    category: Category
+  getAttackArgValuePairsByAttackCategory(
+    category: AttackCategory
   ): SecondaryArgValuePair[] {
     const attackArgValuePairs = [];
     for (const pair of this.secondaryArgValuePairs) {
