@@ -68,8 +68,8 @@ const SET_HP: PrimaryArgument = {
 };
 
 const SET: Subcommand = {
-  name: "Modify HP",
-  cmdStrings: ["mod"],
+  name: "Set HP",
+  cmdStrings: ["set"],
   shortDesc: "Sets the character's HP to a certain value.",
   longDesc: "",
   primaryArgs: [SET_HP],
