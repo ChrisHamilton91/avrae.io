@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -19,6 +19,7 @@ const ADV: SecondaryArgument = {
   desc: "Give advantage to the save roll(s)",
   example: "",
   ephemeral: true,
+  category: null,
 };
 
 const DIS: SecondaryArgument = {
@@ -29,6 +30,7 @@ const DIS: SecondaryArgument = {
   desc: "Give disadvantage to the save roll(s)",
   example: "",
   ephemeral: true,
+  category: null,
 };
 
 const B: SecondaryArgument = {
@@ -39,6 +41,7 @@ const B: SecondaryArgument = {
   desc: "Adds a bonus to the roll.",
   example: "",
   ephemeral: true,
+  category: null,
 };
 
 const DC: SecondaryArgument = {
@@ -49,6 +52,7 @@ const DC: SecondaryArgument = {
   desc: "Sets a DC (difficulty class) and counts successes/failures.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const RR: SecondaryArgument = {
@@ -59,6 +63,7 @@ const RR: SecondaryArgument = {
   desc: "How many saves to roll.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const PHRASE: SecondaryArgument = {
@@ -69,6 +74,7 @@ const PHRASE: SecondaryArgument = {
   desc: "Adds flavor text.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const TITLE: SecondaryArgument = {
@@ -79,6 +85,7 @@ const TITLE: SecondaryArgument = {
   desc: "Changes the title of the attack. Replaces [name] with attacker's name and [sname] with the save's name.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const F: SecondaryArgument = {
@@ -89,6 +96,7 @@ const F: SecondaryArgument = {
   desc: `Creates a field in the embed with the given title and text. Syntax: "Field Title|Field Text."`,
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const THUMB: SecondaryArgument = {
@@ -99,6 +107,7 @@ const THUMB: SecondaryArgument = {
   desc: "Pass in an image url to add a thumbnail to the save.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const H: SecondaryArgument = {
@@ -109,6 +118,7 @@ const H: SecondaryArgument = {
   desc: "Hides the name and image of the character performing the save.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

@@ -5,23 +5,11 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
 import { ATTACK_ARGS } from "../@Common/AttackArguments";
-
-//#region secondary arguments
-// const SECONDARY_ARG: SecondaryArgument = {
-//   type: ClassTypes.SECONDARY_ARGUMENT,
-//   name: "",
-//   cmdString: "",
-//   valueType: ValueType.STRING,
-//   desc: "",
-//   example: "",
-// ephemeral: false,
-// }
-//#endregion
 
 //#region primary arguments
 const MONSTER: PrimaryArgument = {

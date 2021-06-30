@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -49,6 +49,7 @@ const CREATE_TITLE: SecondaryArgument = {
   desc: "Sets the title when setting or viewing the counter. [name] will be replaced with the player's name.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CREATE_DESC: SecondaryArgument = {
@@ -59,6 +60,7 @@ const CREATE_DESC: SecondaryArgument = {
   desc: "Sets the description when setting or viewing the counter.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CREATE_RESET: SecondaryArgument = {
@@ -69,6 +71,7 @@ const CREATE_RESET: SecondaryArgument = {
   desc: `Counter will reset to max on a short rest or long rest, or not ever when "none". Values: 'short', 'long', or 'none'`,
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CREATE_MAX: SecondaryArgument = {
@@ -79,6 +82,7 @@ const CREATE_MAX: SecondaryArgument = {
   desc: "The maximum value of the counter.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CREATE_MIN: SecondaryArgument = {
@@ -89,6 +93,7 @@ const CREATE_MIN: SecondaryArgument = {
   desc: "The minimum value of the counter.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CREATE_TYPE: SecondaryArgument = {
@@ -99,6 +104,7 @@ const CREATE_TYPE: SecondaryArgument = {
   desc: "Whether the counter displays as bubbles or the default: numbers. Values: 'bubble' or 'default'",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CREATE_RESET_TO: SecondaryArgument = {
@@ -109,6 +115,7 @@ const CREATE_RESET_TO: SecondaryArgument = {
   desc: "The value to reset the counter to. Default - maximum.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CREATE_RESET_BY: SecondaryArgument = {
@@ -119,6 +126,7 @@ const CREATE_RESET_BY: SecondaryArgument = {
   desc: "Rather than resetting to a certain value, modify the counter by this much per reset. Supports dice.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CREATE_NAME: PrimaryArgument = {
@@ -182,6 +190,7 @@ const RESET_H: SecondaryArgument = {
   desc: "Hides the character summary output.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const RESET_NAME: PrimaryArgument = {

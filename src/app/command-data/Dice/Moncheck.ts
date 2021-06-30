@@ -5,25 +5,12 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
 import { CHECK_ARGS } from "../@Common/CheckArguments";
 
-//#region secondary arguments
-// const SECONDARY_ARG: SecondaryArgument = {
-//   type: ClassTypes.SECONDARY_ARGUMENT,
-//   name: "",
-//   cmdString: "",
-//   valueType: ValueType.STRING,
-//   desc: "",
-//   example: "",
-// ephemeral: false,
-// }
-//#endregion
-
-//#region primary arguments
 const NAME: PrimaryArgument = {
   name: "monster name",
   signature: "monster_name",
@@ -41,9 +28,7 @@ const ABILITY: PrimaryArgument = {
   default: null,
   desc: "The ability being checked.",
 };
-//#endregion
 
-//#region command
 export const MONCHECK: Command = {
   name: "Monster Ability Check",
   cmdStrings: ["moncheck", "mc", "monster_check"],
@@ -54,4 +39,3 @@ export const MONCHECK: Command = {
   subcommands: [],
   examples: [],
 };
-//#endregion

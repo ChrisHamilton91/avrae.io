@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -30,6 +30,7 @@ const TITLE: SecondaryArgument = {
   desc: "The title of the embed.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const DESC: SecondaryArgument = {
@@ -40,6 +41,7 @@ const DESC: SecondaryArgument = {
   desc: "The text description of the embed.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const THUMB: SecondaryArgument = {
@@ -50,6 +52,7 @@ const THUMB: SecondaryArgument = {
   desc: "The url of an image to embed as a thumbnail.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const IMAGE: SecondaryArgument = {
@@ -60,6 +63,7 @@ const IMAGE: SecondaryArgument = {
   desc: "The url of an image to embed.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const FOOTER: SecondaryArgument = {
@@ -70,6 +74,7 @@ const FOOTER: SecondaryArgument = {
   desc: "The text of the embed footer.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const F: SecondaryArgument = {
@@ -82,6 +87,7 @@ const F: SecondaryArgument = {
     `(e.g. "Donuts|I have 15 donuts|inline" for an inline field, or "Donuts|I have 15 donuts" for one with its own line.)`,
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const COLOR: SecondaryArgument = {
@@ -92,6 +98,7 @@ const COLOR: SecondaryArgument = {
   desc: "Color of the embed. Pass in a hex color like #da291c",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const T: SecondaryArgument = {
@@ -102,6 +109,7 @@ const T: SecondaryArgument = {
   desc: "Time to show the embed for in seconds (from 0 to 600).",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

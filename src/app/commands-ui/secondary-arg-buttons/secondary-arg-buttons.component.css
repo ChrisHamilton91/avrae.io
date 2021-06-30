@@ -3,7 +3,7 @@
   flex-direction: row;
 }
 
-.attack-args-container {
+.categorized-args-container {
   display: flex;
   flex-direction: column;
 }

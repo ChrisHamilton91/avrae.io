@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -19,6 +19,7 @@ const H: SecondaryArgument = {
   desc: "Hides HP, AC, resistances, and attack list.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const P: SecondaryArgument = {
@@ -29,6 +30,7 @@ const P: SecondaryArgument = {
   desc: "Places combatant at the given modifier, instead of rolling.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CONTROLLER: SecondaryArgument = {
@@ -39,6 +41,7 @@ const CONTROLLER: SecondaryArgument = {
   desc: "Pings a different person on turn.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const GROUP: SecondaryArgument = {
@@ -49,6 +52,7 @@ const GROUP: SecondaryArgument = {
   desc: "Adds the combatant to a given group.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const HP: SecondaryArgument = {
@@ -59,6 +63,7 @@ const HP: SecondaryArgument = {
   desc: "Sets starting hit points.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const THP: SecondaryArgument = {
@@ -69,6 +74,7 @@ const THP: SecondaryArgument = {
   desc: "Sets starting temporary hit points.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const AC: SecondaryArgument = {
@@ -79,6 +85,7 @@ const AC: SecondaryArgument = {
   desc: "Sets the combatant's armor class (AC)",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const RESIST: SecondaryArgument = {
@@ -89,6 +96,7 @@ const RESIST: SecondaryArgument = {
   desc: "Gives the combatant resistance to the given damage type.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const IMMUNE: SecondaryArgument = {
@@ -99,6 +107,7 @@ const IMMUNE: SecondaryArgument = {
   desc: "Gives the combatant immunity to the given damage type.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const VULN: SecondaryArgument = {
@@ -109,6 +118,7 @@ const VULN: SecondaryArgument = {
   desc: "Gives the combatant vulnerability to the given damage type.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADV: SecondaryArgument = {
@@ -119,6 +129,7 @@ const ADV: SecondaryArgument = {
   desc: " Rolls the initiative check with advantage.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const DIS: SecondaryArgument = {
@@ -129,6 +140,7 @@ const DIS: SecondaryArgument = {
   desc: " Rolls the initiative check with disadvantage.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NOTE: SecondaryArgument = {
@@ -139,6 +151,7 @@ const NOTE: SecondaryArgument = {
   desc: "Sets the combatant's note.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -19,6 +19,7 @@ const H: SecondaryArgument = {
   desc: "Hides HP, AC, resistances.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const P: SecondaryArgument = {
@@ -29,6 +30,7 @@ const P: SecondaryArgument = {
   desc: "Changes the combatants' placement in the initiative. Modifies if starts with +/- or sets otherwise.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NAME: SecondaryArgument = {
@@ -39,6 +41,7 @@ const NAME: SecondaryArgument = {
   desc: "Changes the combatants' name.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CONTROLLER: SecondaryArgument = {
@@ -49,6 +52,7 @@ const CONTROLLER: SecondaryArgument = {
   desc: "Pings a different person on turn.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const AC: SecondaryArgument = {
@@ -59,6 +63,7 @@ const AC: SecondaryArgument = {
   desc: "Changes combatants' AC. Modifies if starts with +/- or sets otherwise.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const RESIST: SecondaryArgument = {
@@ -69,6 +74,7 @@ const RESIST: SecondaryArgument = {
   desc: "Gives the combatant resistance to the given damage type.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const IMMUNE: SecondaryArgument = {
@@ -79,6 +85,7 @@ const IMMUNE: SecondaryArgument = {
   desc: "Gives the combatant immunity to the given damage type.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const VULN: SecondaryArgument = {
@@ -89,6 +96,7 @@ const VULN: SecondaryArgument = {
   desc: "Gives the combatant vulnerability to the given damage type.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NEUTRAL: SecondaryArgument = {
@@ -99,6 +107,7 @@ const NEUTRAL: SecondaryArgument = {
   desc: "Removes the combatants' immunity, resistance, or vulnerability to the given damage type.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const GROUP: SecondaryArgument = {
@@ -109,6 +118,7 @@ const GROUP: SecondaryArgument = {
   desc: "Adds the combatant to a group. To remove them from a group, pass in 'None'.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const MAX: SecondaryArgument = {
@@ -119,6 +129,7 @@ const MAX: SecondaryArgument = {
   desc: "Changes current maximum HP. Modifies if starts with +/- or sets otherwise.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const HP: SecondaryArgument = {
@@ -129,6 +140,7 @@ const HP: SecondaryArgument = {
   desc: "Changes current HP. Modifies if starts with +/- or sets otherwise.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

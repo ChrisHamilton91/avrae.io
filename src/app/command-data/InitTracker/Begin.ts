@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const DYN: SecondaryArgument = {
   desc: "Rerolls all initiatives at the start of a round.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const TURN_NOTIF: SecondaryArgument = {
@@ -28,6 +29,7 @@ const TURN_NOTIF: SecondaryArgument = {
   desc: "Notifies the controller of the next combatant in initiative.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const DEATH_DELETE: SecondaryArgument = {
@@ -38,6 +40,7 @@ const DEATH_DELETE: SecondaryArgument = {
   desc: "Disables deleting monsters below 0 hp.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NAME: SecondaryArgument = {
@@ -48,6 +51,7 @@ const NAME: SecondaryArgument = {
   desc: "Sets a name for the combat instance.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 export const BEGIN: Command = {

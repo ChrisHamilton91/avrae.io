@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -33,6 +33,7 @@ const ADD_D: SecondaryArgument = {
   desc: "How much damage the attack should do.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_B: SecondaryArgument = {
@@ -43,6 +44,7 @@ const ADD_B: SecondaryArgument = {
   desc: "The to-hit bonus of the attack.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_DESC: SecondaryArgument = {
@@ -53,6 +55,7 @@ const ADD_DESC: SecondaryArgument = {
   desc: "A description of the attack.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_VERB: SecondaryArgument = {
@@ -63,6 +66,7 @@ const ADD_VERB: SecondaryArgument = {
   desc: `The verb to use for this attack. (e.g. "Padellis <verb> a dagger!")`,
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_PROPER: SecondaryArgument = {
@@ -73,6 +77,7 @@ const ADD_PROPER: SecondaryArgument = {
   desc: "This attack's name is a proper noun.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_CRITON: SecondaryArgument = {
@@ -83,6 +88,7 @@ const ADD_CRITON: SecondaryArgument = {
   desc: "This attack crits on a number other than a natural 20.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_PHRASE: SecondaryArgument = {
@@ -93,6 +99,7 @@ const ADD_PHRASE: SecondaryArgument = {
   desc: "Some flavor text to add to each attack with this attack.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_THUMB: SecondaryArgument = {
@@ -103,6 +110,7 @@ const ADD_THUMB: SecondaryArgument = {
   desc: "The url of an image to embed with the attack.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_C: SecondaryArgument = {
@@ -113,6 +121,7 @@ const ADD_C: SecondaryArgument = {
   desc: "How much extra damage (beyond doubling dice) this attack does on a crit.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

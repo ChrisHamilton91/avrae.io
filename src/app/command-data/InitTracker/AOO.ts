@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -19,7 +19,7 @@ const CUSTOM: AttackArgument = {
   valueType: ValueType.TRUE,
   desc: "Makes a custom attack with 0 to hit and base damage. Use -b and -d to add to hit and damage.",
   example: "",
-  category: AttackCategory.OTHER,
+  category: AttackCategories.OTHER,
   ephemeral: false,
 };
 //#endregion

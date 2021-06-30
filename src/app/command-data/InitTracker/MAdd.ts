@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -19,6 +19,7 @@ const B: SecondaryArgument = {
   desc: "Adds a bonus to the combatant's initiative roll.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const N: SecondaryArgument = {
@@ -29,6 +30,7 @@ const N: SecondaryArgument = {
   desc: "Adds more than one of that monster. Supports dice.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const P: SecondaryArgument = {
@@ -39,6 +41,7 @@ const P: SecondaryArgument = {
   desc: "Places combatant at the given modifier, instead of rolling.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NAME: SecondaryArgument = {
@@ -49,6 +52,7 @@ const NAME: SecondaryArgument = {
   desc: `Sets the combatant's name. Use "#" for auto-numbering, e.g. "Orc#"`,
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const H: SecondaryArgument = {
@@ -59,6 +63,7 @@ const H: SecondaryArgument = {
   desc: "Unhides HP, AC, and resistances.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const GROUP: SecondaryArgument = {
@@ -69,6 +74,7 @@ const GROUP: SecondaryArgument = {
   desc: "Adds the combatant to a given group.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ROLL_HP: SecondaryArgument = {
@@ -79,6 +85,7 @@ const ROLL_HP: SecondaryArgument = {
   desc: "Rolls the monsters HP, instead of using the default value.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const HP: SecondaryArgument = {
@@ -89,6 +96,7 @@ const HP: SecondaryArgument = {
   desc: "Sets starting hit points.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const THP: SecondaryArgument = {
@@ -99,6 +107,7 @@ const THP: SecondaryArgument = {
   desc: "Sets starting temporary hit points.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const AC: SecondaryArgument = {
@@ -109,6 +118,7 @@ const AC: SecondaryArgument = {
   desc: "Sets the combatant's armor class (AC)",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NOTE: SecondaryArgument = {
@@ -119,6 +129,7 @@ const NOTE: SecondaryArgument = {
   desc: "Sets the combatant's note.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

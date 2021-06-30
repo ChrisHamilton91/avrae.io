@@ -11,24 +11,24 @@ export enum ValueType {
 }
 
 /** These are categories to sort out the list of attack arguments */
-export enum AttackCategory {
-  SPELLCASTING = "Spellcasting",
-  TARGETING = "Targeting",
-  TO_HIT = "To Hit",
-  SAVES = "Saves",
-  DAMAGE = "Damage",
-  DAMAGE_TYPES = "Damage Types",
-  EFFECTS = "Effects",
-  COUNTERS = "Counters",
-  OTHER = "Other",
-}
+export const AttackCategories = {
+  SPELLCASTING: { name: "Spellcasting", index: 0 },
+  TARGETING: { name: "Targeting", index: 1 },
+  TO_HIT: { name: "To Hit", index: 2 },
+  SAVES: { name: "Saves", index: 3 },
+  DAMAGE: { name: "Damage", index: 4 },
+  DAMAGE_TYPES: { name: "Damage Types", index: 5 },
+  EFFECTS: { name: "Effects", index: 6 },
+  COUNTERS: { name: "Counters", index: 7 },
+  OTHER: { name: "Other", index: 8 },
+};
 
 /** These are categories to sort out the list of effect arguments */
-export enum EffectCategory {
-  GENERAL = "General",
-  ATTACKS = "Attacks",
-  RESISTS = "Resists",
-}
+export const EffectCategories = {
+  GENERAL: { name: "General", index: 0 },
+  ATTACKS: { name: "Attacks", index: 1 },
+  RESISTS: { name: "Resists", index: 2 },
+};
 
 /** Use these enums to check for class types at runtime - necessary for differentiating secondary arguments */
 export enum ClassTypes {
@@ -125,12 +125,14 @@ export class SecondaryArgument extends Argument {
    * For example !a dagger -rr 4 -d2 10 rolls four times and applies 10 extra damage to the first two attacks.
    */
   ephemeral: boolean;
+  /** Optional category for organization */
+  category: null | { name: string; index: number };
 }
 
 /** An argument specifically for the attack command */
 export class AttackArgument extends SecondaryArgument {
   /** The category of attack argument, for organization */
-  category: AttackCategory;
+  category: { name: string; index: number };
 }
 
 /**
@@ -146,5 +148,5 @@ export class TargetArgument extends AttackArgument {
 /** An argument specifically for the effect command */
 export class EffectArgument extends SecondaryArgument {
   /** The category of effect argument, for organization */
-  category: EffectCategory;
+  category: { name: string; index: number };
 }

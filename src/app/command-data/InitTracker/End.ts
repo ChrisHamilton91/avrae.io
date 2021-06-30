@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const FORCE: SecondaryArgument = {
   desc: "Forces an init to end, in case it's erroring.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 export const END: Command = {

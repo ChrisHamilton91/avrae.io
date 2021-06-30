@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const V: SecondaryArgument = {
   desc: "Shows character sheet after update is complete.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NOCC: SecondaryArgument = {
@@ -28,6 +29,7 @@ const NOCC: SecondaryArgument = {
   desc: "Do not automatically create custom counters for limited use features.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 export const UPDATE: Command = {

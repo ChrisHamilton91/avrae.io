@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const BORDER: SecondaryArgument = {
   desc: "(For player token only) Overrides the token border. Values: 'plain' or 'none'",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NAME: PrimaryArgument = {

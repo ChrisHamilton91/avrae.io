@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const REQ_DM: SecondaryArgument = {
   desc: "Requires a Game Master role to show a full monster stat block.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const PM_DM: SecondaryArgument = {
@@ -28,6 +29,7 @@ const PM_DM: SecondaryArgument = {
   desc: "PMs a DM the full monster stat block instead of outputting to chat, if req_dm_monster is True.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const PM_RESULT: SecondaryArgument = {
@@ -38,6 +40,7 @@ const PM_RESULT: SecondaryArgument = {
   desc: "PMs the result of the lookup to reduce spam.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 export const SETTINGS: Command = {

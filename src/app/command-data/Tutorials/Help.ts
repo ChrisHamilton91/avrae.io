@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -19,6 +19,7 @@ const HERE: SecondaryArgument = {
   desc: "Sends help to the channel instead of PMs.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

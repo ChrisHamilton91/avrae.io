@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -19,6 +19,7 @@ const COLOR: SecondaryArgument = {
   desc: "Colors all embeds this color. Pass in a hex color like #ec1c24",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CRITON: SecondaryArgument = {
@@ -29,6 +30,7 @@ const CRITON: SecondaryArgument = {
   desc: "Makes attacks crit on something other than a 20.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const REROLL: SecondaryArgument = {
@@ -39,6 +41,7 @@ const REROLL: SecondaryArgument = {
   desc: "Defines a number that a check will automatically reroll on, for cases such as Halfling Luck.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const SRSLOTS: SecondaryArgument = {
@@ -49,6 +52,7 @@ const SRSLOTS: SecondaryArgument = {
   desc: "Enables / disables whether spell slots reset on a Short Rest.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const EMBEDIMAGE: SecondaryArgument = {
@@ -59,6 +63,7 @@ const EMBEDIMAGE: SecondaryArgument = {
   desc: "Enables / disables whether a character's image is automatically embedded.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CRITDICE: SecondaryArgument = {
@@ -69,6 +74,7 @@ const CRITDICE: SecondaryArgument = {
   desc: "Adds additional damage dice to roll on critical attacks, on top of the doubled dice.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const TALENT: SecondaryArgument = {
@@ -79,6 +85,7 @@ const TALENT: SecondaryArgument = {
   desc: "Enables / disables whether to apply a rogue's Reliable Talent on checks you're proficient with.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

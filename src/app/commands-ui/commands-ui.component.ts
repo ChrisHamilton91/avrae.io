@@ -9,6 +9,7 @@ import {
   SecondaryArgValuePair,
   fadeInAnimation,
   fadeOutAnimation,
+  sortByCategoryThenName,
 } from "./globals";
 import {
   CommandModule,
@@ -18,7 +19,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   Argument,
   ClassTypes,
@@ -94,9 +95,9 @@ export class CommandsUiComponent implements OnInit {
 
   getSecondaryArguments(): SecondaryArgument[] {
     if (this.activeSubcommand)
-      return this.activeSubcommand.secondaryArgs.sort(sortByName);
+      return this.activeSubcommand.secondaryArgs.sort(sortByCategoryThenName);
     else if (this.activeCommand)
-      return this.activeCommand.secondaryArgs.sort(sortByName);
+      return this.activeCommand.secondaryArgs.sort(sortByCategoryThenName);
     else return [];
   }
 

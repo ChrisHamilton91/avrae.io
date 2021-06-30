@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const H: SecondaryArgument = {
   desc: "Shows the obfuscated stat block, even if you can see the full stat block.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NAME: PrimaryArgument = {

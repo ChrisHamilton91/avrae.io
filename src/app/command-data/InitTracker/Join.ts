@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -19,6 +19,7 @@ const ADV: SecondaryArgument = {
   desc: "Give advantage to the initiative roll.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const DIS: SecondaryArgument = {
@@ -29,6 +30,7 @@ const DIS: SecondaryArgument = {
   desc: "Give disadvantage to the initiative roll.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const B: SecondaryArgument = {
@@ -39,6 +41,7 @@ const B: SecondaryArgument = {
   desc: "Adds a bonus to the combatants' Initiative roll.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const PHRASE: SecondaryArgument = {
@@ -49,6 +52,7 @@ const PHRASE: SecondaryArgument = {
   desc: "Adds flavor text.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const THUMB: SecondaryArgument = {
@@ -59,6 +63,7 @@ const THUMB: SecondaryArgument = {
   desc: "Pass in a url to add a thumbnail to the initiative roll.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const P: SecondaryArgument = {
@@ -69,6 +74,7 @@ const P: SecondaryArgument = {
   desc: "Places combatant at the given value, instead of rolling.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const H: SecondaryArgument = {
@@ -79,6 +85,7 @@ const H: SecondaryArgument = {
   desc: "Hides HP, AC, Resists, etc.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const GROUP: SecondaryArgument = {
@@ -89,6 +96,7 @@ const GROUP: SecondaryArgument = {
   desc: "Adds the combatant to a group.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NOTE: SecondaryArgument = {
@@ -99,6 +107,7 @@ const NOTE: SecondaryArgument = {
   desc: "Sets the combatant's note.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

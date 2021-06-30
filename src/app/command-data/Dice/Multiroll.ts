@@ -5,12 +5,11 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
 
-//#region primary arguments
 const ITERATIONS: PrimaryArgument = {
   name: "iterations",
   signature: "iterations",
@@ -28,9 +27,7 @@ const ROLLSTR: PrimaryArgument = {
   default: null,
   desc: "The roll string (ie. 1d6, 2d4+3, 2d10kh1).",
 };
-//#endregion
 
-//#region command
 export const MULTIROLL: Command = {
   name: "Iterative Roll",
   cmdStrings: ["multiroll", "rr"],
@@ -41,4 +38,3 @@ export const MULTIROLL: Command = {
   subcommands: [],
   examples: [],
 };
-//#endregion

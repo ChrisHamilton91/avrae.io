@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const PRIVATE: SecondaryArgument = {
   desc: "Sends the list in a private message.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 export const LIST: Command = {

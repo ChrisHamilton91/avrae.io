@@ -65,6 +65,19 @@ export function sortByName(
   return 0;
 }
 
+export function sortByCategoryThenName(
+  a: SecondaryArgument,
+  b: SecondaryArgument
+) {
+  if (a.category && b.category) {
+    if (a.category.index < b.category.index) return -1;
+    if (a.category.index > b.category.index) return 1;
+  }
+  if (a.name < b.name) return -1;
+  if (a.name > b.name) return 1;
+  return 0;
+}
+
 export function getShortest(array: string[]): string {
   if (array.length == 0) throw Error("There are no items in the array!");
   let shortest = array[0];

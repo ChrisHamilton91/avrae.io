@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const PRIVATE: SecondaryArgument = {
   desc: "PMs the controller of the combatant a more detailed status.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const NAME: PrimaryArgument = {

@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -20,6 +20,7 @@ const ADD_DC: SecondaryArgument = {
   desc: "When cast, this spell always uses this DC.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_B: SecondaryArgument = {
@@ -30,6 +31,7 @@ const ADD_B: SecondaryArgument = {
   desc: "When cast, this spell always uses this spell attack bonus.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_MOD: SecondaryArgument = {
@@ -40,6 +42,7 @@ const ADD_MOD: SecondaryArgument = {
   desc: "When cast, this spell always uses this as the value of its casting stat (usually for healing spells).",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const ADD_NAME: PrimaryArgument = {

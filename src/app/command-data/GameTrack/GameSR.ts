@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const H: SecondaryArgument = {
   desc: "Hides the character summary output.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 export const GAME_SR: Command = {

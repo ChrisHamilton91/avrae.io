@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -19,6 +19,7 @@ const ADV: SecondaryArgument = {
   desc: "Give advantage to the check roll(s)",
   example: "",
   ephemeral: true,
+  category: null,
 };
 
 const DIS: SecondaryArgument = {
@@ -29,6 +30,7 @@ const DIS: SecondaryArgument = {
   desc: "Give disadvantage to the check roll(s)",
   example: "",
   ephemeral: true,
+  category: null,
 };
 
 const B: SecondaryArgument = {
@@ -39,6 +41,7 @@ const B: SecondaryArgument = {
   desc: "Adds a bonus to the check.",
   example: "",
   ephemeral: true,
+  category: null,
 };
 
 const DC: SecondaryArgument = {
@@ -49,6 +52,7 @@ const DC: SecondaryArgument = {
   desc: "Sets a DC (difficulty class) and counts successes/failures.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const MC: SecondaryArgument = {
@@ -59,6 +63,7 @@ const MC: SecondaryArgument = {
   desc: "Sets the minimum roll on the dice (e.g. Reliable Talent, Glibness)",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const RR: SecondaryArgument = {
@@ -69,6 +74,7 @@ const RR: SecondaryArgument = {
   desc: "How many checks to roll.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const STR: SecondaryArgument = {
@@ -79,6 +85,7 @@ const STR: SecondaryArgument = {
   desc: "Rolls using a strength base instead of the regular skill base for the check.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const DEX: SecondaryArgument = {
@@ -89,6 +96,7 @@ const DEX: SecondaryArgument = {
   desc: "Rolls using a dexterity base instead of the regular skill base for the check.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CON: SecondaryArgument = {
@@ -99,6 +107,7 @@ const CON: SecondaryArgument = {
   desc: "Rolls using a constitution base instead of the regular skill base for the check.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const INT: SecondaryArgument = {
@@ -109,6 +118,7 @@ const INT: SecondaryArgument = {
   desc: "Rolls using a intelligence base instead of the regular skill base for the check.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const WIS: SecondaryArgument = {
@@ -119,6 +129,7 @@ const WIS: SecondaryArgument = {
   desc: "Rolls using a wisdom base instead of the regular skill base for the check.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const CHA: SecondaryArgument = {
@@ -129,6 +140,7 @@ const CHA: SecondaryArgument = {
   desc: "Rolls using a charisma base instead of the regular skill base for the check.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const PHRASE: SecondaryArgument = {
@@ -139,6 +151,7 @@ const PHRASE: SecondaryArgument = {
   desc: "Adds flavor text.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const TITLE: SecondaryArgument = {
@@ -149,6 +162,7 @@ const TITLE: SecondaryArgument = {
   desc: "Changes the title of the attack. Replaces [name] with attacker's name and [cname] with the check's name.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const F: SecondaryArgument = {
@@ -159,6 +173,7 @@ const F: SecondaryArgument = {
   desc: `Creates a field in the embed with the given title and text. Syntax: "Field Title|Field Text."`,
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const THUMB: SecondaryArgument = {
@@ -169,6 +184,7 @@ const THUMB: SecondaryArgument = {
   desc: "Pass in an image url to add a thumbnail to the check.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 const H: SecondaryArgument = {
@@ -179,6 +195,7 @@ const H: SecondaryArgument = {
   desc: "Hides the name and image of the character performing the check.",
   example: "",
   ephemeral: false,
+  category: null,
 };
 //#endregion
 

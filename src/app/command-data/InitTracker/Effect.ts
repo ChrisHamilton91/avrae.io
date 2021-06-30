@@ -5,11 +5,11 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
   EffectArgument,
-  EffectCategory,
+  EffectCategories,
 } from "../../schemas/Commands";
 
 //#region secondary arguments
@@ -20,7 +20,7 @@ const DUR: EffectArgument = {
   valueType: ValueType.NUMBER,
   desc: "Sets the duration of the effect, in rounds.",
   example: "",
-  category: EffectCategory.GENERAL,
+  category: EffectCategories.GENERAL,
   ephemeral: false,
 };
 
@@ -31,7 +31,7 @@ const CONC: EffectArgument = {
   valueType: ValueType.TRUE,
   desc: "Makes the effect require concentration. Will end any other concentration effects.",
   example: "",
-  category: EffectCategory.GENERAL,
+  category: EffectCategories.GENERAL,
   ephemeral: false,
 };
 
@@ -42,7 +42,7 @@ const END: EffectArgument = {
   valueType: ValueType.TRUE,
   desc: "Makes the effect duration tick on the end of turn, rather than the beginning.",
   example: "",
-  category: EffectCategory.GENERAL,
+  category: EffectCategories.GENERAL,
   ephemeral: false,
 };
 
@@ -53,7 +53,7 @@ const T: EffectArgument = {
   valueType: ValueType.STRING,
   desc: "Specifies more combatants to target.",
   example: "",
-  category: EffectCategory.GENERAL,
+  category: EffectCategories.GENERAL,
   ephemeral: false,
 };
 
@@ -64,7 +64,7 @@ const PARENT: EffectArgument = {
   valueType: ValueType.STRING,
   desc: "Sets a parent effect from a specified combatant. Syntax: combatant|effect",
   example: "",
-  category: EffectCategory.GENERAL,
+  category: EffectCategories.GENERAL,
   ephemeral: false,
 };
 
@@ -75,7 +75,7 @@ const AC: EffectArgument = {
   valueType: ValueType.NUMBER,
   desc: "Sets ac temporarily. Use + or - to modify ac instead of setting.",
   example: "",
-  category: EffectCategory.GENERAL,
+  category: EffectCategories.GENERAL,
   ephemeral: false,
 };
 
@@ -86,7 +86,7 @@ const SB: EffectArgument = {
   valueType: ValueType.NUMBER,
   desc: "Adds a bonus to all saving throws.",
   example: "",
-  category: EffectCategory.GENERAL,
+  category: EffectCategories.GENERAL,
   ephemeral: false,
 };
 
@@ -97,7 +97,7 @@ const DESC: EffectArgument = {
   valueType: ValueType.STRING,
   desc: "Adds a description of the effect.",
   example: "",
-  category: EffectCategory.GENERAL,
+  category: EffectCategories.GENERAL,
   ephemeral: false,
 };
 
@@ -108,7 +108,7 @@ const B: EffectArgument = {
   valueType: ValueType.NUMBER,
   desc: "Adds a bonus to hit.",
   example: "",
-  category: EffectCategory.ATTACKS,
+  category: EffectCategories.ATTACKS,
   ephemeral: false,
 };
 
@@ -119,7 +119,7 @@ const D: EffectArgument = {
   valueType: ValueType.NUMBER,
   desc: "Adds additional damage.",
   example: "",
-  category: EffectCategory.ATTACKS,
+  category: EffectCategories.ATTACKS,
   ephemeral: false,
 };
 
@@ -132,7 +132,7 @@ const ATTACK: EffectArgument = {
     `Adds an attack to the combatant. The effect name will be the name of the attack. Syntax: [hit]|[damage]|[description]. ` +
     `Omitting [hit] will autohit. (e.g., -attack "|1d6[fire]|")`,
   example: "",
-  category: EffectCategory.ATTACKS,
+  category: EffectCategories.ATTACKS,
   ephemeral: false,
 };
 
@@ -143,7 +143,7 @@ const RESIST: EffectArgument = {
   valueType: ValueType.STRING,
   desc: "Gives the combatant resistance to the given damage type.",
   example: "",
-  category: EffectCategory.RESISTS,
+  category: EffectCategories.RESISTS,
   ephemeral: false,
 };
 
@@ -154,7 +154,7 @@ const IMMUNE: EffectArgument = {
   valueType: ValueType.STRING,
   desc: "Gives the combatant immunity to the given damage type.",
   example: "",
-  category: EffectCategory.RESISTS,
+  category: EffectCategories.RESISTS,
   ephemeral: false,
 };
 
@@ -165,7 +165,7 @@ const VULN: EffectArgument = {
   valueType: ValueType.STRING,
   desc: "Gives the combatant vulnerability to the given damage type.",
   example: "",
-  category: EffectCategory.RESISTS,
+  category: EffectCategories.RESISTS,
   ephemeral: false,
 };
 
@@ -176,7 +176,7 @@ const NEUTRAL: EffectArgument = {
   valueType: ValueType.STRING,
   desc: "Removes the combatant's immunity, resistance, or vulnerability to the given damage type.",
   example: "",
-  category: EffectCategory.RESISTS,
+  category: EffectCategories.RESISTS,
   ephemeral: false,
 };
 
@@ -187,7 +187,7 @@ const MAGICAL: EffectArgument = {
   valueType: ValueType.STRING,
   desc: "Makes all damage from the combatant magical.",
   example: "",
-  category: EffectCategory.RESISTS,
+  category: EffectCategories.RESISTS,
   ephemeral: false,
 };
 //#endregion

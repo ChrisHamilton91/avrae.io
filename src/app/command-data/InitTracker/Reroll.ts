@@ -5,7 +5,7 @@ import {
   SecondaryArgument,
   AttackArgument,
   TargetArgument,
-  AttackCategory,
+  AttackCategories,
   ValueType,
   ClassTypes,
 } from "../../schemas/Commands";
@@ -18,6 +18,7 @@ const RESTART: SecondaryArgument = {
   desc: "Resets the round counter (effectively restarting initiative).",
   example: "",
   ephemeral: false,
+  category: null,
 };
 
 export const REROLL: Command = {

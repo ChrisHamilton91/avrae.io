@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { pairs } from "rxjs";
 import {
   Argument,
   AttackArgument,
-  AttackCategory,
+  AttackCategories,
   ClassTypes,
   Command,
   CommandModule,
@@ -46,31 +47,12 @@ export class SecondaryArgButtonsComponent implements OnInit {
     this.secondaryArgValuePairsChange.emit(this.secondaryArgValuePairs);
   }
 
-  areRegularSecondaryArgs(): boolean {
-    return (
-      this.secondaryArgValuePairs[0].arg.type === ClassTypes.SECONDARY_ARGUMENT
-    );
-  }
-
-  areAttackArgs(): boolean {
-    return (
-      this.secondaryArgValuePairs[0].arg.type === ClassTypes.ATTACK_ARGUMENT ||
-      this.secondaryArgValuePairs[0].arg.type === ClassTypes.TARGET_ARGUMENT
-    );
-  }
-
-  getCategories(): AttackCategory[] {
-    return Object.values(AttackCategory);
-  }
-
-  getAttackArgValuePairsByAttackCategory(
-    category: AttackCategory
-  ): SecondaryArgValuePair[] {
-    const attackArgValuePairs = [];
-    for (const pair of this.secondaryArgValuePairs) {
-      if ((pair.arg as AttackArgument).category === category)
-        attackArgValuePairs.push(pair);
-    }
-    return attackArgValuePairs;
+  isFirstOfCategory(i: number): boolean {
+    const pair = this.secondaryArgValuePairs[i];
+    if (!pair.arg.category) return false;
+    if (i === 0) return true;
+    const lastPair = this.secondaryArgValuePairs[i - 1];
+    if (pair.arg.category !== lastPair.arg.category) return true;
+    return false;
   }
 }
