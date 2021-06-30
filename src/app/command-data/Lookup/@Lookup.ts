@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import { CommandModule } from "../../schemas/Commands";
 import { BACKGROUND } from "./Background";
 import { CLASS } from "./Class";
@@ -35,5 +36,5 @@ export const LOOKUP: CommandModule = {
     SPELL,
     SUBCLASS,
     TOKEN,
-  ],
+  ].sort(sortByName),
 };

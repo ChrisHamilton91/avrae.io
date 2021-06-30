@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -68,4 +69,6 @@ const NOCONC: AttackArgument = {
 //#endregion
 
 //#region
-export const SPELL_ARGS: AttackArgument[] = [I, L, MOD, WITH, NOCONC];
+export const SPELL_ARGS: AttackArgument[] = [I, L, MOD, WITH, NOCONC].sort(
+  sortByName
+);

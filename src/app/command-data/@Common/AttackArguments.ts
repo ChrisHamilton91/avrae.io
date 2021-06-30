@@ -1,3 +1,4 @@
+import { sortByCategoryThenName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -462,13 +463,12 @@ const T: TargetArgument = {
     VULN,
     NEUTRAL,
     DUR,
-  ],
+  ].sort(sortByCategoryThenName),
   ephemeral: false,
 };
 //#endregion
 
 //#region export
-//These are assumed to be sorted by category - **SO MAKE SURE THEY ARE!!**
 export const ATTACK_ARGS: AttackArgument[] = [
   T,
   RR,
@@ -507,5 +507,5 @@ export const ATTACK_ARGS: AttackArgument[] = [
   TITLE,
   F,
   THUMB,
-];
+].sort(sortByCategoryThenName);
 //#endregion

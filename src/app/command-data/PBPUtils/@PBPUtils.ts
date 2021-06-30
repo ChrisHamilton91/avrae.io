@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import { CommandModule } from "../../schemas/Commands";
 import { BR } from "./BR";
 import { ECHO } from "./Echo";
@@ -8,5 +9,5 @@ export const PBP_UTILS: CommandModule = {
   name: "PBPUtils",
   shortDesc: "Commands to help streamline playing-by-post over Discord.",
   longDesc: "",
-  commands: [BR, ECHO, EMBED, TECHO],
+  commands: [BR, ECHO, EMBED, TECHO].sort(sortByName),
 };

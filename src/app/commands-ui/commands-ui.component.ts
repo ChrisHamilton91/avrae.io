@@ -4,12 +4,10 @@ import { environment } from "../../environments/environment";
 import { COMMAND_MODULES } from "../command-data/CommandModules";
 import {
   getShortest,
-  sortByName,
   PrimaryArgValuePair,
   SecondaryArgValuePair,
   fadeInAnimation,
   fadeOutAnimation,
-  sortByCategoryThenName,
 } from "./globals";
 import {
   CommandModule,
@@ -78,13 +76,11 @@ export class CommandsUiComponent implements OnInit {
 
   //#region data getters
   getModules(): CommandModule[] {
-    return this.modules.sort(sortByName);
+    return this.modules;
   }
 
   getCommands(): Command[] {
-    return this.activeModule
-      ? this.activeModule.commands.sort(sortByName)
-      : null;
+    return this.activeModule ? this.activeModule.commands : null;
   }
 
   getPrimaryArguments(): PrimaryArgument[] {
@@ -94,10 +90,8 @@ export class CommandsUiComponent implements OnInit {
   }
 
   getSecondaryArguments(): SecondaryArgument[] {
-    if (this.activeSubcommand)
-      return this.activeSubcommand.secondaryArgs.sort(sortByCategoryThenName);
-    else if (this.activeCommand)
-      return this.activeCommand.secondaryArgs.sort(sortByCategoryThenName);
+    if (this.activeSubcommand) return this.activeSubcommand.secondaryArgs;
+    else if (this.activeCommand) return this.activeCommand.secondaryArgs;
     else return [];
   }
 

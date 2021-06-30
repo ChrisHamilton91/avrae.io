@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -49,7 +50,7 @@ export const SETTINGS: Command = {
   shortDesc: "Changes settings for the lookup module.",
   longDesc: "",
   primaryArgs: [],
-  secondaryArgs: [REQ_DM, PM_DM, PM_RESULT],
+  secondaryArgs: [REQ_DM, PM_DM, PM_RESULT].sort(sortByName),
   subcommands: [],
   examples: [],
 };

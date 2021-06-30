@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -134,5 +135,5 @@ export const SAVE_ARGS: SecondaryArgument[] = [
   F,
   THUMB,
   H,
-];
+].sort(sortByName);
 //#endregion

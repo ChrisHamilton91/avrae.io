@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import { CommandModule } from "../../schemas/Commands";
 import { ITERROLL } from "./Iterroll";
 import { MONATTACK } from "./Monattack";
@@ -11,5 +12,13 @@ export const DICE: CommandModule = {
   name: "Dice",
   shortDesc: "Dice and math related commands. Also has rolls for monsters.",
   longDesc: "",
-  commands: [ITERROLL, MONATTACK, MONCAST, MONCHECK, MONSAVE, MULTIROLL, ROLL],
+  commands: [
+    ITERROLL,
+    MONATTACK,
+    MONCAST,
+    MONCHECK,
+    MONSAVE,
+    MULTIROLL,
+    ROLL,
+  ].sort(sortByName),
 };

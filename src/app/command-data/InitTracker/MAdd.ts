@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -151,7 +152,9 @@ export const MADD: Command = {
   shortDesc: "Adds a monster to combat.",
   longDesc: "",
   primaryArgs: [MONSTER_NAME],
-  secondaryArgs: [B, N, P, NAME, H, GROUP, ROLL_HP, HP, THP, AC, NOTE],
+  secondaryArgs: [B, N, P, NAME, H, GROUP, ROLL_HP, HP, THP, AC, NOTE].sort(
+    sortByName
+  ),
   subcommands: [],
   examples: [],
 };

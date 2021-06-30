@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -60,7 +61,7 @@ export const BEGIN: Command = {
   shortDesc: "Begins combat.",
   longDesc: "",
   primaryArgs: [],
-  secondaryArgs: [DYN, TURN_NOTIF, DEATH_DELETE, NAME],
+  secondaryArgs: [DYN, TURN_NOTIF, DEATH_DELETE, NAME].sort(sortByName),
   subcommands: [],
   examples: [],
 };

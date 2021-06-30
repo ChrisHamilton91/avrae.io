@@ -1,3 +1,4 @@
+import { sortByCategoryThenName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -48,7 +49,7 @@ export const ATTACK: Command = {
   shortDesc: "Rolls an attack against another combatant.",
   longDesc: "",
   primaryArgs: [NAME],
-  secondaryArgs: ATTACK_ARGS.concat([CUSTOM]),
+  secondaryArgs: ATTACK_ARGS.concat([CUSTOM]).sort(sortByCategoryThenName),
   subcommands: [LIST],
   examples: [],
 };

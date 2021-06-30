@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import { CommandModule } from "../../schemas/Commands";
 import { CAST } from "./Cast";
 import { CUSTOM_COUNTER } from "./CustomCounter";
@@ -25,5 +26,5 @@ export const GAMETRACK: CommandModule = {
     GAME_STATUS,
     GAME_THP,
     SPELLBOOK,
-  ],
+  ].sort(sortByName),
 };

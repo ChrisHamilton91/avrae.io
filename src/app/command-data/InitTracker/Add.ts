@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -200,7 +201,7 @@ export const ADD: Command = {
     ADV,
     DIS,
     NOTE,
-  ],
+  ].sort(sortByName),
   subcommands: [],
   examples: [],
 };

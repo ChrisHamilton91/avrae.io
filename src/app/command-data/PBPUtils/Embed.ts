@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -109,7 +110,9 @@ export const EMBED: Command = {
   shortDesc: "Creates and prints an Embed.",
   longDesc: "",
   primaryArgs: [],
-  secondaryArgs: [TITLE, DESC, THUMB, IMAGE, FOOTER, F, COLOR, T],
+  secondaryArgs: [TITLE, DESC, THUMB, IMAGE, FOOTER, F, COLOR, T].sort(
+    sortByName
+  ),
   subcommands: [],
   examples: [],
 };

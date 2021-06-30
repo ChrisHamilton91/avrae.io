@@ -1,3 +1,4 @@
+import { sortByName } from "../commands-ui/globals";
 import { CommandModule } from "../schemas/Commands";
 import { CHAR_GENERATOR } from "./CharGenerator/@CharGenerator";
 import { CORE } from "./Core/@Core";
@@ -25,4 +26,4 @@ export const COMMAND_MODULES: CommandModule[] = [
   PBP_UTILS,
   SHEET_MANAGER,
   TUTORIALS,
-];
+].sort(sortByName);

@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import { CommandModule } from "../../schemas/Commands";
 import { ALIAS } from "./Alias";
 import { CHARACTER_VAR } from "./CharacterVar";
@@ -29,5 +30,5 @@ export const CUSTOMIZATION: CommandModule = {
     TEMBED,
     TEST,
     USER_VAR,
-  ],
+  ].sort(sortByName),
 };

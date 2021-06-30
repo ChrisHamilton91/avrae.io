@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import { CommandModule } from "../../schemas/Commands";
 import { ADD } from "./Add";
 import { AOO } from "./AOO";
@@ -65,5 +66,5 @@ export const INIT_TRACKER: CommandModule = {
     SKIP,
     STATUS,
     THP,
-  ],
+  ].sort(sortByName),
 };
