@@ -220,7 +220,7 @@ export const ATTACK: Command = {
   longDesc: "",
   primaryArgs: [NAME],
   secondaryArgs: ATTACK_ARGS,
-  subcommands: [ADD, DELETE, IMPORT, LIST],
+  subcommands: [ADD, DELETE, IMPORT, LIST].sort(sortByName),
   examples: [],
 };
 //#endregion

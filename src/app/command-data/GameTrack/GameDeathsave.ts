@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -54,7 +55,7 @@ export const GAME_DEATHSAVE: Command = {
   longDesc: "",
   primaryArgs: [],
   secondaryArgs: SAVE_ARGS,
-  subcommands: [FAIL, RESET, SUCCESS],
+  subcommands: [FAIL, RESET, SUCCESS].sort(sortByName),
   examples: [],
 };
 //#endregion

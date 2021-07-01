@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -65,7 +66,7 @@ export const CHARACTER: Command = {
   longDesc: "",
   primaryArgs: [NAME],
   secondaryArgs: [],
-  subcommands: [DELETE, LIST],
+  subcommands: [DELETE, LIST].sort(sortByName),
   examples: [],
 };
 //#endregion

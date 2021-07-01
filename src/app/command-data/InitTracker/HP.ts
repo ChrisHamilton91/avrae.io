@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -133,7 +134,7 @@ export const HP: Command = {
   longDesc: "",
   primaryArgs: [NAME, VALUE],
   secondaryArgs: [],
-  subcommands: [MAX, MOD, SET],
+  subcommands: [MAX, MOD, SET].sort(sortByName),
   examples: [],
 };
 //#endregion

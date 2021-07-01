@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -153,7 +154,7 @@ const CREATE: Subcommand = {
     CREATE_TYPE,
     CREATE_RESET_TO,
     CREATE_RESET_BY,
-  ],
+  ].sort(sortByName),
   subcommands: [],
   examples: [],
 };
@@ -241,7 +242,7 @@ export const CUSTOM_COUNTER: Command = {
   longDesc: "",
   primaryArgs: [NAME, SET, MOD],
   secondaryArgs: [],
-  subcommands: [CREATE, DELETE, RESET, LIST],
+  subcommands: [CREATE, DELETE, RESET, LIST].sort(sortByName),
   examples: [],
 };
 //#endregion

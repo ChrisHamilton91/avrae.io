@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -160,7 +161,9 @@ export const ALIAS: Command = {
     "\nCheck out the documentation at https://avrae.readthedocs.io for more information.",
   primaryArgs: [NAME, CODE],
   secondaryArgs: [],
-  subcommands: [AUTOFIX, DELETE, DELETE_ALL, LIST, RENAME, SUB],
+  subcommands: [AUTOFIX, DELETE, DELETE_ALL, LIST, RENAME, SUB].sort(
+    sortByName
+  ),
   examples: [],
 };
 //#endregion

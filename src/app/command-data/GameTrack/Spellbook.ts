@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -97,7 +98,7 @@ export const SPELLBOOK: Command = {
   longDesc: "",
   primaryArgs: [],
   secondaryArgs: [],
-  subcommands: [ADD, REMOVE],
+  subcommands: [ADD, REMOVE].sort(sortByName),
   examples: [],
 };
 //#endregion

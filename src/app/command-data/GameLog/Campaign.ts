@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -67,7 +68,7 @@ export const CAMPAIGN: Command = {
     "\nNot seeing a player's rolls? Link their D&D Beyond and Discord accounts at https://www.dndbeyond.com/account, and check with the `!ddb` command!",
   primaryArgs: [CAMPAIGN_LINK],
   secondaryArgs: [],
-  subcommands: [LIST, REMOVE],
+  subcommands: [LIST, REMOVE].sort(sortByName),
   examples: [],
 };
 //#endregion

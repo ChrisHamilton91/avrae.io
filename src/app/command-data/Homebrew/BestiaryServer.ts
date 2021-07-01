@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -53,7 +54,7 @@ export const BESTIARY_SERVER: Subcommand = {
   longDesc: "",
   primaryArgs: [],
   secondaryArgs: [],
-  subcommands: [LIST, DELETE],
+  subcommands: [LIST, DELETE].sort(sortByName),
   examples: [],
 };
 //#endregion

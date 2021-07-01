@@ -1,3 +1,4 @@
+import { sortByName } from "src/app/commands-ui/globals";
 import {
   Command,
   Subcommand,
@@ -114,7 +115,7 @@ export const TOME: Command = {
   longDesc: "",
   primaryArgs: [NAME],
   secondaryArgs: [],
-  subcommands: [EDITOR, LIST, TOME_SERVER, SUB, UNSUB],
+  subcommands: [EDITOR, LIST, TOME_SERVER, SUB, UNSUB].sort(sortByName),
   examples: [],
 };
 //#endregion
