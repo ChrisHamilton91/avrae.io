@@ -1,17 +1,12 @@
-<div *ngFor="let command of commands">
+<div *ngFor="let button of commandButtons">
   <commands-ui-single-command-button
-    [command]="command"
-    [active]="isActive(command)"
-    (click)="toggleActiveCommand(command)"
+    [button]="button"
+    (click)="toggleActive(button)"
+    (activeSubcommandChange)="setActiveSubcommand($event)"
   ></commands-ui-single-command-button>
-  <div *ngIf="isActive(command) && command.subcommands.length != 0">
+  <div *ngIf="button.subcommandCompExists">
     <commands-ui-subcommand-buttons
-      [subcommandsGrowing]="subcommandsGrowing"
-      (subcommandsGrowDoneEmitter)="subcommandsGrowDone($event)"
-      [subcommandsShrinking]="subcommandsShrinking"
-      (subcommandsShrinkDoneEmitter)="subcommandsShrinkDone($event)"
-      [subcommands]="getSubcommands()"
-      [activeSubcommand]="activeSubcommand"
+      [parentButton]="button"
       (activeSubcommandChange)="setActiveSubcommand($event)"
     ></commands-ui-subcommand-buttons>
   </div>

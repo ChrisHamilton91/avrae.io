@@ -13,8 +13,8 @@ import {
 })
 export class ModuleButtonsComponent implements OnInit {
   @Input() modules: CommandModule[];
-  @Input() activeModule: CommandModule;
-  @Output() activeModuleChange = new EventEmitter();
+  activeModule: CommandModule;
+  @Output() activeModuleChange = new EventEmitter<CommandModule>();
 
   constructor() {}
 

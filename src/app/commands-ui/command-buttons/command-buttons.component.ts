@@ -1,4 +1,4 @@
-import { trigger } from "@angular/animations";
+import { AnimationEvent, trigger } from "@angular/animations";
 import {
   ApplicationRef,
   ChangeDetectorRef,
@@ -7,14 +7,27 @@ import {
   Input,
   OnInit,
   Output,
+  ViewChild,
+  ViewChildren,
 } from "@angular/core";
+import { Subject } from "rxjs";
 import {
   Argument,
   Command,
   CommandModule,
   Subcommand,
 } from "src/app/schemas/Commands";
-import { sortByName, fadeInAnimation, fadeOutAnimation } from "../globals";
+import { fadeInAnimation, fadeOutAnimation } from "../globals";
+
+export class CommandButton {
+  command: Command;
+  active = false;
+  activeChange = new Subject<boolean>();
+  subcommandCompExists = false;
+  constructor(command: Command) {
+    this.command = command;
+  }
+}
 
 @Component({
   selector: "commands-ui-command-buttons",
@@ -26,44 +39,90 @@ import { sortByName, fadeInAnimation, fadeOutAnimation } from "../globals";
   ],
 })
 export class CommandButtonsComponent implements OnInit {
-  @Input() commands: Command[];
-  @Input() activeCommand: Command;
-  @Input() activeSubcommand: Subcommand;
-  @Input() subcommandsGrowing = false;
-  @Input() subcommandsShrinking = false;
-  @Output() activeCommandChange = new EventEmitter();
-  @Output() activeSubcommandChange = new EventEmitter();
-  @Output() subcommandsGrowDoneEmitter = new EventEmitter();
-  @Output() subcommandsShrinkDoneEmitter = new EventEmitter();
+  module: CommandModule;
+  commandButtons: CommandButton[];
+  activeButton: CommandButton;
+  fadingIn: boolean;
+  fadingOut: boolean;
+  @Output() activeCommandChange = new EventEmitter<Command>();
+  @Output() activeSubcommandChange = new EventEmitter<Subcommand>();
+  @Output() removeComponent = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  toggleActiveCommand(command: Command) {
-    if (command === this.activeCommand) this.activeCommandChange.emit(null);
-    else this.activeCommandChange.emit(command);
+  setModule(module: CommandModule) {
+    //activate
+    if (!this.module && module) {
+      this.module = module;
+      this.setCommands();
+      this.fadeIn();
+    }
+    //deactivate
+    else if (this.module && !module) {
+      this.module = null;
+      this.fadeOut();
+    }
+    //switch
+    else if (module && this.module !== module) {
+      this.module = module;
+      this.setCommands();
+      this.fadeIn();
+    }
   }
 
-  isActive(command: Command) {
-    return this.activeCommand ? command === this.activeCommand : false;
+  setCommands() {
+    this.commandButtons = [];
+    for (const command of this.module.commands) {
+      this.commandButtons.push(new CommandButton(command));
+    }
+  }
+
+  toggleActive(button: CommandButton) {
+    //activate
+    if (!this.activeButton) {
+      button.activeChange.next(true);
+      this.activeButton = button;
+    }
+    //deactivate
+    else if (this.activeButton === button) {
+      this.activeButton.activeChange.next(false);
+      this.activeButton = null;
+    }
+    //switch
+    else {
+      this.activeButton.activeChange.next(false);
+      button.activeChange.next(true);
+      this.activeButton = button;
+    }
+    this.activeCommandChange.emit(this.activeButton?.command);
   }
 
   setActiveSubcommand(subcommand: Subcommand) {
     this.activeSubcommandChange.emit(subcommand);
   }
 
-  getSubcommands(): Subcommand[] {
-    if (this.activeCommand && this.activeCommand.subcommands.length != 0) {
-      return this.activeCommand.subcommands.sort(sortByName);
-    } else return null;
+  fadeIn() {
+    this.fadingOut = false; //animation cancel
+    this.fadingIn = true;
   }
 
-  subcommandsGrowDone(setToTrue: string) {
-    this.subcommandsGrowDoneEmitter.emit(setToTrue);
+  fadeOut() {
+    this.fadingIn = false; //animation cancel
+    this.fadingOut = true;
   }
 
-  subcommandsShrinkDone(setToTrue: string) {
-    this.subcommandsShrinkDoneEmitter.emit(setToTrue);
+  fadeInDone(fadeInWasSetToTrue: boolean) {
+    if (!this.fadingIn) return; //animation has been cancelled
+    if (fadeInWasSetToTrue) this.fadingIn = false;
+  }
+
+  fadeOutDone(fadeOutWasSetToTrue: boolean) {
+    if (!this.fadingOut) return; //animation has been cancelled
+    if (fadeOutWasSetToTrue) {
+      this.fadingOut = false;
+      this.removeComponent.emit();
+    }
   }
 }

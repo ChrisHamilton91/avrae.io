@@ -7,39 +7,33 @@
         <h4>MODULES</h4>
         <div class="button-column">
           <commands-ui-module-buttons
-            [modules]="getModules()"
-            [activeModule]="activeModule"
-            (activeModuleChange)="setActiveModule($event)"
+            [modules]="modules"
+            (activeModuleChange)="setModule($event)"
           >
           </commands-ui-module-buttons>
         </div>
       </div>
       <!-- Commands Buttons -->
       <div
-        *ngIf="areCommandButtons()"
+        *ngIf="commandComponentExists"
         class="column-container"
-        [@fadeIn]="commandsFadingIn"
-        (@fadeIn.done)="commandsFadeInDone($event.toState)"
-        [@fadeOut]="commandsFadingOut"
-        (@fadeOut.done)="commandsFadeOutDone($event.toState)"
+        [@fadeIn]="commandComponent.fadingIn"
+        (@fadeIn.done)="commandComponent.fadeInDone($event.toState)"
+        [@fadeOut]="commandComponent.fadingOut"
+        (@fadeOut.done)="commandComponent.fadeOutDone($event.toState)"
       >
         <h4>COMMANDS</h4>
         <div class="button-column">
           <commands-ui-command-buttons
-            [commands]="getCommands()"
-            [activeCommand]="activeCommand"
-            (activeCommandChange)="setActiveCommand($event)"
-            [activeSubcommand]="activeSubcommand"
-            (activeSubcommandChange)="setActiveSubcommand($event)"
-            [subcommandsGrowing]="subcommandsGrowing"
-            (subcommandsGrowDoneEmitter)="subcommandsGrowDone($event)"
-            [subcommandsShrinking]="subcommandsShrinking"
-            (subcommandsShrinkDoneEmitter)="subcommandsShrinkDone($event)"
+            #commandComponent
+            (activeCommandChange)="setCommand($event)"
+            (activeSubcommandChange)="setSubcommand($event)"
+            (removeComponent)="removeCommandComponent()"
           ></commands-ui-command-buttons>
         </div>
       </div>
       <!-- Primary Arg Buttons -->
-      <div
+      <!-- <div
         *ngIf="arePrimaryArgButtons()"
         class="column-container"
         [@fadeIn]="primaryArgsFadingIn"
@@ -55,9 +49,9 @@
           >
           </commands-ui-primary-arg-buttons>
         </div>
-      </div>
+      </div> -->
       <!-- Secondary Arg Buttons -->
-      <div
+      <!-- <div
         *ngIf="areSecondaryArgButtons()"
         class="column-container"
         [@fadeIn]="secondaryArgsFadingIn"
@@ -73,7 +67,7 @@
           >
           </commands-ui-secondary-arg-buttons>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <commands-ui-output-area

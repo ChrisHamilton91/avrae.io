@@ -7,6 +7,8 @@ import {
   INACTIVE_SUBCMD_STYLE,
   shrinkUpAnimation,
 } from "../../../globals";
+import { CommandButton } from "../../command-buttons.component";
+import { SubcommandButton } from "../subcommand-buttons.component";
 
 @Component({
   selector: "commands-ui-single-subcommand-button",
@@ -18,32 +20,57 @@ import {
   ],
 })
 export class SingleSubcommandButtonComponent implements OnInit {
-  @Input() subcommand: Subcommand;
-  @Input() active: boolean;
+  @Input() parentButton: CommandButton | SubcommandButton;
+  @Input() button: SubcommandButton;
   @Input() activeStyle = ACTIVE_SUBCMD_STYLE;
   @Input() inactiveStyle = INACTIVE_SUBCMD_STYLE;
-  @Input() subcommandsGrowing = false;
-  @Input() subcommandsShrinking = false;
-  @Output() subcommandsGrowDoneEmitter = new EventEmitter();
-  @Output() subcommandsShrinkDoneEmitter = new EventEmitter();
+  growing: boolean;
+  shrinking: boolean;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.parentButton.activeChange.subscribe((setTo) =>
+      this.parentActiveChange(setTo)
+    );
+    this.grow();
+  }
+
+  parentActiveChange(setTo: boolean) {
+    //activate
+    if (setTo) this.grow();
+    //deactivate
+    else this.shrink();
+  }
+
+  grow() {
+    this.shrinking = false; //animation cancel
+    this.growing = true;
+  }
+
+  shrink() {
+    this.growing = false; //animation cancel
+    this.shrinking = true;
+  }
+
+  growDone(growWasSetToTrue: boolean) {
+    if (!this.growing) return; //animation has been cancelled
+    if (growWasSetToTrue) this.growing = false;
+  }
+
+  shrinkDone(shrinkWasSetToTrue: boolean) {
+    if (!this.shrinking) return; //animation has been cancelled
+    if (shrinkWasSetToTrue) {
+      this.shrinking = false;
+      this.parentButton.subcommandCompExists = false;
+    }
+  }
 
   getStyle() {
-    return this.active ? this.activeStyle : this.inactiveStyle;
+    return this.button.active ? this.activeStyle : this.inactiveStyle;
   }
 
   getTooltip(): string {
-    return this.subcommand.shortDesc;
-  }
-
-  subcommandsGrowDone(setToTrue: string) {
-    this.subcommandsGrowDoneEmitter.emit(setToTrue);
-  }
-
-  subcommandsShrinkDone(setToTrue: string) {
-    this.subcommandsShrinkDoneEmitter.emit(setToTrue);
+    return this.button.subcommand.shortDesc;
   }
 }

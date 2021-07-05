@@ -12,6 +12,7 @@ import {
   Argument,
   PrimaryArgument,
   SecondaryArgument,
+  Subcommand,
 } from "../schemas/Commands";
 
 //Default styles

@@ -1,11 +1,7 @@
-<div *ngFor="let subcommand of subcommands">
+<div *ngFor="let button of subcommandButtons">
   <commands-ui-single-subcommand-button
-    [subcommandsGrowing]="subcommandsGrowing"
-    (subcommandsGrowDoneEmitter)="subcommandsGrowDone($event)"
-    [subcommandsShrinking]="subcommandsShrinking"
-    (subcommandsShrinkDoneEmitter)="subcommandsShrinkDone($event)"
-    [subcommand]="subcommand"
-    [active]="isActive(subcommand)"
+    [parentButton]="parentButton"
+    [button]="button"
     (click)="toggleActiveSubcommand(subcommand)"
   ></commands-ui-single-subcommand-button>
 </div>

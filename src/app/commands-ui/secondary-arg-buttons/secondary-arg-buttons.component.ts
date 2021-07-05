@@ -27,6 +27,8 @@ export class SecondaryArgButtonsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  setCommand(command: Command) {}
+
   toggleActiveSecondaryArg(pair: SecondaryArgValuePair) {
     this.secondaryArgValuePairs[pair.index].active =
       !this.secondaryArgValuePairs[pair.index].active;

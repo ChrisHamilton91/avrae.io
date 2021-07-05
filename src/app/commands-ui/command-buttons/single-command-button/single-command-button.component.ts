@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Command } from "src/app/schemas/Commands";
 import { DEFAULT_ACTIVE_STYLE, DEFAULT_INACTIVE_STYLE } from "../../globals";
+import { CommandButton } from "../command-buttons.component";
 
 @Component({
   selector: "commands-ui-single-command-button",
@@ -8,20 +8,33 @@ import { DEFAULT_ACTIVE_STYLE, DEFAULT_INACTIVE_STYLE } from "../../globals";
   styleUrls: ["./single-command-button.component.css"],
 })
 export class SingleCommandButtonComponent implements OnInit {
-  @Input() command: Command;
-  @Input() active: boolean;
+  @Input() button: CommandButton;
   @Input() activeStyle = DEFAULT_ACTIVE_STYLE;
   @Input() inactiveStyle = DEFAULT_INACTIVE_STYLE;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.button.activeChange.subscribe((setTo) => this.setActive(setTo));
+  }
+
+  setActive(setTo: boolean) {
+    //activate
+    if (!this.button.active && setTo) {
+      this.button.active = true;
+      if (this.button.command.subcommands.length > 0) {
+        this.button.subcommandCompExists = true;
+      }
+    }
+    //deactivate
+    else if (this.button.active && !setTo) this.button.active = false;
+  }
 
   getStyle() {
-    return this.active ? this.activeStyle : this.inactiveStyle;
+    return this.button.active ? this.activeStyle : this.inactiveStyle;
   }
 
   getTooltip(): string {
-    return this.command.shortDesc;
+    return this.button.command.shortDesc;
   }
 }

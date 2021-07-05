@@ -21,6 +21,8 @@ export class PrimaryArgButtonsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  setCommand(command: Command) {}
+
   toggleActivePrimaryArg(pair: PrimaryArgValuePair) {
     //Required arguments are always active
     if (pair.arg.required) return;

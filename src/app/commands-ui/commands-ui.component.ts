@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { COMMAND_MODULES } from "../command-data/CommandModules";
@@ -23,6 +23,9 @@ import {
   ClassTypes,
 } from "../schemas/Commands";
 import { trigger, AnimationEvent } from "@angular/animations";
+import { CommandButtonsComponent } from "./command-buttons/command-buttons.component";
+import { PrimaryArgButtonsComponent } from "./primary-arg-buttons/primary-arg-buttons.component";
+import { SecondaryArgButtonsComponent } from "./secondary-arg-buttons/secondary-arg-buttons.component";
 
 @Component({
   selector: "avr-commands-ui",
@@ -34,27 +37,25 @@ import { trigger, AnimationEvent } from "@angular/animations";
   ],
 })
 export class CommandsUiComponent implements OnInit {
+  @ViewChild(CommandButtonsComponent)
+  commandComponent: CommandButtonsComponent;
+  @ViewChild(PrimaryArgButtonsComponent)
+  primaryArgComponent: PrimaryArgButtonsComponent;
+  @ViewChild(SecondaryArgButtonsComponent)
+  secondaryArgComponent: SecondaryArgButtonsComponent;
+
   title = "Avrae Commands User Interface";
   description = "A user interface for constructing avrae commands";
 
   prefix = "!";
   modules: CommandModule[] = COMMAND_MODULES;
-  activeModule: CommandModule;
-  queuedActiveModule: CommandModule;
+  commandComponentExists: boolean;
+  primaryArgCompExists: boolean;
+  secondaryArgCompExists: boolean;
   activeCommand: Command;
-  queuedActiveCommand: Command;
   activeSubcommand: Subcommand;
   primaryArgValuePairs: PrimaryArgValuePair[] = [];
   secondaryArgValuePairs: SecondaryArgValuePair[] = [];
-  commandsFadingIn = false;
-  commandsFadingOut = false;
-  queuedCommandsFadeOut = false;
-  subcommandsGrowing = false;
-  subcommandsShrinking = false;
-  primaryArgsFadingIn = false;
-  primaryArgsFadingOut = false;
-  secondaryArgsFadingIn = false;
-  secondaryArgsFadingOut = false;
 
   constructor(
     private meta: Meta,
@@ -75,13 +76,6 @@ export class CommandsUiComponent implements OnInit {
   ngOnInit(): void {}
 
   //#region data getters
-  getModules(): CommandModule[] {
-    return this.modules;
-  }
-
-  getCommands(): Command[] {
-    return this.activeModule ? this.activeModule.commands : null;
-  }
 
   getPrimaryArguments(): PrimaryArgument[] {
     if (this.activeSubcommand) return this.activeSubcommand.primaryArgs;
@@ -113,281 +107,305 @@ export class CommandsUiComponent implements OnInit {
     return argValuePairs;
   }
   //#endregion
+  setModule(module: CommandModule) {
+    if (!this.commandComponentExists && module) {
+      this.commandComponentExists = true;
+      this.changeDetectorRef.detectChanges();
+    }
+    this.commandComponent.setModule(module);
+  }
+
+  removeCommandComponent() {
+    this.commandComponentExists = false;
+  }
+
+  setCommand(command: Command) {
+    if (command) {
+      if (!this.primaryArgCompExists && command.primaryArgs.length > 0) {
+        this.primaryArgCompExists = true;
+        this.changeDetectorRef.detectChanges();
+      }
+      if (!this.secondaryArgCompExists && command.secondaryArgs.length > 0) {
+        this.secondaryArgCompExists = true;
+        this.changeDetectorRef.detectChanges();
+      }
+    }
+    // this.primaryArgComponent.setCommand(command);
+    // this.secondaryArgComponent.setCommand(command);
+    this.activeCommand = command;
+  }
 
   //#region data setters
-  setActiveModule(module: CommandModule) {
-    if (module) this.setActiveModuleToNonNull(module);
-    else this.setActiveModuleToNull();
-    this.setActiveCommand(null);
-  }
+  // setActiveModule(module: CommandModule) {
+  //   if (module) this.setActiveModuleToNonNull(module);
+  //   else this.setActiveModuleToNull();
+  //   this.setActiveCommand(null);
+  // }
 
-  setActiveModuleToNonNull(module: CommandModule) {
-    if (module != this.activeModule || this.commandsFadingOut) {
-      // Collapse open subcommands before switching modules
-      // module will be switched after subcommands shrink
-      if (this.areSubcommands()) {
-        this.queuedActiveModule = module;
-        this.setActiveCommandToNull();
-      } else {
-        this.activeModule = module;
-        this.commandsFadeInStart();
-      }
-    }
-  }
+  // setActiveModuleToNonNull(module: CommandModule) {
+  //   if (module != this.getActiveModule() || this.commandsFadingOut) {
+  //     // Collapse open subcommands before switching modules
+  //     // module will be switched after subcommands shrink
+  //     if (this.areSubcommands()) {
+  //       this.queuedActiveModule = module;
+  //       this.setActiveCommandToNull();
+  //     } else {
+  //       this.activeModule = module;
+  //       this.commandsFadeInStart();
+  //     }
+  //   }
+  // }
 
-  setActiveModuleToNull() {
-    if (this.activeModule && !this.commandsFadingOut) {
-      // Collapse open subcommands before switching modules
-      // module will be switched after subcommands shrink
-      if (this.areSubcommands()) {
-        this.queuedCommandsFadeOut = true;
-        this.setActiveCommandToNull();
-      } else {
-        this.commandsFadeOutStart();
-      }
-    }
-  }
+  // setActiveModuleToNull() {
+  //   if (this.activeModule && !this.commandsFadingOut) {
+  //     // Collapse open subcommands before switching modules
+  //     // module will be switched after subcommands shrink
+  //     if (this.areSubcommands()) {
+  //       this.queuedCommandsFadeOut = true;
+  //       this.setActiveCommandToNull();
+  //     } else {
+  //       this.commandsFadeOutStart();
+  //     }
+  //   }
+  // }
 
-  setActiveCommand(command: Command) {
-    if (command) this.setActiveCommandToNonNull(command);
-    else this.setActiveCommandToNull();
-    this.setActiveSubcommand(null);
-  }
+  // setActiveCommand(command: Command) {
+  //   if (command) this.setActiveCommandToNonNull(command);
+  //   else this.setActiveCommandToNull();
+  //   this.setActiveSubcommand(null);
+  // }
 
-  setActiveCommandToNonNull(command: Command) {
-    if (
-      command !== this.activeCommand ||
-      this.subcommandsShrinking ||
-      this.primaryArgsFadingOut ||
-      this.secondaryArgsFadingOut
-    ) {
-      // Collapse open subcommands before switching commands
-      // activeCommand will be switched after subcommands shrink
-      if (this.areSubcommands()) {
-        this.queuedActiveCommand = command;
-        this.setActiveCommandToNull();
-      } else {
-        this.activeCommand = command;
-        this.subcommandsGrowStart();
-        this.primaryArgsFadeInStart();
-        this.secondaryArgsFadeInStart();
-      }
-    }
-  }
+  // setActiveCommandToNonNull(command: Command) {
+  //   if (
+  //     command !== this.activeCommand ||
+  //     this.subcommandsShrinking ||
+  //     this.primaryArgsFadingOut ||
+  //     this.secondaryArgsFadingOut
+  //   ) {
+  //     // Collapse open subcommands before switching commands
+  //     // activeCommand will be switched after subcommands shrink
+  //     if (this.areSubcommands()) {
+  //       this.queuedActiveCommand = command;
+  //       this.setActiveCommandToNull();
+  //     } else {
+  //       this.activeCommand = command;
+  //       this.subcommandsGrowStart();
+  //       this.primaryArgsFadeInStart();
+  //       this.secondaryArgsFadeInStart();
+  //     }
+  //   }
+  // }
 
-  setActiveCommandToNull() {
-    if (
-      this.activeCommand &&
-      !this.primaryArgsFadingOut &&
-      !this.secondaryArgsFadingOut
-    ) {
-      const areSubcommands = this.areSubcommands();
-      const arePrimaryArgs = this.arePrimaryArgs();
-      const areSecondaryArgs = this.areSecondaryArgs();
-      if (areSubcommands) this.subcommandsShrinkStart();
-      if (arePrimaryArgs) this.primaryArgsFadeOutStart();
-      if (areSecondaryArgs) this.secondaryArgsFadeOutStart();
-      if (!(areSubcommands || arePrimaryArgs || areSecondaryArgs))
-        this.activeCommand = null;
-    }
-  }
+  // setActiveCommandToNull() {
+  //   if (
+  //     this.activeCommand &&
+  //     !this.primaryArgsFadingOut &&
+  //     !this.secondaryArgsFadingOut
+  //   ) {
+  //     const areSubcommands = this.areSubcommands();
+  //     const arePrimaryArgs = this.arePrimaryArgs();
+  //     const areSecondaryArgs = this.areSecondaryArgs();
+  //     if (areSubcommands) this.subcommandsShrinkStart();
+  //     if (arePrimaryArgs) this.primaryArgsFadeOutStart();
+  //     if (areSecondaryArgs) this.secondaryArgsFadeOutStart();
+  //     if (!(areSubcommands || arePrimaryArgs || areSecondaryArgs))
+  //       this.activeCommand = null;
+  //   }
+  // }
 
-  setActiveSubcommand(subcommand: Subcommand) {
-    if (subcommand) this.setActiveSubcommandToNonNull(subcommand);
-    else this.setActiveSubcommandToNull();
-    this.primaryArgValuePairs = this.getNewPrimaryArgValuePairs();
-    this.secondaryArgValuePairs = this.getNewSecondaryArgValuePairs();
-  }
+  // setActiveSubcommand(subcommand: Subcommand) {
+  //   if (subcommand) this.setActiveSubcommandToNonNull(subcommand);
+  //   else this.setActiveSubcommandToNull();
+  //   this.primaryArgValuePairs = this.getNewPrimaryArgValuePairs();
+  //   this.secondaryArgValuePairs = this.getNewSecondaryArgValuePairs();
+  // }
 
-  setActiveSubcommandToNonNull(subcommand: Subcommand) {
-    if (this.subcommandsShrinking) return;
-    if (
-      subcommand !== this.activeSubcommand ||
-      this.primaryArgsFadingOut ||
-      this.secondaryArgsFadingOut
-    ) {
-      this.activeSubcommand = subcommand;
-      this.primaryArgsFadeInStart();
-      this.secondaryArgsFadeInStart();
-    }
-  }
+  // setActiveSubcommandToNonNull(subcommand: Subcommand) {
+  //   if (this.subcommandsShrinking) return;
+  //   if (
+  //     subcommand !== this.activeSubcommand ||
+  //     this.primaryArgsFadingOut ||
+  //     this.secondaryArgsFadingOut
+  //   ) {
+  //     this.activeSubcommand = subcommand;
+  //     this.primaryArgsFadeInStart();
+  //     this.secondaryArgsFadeInStart();
+  //   }
+  // }
 
-  setActiveSubcommandToNull() {
-    if (this.subcommandsShrinking) return;
-    if (
-      this.activeSubcommand &&
-      !this.primaryArgsFadingOut &&
-      !this.secondaryArgsFadingOut
-    ) {
-      this.activeSubcommand = null;
-      this.primaryArgsFadeInStart();
-      this.secondaryArgsFadeInStart();
-    }
-  }
+  // setActiveSubcommandToNull() {
+  //   if (this.subcommandsShrinking) return;
+  //   if (
+  //     this.activeSubcommand &&
+  //     !this.primaryArgsFadingOut &&
+  //     !this.secondaryArgsFadingOut
+  //   ) {
+  //     this.activeSubcommand = null;
+  //     this.primaryArgsFadeInStart();
+  //     this.secondaryArgsFadeInStart();
+  //   }
+  // }
 
-  setPrimaryArgValuePairs(primaryArgValuePairs: PrimaryArgValuePair[]) {
-    this.primaryArgValuePairs = primaryArgValuePairs;
-  }
+  // setPrimaryArgValuePairs(primaryArgValuePairs: PrimaryArgValuePair[]) {
+  //   this.primaryArgValuePairs = primaryArgValuePairs;
+  // }
 
-  setSecondaryArgValuePairs(secondaryArgValuePairs: SecondaryArgValuePair[]) {
-    this.secondaryArgValuePairs = secondaryArgValuePairs;
-  }
-  //#endregion
+  // setSecondaryArgValuePairs(secondaryArgValuePairs: SecondaryArgValuePair[]) {
+  //   this.secondaryArgValuePairs = secondaryArgValuePairs;
+  // }
+  // //#endregion
 
-  //#region state checks
-  areCommandButtons(): boolean {
-    return !!this.activeModule;
-  }
+  // //#region state checks
 
-  arePrimaryArgButtons(): boolean {
-    return this.primaryArgValuePairs.length > 0;
-  }
+  // arePrimaryArgButtons(): boolean {
+  //   return this.primaryArgValuePairs.length > 0;
+  // }
 
-  areSecondaryArgButtons(): boolean {
-    return this.secondaryArgValuePairs.length > 0;
-  }
+  // areSecondaryArgButtons(): boolean {
+  //   return this.secondaryArgValuePairs.length > 0;
+  // }
 
-  areSubcommands(): boolean {
-    if (this.activeCommand) return this.activeCommand.subcommands.length > 0;
-    else return false;
-  }
+  // areSubcommands(): boolean {
+  //   if (this.activeCommand) return this.activeCommand.subcommands.length > 0;
+  //   else return false;
+  // }
 
-  arePrimaryArgs() {
-    if (this.activeSubcommand)
-      return this.activeSubcommand.primaryArgs.length > 0;
-    else if (this.activeCommand)
-      return this.activeCommand.primaryArgs.length > 0;
-    else return false;
-  }
+  // arePrimaryArgs() {
+  //   if (this.activeSubcommand)
+  //     return this.activeSubcommand.primaryArgs.length > 0;
+  //   else if (this.activeCommand)
+  //     return this.activeCommand.primaryArgs.length > 0;
+  //   else return false;
+  // }
 
-  areSecondaryArgs() {
-    if (this.activeSubcommand)
-      return this.activeSubcommand.secondaryArgs.length > 0;
-    else if (this.activeCommand)
-      return this.activeCommand.secondaryArgs.length > 0;
-    else return false;
-  }
-  //#endregion
+  // areSecondaryArgs() {
+  //   if (this.activeSubcommand)
+  //     return this.activeSubcommand.secondaryArgs.length > 0;
+  //   else if (this.activeCommand)
+  //     return this.activeCommand.secondaryArgs.length > 0;
+  //   else return false;
+  // }
+  // //#endregion
 
-  //#region animation behaviour
-  commandsFadeInStart() {
-    this.commandsFadingOut = false;
-    this.commandsFadingIn = false;
-    this.changeDetectorRef.detectChanges();
-    this.commandsFadingIn = true;
-  }
+  // //#region animation behaviour
+  // commandsFadeInStart() {
+  //   this.commandsFadingOut = false;
+  //   this.commandsFadingIn = false;
+  //   this.changeDetectorRef.detectChanges();
+  //   this.commandsFadingIn = true;
+  // }
 
-  commandsFadeInDone(setToTrue: string) {
-    // State was set to false - no animation happened
-    if (!setToTrue) return;
-    this.commandsFadingIn = false;
-  }
+  // commandsFadeInDone(setToTrue: string) {
+  //   // State was set to false - no animation happened
+  //   if (!setToTrue) return;
+  //   this.commandsFadingIn = false;
+  // }
 
-  commandsFadeOutStart() {
-    this.commandsFadingOut = true;
-  }
+  // commandsFadeOutStart() {
+  //   this.commandsFadingOut = true;
+  // }
 
-  commandsFadeOutDone(setToTrue: string) {
-    // State was set to false - no animation happened
-    if (!setToTrue) return;
-    // Animation has been cancelled
-    if (!this.commandsFadingOut) return;
-    this.commandsFadingOut = false;
-    this.activeModule = null;
-  }
+  // commandsFadeOutDone(setToTrue: string) {
+  //   // State was set to false - no animation happened
+  //   if (!setToTrue) return;
+  //   // Animation has been cancelled
+  //   if (!this.commandsFadingOut) return;
+  //   this.commandsFadingOut = false;
+  //   this.activeModule = null;
+  // }
 
-  subcommandsGrowStart() {
-    this.subcommandsShrinking = false;
-    this.subcommandsGrowing = false;
-    this.changeDetectorRef.detectChanges();
-    this.subcommandsGrowing = true;
-  }
+  // subcommandsGrowStart() {
+  //   this.subcommandsShrinking = false;
+  //   this.subcommandsGrowing = false;
+  //   this.changeDetectorRef.detectChanges();
+  //   this.subcommandsGrowing = true;
+  // }
 
-  subcommandsGrowDone(setToTrue: string) {
-    if (setToTrue) this.subcommandsGrowing = false;
-  }
+  // subcommandsGrowDone(setToTrue: string) {
+  //   if (setToTrue) this.subcommandsGrowing = false;
+  // }
 
-  subcommandsShrinkStart() {
-    this.subcommandsShrinking = true;
-  }
+  // subcommandsShrinkStart() {
+  //   this.subcommandsShrinking = true;
+  // }
 
-  subcommandsShrinkDone(setToTrue: string) {
-    // State was set to false - no animation happened
-    if (!setToTrue) return;
-    // Animation has been cancelled
-    if (!this.subcommandsShrinking) return;
-    this.subcommandsShrinking = false;
-    this.activeCommand = null;
-    // Switching commands
-    if (this.queuedActiveCommand) {
-      this.setActiveCommand(this.queuedActiveCommand);
-      this.queuedActiveCommand = null;
-    }
-    // Switching modules
-    if (this.queuedActiveModule) {
-      this.setActiveModule(this.queuedActiveModule);
-      this.queuedActiveModule = null;
-    }
-    // Unselecting module
-    if (this.queuedCommandsFadeOut) {
-      this.queuedCommandsFadeOut = false;
-      this.commandsFadeOutStart();
-    }
-  }
+  // subcommandsShrinkDone(setToTrue: string) {
+  //   // State was set to false - no animation happened
+  //   if (!setToTrue) return;
+  //   // Animation has been cancelled
+  //   if (!this.subcommandsShrinking) return;
+  //   this.subcommandsShrinking = false;
+  //   this.activeCommand = null;
+  //   // Switching commands
+  //   if (this.queuedActiveCommand) {
+  //     this.setActiveCommand(this.queuedActiveCommand);
+  //     this.queuedActiveCommand = null;
+  //   }
+  //   // Switching modules
+  //   if (this.queuedActiveModule) {
+  //     this.setActiveModule(this.queuedActiveModule);
+  //     this.queuedActiveModule = null;
+  //   }
+  //   // Unselecting module
+  //   if (this.queuedCommandsFadeOut) {
+  //     this.queuedCommandsFadeOut = false;
+  //     this.commandsFadeOutStart();
+  //   }
+  // }
 
-  primaryArgsFadeInStart() {
-    this.primaryArgsFadingIn = false;
-    this.primaryArgsFadingOut = false;
-    this.changeDetectorRef.detectChanges();
-    this.primaryArgsFadingIn = true;
-  }
+  // primaryArgsFadeInStart() {
+  //   this.primaryArgsFadingIn = false;
+  //   this.primaryArgsFadingOut = false;
+  //   this.changeDetectorRef.detectChanges();
+  //   this.primaryArgsFadingIn = true;
+  // }
 
-  primaryArgsFadeInDone(setToTrue: string) {
-    // State was set to false - no animation happened
-    if (!setToTrue) return;
-    this.primaryArgsFadingIn = false;
-  }
+  // primaryArgsFadeInDone(setToTrue: string) {
+  //   // State was set to false - no animation happened
+  //   if (!setToTrue) return;
+  //   this.primaryArgsFadingIn = false;
+  // }
 
-  primaryArgsFadeOutStart() {
-    this.primaryArgsFadingOut = true;
-  }
+  // primaryArgsFadeOutStart() {
+  //   this.primaryArgsFadingOut = true;
+  // }
 
-  primaryArgsFadeOutDone(setToTrue: string) {
-    // State was set to false - no animation happened
-    if (!setToTrue) return;
-    // Animation has been cancelled
-    if (!this.primaryArgsFadingOut) return;
-    this.primaryArgsFadingOut = false;
-    if (this.activeSubcommand) this.activeSubcommand = null;
-    else this.activeCommand = null;
-  }
+  // primaryArgsFadeOutDone(setToTrue: string) {
+  //   // State was set to false - no animation happened
+  //   if (!setToTrue) return;
+  //   // Animation has been cancelled
+  //   if (!this.primaryArgsFadingOut) return;
+  //   this.primaryArgsFadingOut = false;
+  //   if (this.activeSubcommand) this.activeSubcommand = null;
+  //   else this.activeCommand = null;
+  // }
 
-  secondaryArgsFadeInStart() {
-    this.secondaryArgsFadingIn = false;
-    this.secondaryArgsFadingOut = false;
-    this.changeDetectorRef.detectChanges();
-    this.secondaryArgsFadingIn = true;
-  }
+  // secondaryArgsFadeInStart() {
+  //   this.secondaryArgsFadingIn = false;
+  //   this.secondaryArgsFadingOut = false;
+  //   this.changeDetectorRef.detectChanges();
+  //   this.secondaryArgsFadingIn = true;
+  // }
 
-  secondaryArgsFadeInDone(setToTrue: string) {
-    // State was set to false - no animation happened
-    if (!setToTrue) return;
-    this.secondaryArgsFadingIn = false;
-  }
+  // secondaryArgsFadeInDone(setToTrue: string) {
+  //   // State was set to false - no animation happened
+  //   if (!setToTrue) return;
+  //   this.secondaryArgsFadingIn = false;
+  // }
 
-  secondaryArgsFadeOutStart() {
-    this.secondaryArgsFadingOut = true;
-  }
+  // secondaryArgsFadeOutStart() {
+  //   this.secondaryArgsFadingOut = true;
+  // }
 
-  secondaryArgsFadeOutDone(setToTrue: string) {
-    // State was set to false - no animation happened
-    if (!setToTrue) return;
-    // Animation has been cancelled
-    if (!this.secondaryArgsFadingOut) return;
-    this.secondaryArgsFadingOut = false;
-    if (this.activeSubcommand) this.activeSubcommand = null;
-    else this.activeCommand = null;
-  }
+  // secondaryArgsFadeOutDone(setToTrue: string) {
+  //   // State was set to false - no animation happened
+  //   if (!setToTrue) return;
+  //   // Animation has been cancelled
+  //   if (!this.secondaryArgsFadingOut) return;
+  //   this.secondaryArgsFadingOut = false;
+  //   if (this.activeSubcommand) this.activeSubcommand = null;
+  //   else this.activeCommand = null;
+  // }
   //#endregion
 
   //#region output string building

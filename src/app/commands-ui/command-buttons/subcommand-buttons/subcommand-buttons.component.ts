@@ -1,5 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Subcommand } from "src/app/schemas/Commands";
+import { Subject } from "rxjs";
+import { Command, Subcommand } from "src/app/schemas/Commands";
+import { CommandButton } from "../command-buttons.component";
+
+export class SubcommandButton {
+  subcommand: Subcommand;
+  active = false;
+  subcommandCompExists = false;
+  activeChange = new Subject<boolean>();
+  constructor(subcommand: Subcommand) {
+    this.subcommand = subcommand;
+  }
+}
 
 @Component({
   selector: "commands-ui-subcommand-buttons",
@@ -7,33 +19,48 @@ import { Subcommand } from "src/app/schemas/Commands";
   styleUrls: ["./subcommand-buttons.component.css"],
 })
 export class SubcommandButtonsComponent implements OnInit {
-  @Input() subcommands: Subcommand[];
-  @Input() activeSubcommand: Subcommand;
-  @Input() subcommandsGrowing = false;
-  @Input() subcommandsShrinking = false;
-  @Output() activeSubcommandChange = new EventEmitter();
-  @Output() subcommandsGrowDoneEmitter = new EventEmitter();
-  @Output() subcommandsShrinkDoneEmitter = new EventEmitter();
+  @Input() parentButton: CommandButton | SubcommandButton;
+  parentCommand: Command | Subcommand;
+  subcommandButtons: SubcommandButton[];
+  activeButton: SubcommandButton;
+  growing: boolean;
+  shrinking: boolean;
+  @Output() activeSubcommandChange = new EventEmitter<Subcommand>();
 
   constructor() {}
 
-  ngOnInit(): void {}
-
-  toggleActiveSubcommand(subcommand: Subcommand) {
-    if (this.activeSubcommand === subcommand)
-      this.activeSubcommandChange.emit(null);
-    else this.activeSubcommandChange.emit(subcommand);
+  ngOnInit(): void {
+    if (this.parentButton instanceof CommandButton)
+      this.parentCommand = this.parentButton.command;
+    if (this.parentButton instanceof SubcommandButton)
+      this.parentCommand = this.parentButton.subcommand;
+    this.setSubcommands();
   }
 
-  isActive(subcommand: Subcommand) {
-    return this.activeSubcommand ? subcommand === this.activeSubcommand : false;
+  setSubcommands() {
+    this.subcommandButtons = [];
+    for (const subcommand of this.parentCommand.subcommands) {
+      this.subcommandButtons.push(new SubcommandButton(subcommand));
+    }
   }
 
-  subcommandsGrowDone(setToTrue: string) {
-    this.subcommandsGrowDoneEmitter.emit(setToTrue);
-  }
-
-  subcommandsShrinkDone(setToTrue: string) {
-    this.subcommandsShrinkDoneEmitter.emit(setToTrue);
+  toggleActive(button: SubcommandButton) {
+    //activate
+    if (!this.activeButton) {
+      button.activeChange.next(true);
+      this.activeButton = button;
+    }
+    //deactivate
+    else if (this.activeButton === button) {
+      button.activeChange.next(false);
+      this.activeButton = null;
+    }
+    //switch
+    else {
+      this.activeButton.activeChange.next(false);
+      button.activeChange.next(true);
+      this.activeButton = button;
+    }
+    this.activeSubcommandChange.emit(this.activeButton?.subcommand);
   }
 }
