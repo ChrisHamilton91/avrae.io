@@ -26,8 +26,7 @@
         <div class="button-column">
           <commands-ui-command-buttons
             #commandComponent
-            (activeCommandChange)="setCommand($event)"
-            (activeSubcommandChange)="setSubcommand($event)"
+            (commandChange)="setCommand($event)"
             (removeComponent)="removeCommandComponent()"
           ></commands-ui-command-buttons>
         </div>

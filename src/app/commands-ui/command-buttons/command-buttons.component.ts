@@ -1,15 +1,5 @@
 import { AnimationEvent, trigger } from "@angular/animations";
-import {
-  ApplicationRef,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-  ViewChildren,
-} from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Subject } from "rxjs";
 import {
   Argument,
@@ -18,6 +8,7 @@ import {
   Subcommand,
 } from "src/app/schemas/Commands";
 import { fadeInAnimation, fadeOutAnimation } from "../globals";
+import { SubcommandButton } from "./subcommand-buttons/subcommand-buttons.component";
 
 export class CommandButton {
   command: Command;
@@ -44,9 +35,10 @@ export class CommandButtonsComponent implements OnInit {
   activeButton: CommandButton;
   fadingIn: boolean;
   fadingOut: boolean;
-  @Output() activeCommandChange = new EventEmitter<Command>();
-  @Output() activeSubcommandChange = new EventEmitter<Subcommand>();
-  @Output() removeComponent = new EventEmitter();
+  @Output() commandChange = new EventEmitter<
+    CommandButton | SubcommandButton
+  >();
+  @Output() removeComponent = new EventEmitter<void>();
 
   constructor() {}
 
@@ -96,11 +88,11 @@ export class CommandButtonsComponent implements OnInit {
       button.activeChange.next(true);
       this.activeButton = button;
     }
-    this.activeCommandChange.emit(this.activeButton?.command);
+    this.commandChange.emit(this.activeButton);
   }
 
-  setActiveSubcommand(subcommand: Subcommand) {
-    this.activeSubcommandChange.emit(subcommand);
+  setActiveButton(button: CommandButton | SubcommandButton) {
+    this.commandChange.emit(button);
   }
 
   fadeIn() {

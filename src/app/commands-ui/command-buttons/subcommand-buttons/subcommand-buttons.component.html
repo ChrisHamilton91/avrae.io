@@ -2,6 +2,12 @@
   <commands-ui-single-subcommand-button
     [parentButton]="parentButton"
     [button]="button"
-    (click)="toggleActiveSubcommand(subcommand)"
+    (click)="toggleActive(button)"
   ></commands-ui-single-subcommand-button>
+  <div *ngIf="button.subcommandCompExists">
+    <commands-ui-subcommand-buttons
+      [parentButton]="button"
+      (subcommandChange)="setActiveButton($event)"
+    ></commands-ui-subcommand-buttons>
+  </div>
 </div>

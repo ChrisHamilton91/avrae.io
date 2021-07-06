@@ -33,6 +33,7 @@ export class SingleSubcommandButtonComponent implements OnInit {
     this.parentButton.activeChange.subscribe((setTo) =>
       this.parentActiveChange(setTo)
     );
+    this.button.activeChange.subscribe((setTo) => this.setActive(setTo));
     this.grow();
   }
 
@@ -40,7 +41,22 @@ export class SingleSubcommandButtonComponent implements OnInit {
     //activate
     if (setTo) this.grow();
     //deactivate
-    else this.shrink();
+    else {
+      this.setActive(false);
+      this.shrink();
+    }
+  }
+
+  setActive(setTo: boolean) {
+    //activate
+    if (!this.button.active && setTo) {
+      this.button.active = true;
+      if (this.button.command.subcommands.length > 0) {
+        this.button.subcommandCompExists = true;
+      }
+    }
+    //deactivate
+    else if (this.button.active && !setTo) this.button.active = false;
   }
 
   grow() {
@@ -71,6 +87,6 @@ export class SingleSubcommandButtonComponent implements OnInit {
   }
 
   getTooltip(): string {
-    return this.button.subcommand.shortDesc;
+    return this.button.command.shortDesc;
   }
 }

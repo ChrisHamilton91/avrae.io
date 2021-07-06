@@ -4,12 +4,17 @@ import { Command, Subcommand } from "src/app/schemas/Commands";
 import { CommandButton } from "../command-buttons.component";
 
 export class SubcommandButton {
-  subcommand: Subcommand;
+  command: Subcommand;
+  parentButton: CommandButton | SubcommandButton;
   active = false;
   subcommandCompExists = false;
   activeChange = new Subject<boolean>();
-  constructor(subcommand: Subcommand) {
-    this.subcommand = subcommand;
+  constructor(
+    subcommand: Subcommand,
+    parentButton: CommandButton | SubcommandButton
+  ) {
+    this.command = subcommand;
+    this.parentButton = parentButton;
   }
 }
 
@@ -20,27 +25,30 @@ export class SubcommandButton {
 })
 export class SubcommandButtonsComponent implements OnInit {
   @Input() parentButton: CommandButton | SubcommandButton;
-  parentCommand: Command | Subcommand;
   subcommandButtons: SubcommandButton[];
   activeButton: SubcommandButton;
   growing: boolean;
   shrinking: boolean;
-  @Output() activeSubcommandChange = new EventEmitter<Subcommand>();
+  @Output() subcommandChange = new EventEmitter<
+    SubcommandButton | CommandButton
+  >();
 
   constructor() {}
 
   ngOnInit(): void {
-    if (this.parentButton instanceof CommandButton)
-      this.parentCommand = this.parentButton.command;
-    if (this.parentButton instanceof SubcommandButton)
-      this.parentCommand = this.parentButton.subcommand;
+    //Reset subcommands on double-click of parent button
+    this.parentButton.activeChange.subscribe((setTo) => {
+      if (setTo) this.setSubcommands();
+    });
     this.setSubcommands();
   }
 
   setSubcommands() {
     this.subcommandButtons = [];
-    for (const subcommand of this.parentCommand.subcommands) {
-      this.subcommandButtons.push(new SubcommandButton(subcommand));
+    for (const subcommand of this.parentButton.command.subcommands) {
+      this.subcommandButtons.push(
+        new SubcommandButton(subcommand, this.parentButton)
+      );
     }
   }
 
@@ -49,18 +57,24 @@ export class SubcommandButtonsComponent implements OnInit {
     if (!this.activeButton) {
       button.activeChange.next(true);
       this.activeButton = button;
+      this.subcommandChange.emit(button);
     }
     //deactivate
     else if (this.activeButton === button) {
       button.activeChange.next(false);
       this.activeButton = null;
+      this.subcommandChange.emit(button.parentButton);
     }
     //switch
     else {
       this.activeButton.activeChange.next(false);
       button.activeChange.next(true);
       this.activeButton = button;
+      this.subcommandChange.emit(button);
     }
-    this.activeSubcommandChange.emit(this.activeButton?.subcommand);
+  }
+
+  setActiveButton(button: CommandButton | SubcommandButton) {
+    this.subcommandChange.emit(button);
   }
 }

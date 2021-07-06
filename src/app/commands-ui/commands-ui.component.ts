@@ -23,9 +23,13 @@ import {
   ClassTypes,
 } from "../schemas/Commands";
 import { trigger, AnimationEvent } from "@angular/animations";
-import { CommandButtonsComponent } from "./command-buttons/command-buttons.component";
+import {
+  CommandButton,
+  CommandButtonsComponent,
+} from "./command-buttons/command-buttons.component";
 import { PrimaryArgButtonsComponent } from "./primary-arg-buttons/primary-arg-buttons.component";
 import { SecondaryArgButtonsComponent } from "./secondary-arg-buttons/secondary-arg-buttons.component";
+import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
 
 @Component({
   selector: "avr-commands-ui",
@@ -52,8 +56,7 @@ export class CommandsUiComponent implements OnInit {
   commandComponentExists: boolean;
   primaryArgCompExists: boolean;
   secondaryArgCompExists: boolean;
-  activeCommand: Command;
-  activeSubcommand: Subcommand;
+  commandStack: (Command | Subcommand)[] = [];
   primaryArgValuePairs: PrimaryArgValuePair[] = [];
   secondaryArgValuePairs: SecondaryArgValuePair[] = [];
 
@@ -77,41 +80,42 @@ export class CommandsUiComponent implements OnInit {
 
   //#region data getters
 
-  getPrimaryArguments(): PrimaryArgument[] {
-    if (this.activeSubcommand) return this.activeSubcommand.primaryArgs;
-    else if (this.activeCommand) return this.activeCommand.primaryArgs;
-    else return [];
-  }
+  // getPrimaryArguments(): PrimaryArgument[] {
+  //   if (this.activeSubcommand) return this.activeSubcommand.primaryArgs;
+  //   else if (this.activeCommand) return this.activeCommand.primaryArgs;
+  //   else return [];
+  // }
 
-  getSecondaryArguments(): SecondaryArgument[] {
-    if (this.activeSubcommand) return this.activeSubcommand.secondaryArgs;
-    else if (this.activeCommand) return this.activeCommand.secondaryArgs;
-    else return [];
-  }
+  // getSecondaryArguments(): SecondaryArgument[] {
+  //   if (this.activeSubcommand) return this.activeSubcommand.secondaryArgs;
+  //   else if (this.activeCommand) return this.activeCommand.secondaryArgs;
+  //   else return [];
+  // }
 
-  getNewPrimaryArgValuePairs(): PrimaryArgValuePair[] {
-    const argValuePairs = [];
-    this.getPrimaryArguments().forEach((arg, index) => {
-      if (arg.required)
-        argValuePairs.push(new PrimaryArgValuePair(arg, index, true));
-      else argValuePairs.push(new PrimaryArgValuePair(arg, index, false));
-    });
-    return argValuePairs;
-  }
+  // getNewPrimaryArgValuePairs(): PrimaryArgValuePair[] {
+  //   const argValuePairs = [];
+  //   this.getPrimaryArguments().forEach((arg, index) => {
+  //     if (arg.required)
+  //       argValuePairs.push(new PrimaryArgValuePair(arg, index, true));
+  //     else argValuePairs.push(new PrimaryArgValuePair(arg, index, false));
+  //   });
+  //   return argValuePairs;
+  // }
 
-  getNewSecondaryArgValuePairs(): SecondaryArgValuePair[] {
-    const argValuePairs = [];
-    this.getSecondaryArguments().forEach((arg, index) => {
-      argValuePairs.push(new SecondaryArgValuePair(arg, index, false));
-    });
-    return argValuePairs;
-  }
+  // getNewSecondaryArgValuePairs(): SecondaryArgValuePair[] {
+  //   const argValuePairs = [];
+  //   this.getSecondaryArguments().forEach((arg, index) => {
+  //     argValuePairs.push(new SecondaryArgValuePair(arg, index, false));
+  //   });
+  //   return argValuePairs;
+  // }
   //#endregion
   setModule(module: CommandModule) {
     if (!this.commandComponentExists && module) {
       this.commandComponentExists = true;
       this.changeDetectorRef.detectChanges();
     }
+    this.setCommand(null);
     this.commandComponent.setModule(module);
   }
 
@@ -119,302 +123,45 @@ export class CommandsUiComponent implements OnInit {
     this.commandComponentExists = false;
   }
 
-  setCommand(command: Command) {
-    if (command) {
-      if (!this.primaryArgCompExists && command.primaryArgs.length > 0) {
+  setCommand(button: CommandButton | SubcommandButton) {
+    if (button) {
+      if (!this.primaryArgCompExists && button.command.primaryArgs.length > 0) {
         this.primaryArgCompExists = true;
         this.changeDetectorRef.detectChanges();
       }
-      if (!this.secondaryArgCompExists && command.secondaryArgs.length > 0) {
+      if (
+        !this.secondaryArgCompExists &&
+        button.command.secondaryArgs.length > 0
+      ) {
         this.secondaryArgCompExists = true;
         this.changeDetectorRef.detectChanges();
       }
     }
     // this.primaryArgComponent.setCommand(command);
     // this.secondaryArgComponent.setCommand(command);
-    this.activeCommand = command;
+    this.setCommandStack(button);
   }
 
-  //#region data setters
-  // setActiveModule(module: CommandModule) {
-  //   if (module) this.setActiveModuleToNonNull(module);
-  //   else this.setActiveModuleToNull();
-  //   this.setActiveCommand(null);
-  // }
-
-  // setActiveModuleToNonNull(module: CommandModule) {
-  //   if (module != this.getActiveModule() || this.commandsFadingOut) {
-  //     // Collapse open subcommands before switching modules
-  //     // module will be switched after subcommands shrink
-  //     if (this.areSubcommands()) {
-  //       this.queuedActiveModule = module;
-  //       this.setActiveCommandToNull();
-  //     } else {
-  //       this.activeModule = module;
-  //       this.commandsFadeInStart();
-  //     }
-  //   }
-  // }
-
-  // setActiveModuleToNull() {
-  //   if (this.activeModule && !this.commandsFadingOut) {
-  //     // Collapse open subcommands before switching modules
-  //     // module will be switched after subcommands shrink
-  //     if (this.areSubcommands()) {
-  //       this.queuedCommandsFadeOut = true;
-  //       this.setActiveCommandToNull();
-  //     } else {
-  //       this.commandsFadeOutStart();
-  //     }
-  //   }
-  // }
-
-  // setActiveCommand(command: Command) {
-  //   if (command) this.setActiveCommandToNonNull(command);
-  //   else this.setActiveCommandToNull();
-  //   this.setActiveSubcommand(null);
-  // }
-
-  // setActiveCommandToNonNull(command: Command) {
-  //   if (
-  //     command !== this.activeCommand ||
-  //     this.subcommandsShrinking ||
-  //     this.primaryArgsFadingOut ||
-  //     this.secondaryArgsFadingOut
-  //   ) {
-  //     // Collapse open subcommands before switching commands
-  //     // activeCommand will be switched after subcommands shrink
-  //     if (this.areSubcommands()) {
-  //       this.queuedActiveCommand = command;
-  //       this.setActiveCommandToNull();
-  //     } else {
-  //       this.activeCommand = command;
-  //       this.subcommandsGrowStart();
-  //       this.primaryArgsFadeInStart();
-  //       this.secondaryArgsFadeInStart();
-  //     }
-  //   }
-  // }
-
-  // setActiveCommandToNull() {
-  //   if (
-  //     this.activeCommand &&
-  //     !this.primaryArgsFadingOut &&
-  //     !this.secondaryArgsFadingOut
-  //   ) {
-  //     const areSubcommands = this.areSubcommands();
-  //     const arePrimaryArgs = this.arePrimaryArgs();
-  //     const areSecondaryArgs = this.areSecondaryArgs();
-  //     if (areSubcommands) this.subcommandsShrinkStart();
-  //     if (arePrimaryArgs) this.primaryArgsFadeOutStart();
-  //     if (areSecondaryArgs) this.secondaryArgsFadeOutStart();
-  //     if (!(areSubcommands || arePrimaryArgs || areSecondaryArgs))
-  //       this.activeCommand = null;
-  //   }
-  // }
-
-  // setActiveSubcommand(subcommand: Subcommand) {
-  //   if (subcommand) this.setActiveSubcommandToNonNull(subcommand);
-  //   else this.setActiveSubcommandToNull();
-  //   this.primaryArgValuePairs = this.getNewPrimaryArgValuePairs();
-  //   this.secondaryArgValuePairs = this.getNewSecondaryArgValuePairs();
-  // }
-
-  // setActiveSubcommandToNonNull(subcommand: Subcommand) {
-  //   if (this.subcommandsShrinking) return;
-  //   if (
-  //     subcommand !== this.activeSubcommand ||
-  //     this.primaryArgsFadingOut ||
-  //     this.secondaryArgsFadingOut
-  //   ) {
-  //     this.activeSubcommand = subcommand;
-  //     this.primaryArgsFadeInStart();
-  //     this.secondaryArgsFadeInStart();
-  //   }
-  // }
-
-  // setActiveSubcommandToNull() {
-  //   if (this.subcommandsShrinking) return;
-  //   if (
-  //     this.activeSubcommand &&
-  //     !this.primaryArgsFadingOut &&
-  //     !this.secondaryArgsFadingOut
-  //   ) {
-  //     this.activeSubcommand = null;
-  //     this.primaryArgsFadeInStart();
-  //     this.secondaryArgsFadeInStart();
-  //   }
-  // }
-
-  // setPrimaryArgValuePairs(primaryArgValuePairs: PrimaryArgValuePair[]) {
-  //   this.primaryArgValuePairs = primaryArgValuePairs;
-  // }
-
-  // setSecondaryArgValuePairs(secondaryArgValuePairs: SecondaryArgValuePair[]) {
-  //   this.secondaryArgValuePairs = secondaryArgValuePairs;
-  // }
-  // //#endregion
-
-  // //#region state checks
-
-  // arePrimaryArgButtons(): boolean {
-  //   return this.primaryArgValuePairs.length > 0;
-  // }
-
-  // areSecondaryArgButtons(): boolean {
-  //   return this.secondaryArgValuePairs.length > 0;
-  // }
-
-  // areSubcommands(): boolean {
-  //   if (this.activeCommand) return this.activeCommand.subcommands.length > 0;
-  //   else return false;
-  // }
-
-  // arePrimaryArgs() {
-  //   if (this.activeSubcommand)
-  //     return this.activeSubcommand.primaryArgs.length > 0;
-  //   else if (this.activeCommand)
-  //     return this.activeCommand.primaryArgs.length > 0;
-  //   else return false;
-  // }
-
-  // areSecondaryArgs() {
-  //   if (this.activeSubcommand)
-  //     return this.activeSubcommand.secondaryArgs.length > 0;
-  //   else if (this.activeCommand)
-  //     return this.activeCommand.secondaryArgs.length > 0;
-  //   else return false;
-  // }
-  // //#endregion
-
-  // //#region animation behaviour
-  // commandsFadeInStart() {
-  //   this.commandsFadingOut = false;
-  //   this.commandsFadingIn = false;
-  //   this.changeDetectorRef.detectChanges();
-  //   this.commandsFadingIn = true;
-  // }
-
-  // commandsFadeInDone(setToTrue: string) {
-  //   // State was set to false - no animation happened
-  //   if (!setToTrue) return;
-  //   this.commandsFadingIn = false;
-  // }
-
-  // commandsFadeOutStart() {
-  //   this.commandsFadingOut = true;
-  // }
-
-  // commandsFadeOutDone(setToTrue: string) {
-  //   // State was set to false - no animation happened
-  //   if (!setToTrue) return;
-  //   // Animation has been cancelled
-  //   if (!this.commandsFadingOut) return;
-  //   this.commandsFadingOut = false;
-  //   this.activeModule = null;
-  // }
-
-  // subcommandsGrowStart() {
-  //   this.subcommandsShrinking = false;
-  //   this.subcommandsGrowing = false;
-  //   this.changeDetectorRef.detectChanges();
-  //   this.subcommandsGrowing = true;
-  // }
-
-  // subcommandsGrowDone(setToTrue: string) {
-  //   if (setToTrue) this.subcommandsGrowing = false;
-  // }
-
-  // subcommandsShrinkStart() {
-  //   this.subcommandsShrinking = true;
-  // }
-
-  // subcommandsShrinkDone(setToTrue: string) {
-  //   // State was set to false - no animation happened
-  //   if (!setToTrue) return;
-  //   // Animation has been cancelled
-  //   if (!this.subcommandsShrinking) return;
-  //   this.subcommandsShrinking = false;
-  //   this.activeCommand = null;
-  //   // Switching commands
-  //   if (this.queuedActiveCommand) {
-  //     this.setActiveCommand(this.queuedActiveCommand);
-  //     this.queuedActiveCommand = null;
-  //   }
-  //   // Switching modules
-  //   if (this.queuedActiveModule) {
-  //     this.setActiveModule(this.queuedActiveModule);
-  //     this.queuedActiveModule = null;
-  //   }
-  //   // Unselecting module
-  //   if (this.queuedCommandsFadeOut) {
-  //     this.queuedCommandsFadeOut = false;
-  //     this.commandsFadeOutStart();
-  //   }
-  // }
-
-  // primaryArgsFadeInStart() {
-  //   this.primaryArgsFadingIn = false;
-  //   this.primaryArgsFadingOut = false;
-  //   this.changeDetectorRef.detectChanges();
-  //   this.primaryArgsFadingIn = true;
-  // }
-
-  // primaryArgsFadeInDone(setToTrue: string) {
-  //   // State was set to false - no animation happened
-  //   if (!setToTrue) return;
-  //   this.primaryArgsFadingIn = false;
-  // }
-
-  // primaryArgsFadeOutStart() {
-  //   this.primaryArgsFadingOut = true;
-  // }
-
-  // primaryArgsFadeOutDone(setToTrue: string) {
-  //   // State was set to false - no animation happened
-  //   if (!setToTrue) return;
-  //   // Animation has been cancelled
-  //   if (!this.primaryArgsFadingOut) return;
-  //   this.primaryArgsFadingOut = false;
-  //   if (this.activeSubcommand) this.activeSubcommand = null;
-  //   else this.activeCommand = null;
-  // }
-
-  // secondaryArgsFadeInStart() {
-  //   this.secondaryArgsFadingIn = false;
-  //   this.secondaryArgsFadingOut = false;
-  //   this.changeDetectorRef.detectChanges();
-  //   this.secondaryArgsFadingIn = true;
-  // }
-
-  // secondaryArgsFadeInDone(setToTrue: string) {
-  //   // State was set to false - no animation happened
-  //   if (!setToTrue) return;
-  //   this.secondaryArgsFadingIn = false;
-  // }
-
-  // secondaryArgsFadeOutStart() {
-  //   this.secondaryArgsFadingOut = true;
-  // }
-
-  // secondaryArgsFadeOutDone(setToTrue: string) {
-  //   // State was set to false - no animation happened
-  //   if (!setToTrue) return;
-  //   // Animation has been cancelled
-  //   if (!this.secondaryArgsFadingOut) return;
-  //   this.secondaryArgsFadingOut = false;
-  //   if (this.activeSubcommand) this.activeSubcommand = null;
-  //   else this.activeCommand = null;
-  // }
-  //#endregion
+  setCommandStack(button: CommandButton | SubcommandButton) {
+    this.commandStack = [];
+    if (button) {
+      while (button instanceof SubcommandButton && button.parentButton) {
+        this.commandStack.push(button.command);
+        button = button.parentButton;
+      }
+      this.commandStack.push(button.command);
+    }
+  }
 
   //#region output string building
   getCommandString(): string {
     let cmdString = this.prefix;
-    if (!this.activeCommand) return cmdString;
-    else cmdString += getShortest(this.activeCommand.cmdStrings);
-    if (this.activeSubcommand)
-      cmdString += " " + getShortest(this.activeSubcommand.cmdStrings);
+    if (this.commandStack.length === 0) return cmdString;
+    const lastIndex = this.commandStack.length - 1;
+    cmdString += getShortest(this.commandStack[lastIndex].cmdStrings);
+    for (let i = lastIndex - 1; i >= 0; i--) {
+      cmdString += " " + getShortest(this.commandStack[i].cmdStrings);
+    }
     cmdString += this.getPrimaryArgsString();
     cmdString += this.getSecondaryArgsString();
     return cmdString;
