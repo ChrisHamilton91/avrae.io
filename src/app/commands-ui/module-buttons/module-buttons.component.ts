@@ -9,7 +9,7 @@ import {
 @Component({
   selector: "commands-ui-module-buttons",
   templateUrl: "./module-buttons.component.html",
-  styleUrls: ["./module-buttons.component.css"],
+  styleUrls: ["./module-buttons.component.scss"],
 })
 export class ModuleButtonsComponent implements OnInit {
   @Input() modules: CommandModule[];

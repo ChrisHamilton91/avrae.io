@@ -1,12 +1,26 @@
-<div *ngFor="let button of commandButtons">
-  <commands-ui-single-command-button
-    [button]="button"
-    (click)="toggleActive(button)"
-  ></commands-ui-single-command-button>
-  <div *ngIf="button.subcommandCompExists">
-    <commands-ui-subcommand-buttons
-      [parentButton]="button"
-      (subcommandChange)="setActiveButton($event)"
-    ></commands-ui-subcommand-buttons>
+<div
+  class="column-container"
+  [@fadeIn]="fadingIn"
+  (@fadeIn.done)="fadeInDone($event.toState)"
+  [@fadeOut]="fadingOut"
+  (@fadeOut.done)="fadeOutDone($event.toState)"
+>
+  <h4>COMMANDS</h4>
+  <div class="button-column">
+    <!-- Wrapper div instead of flex-direction: column - fixes issue where firefox scrollbar cuts off content -->
+    <div>
+      <div *ngFor="let button of commandButtons">
+        <commands-ui-single-command-button
+          [button]="button"
+          (click)="toggleActive(button)"
+        ></commands-ui-single-command-button>
+        <div *ngIf="button.subcommandCompExists">
+          <commands-ui-subcommand-buttons
+            [parentButton]="button"
+            (subcommandChange)="setActiveButton($event)"
+          ></commands-ui-subcommand-buttons>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

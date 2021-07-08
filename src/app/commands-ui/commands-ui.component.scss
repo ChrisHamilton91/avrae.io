@@ -38,23 +38,20 @@
 .button-area {
   display: flex;
   flex-direction: row;
-  overflow: auto;
+  overflow: hidden;
   height: 100%;
 }
 
-.column-container {
+commands-ui-module-buttons {
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
   overflow: hidden;
 }
 
-.button-column {
+commands-ui-command-buttons {
   display: flex;
-  overflow-y: auto;
-  overflow-x: hidden;
-  //to allow for scrollbars
-  padding: 0 20px;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 commands-ui-output-area {
@@ -62,14 +59,4 @@ commands-ui-output-area {
   background: #182026;
   padding: 16px;
   margin: 16px 0;
-}
-
-h4 {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 6px;
-  margin-left: auto;
-  margin-right: auto;
-  //to align with button columns
-  padding: 0 20px;
 }

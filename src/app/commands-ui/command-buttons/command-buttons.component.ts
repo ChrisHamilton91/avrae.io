@@ -23,7 +23,7 @@ export class CommandButton {
 @Component({
   selector: "commands-ui-command-buttons",
   templateUrl: "./command-buttons.component.html",
-  styleUrls: ["./command-buttons.component.css"],
+  styleUrls: ["./command-buttons.component.scss"],
   animations: [
     trigger("fadeIn", fadeInAnimation),
     trigger("fadeOut", fadeOutAnimation),
