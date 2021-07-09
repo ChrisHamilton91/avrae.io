@@ -1,20 +1,27 @@
-<div class="container">
-  <div class="button-column">
-    <div *ngFor="let pair of primaryArgValuePairs">
-      <commands-ui-single-primary-arg-button
-        [primaryArg]="pair.arg"
-        [active]="pair.active"
-        (click)="toggleActivePrimaryArg(pair)"
-      ></commands-ui-single-primary-arg-button>
+<div
+  class="column-container"
+  [@fadeIn]="fadingIn"
+  (@fadeIn.done)="fadeInDone($event.toState)"
+  [@fadeOut]="fadingOut"
+  (@fadeOut.done)="fadeOutDone($event.toState)"
+>
+  <h4>PRIMARY ARGUMENTS</h4>
+  <div class="button-input-container">
+    <div class="button-column">
+      <div *ngFor="let pair of argValuePairs">
+        <commands-ui-single-primary-arg-button
+          [argValuePair]="pair"
+          (activeChange)="emitArgs()"
+        ></commands-ui-single-primary-arg-button>
+      </div>
     </div>
-  </div>
-  <div class="input-column">
-    <div *ngFor="let pair of primaryArgValuePairs">
-      <commands-ui-single-primary-arg-input
-        [style.visibility]="getInputVisibility(pair)"
-        [style.opacity]="getInputOpacity(pair)"
-        (valueChange)="setArgValue(pair, $event)"
-      ></commands-ui-single-primary-arg-input>
+    <div class="input-column">
+      <div *ngFor="let pair of argValuePairs">
+        <commands-ui-single-primary-arg-input
+          [argValuePair]="pair"
+          (valueChange)="emitArgs()"
+        ></commands-ui-single-primary-arg-input>
+      </div>
     </div>
   </div>
 </div>

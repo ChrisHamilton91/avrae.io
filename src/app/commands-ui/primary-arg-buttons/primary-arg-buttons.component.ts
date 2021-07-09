@@ -1,4 +1,6 @@
+import { trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Subject } from "rxjs";
 import {
   Argument,
   Command,
@@ -6,42 +8,71 @@ import {
   PrimaryArgument,
   Subcommand,
 } from "src/app/schemas/Commands";
-import { PrimaryArgValuePair } from "../globals";
+import { CommandButton } from "../command-buttons/command-buttons.component";
+import { SubcommandButton } from "../command-buttons/subcommand-buttons/subcommand-buttons.component";
+import { fadeInAnimation, fadeOutAnimation } from "../@animations";
+
+export class PrimaryArgValuePair {
+  arg: PrimaryArgument;
+  value: string | boolean;
+  active: boolean;
+  activeChange = new Subject();
+  constructor(arg: PrimaryArgument) {
+    this.arg = arg;
+    this.value = null;
+    this.active = arg.required;
+  }
+}
 
 @Component({
   selector: "commands-ui-primary-arg-buttons",
   templateUrl: "./primary-arg-buttons.component.html",
-  styleUrls: ["./primary-arg-buttons.component.css"],
+  styleUrls: ["./primary-arg-buttons.component.scss"],
+  animations: [
+    trigger("fadeIn", fadeInAnimation),
+    trigger("fadeOut", fadeOutAnimation),
+  ],
 })
 export class PrimaryArgButtonsComponent implements OnInit {
-  @Input() primaryArgValuePairs: PrimaryArgValuePair[];
-  @Output() primaryArgValuePairsChange = new EventEmitter();
+  command: Command | Subcommand;
+  argValuePairs: PrimaryArgValuePair[];
+  fadingIn: boolean;
+  fadingOut: boolean;
+  @Output() argValuePairsChange = new EventEmitter<PrimaryArgValuePair[]>();
+  @Output() removeComponent = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  setCommand(command: Command) {}
-
-  toggleActivePrimaryArg(pair: PrimaryArgValuePair) {
-    //Required arguments are always active
-    if (pair.arg.required) return;
-    // If active, deactivate all subsequent primary args including this one.
-    // If inactive, activate all previous primary args including this one.
-    // There shouldn't be any required args after an optional arg but it doesn't hurt to check.
-    if (this.primaryArgValuePairs[pair.index].active) {
-      for (const thisPair of this.primaryArgValuePairs.slice(pair.index)) {
-        if (!thisPair.arg.required) thisPair.active = false;
-      }
-    } else {
-      for (const thisPair of this.primaryArgValuePairs.slice(
-        0,
-        pair.index + 1
-      )) {
-        thisPair.active = true;
-      }
+  setCommand(button: CommandButton | SubcommandButton) {
+    //activate
+    if (!this.command && button) {
+      this.command = button.command;
+      this.setArgs();
+      this.fadeIn();
     }
-    this.primaryArgValuePairsChange.emit(this.primaryArgValuePairs);
+    //deactivate
+    else if (
+      this.command &&
+      (!button || button.command.primaryArgs.length < 1)
+    ) {
+      this.command = null;
+      this.fadeOut();
+    }
+    //switch
+    else if (button && this.command !== button.command) {
+      this.command = button.command;
+      this.setArgs();
+      this.fadeIn();
+    }
+  }
+
+  setArgs() {
+    this.argValuePairs = [];
+    for (const arg of this.command.primaryArgs) {
+      this.argValuePairs.push(new PrimaryArgValuePair(arg));
+    }
   }
 
   getInputVisibility(pair: PrimaryArgValuePair): string {
@@ -52,8 +83,30 @@ export class PrimaryArgButtonsComponent implements OnInit {
     return pair.active ? "1" : "0";
   }
 
-  setArgValue(pair: PrimaryArgValuePair, value: string) {
-    this.primaryArgValuePairs[pair.index].value = value;
-    this.primaryArgValuePairsChange.emit(this.primaryArgValuePairs);
+  emitArgs() {
+    this.argValuePairsChange.emit(this.argValuePairs);
+  }
+
+  fadeIn() {
+    this.fadingOut = false; //animation cancel
+    this.fadingIn = true;
+  }
+
+  fadeOut() {
+    this.fadingIn = false; //animation cancel
+    this.fadingOut = true;
+  }
+
+  fadeInDone(fadeInWasSetToTrue: boolean) {
+    if (!this.fadingIn) return; //animation has been cancelled
+    if (fadeInWasSetToTrue) this.fadingIn = false;
+  }
+
+  fadeOutDone(fadeOutWasSetToTrue: boolean) {
+    if (!this.fadingOut) return; //animation has been cancelled
+    if (fadeOutWasSetToTrue) {
+      this.fadingOut = false;
+      this.removeComponent.emit();
+    }
   }
 }

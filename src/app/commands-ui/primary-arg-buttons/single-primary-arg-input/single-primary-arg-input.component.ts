@@ -1,3 +1,4 @@
+import { trigger } from "@angular/animations";
 import {
   Component,
   EventEmitter,
@@ -6,24 +7,54 @@ import {
   Output,
   ViewEncapsulation,
 } from "@angular/core";
+import { hideAnimation, showAnimation } from "../../@animations";
+import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 
 @Component({
   selector: "commands-ui-single-primary-arg-input",
   templateUrl: "./single-primary-arg-input.component.html",
   styleUrls: ["./single-primary-arg-input.component.css"],
+  animations: [trigger("show", showAnimation), trigger("hide", hideAnimation)],
 })
 export class SinglePrimaryArgInputComponent implements OnInit {
-  @Input() visibility: string;
-  @Input() opacity: string;
-  @Input() value: string;
+  @Input() argValuePair: PrimaryArgValuePair;
   @Output() valueChange = new EventEmitter();
+  fadingIn: boolean;
+  fadingOut: boolean;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.argValuePair.activeChange.subscribe(() => this.activeChange());
+  }
 
-  changeValue(event: Event) {
-    this.value = (event.target as HTMLInputElement).value;
-    this.valueChange.emit(this.value);
+  activeChange() {
+    if (this.argValuePair.active) this.show();
+    else this.hide();
+  }
+
+  changeValue(input: HTMLInputElement) {
+    this.argValuePair.value = input.value;
+    this.valueChange.emit();
+  }
+
+  show() {
+    this.fadingOut = false; //animation cancel
+    this.fadingIn = true;
+  }
+
+  hide() {
+    this.fadingIn = false; //animation cancel
+    this.fadingOut = true;
+  }
+
+  showDone(showWasSetToTrue: boolean) {
+    if (!this.fadingIn) return; //animation has been cancelled
+    if (showWasSetToTrue) this.fadingIn = false;
+  }
+
+  hideDone(hideWasSetToTrue: boolean) {
+    if (!this.fadingOut) return; //animation has been cancelled
+    if (hideWasSetToTrue) this.fadingOut = false;
   }
 }

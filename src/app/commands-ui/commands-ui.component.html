@@ -3,33 +3,25 @@
   <div class="button-area-container">
     <div class="button-area">
       <commands-ui-module-buttons
+        class="button-group-component"
         [modules]="modules"
         (activeModuleChange)="setModule($event)"
       >
       </commands-ui-module-buttons>
       <commands-ui-command-buttons
+        class="button-group-component"
         *ngIf="commandComponentExists"
         (commandChange)="setCommand($event)"
-        (removeComponent)="removeCommandComponent()"
+        (removeComponent)="commandComponentExists = false"
       ></commands-ui-command-buttons>
       <!-- Primary Arg Buttons -->
-      <!-- <div
-        *ngIf="arePrimaryArgButtons()"
-        class="column-container"
-        [@fadeIn]="primaryArgsFadingIn"
-        (@fadeIn.done)="primaryArgsFadeInDone($event.toState)"
-        [@fadeOut]="primaryArgsFadingOut"
-        (@fadeOut.done)="primaryArgsFadeOutDone($event.toState)"
+      <commands-ui-primary-arg-buttons
+        class="button-group-component"
+        *ngIf="primaryArgCompExists"
+        (argValuePairsChange)="primaryArgValuePairs = $event"
+        (removeComponent)="primaryArgCompExists = false"
       >
-        <h4>PRIMARY ARGUMENTS</h4>
-        <div class="button-column">
-          <commands-ui-primary-arg-buttons
-            [primaryArgValuePairs]="primaryArgValuePairs"
-            (primaryArgValuePairsChange)="setPrimaryArgValuePairs($event)"
-          >
-          </commands-ui-primary-arg-buttons>
-        </div>
-      </div> -->
+      </commands-ui-primary-arg-buttons>
       <!-- Secondary Arg Buttons -->
       <!-- <div
         *ngIf="areSecondaryArgButtons()"

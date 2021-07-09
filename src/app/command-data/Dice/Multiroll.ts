@@ -29,7 +29,7 @@ const ROLLSTR: PrimaryArgument = {
 };
 
 export const MULTIROLL: Command = {
-  name: "Iterative Roll",
+  name: "Multi Roll",
   cmdStrings: ["multiroll", "rr"],
   shortDesc: "Rolls dice in xdy format a given number of times.",
   longDesc: "",

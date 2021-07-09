@@ -7,7 +7,7 @@ import {
   CommandModule,
   Subcommand,
 } from "src/app/schemas/Commands";
-import { fadeInAnimation, fadeOutAnimation } from "../globals";
+import { fadeInAnimation, fadeOutAnimation } from "../@animations";
 import { SubcommandButton } from "./subcommand-buttons/subcommand-buttons.component";
 
 export class CommandButton {

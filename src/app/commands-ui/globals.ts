@@ -1,12 +1,4 @@
 import {
-  animate,
-  AnimationMetadata,
-  state,
-  style,
-  transition,
-  trigger,
-} from "@angular/animations";
-import {
   CommandModule,
   Command,
   Argument,
@@ -29,19 +21,6 @@ export const ACTIVE_OPTIONAL_ARG_STYLE = DEFAULT_ACTIVE_STYLE;
 export const INACTIVE_OPTIONAL_ARG_STYLE = DEFAULT_INACTIVE_STYLE;
 // export const ACTIVE_OPTIONAL_ARG_STYLE = "background-color:green;color:black;";
 // export const INACTIVE_OPTIONAL_ARG_STYLE = "background-color:#2255bb;";
-
-export class PrimaryArgValuePair {
-  arg: PrimaryArgument;
-  value: string | boolean;
-  index: number;
-  active: boolean;
-  constructor(arg: PrimaryArgument, index: number, active: boolean) {
-    this.arg = arg;
-    this.value = null;
-    this.index = index;
-    this.active = active;
-  }
-}
 
 export class SecondaryArgValuePair {
   arg: SecondaryArgument;
@@ -87,48 +66,3 @@ export function getShortest(array: string[]): string {
   }
   return shortest;
 }
-
-const fadeInTime = "0.15s";
-const fadeOutTime = "0.15s";
-const growTime = "0.2s";
-const shrinkTime = "0.1s";
-
-export const fadeInAnimation: AnimationMetadata[] = [
-  state("true", style({ opacity: 1 })),
-  state("false", style({})),
-  transition("* => true", [
-    style({ opacity: 0 }),
-    animate(`${fadeInTime} ease-in`),
-  ]),
-];
-
-export const fadeOutAnimation: AnimationMetadata[] = [
-  state("true", style({ opacity: 0 })),
-  state("false", style({})),
-  transition("* => true", [animate(`${fadeOutTime} ease-out`)]),
-];
-
-const shrunk = style({
-  flexBasis: 0,
-  marginTop: "-2px",
-  marginBottom: "-2px",
-});
-
-const grown = style({
-  flexBasis: "36px",
-  marginTop: "1px",
-  marginBottom: "1px",
-});
-
-//Animations are smoother if you explicitly give both starting and ending values - saves getting them from the dom
-export const dropDownAnimation: AnimationMetadata[] = [
-  state("true", grown),
-  state("false", style({})),
-  transition("* => true", [shrunk, animate(`${growTime} ease-in`)]),
-];
-
-export const shrinkUpAnimation: AnimationMetadata[] = [
-  state("true", shrunk),
-  state("false", style({})),
-  transition("* => true", [grown, animate(`${shrinkTime} ease-out`)]),
-];

@@ -6,8 +6,9 @@
   overflow: hidden;
 }
 
-.button-column {
+.button-input-container {
   display: flex;
+  flex-direction: row;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-color: #36393f $black;
@@ -16,17 +17,17 @@
   padding: 0 15px;
 }
 
-.button-column::-webkit-scrollbar {
+.button-input-container::-webkit-scrollbar {
   width: 10px;
   background-color: #182026;
 }
 
-.button-column::-webkit-scrollbar-track-piece {
+.button-input-container::-webkit-scrollbar-track-piece {
   border-radius: 10px;
   background-color: $black;
 }
 
-.button-column::-webkit-scrollbar-thumb {
+.button-input-container::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #36393f;
 }
@@ -37,4 +38,14 @@ h4 {
   margin-bottom: 6px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.button-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-column {
+  display: flex;
+  flex-direction: column;
 }

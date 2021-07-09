@@ -2,13 +2,8 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { COMMAND_MODULES } from "../command-data/CommandModules";
-import {
-  getShortest,
-  PrimaryArgValuePair,
-  SecondaryArgValuePair,
-  fadeInAnimation,
-  fadeOutAnimation,
-} from "./globals";
+import { getShortest, SecondaryArgValuePair } from "./globals";
+import { fadeInAnimation, fadeOutAnimation } from "./@animations";
 import {
   CommandModule,
   Command,
@@ -27,7 +22,10 @@ import {
   CommandButton,
   CommandButtonsComponent,
 } from "./command-buttons/command-buttons.component";
-import { PrimaryArgButtonsComponent } from "./primary-arg-buttons/primary-arg-buttons.component";
+import {
+  PrimaryArgButtonsComponent,
+  PrimaryArgValuePair,
+} from "./primary-arg-buttons/primary-arg-buttons.component";
 import { SecondaryArgButtonsComponent } from "./secondary-arg-buttons/secondary-arg-buttons.component";
 import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
 
@@ -110,6 +108,8 @@ export class CommandsUiComponent implements OnInit {
   //   return argValuePairs;
   // }
   //#endregion
+
+  //#region setters
   setModule(module: CommandModule) {
     if (!this.commandComponentExists && module) {
       this.commandComponentExists = true;
@@ -117,10 +117,6 @@ export class CommandsUiComponent implements OnInit {
     }
     this.setCommand(null);
     this.commandComponent.setModule(module);
-  }
-
-  removeCommandComponent() {
-    this.commandComponentExists = false;
   }
 
   setCommand(button: CommandButton | SubcommandButton) {
@@ -137,7 +133,8 @@ export class CommandsUiComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
       }
     }
-    // this.primaryArgComponent.setCommand(command);
+    this.primaryArgValuePairs = [];
+    if (this.primaryArgComponent) this.primaryArgComponent.setCommand(button);
     // this.secondaryArgComponent.setCommand(command);
     this.setCommandStack(button);
   }
@@ -145,13 +142,14 @@ export class CommandsUiComponent implements OnInit {
   setCommandStack(button: CommandButton | SubcommandButton) {
     this.commandStack = [];
     if (button) {
-      while (button instanceof SubcommandButton && button.parentButton) {
+      while (button instanceof SubcommandButton) {
         this.commandStack.push(button.command);
         button = button.parentButton;
       }
       this.commandStack.push(button.command);
     }
   }
+  //#endregion
 
   //#region output string building
   getCommandString(): string {
@@ -170,26 +168,22 @@ export class CommandsUiComponent implements OnInit {
   getPrimaryArgsString(): string {
     let cmdString = "";
     for (const pair of this.primaryArgValuePairs) {
-      //If one primary arg is left out, the next ones should not be added
-      if (!pair.active) break;
-      else {
-        switch (pair.arg.valueType) {
-          case ValueType.STRING:
-            cmdString += this.getPrimaryArgStringOfTypeString(pair);
-            break;
-          case ValueType.NUMBER:
-            cmdString += this.getPrimaryArgStringOfTypeNumber(pair);
-            break;
-          case ValueType.TRUE:
-            cmdString += this.getPrimaryArgStringOfTypeTrue(pair);
-            break;
-          default:
-            throw Error(
-              `ValueType: ${
-                ValueType[pair.arg.valueType]
-              } not implemented in getPrimaryArgsString()!`
-            );
-        }
+      switch (pair.arg.valueType) {
+        case ValueType.STRING:
+          cmdString += this.getPrimaryArgStringOfTypeString(pair);
+          break;
+        case ValueType.NUMBER:
+          cmdString += this.getPrimaryArgStringOfTypeNumber(pair);
+          break;
+        case ValueType.TRUE:
+          cmdString += this.getPrimaryArgStringOfTypeTrue(pair);
+          break;
+        default:
+          throw Error(
+            `ValueType: ${
+              ValueType[pair.arg.valueType]
+            } not implemented in getPrimaryArgsString()!`
+          );
       }
     }
     return cmdString;

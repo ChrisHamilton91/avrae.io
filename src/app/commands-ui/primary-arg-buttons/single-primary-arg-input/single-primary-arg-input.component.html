@@ -1,7 +1,12 @@
 <input
+  [@show]="fadingIn"
+  (@show.done)="showDone($event.toState)"
+  [@hide]="fadingOut"
+  (@hide.done)="hideDone($event.toState)"
+  [ngClass]="{ required: argValuePair.arg.required }"
   type="input"
   class="input-box"
   spellcheck="false"
   autocomplete="off"
-  (input)="changeValue($event)"
+  (input)="changeValue($event.target)"
 />

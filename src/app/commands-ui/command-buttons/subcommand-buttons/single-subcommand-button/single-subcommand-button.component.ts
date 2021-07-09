@@ -1,12 +1,11 @@
 import { AnimationEvent, trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Subcommand } from "src/app/schemas/Commands";
 import {
-  ACTIVE_SUBCMD_STYLE,
   dropDownAnimation,
-  INACTIVE_SUBCMD_STYLE,
   shrinkUpAnimation,
-} from "../../../globals";
+} from "src/app/commands-ui/@animations";
+import { Subcommand } from "src/app/schemas/Commands";
+import { ACTIVE_SUBCMD_STYLE, INACTIVE_SUBCMD_STYLE } from "../../../globals";
 import { CommandButton } from "../../command-buttons.component";
 import { SubcommandButton } from "../subcommand-buttons.component";
 
