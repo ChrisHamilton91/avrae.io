@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Command, SecondaryArgument } from "src/app/schemas/Commands";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import {
   ACTIVE_OPTIONAL_ARG_STYLE,
   INACTIVE_OPTIONAL_ARG_STYLE,
-} from "../../globals";
+} from "../../@globals";
+import { SecondaryArgValuePair } from "../secondary-arg-buttons.component";
 
 @Component({
   selector: "commands-ui-single-secondary-arg-button",
@@ -11,20 +11,28 @@ import {
   styleUrls: ["./single-secondary-arg-button.component.css"],
 })
 export class SingleSecondaryArgButtonComponent implements OnInit {
-  @Input() secondaryArg: SecondaryArgument;
-  @Input() active: boolean;
+  @Input() argValuePair: SecondaryArgValuePair;
   @Input() activeOptionalStyle = ACTIVE_OPTIONAL_ARG_STYLE;
   @Input() inactiveOptionalStyle = INACTIVE_OPTIONAL_ARG_STYLE;
+  @Output() activeChange = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
+  toggleActive() {
+    this.argValuePair.active = !this.argValuePair.active;
+    this.argValuePair.activeChange.next();
+    this.activeChange.emit();
+  }
+
   getStyle() {
-    return this.active ? this.activeOptionalStyle : this.inactiveOptionalStyle;
+    return this.argValuePair.active
+      ? this.activeOptionalStyle
+      : this.inactiveOptionalStyle;
   }
 
   getTooltip(): string {
-    return this.secondaryArg.desc;
+    return this.argValuePair.arg.desc;
   }
 }

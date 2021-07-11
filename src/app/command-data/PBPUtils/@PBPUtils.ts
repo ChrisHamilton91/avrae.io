@@ -1,4 +1,4 @@
-import { sortByName } from "src/app/commands-ui/globals";
+import { sortByName } from "src/app/commands-ui/@globals";
 import { CommandModule } from "../../schemas/Commands";
 import { BR } from "./BR";
 import { ECHO } from "./Echo";

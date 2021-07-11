@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { CommandModule } from "src/app/schemas/Commands";
-import { DEFAULT_ACTIVE_STYLE, DEFAULT_INACTIVE_STYLE } from "../../globals";
+import { DEFAULT_ACTIVE_STYLE, DEFAULT_INACTIVE_STYLE } from "../../@globals";
 
 @Component({
   selector: "commands-ui-single-module-button",

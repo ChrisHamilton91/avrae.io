@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { SecondaryArgValuePair } from "../../secondary-arg-buttons.component";
 
 @Component({
   selector: "commands-ui-single-secondary-arg-input-toggle",
@@ -6,16 +7,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
   styleUrls: ["./single-secondary-arg-input-toggle.component.css"],
 })
 export class SingleSecondaryArgInputToggleComponent implements OnInit {
-  @Input() value: boolean = true;
+  @Input() argValuePair: SecondaryArgValuePair;
   @Output() valueChange = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {
-    this.emitValue();
-  }
-
-  emitValue() {
-    this.valueChange.emit(this.value);
+    this.argValuePair.value = true;
+    this.valueChange.emit();
   }
 }

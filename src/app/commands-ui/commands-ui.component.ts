@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 import { environment } from "../../environments/environment";
 import { COMMAND_MODULES } from "../command-data/CommandModules";
-import { getShortest, SecondaryArgValuePair } from "./globals";
+import { getShortest } from "./@globals";
 import { fadeInAnimation, fadeOutAnimation } from "./@animations";
 import {
   CommandModule,
@@ -17,7 +17,6 @@ import {
   Argument,
   ClassTypes,
 } from "../schemas/Commands";
-import { trigger, AnimationEvent } from "@angular/animations";
 import {
   CommandButton,
   CommandButtonsComponent,
@@ -26,17 +25,16 @@ import {
   PrimaryArgButtonsComponent,
   PrimaryArgValuePair,
 } from "./primary-arg-buttons/primary-arg-buttons.component";
-import { SecondaryArgButtonsComponent } from "./secondary-arg-buttons/secondary-arg-buttons.component";
+import {
+  SecondaryArgButtonsComponent,
+  SecondaryArgValuePair,
+} from "./secondary-arg-buttons/secondary-arg-buttons.component";
 import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
 
 @Component({
   selector: "avr-commands-ui",
   templateUrl: "./commands-ui.component.html",
   styleUrls: ["./commands-ui.component.scss"],
-  animations: [
-    trigger("fadeIn", fadeInAnimation),
-    trigger("fadeOut", fadeOutAnimation),
-  ],
 })
 export class CommandsUiComponent implements OnInit {
   @ViewChild(CommandButtonsComponent)
@@ -76,39 +74,6 @@ export class CommandsUiComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //#region data getters
-
-  // getPrimaryArguments(): PrimaryArgument[] {
-  //   if (this.activeSubcommand) return this.activeSubcommand.primaryArgs;
-  //   else if (this.activeCommand) return this.activeCommand.primaryArgs;
-  //   else return [];
-  // }
-
-  // getSecondaryArguments(): SecondaryArgument[] {
-  //   if (this.activeSubcommand) return this.activeSubcommand.secondaryArgs;
-  //   else if (this.activeCommand) return this.activeCommand.secondaryArgs;
-  //   else return [];
-  // }
-
-  // getNewPrimaryArgValuePairs(): PrimaryArgValuePair[] {
-  //   const argValuePairs = [];
-  //   this.getPrimaryArguments().forEach((arg, index) => {
-  //     if (arg.required)
-  //       argValuePairs.push(new PrimaryArgValuePair(arg, index, true));
-  //     else argValuePairs.push(new PrimaryArgValuePair(arg, index, false));
-  //   });
-  //   return argValuePairs;
-  // }
-
-  // getNewSecondaryArgValuePairs(): SecondaryArgValuePair[] {
-  //   const argValuePairs = [];
-  //   this.getSecondaryArguments().forEach((arg, index) => {
-  //     argValuePairs.push(new SecondaryArgValuePair(arg, index, false));
-  //   });
-  //   return argValuePairs;
-  // }
-  //#endregion
-
   //#region setters
   setModule(module: CommandModule) {
     if (!this.commandComponentExists && module) {
@@ -134,8 +99,9 @@ export class CommandsUiComponent implements OnInit {
       }
     }
     this.primaryArgValuePairs = [];
-    if (this.primaryArgComponent) this.primaryArgComponent.setCommand(button);
-    // this.secondaryArgComponent.setCommand(command);
+    this.secondaryArgValuePairs = [];
+    this.primaryArgComponent?.setCommand(button);
+    this.secondaryArgComponent?.setCommand(button);
     this.setCommandStack(button);
   }
 

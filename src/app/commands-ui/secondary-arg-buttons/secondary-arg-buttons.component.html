@@ -1,29 +1,39 @@
-<div class="button-input-container">
-  <div class="button-column">
-    <div *ngFor="let pair of secondaryArgValuePairs; index as i">
-      <div class="category-header" *ngIf="isFirstOfCategory(i)">
-        {{ pair.arg.category.name }}
+<div
+  class="column-container"
+  [@fadeIn]="fadingIn"
+  (@fadeIn.done)="fadeInDone($event.toState)"
+  [@fadeOut]="fadingOut"
+  (@fadeOut.done)="fadeOutDone($event.toState)"
+>
+  <h4>SECONDARY ARGUMENTS</h4>
+
+  <div class="button-input-container">
+    <div class="button-column">
+      <div *ngFor="let pair of argValuePairs; index as i">
+        <div class="category-header" *ngIf="isFirstOfCategory(i)">
+          {{ pair.arg.category.name }}
+        </div>
+
+        <commands-ui-single-secondary-arg-button
+          [argValuePair]="pair"
+          (activeChange)="emitArgs()"
+        ></commands-ui-single-secondary-arg-button>
       </div>
-      <commands-ui-single-secondary-arg-button
-        [secondaryArg]="pair.arg"
-        [active]="pair.active"
-        (click)="toggleActiveSecondaryArg(pair)"
-      ></commands-ui-single-secondary-arg-button>
     </div>
-  </div>
-  <div class="input-column">
-    <div *ngFor="let pair of secondaryArgValuePairs; index as i">
-      <!-- Hidden input element next to header -->
-      <commands-ui-single-secondary-arg-input
-        *ngIf="isFirstOfCategory(i)"
-        [isHeader]="true"
-      ></commands-ui-single-secondary-arg-input>
-      <commands-ui-single-secondary-arg-input
-        [valueType]="pair.arg.valueType"
-        [style.visibility]="getInputVisibility(pair)"
-        [style.opacity]="getInputOpacity(pair)"
-        (valueChange)="setArgValue(pair, $event)"
-      ></commands-ui-single-secondary-arg-input>
+
+    <div class="input-column">
+      <div *ngFor="let pair of argValuePairs; index as i">
+        <!-- Hidden input element next to header -->
+        <commands-ui-single-secondary-arg-input
+          *ngIf="isFirstOfCategory(i)"
+          [permaHidden]="true"
+        ></commands-ui-single-secondary-arg-input>
+
+        <commands-ui-single-secondary-arg-input
+          [argValuePair]="pair"
+          (valueChange)="emitArgs()"
+        ></commands-ui-single-secondary-arg-input>
+      </div>
     </div>
   </div>
 </div>

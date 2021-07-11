@@ -14,7 +14,6 @@
         (commandChange)="setCommand($event)"
         (removeComponent)="commandComponentExists = false"
       ></commands-ui-command-buttons>
-      <!-- Primary Arg Buttons -->
       <commands-ui-primary-arg-buttons
         class="button-group-component"
         *ngIf="primaryArgCompExists"
@@ -22,24 +21,13 @@
         (removeComponent)="primaryArgCompExists = false"
       >
       </commands-ui-primary-arg-buttons>
-      <!-- Secondary Arg Buttons -->
-      <!-- <div
-        *ngIf="areSecondaryArgButtons()"
-        class="column-container"
-        [@fadeIn]="secondaryArgsFadingIn"
-        (@fadeIn.done)="secondaryArgsFadeInDone($event.toState)"
-        [@fadeOut]="secondaryArgsFadingOut"
-        (@fadeOut.done)="secondaryArgsFadeOutDone($event.toState)"
+      <commands-ui-secondary-arg-buttons
+        class="button-group-component"
+        *ngIf="secondaryArgCompExists"
+        (argValuePairsChange)="secondaryArgValuePairs = $event"
+        (removeComponent)="secondaryArgCompExists = false"
       >
-        <h4>SECONDARY ARGUMENTS</h4>
-        <div class="button-column">
-          <commands-ui-secondary-arg-buttons
-            [secondaryArgValuePairs]="secondaryArgValuePairs"
-            (secondaryArgValuePairsChange)="setSecondaryArgValuePairs($event)"
-          >
-          </commands-ui-secondary-arg-buttons>
-        </div>
-      </div> -->
+      </commands-ui-secondary-arg-buttons>
     </div>
   </div>
   <commands-ui-output-area

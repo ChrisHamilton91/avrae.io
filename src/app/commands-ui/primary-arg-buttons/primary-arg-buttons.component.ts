@@ -57,6 +57,11 @@ export class PrimaryArgButtonsComponent implements OnInit {
       this.command &&
       (!button || button.command.primaryArgs.length < 1)
     ) {
+      //If secondary args are activating while primary are deactivating, just remove primary immediately
+      if (button?.command.secondaryArgs.length > 0) {
+        this.removeComponent.emit();
+        return;
+      }
       this.command = null;
       this.fadeOut();
     }

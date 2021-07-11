@@ -22,19 +22,6 @@ export const INACTIVE_OPTIONAL_ARG_STYLE = DEFAULT_INACTIVE_STYLE;
 // export const ACTIVE_OPTIONAL_ARG_STYLE = "background-color:green;color:black;";
 // export const INACTIVE_OPTIONAL_ARG_STYLE = "background-color:#2255bb;";
 
-export class SecondaryArgValuePair {
-  arg: SecondaryArgument;
-  value: string | boolean;
-  index: number;
-  active: boolean;
-  constructor(arg: SecondaryArgument, index: number, active: boolean) {
-    this.arg = arg;
-    this.value = null;
-    this.index = index;
-    this.active = active;
-  }
-}
-
 /**Sorting function to sort elements by their name property */
 export function sortByName(
   a: CommandModule | Command | Argument,

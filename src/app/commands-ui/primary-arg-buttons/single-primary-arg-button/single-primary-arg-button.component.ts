@@ -4,7 +4,7 @@ import {
   ACTIVE_REQUIRED_ARG_STYLE,
   ACTIVE_OPTIONAL_ARG_STYLE,
   INACTIVE_OPTIONAL_ARG_STYLE,
-} from "../../globals";
+} from "../../@globals";
 import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 
 @Component({

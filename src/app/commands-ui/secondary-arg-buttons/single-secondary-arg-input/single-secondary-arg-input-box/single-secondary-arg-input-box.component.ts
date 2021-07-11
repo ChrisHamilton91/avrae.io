@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { SecondaryArgValuePair } from "../../secondary-arg-buttons.component";
 
 @Component({
   selector: "commands-ui-single-secondary-arg-input-box",
@@ -6,15 +7,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
   styleUrls: ["./single-secondary-arg-input-box.component.css"],
 })
 export class SingleSecondaryArgInputBoxComponent implements OnInit {
-  @Input() value: string;
+  @Input() argValuePair: SecondaryArgValuePair;
   @Output() valueChange = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  changeValue(event: Event) {
-    this.value = (event.target as HTMLInputElement).value;
-    this.valueChange.emit(this.value);
+  changeValue(input: HTMLInputElement) {
+    this.argValuePair.value = input.value;
+    this.valueChange.emit();
   }
 }

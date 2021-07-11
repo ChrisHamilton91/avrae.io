@@ -5,7 +5,7 @@ import {
   shrinkUpAnimation,
 } from "src/app/commands-ui/@animations";
 import { Subcommand } from "src/app/schemas/Commands";
-import { ACTIVE_SUBCMD_STYLE, INACTIVE_SUBCMD_STYLE } from "../../../globals";
+import { ACTIVE_SUBCMD_STYLE, INACTIVE_SUBCMD_STYLE } from "../../../@globals";
 import { CommandButton } from "../../command-buttons.component";
 import { SubcommandButton } from "../subcommand-buttons.component";
 

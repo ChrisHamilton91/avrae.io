@@ -3,6 +3,7 @@
   [matTooltip]="getTooltip()"
   matTooltipPosition="above"
   [style]="getStyle()"
+  (click)="toggleActive()"
 >
-  {{ secondaryArg.name }}
+  {{ argValuePair.arg.name }}
 </button>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { DEFAULT_ACTIVE_STYLE, DEFAULT_INACTIVE_STYLE } from "../../globals";
+import { DEFAULT_ACTIVE_STYLE, DEFAULT_INACTIVE_STYLE } from "../../@globals";
 import { CommandButton } from "../command-buttons.component";
 
 @Component({

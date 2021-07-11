@@ -1,4 +1,4 @@
-import { sortByCategoryThenName } from "src/app/commands-ui/globals";
+import { sortByCategoryThenName } from "src/app/commands-ui/@globals";
 import {
   Command,
   Subcommand,
