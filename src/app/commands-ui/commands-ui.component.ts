@@ -1,9 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
-import { environment } from "../../environments/environment";
 import { COMMAND_MODULES } from "../command-data/CommandModules";
 import { getShortest } from "./@commonFunctions";
-import { fadeInAnimation, fadeOutAnimation } from "./@animations";
 import {
   CommandModule,
   Command,
@@ -68,7 +66,7 @@ export class CommandsUiComponent implements OnInit {
     });
     this.meta.updateTag({
       property: "og:url",
-      content: `${environment.baseURL}/commands-ui`,
+      content: "",
     });
   }
 
