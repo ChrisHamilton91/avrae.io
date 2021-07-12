@@ -39,30 +39,6 @@
                 "inject": true
               },
               {
-                "input": "src/highlightjs/material-light.scss",
-                "inject": true
-              },
-              {
-                "inject": true,
-                "input": "src/assets/pink-bluegrey.css",
-                "bundleName": "pink-bluegrey"
-              },
-              {
-                "inject": true,
-                "input": "src/assets/deeppurple-amber.css",
-                "bundleName": "deeppurple-amber"
-              },
-              {
-                "inject": true,
-                "input": "src/assets/indigo-pink.css",
-                "bundleName": "indigo-pink"
-              },
-              {
-                "inject": true,
-                "input": "src/assets/purple-green.css",
-                "bundleName": "purple-green"
-              },
-              {
                 "inject": true,
                 "input": "node_modules/ngx-toastr/toastr.css"
               }
@@ -136,30 +112,6 @@
               {
                 "input": "src/main.scss",
                 "inject": true
-              },
-              {
-                "input": "src/highlightjs/material-light.scss",
-                "inject": true
-              },
-              {
-                "inject": true,
-                "input": "src/assets/pink-bluegrey.css",
-                "bundleName": "pink-bluegrey"
-              },
-              {
-                "inject": true,
-                "input": "src/assets/deeppurple-amber.css",
-                "bundleName": "deeppurple-amber"
-              },
-              {
-                "inject": true,
-                "input": "src/assets/indigo-pink.css",
-                "bundleName": "indigo-pink"
-              },
-              {
-                "inject": true,
-                "input": "src/assets/purple-green.css",
-                "bundleName": "purple-green"
               }
             ],
             "scripts": [],

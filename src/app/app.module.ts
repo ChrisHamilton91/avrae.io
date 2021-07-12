@@ -5,30 +5,10 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
 import * as Sentry from "@sentry/browser";
-import { MarkdownModule, MarkedOptions } from "ngx-markdown";
-import { MonacoEditorModule } from "ngx-monaco-editor";
-
 import { AppRoutingModule } from "./app-routing.module";
-
 import { AppComponent } from "./app.component";
-import { CheatsheetsModule } from "./cheatsheets/cheatsheets.module";
-import { CommandDisplayComponent } from "./commands/command-display/command-display.component";
-import { CommandsComponent } from "./commands/commands.component";
-import { ErrorComponent } from "./error/error.component";
-import { FooterComponent } from "./footer/footer.component";
-import { FeatureBoxComponent } from "./home/feature-box/feature-box.component";
-import { HomeComponent } from "./home/home.component";
-import { HomebrewSharingModule } from "./homebrew-sharing/homebrew-sharing.module";
-import { LoginModule } from "./login/login.module";
 import { MaterialModule } from "./material/material.module";
-import { NavbarComponent } from "./navbar/navbar.component";
-import { AutomationEditorModule } from "./shared/automation-editor/automation-editor.module";
-import { DialogsModule } from "./shared/dialogs/dialogs.module";
-import { DiscordEmbedModule } from "./shared/discord-embed/discord-embed.module";
-import { registerDraconicLanguage } from "./shared/monacoDraconic";
-import { ThemesModule } from "./themes/themes.module";
 import { CommandsUiComponent } from "./commands-ui/commands-ui.component";
 import { MatButtonModule } from "@angular/material/button";
 import { ModuleButtonsComponent } from "./commands-ui/module-buttons/module-buttons.component";
@@ -47,39 +27,17 @@ import { SingleSecondaryArgButtonComponent } from "./commands-ui/secondary-arg-b
 import { SingleSecondaryArgInputBoxComponent } from "./commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-box/single-secondary-arg-input-box.component";
 import { SingleSecondaryArgInputToggleComponent } from "./commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-toggle/single-secondary-arg-input-toggle.component";
 import { ToastrModule } from "ngx-toastr";
-import { SingleSecondaryArgInputHiddenComponent } from './commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-hidden/single-secondary-arg-input-hidden.component';
+import { SingleSecondaryArgInputHiddenComponent } from "./commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-hidden/single-secondary-arg-input-hidden.component";
+import { NavbarComponent } from "./navbar/navbar.component";
 
 Sentry.init({
   dsn: "https://af2b06560981446bb55f64b6f79fd520@sentry.io/1486249",
 });
 
-const markdownConfig = {
-  markedOptions: {
-    provide: MarkedOptions,
-    useValue: {
-      gfm: true,
-      breaks: true,
-    },
-  },
-};
-
-const monacoConfig = {
-  // baseUrl: './assets/monaco/vs',
-  onMonacoLoad: () => {
-    registerDraconicLanguage((<any>window).monaco);
-  },
-};
-
 @NgModule({
   declarations: [
     AppComponent,
-    FeatureBoxComponent,
-    HomeComponent,
     NavbarComponent,
-    FooterComponent,
-    ErrorComponent,
-    CommandsComponent,
-    CommandDisplayComponent,
     CommandsUiComponent,
     ModuleButtonsComponent,
     CommandButtonsComponent,
@@ -104,18 +62,9 @@ const monacoConfig = {
     BrowserAnimationsModule,
     LayoutModule,
     FormsModule,
-    MarkdownModule.forRoot(markdownConfig),
     FlexLayoutModule,
     MaterialModule,
-    CheatsheetsModule,
-    HomebrewSharingModule,
-    DiscordEmbedModule,
-    AutomationEditorModule,
-    DialogsModule,
     AppRoutingModule,
-    ThemesModule,
-    LoginModule,
-    MonacoEditorModule.forRoot(monacoConfig),
     MatButtonModule,
     ToastrModule.forRoot(),
   ],

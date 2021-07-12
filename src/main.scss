@@ -1,20 +1,14 @@
-@import '~@angular/material/theming';
-@import './app-theme';
-// @import './styles/api';
-// @import './styles/markdown';
-// @import './styles/tables';
-// @import './styles/general';
-
+@import "~@angular/material/theming";
+@import "./app-theme";
+@import "_colors.scss";
 
 // Include material core styles.
 @include mat-core();
 
-
 // Define the dark theme.
-$primary: mat-palette($mat-purple);
-$accent:  mat-palette($mat-green, A200, A100, A400);
+$primary: mat-palette($just-blue);
+$accent: mat-palette($just-blue);
 
 $theme: mat-dark-theme($primary, $accent);
 @include angular-material-theme($theme);
 @include avr-app-theme($theme);
-

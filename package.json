@@ -2,19 +2,7 @@
   "name": "frontend",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "npm run build-themes && ng serve",
-    "build": "npm run build-themes && ng build",
-    "build-prod": "npm run build-themes && ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "build-themes": "bash ./tools/build-themes.sh",
-    "e2e": "ng e2e --protractor-config=e2e/protractor-ci.conf.js --prod",
-    "dev:ssr": "npm run build-themes && ng run frontend:serve-ssr",
-    "serve:ssr": "node dist/frontend/server/main.js",
-    "build:ssr": "ng build && ng run frontend:server",
-    "build-prod:ssr": "ng build --prod && ng run frontend:server:production",
-    "prerender": "ng run frontend:prerender"
+    "ng": "ng"
   },
   "private": true,
   "dependencies": {
