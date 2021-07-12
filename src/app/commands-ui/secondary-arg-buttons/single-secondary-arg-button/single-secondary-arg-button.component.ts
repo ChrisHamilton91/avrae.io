@@ -28,6 +28,8 @@ export class SingleSecondaryArgButtonComponent implements OnInit {
   }
 
   getTooltip(): string {
-    return this.argValuePair.arg.desc;
+    return (
+      this.argValuePair.arg.desc + ` [ ${this.argValuePair.arg.cmdString} ]`
+    );
   }
 }

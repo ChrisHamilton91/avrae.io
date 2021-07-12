@@ -35,6 +35,13 @@ export class SingleCommandButtonComponent implements OnInit {
   }
 
   getTooltip(): string {
-    return this.button.command.shortDesc;
+    let result = this.button.command.shortDesc + " [";
+    const cmdStrings = this.button.command.cmdStrings;
+    cmdStrings.forEach((cmd, i) => {
+      result += " " + cmd;
+      if (i < cmdStrings.length - 1) result += ",";
+    });
+    result += " ]";
+    return result;
   }
 }
