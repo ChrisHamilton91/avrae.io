@@ -1,4 +1,5 @@
 <button
+  [@color]="getColor()"
   [@grow]="growing"
   (@grow.done)="growDone($event.toState)"
   [@shrink]="shrinking"
@@ -6,7 +7,6 @@
   mat-raised-button
   [matTooltip]="getTooltip()"
   matTooltipPosition="right"
-  [style]="getStyle()"
 >
   {{ button.command.name }}
 </button>

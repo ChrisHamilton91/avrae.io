@@ -7,6 +7,29 @@ import {
   trigger,
 } from "@angular/animations";
 
+export enum ColorStates {
+  ACTIVE = "active",
+  INACTIVE = "inactive",
+  REQUIRED = "required",
+}
+
+export const defaultButtonColors: AnimationMetadata[] = [
+  state(ColorStates.ACTIVE, style({ backgroundColor: "#33aa33" })),
+  state(ColorStates.INACTIVE, style({ backgroundColor: "#0033aa" })),
+];
+
+export const subcommandButtonColors: AnimationMetadata[] = [
+  state(ColorStates.ACTIVE, style({ backgroundColor: "green" })),
+  state(ColorStates.INACTIVE, style({ backgroundColor: "#2255bb" })),
+];
+
+const requiredColor: AnimationMetadata = state(
+  ColorStates.REQUIRED,
+  style({ backgroundColor: "#aa3333" })
+);
+
+export const primaryArgColors = defaultButtonColors.concat(requiredColor);
+
 export const fadeInAnimation: AnimationMetadata[] = [
   state("true", style({ opacity: 1 })),
   state("false", style({})),

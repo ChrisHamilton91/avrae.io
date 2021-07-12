@@ -1,4 +1,4 @@
-import { sortByName } from "src/app/commands-ui/@globals";
+import { sortByName } from "src/app/commands-ui/@commonFunctions";
 import { CommandModule } from "../../schemas/Commands";
 import { ALIAS } from "./Alias";
 import { CHARACTER_VAR } from "./CharacterVar";

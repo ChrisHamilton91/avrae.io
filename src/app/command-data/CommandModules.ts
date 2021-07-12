@@ -1,4 +1,4 @@
-import { sortByName } from "../commands-ui/@globals";
+import { sortByName } from "../commands-ui/@commonFunctions";
 import { CommandModule } from "../schemas/Commands";
 import { CHAR_GENERATOR } from "./CharGenerator/@CharGenerator";
 import { CORE } from "./Core/@Core";

@@ -1,8 +1,8 @@
 <button
+  [@color]="getColor()"
   mat-raised-button
   [matTooltip]="getTooltip()"
   matTooltipPosition="above"
-  [style]="getStyle()"
   (click)="toggleActive()"
 >
   {{ argValuePair.arg.name }}

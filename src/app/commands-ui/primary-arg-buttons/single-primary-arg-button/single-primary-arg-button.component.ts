@@ -1,22 +1,16 @@
+import { trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Command, PrimaryArgument } from "src/app/schemas/Commands";
-import {
-  ACTIVE_REQUIRED_ARG_STYLE,
-  ACTIVE_OPTIONAL_ARG_STYLE,
-  INACTIVE_OPTIONAL_ARG_STYLE,
-} from "../../@globals";
+import { ColorStates, primaryArgColors } from "../../@animations";
 import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 
 @Component({
   selector: "commands-ui-single-primary-arg-button",
   templateUrl: "./single-primary-arg-button.component.html",
   styleUrls: ["./single-primary-arg-button.component.css"],
+  animations: [trigger("color", primaryArgColors)],
 })
 export class SinglePrimaryArgButtonComponent implements OnInit {
   @Input() argValuePair: PrimaryArgValuePair;
-  @Input() activeRequiredStyle = ACTIVE_REQUIRED_ARG_STYLE;
-  @Input() activeOptionalStyle = ACTIVE_OPTIONAL_ARG_STYLE;
-  @Input() inactiveOptionalStyle = INACTIVE_OPTIONAL_ARG_STYLE;
   @Output() activeChange = new EventEmitter();
 
   constructor() {}
@@ -30,11 +24,9 @@ export class SinglePrimaryArgButtonComponent implements OnInit {
     this.activeChange.emit();
   }
 
-  getStyle() {
-    if (this.argValuePair.arg.required) return this.activeRequiredStyle;
-    return this.argValuePair.active
-      ? this.activeOptionalStyle
-      : this.inactiveOptionalStyle;
+  getColor() {
+    if (this.argValuePair.arg.required) return ColorStates.REQUIRED;
+    return this.argValuePair.active ? ColorStates.ACTIVE : ColorStates.INACTIVE;
   }
 
   getTooltip(): string {

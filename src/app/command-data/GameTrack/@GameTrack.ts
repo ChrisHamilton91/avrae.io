@@ -1,4 +1,4 @@
-import { sortByName } from "src/app/commands-ui/@globals";
+import { sortByName } from "src/app/commands-ui/@commonFunctions";
 import { CommandModule } from "../../schemas/Commands";
 import { CAST } from "./Cast";
 import { CUSTOM_COUNTER } from "./CustomCounter";

@@ -53,20 +53,27 @@ export class PrimaryArgButtonsComponent implements OnInit {
       this.fadeIn();
     }
     //deactivate
-    else if (
-      this.command &&
-      (!button || button.command.primaryArgs.length < 1)
-    ) {
-      //If secondary args are activating while primary are deactivating, just remove primary immediately
-      if (button?.command.secondaryArgs.length > 0) {
-        this.removeComponent.emit();
-        return;
-      }
+    else if (this.command && !button) {
       this.command = null;
       this.fadeOut();
     }
     //switch
     else if (button && this.command !== button.command) {
+      this.switchCommand(button);
+    }
+  }
+
+  switchCommand(button: CommandButton | SubcommandButton) {
+    //deactivate if new command has no primary args
+    if (button.command.primaryArgs.length < 1) {
+      //If secondary args are activating while primary are deactivating, just remove primary immediately
+      if (button.command.secondaryArgs.length > 0) this.removeComponent.emit();
+      else {
+        this.command = null;
+        this.fadeOut();
+      }
+      //else activate
+    } else {
       this.command = button.command;
       this.setArgs();
       this.fadeIn();

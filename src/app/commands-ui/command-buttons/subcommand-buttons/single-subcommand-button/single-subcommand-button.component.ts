@@ -1,11 +1,11 @@
 import { AnimationEvent, trigger } from "@angular/animations";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, Input, OnInit, Output } from "@angular/core";
 import {
+  ColorStates,
   dropDownAnimation,
   shrinkUpAnimation,
+  subcommandButtonColors,
 } from "src/app/commands-ui/@animations";
-import { Subcommand } from "src/app/schemas/Commands";
-import { ACTIVE_SUBCMD_STYLE, INACTIVE_SUBCMD_STYLE } from "../../../@globals";
 import { CommandButton } from "../../command-buttons.component";
 import { SubcommandButton } from "../subcommand-buttons.component";
 
@@ -14,6 +14,7 @@ import { SubcommandButton } from "../subcommand-buttons.component";
   templateUrl: "./single-subcommand-button.component.html",
   styleUrls: ["./single-subcommand-button.component.css"],
   animations: [
+    trigger("color", subcommandButtonColors),
     trigger("grow", dropDownAnimation),
     trigger("shrink", shrinkUpAnimation),
   ],
@@ -21,8 +22,6 @@ import { SubcommandButton } from "../subcommand-buttons.component";
 export class SingleSubcommandButtonComponent implements OnInit {
   @Input() parentButton: CommandButton | SubcommandButton;
   @Input() button: SubcommandButton;
-  @Input() activeStyle = ACTIVE_SUBCMD_STYLE;
-  @Input() inactiveStyle = INACTIVE_SUBCMD_STYLE;
   growing: boolean;
   shrinking: boolean;
 
@@ -81,8 +80,8 @@ export class SingleSubcommandButtonComponent implements OnInit {
     }
   }
 
-  getStyle() {
-    return this.button.active ? this.activeStyle : this.inactiveStyle;
+  getColor() {
+    return this.button.active ? ColorStates.ACTIVE : ColorStates.INACTIVE;
   }
 
   getTooltip(): string {
