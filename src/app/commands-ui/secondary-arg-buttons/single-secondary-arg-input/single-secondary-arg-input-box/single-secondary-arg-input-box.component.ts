@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ValueType } from "src/app/schemas/Commands";
 import { SecondaryArgValuePair } from "../../secondary-arg-buttons.component";
 
 @Component({
@@ -17,5 +18,15 @@ export class SingleSecondaryArgInputBoxComponent implements OnInit {
   changeValue(input: HTMLInputElement) {
     this.argValuePair.value = input.value;
     this.valueChange.emit();
+  }
+
+  getTooltip(): string {
+    const type = this.argValuePair.arg.valueType;
+    if (type === ValueType.NUMBER) {
+      return "This input takes a numeric value. Many arguments also support equations and dice rolls. All whitespace will be trimmed automatically.";
+    }
+    if (type === ValueType.STRING) {
+      return "This input takes a string value (text). If there is whitespace, the text will be surrounded in quotations automatically.";
+    }
   }
 }

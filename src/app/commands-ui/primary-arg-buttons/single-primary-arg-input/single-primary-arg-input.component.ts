@@ -7,6 +7,7 @@ import {
   Output,
   ViewEncapsulation,
 } from "@angular/core";
+import { ValueType } from "src/app/schemas/Commands";
 import { hideAnimation, showAnimation } from "../../@animations";
 import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 
@@ -56,5 +57,15 @@ export class SinglePrimaryArgInputComponent implements OnInit {
   hideDone(hideWasSetToTrue: boolean) {
     if (!this.fadingOut) return; //animation has been cancelled
     if (hideWasSetToTrue) this.fadingOut = false;
+  }
+
+  getTooltip(): string {
+    const type = this.argValuePair.arg.valueType;
+    if (type === ValueType.NUMBER) {
+      return "This input takes a numeric value. Many arguments also support equations and dice rolls. All whitespace will be trimmed automatically.";
+    }
+    if (type === ValueType.STRING) {
+      return "This input takes a string value (text). If there is whitespace, the text will be surrounded in quotations automatically.";
+    }
   }
 }
