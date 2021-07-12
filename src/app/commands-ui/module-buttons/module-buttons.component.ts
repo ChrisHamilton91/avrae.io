@@ -29,4 +29,11 @@ export class ModuleButtonsComponent implements OnInit {
   isActive(module: CommandModule) {
     return this.activeModule ? module === this.activeModule : false;
   }
+
+  getHeaderTooltip(): string {
+    return (
+      "Modules are groups of commands, organized based on their purpose. " +
+      "Click on a module to reveal its commands."
+    );
+  }
 }

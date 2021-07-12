@@ -5,7 +5,7 @@
   [@fadeOut]="fadingOut"
   (@fadeOut.done)="fadeOutDone($event.toState)"
 >
-  <h4>COMMANDS</h4>
+  <h4 [matTooltip]="getHeaderTooltip()" matTooltipPosition="right">COMMANDS</h4>
   <div class="button-column">
     <!-- Wrapper div instead of flex-direction: column - fixes issue where firefox scrollbar cuts off content -->
     <div>

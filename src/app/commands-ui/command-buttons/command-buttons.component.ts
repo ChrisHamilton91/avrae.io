@@ -117,4 +117,12 @@ export class CommandButtonsComponent implements OnInit {
       this.removeComponent.emit();
     }
   }
+
+  getHeaderTooltip(): string {
+    return (
+      "Commands tell Avrae what function to perform. " +
+      "Subcommands can also appear after another command. " +
+      "Click on a command to reveal its subcommands and arguments, if any."
+    );
+  }
 }

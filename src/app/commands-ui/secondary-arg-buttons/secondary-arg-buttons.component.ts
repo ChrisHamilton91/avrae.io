@@ -128,4 +128,14 @@ export class SecondaryArgButtonsComponent implements OnInit {
       this.removeComponent.emit();
     }
   }
+
+  getHeaderTooltip() {
+    return (
+      "Arguments (args) are pieces of information that a command will use. " +
+      "Secondary args consist of a key (a unique identifier) and a value. " +
+      "Click an arg to activate it, and provide a value if applicable. " +
+      "Secondary args appear after primary args (if any). " +
+      "Their order does not matter relative to other secondary args. "
+    );
+  }
 }

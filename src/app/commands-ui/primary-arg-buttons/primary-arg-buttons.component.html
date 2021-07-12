@@ -5,7 +5,9 @@
   [@fadeOut]="fadingOut"
   (@fadeOut.done)="fadeOutDone($event.toState)"
 >
-  <h4>PRIMARY ARGUMENTS</h4>
+  <h4 [matTooltip]="getHeaderTooltip()" matTooltipPosition="right">
+    PRIMARY ARGUMENTS
+  </h4>
   <div class="button-input-container">
     <div class="button-column">
       <div *ngFor="let pair of argValuePairs">

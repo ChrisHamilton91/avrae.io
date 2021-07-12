@@ -121,4 +121,14 @@ export class PrimaryArgButtonsComponent implements OnInit {
       this.removeComponent.emit();
     }
   }
+
+  getHeaderTooltip(): string {
+    return (
+      "Arguments (args) are pieces of information that a command will use. " +
+      "Some primary args are required (red). " +
+      "Click an optional arg (blue) to provide a value." +
+      "Primary args appear after commands and subcommands. " +
+      "The order in which these args appear is important, so that Avrae does not get them mixed up. "
+    );
+  }
 }
