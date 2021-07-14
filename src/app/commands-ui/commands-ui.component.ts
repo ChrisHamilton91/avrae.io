@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
-import { COMMAND_MODULES } from "../command-data/CommandModules";
-import { getShortest } from "./@commonFunctions";
+import { COMMAND_MODULES } from "../command-data/command-modules";
+import { getShortest } from "./@common-functions";
 import {
   CommandModule,
   Command,

@@ -5,4 +5,5 @@ button {
   text-shadow: 2px 2px 2px black;
   min-height: 0;
   flex-basis: 0;
+  color: white;
 }
