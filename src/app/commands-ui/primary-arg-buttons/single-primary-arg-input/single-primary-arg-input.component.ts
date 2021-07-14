@@ -14,7 +14,7 @@ import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 @Component({
   selector: "commands-ui-single-primary-arg-input",
   templateUrl: "./single-primary-arg-input.component.html",
-  styleUrls: ["./single-primary-arg-input.component.css"],
+  styleUrls: ["./single-primary-arg-input.component.scss"],
   animations: [trigger("show", showAnimation), trigger("hide", hideAnimation)],
 })
 export class SinglePrimaryArgInputComponent implements OnInit {

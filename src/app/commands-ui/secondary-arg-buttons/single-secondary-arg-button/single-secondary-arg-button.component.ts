@@ -6,7 +6,7 @@ import { SecondaryArgValuePair } from "../secondary-arg-buttons.component";
 @Component({
   selector: "commands-ui-single-secondary-arg-button",
   templateUrl: "./single-secondary-arg-button.component.html",
-  styleUrls: ["./single-secondary-arg-button.component.css"],
+  styleUrls: ["./single-secondary-arg-button.component.scss"],
   animations: [trigger("color", defaultButtonColors)],
 })
 export class SingleSecondaryArgButtonComponent implements OnInit {

@@ -6,7 +6,7 @@ import { ColorStates, defaultButtonColors } from "../../@animations";
 @Component({
   selector: "commands-ui-single-module-button",
   templateUrl: "./single-module-button.component.html",
-  styleUrls: ["./single-module-button.component.css"],
+  styleUrls: ["./single-module-button.component.scss"],
   animations: [trigger("color", defaultButtonColors)],
 })
 export class SingleModuleButtonComponent implements OnInit {

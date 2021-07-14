@@ -13,11 +13,6 @@
   outline: 0;
   border-radius: 4px;
   background: white;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.input-box.required {
-  visibility: visible;
-  opacity: 1;
+  //Fixes touch screen scrolling bug for elements with tooltips https://github.com/angular/components/issues/4892
+  touch-action: auto !important;
 }

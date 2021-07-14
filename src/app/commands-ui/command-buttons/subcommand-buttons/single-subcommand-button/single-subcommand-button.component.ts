@@ -12,7 +12,7 @@ import { SubcommandButton } from "../subcommand-buttons.component";
 @Component({
   selector: "commands-ui-single-subcommand-button",
   templateUrl: "./single-subcommand-button.component.html",
-  styleUrls: ["./single-subcommand-button.component.css"],
+  styleUrls: ["./single-subcommand-button.component.scss"],
   animations: [
     trigger("color", subcommandButtonColors),
     trigger("grow", dropDownAnimation),
