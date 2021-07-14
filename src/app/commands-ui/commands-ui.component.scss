@@ -1,0 +1,75 @@
+@import "../_variables.scss";
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: $black;
+  z-index: -999;
+}
+
+:host {
+  background: $black;
+  font-family: $font;
+  color: white;
+  position: absolute;
+  padding: 16px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.commands-ui-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-area-container {
+  flex: 1;
+  background: #182026;
+  overflow: hidden;
+  padding: 8px 16px 16px 16px;
+}
+
+.button-area {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  height: 100%;
+  padding-bottom: 7px; // to allow for scrollbar
+  scrollbar-color: #36393f $black;
+  scrollbar-width: thin;
+}
+
+.button-area::-webkit-scrollbar {
+  height: 10px;
+  background-color: #182026;
+}
+
+.button-area::-webkit-scrollbar-track-piece {
+  border-radius: 10px;
+  background-color: $black;
+}
+
+.button-area::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #36393f;
+}
+
+.button-group-component {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+commands-ui-output-area {
+  display: flex;
+  background: #182026;
+  padding: 16px;
+  margin: 16px 0 0 0;
+}

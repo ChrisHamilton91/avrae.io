@@ -1,0 +1,25 @@
+<div
+  *ngIf="!permaHidden"
+  class="input-component"
+  [@show]="fadingIn"
+  (@show.done)="showDone($event.toState)"
+  [@hide]="fadingOut"
+  (@hide.done)="hideDone($event.toState)"
+>
+  <commands-ui-single-secondary-arg-input-box
+    *ngIf="isInputBox()"
+    [argValuePair]="argValuePair"
+    (valueChange)="valueChange.emit()"
+  ></commands-ui-single-secondary-arg-input-box>
+
+  <commands-ui-single-secondary-arg-input-toggle
+    *ngIf="isToggle()"
+    [argValuePair]="argValuePair"
+    (valueChange)="valueChange.emit()"
+  ></commands-ui-single-secondary-arg-input-toggle>
+</div>
+
+<!-- Hidden div to maintain spacing -->
+<commands-ui-single-secondary-arg-input-hidden
+  *ngIf="permaHidden"
+></commands-ui-single-secondary-arg-input-hidden>

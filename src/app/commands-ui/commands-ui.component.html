@@ -1,0 +1,36 @@
+<div class="background"></div>
+<div class="commands-ui-container">
+  <div class="button-area-container">
+    <div class="button-area">
+      <commands-ui-module-buttons
+        class="button-group-component"
+        [modules]="modules"
+        (activeModuleChange)="setModule($event)"
+      >
+      </commands-ui-module-buttons>
+      <commands-ui-command-buttons
+        class="button-group-component"
+        *ngIf="commandComponentExists"
+        (commandChange)="setCommand($event)"
+        (removeComponent)="commandComponentExists = false"
+      ></commands-ui-command-buttons>
+      <commands-ui-primary-arg-buttons
+        class="button-group-component"
+        *ngIf="primaryArgCompExists"
+        (argValuePairsChange)="primaryArgValuePairs = $event"
+        (removeComponent)="primaryArgCompExists = false"
+      >
+      </commands-ui-primary-arg-buttons>
+      <commands-ui-secondary-arg-buttons
+        class="button-group-component"
+        *ngIf="secondaryArgCompExists"
+        (argValuePairsChange)="secondaryArgValuePairs = $event"
+        (removeComponent)="secondaryArgCompExists = false"
+      >
+      </commands-ui-secondary-arg-buttons>
+    </div>
+  </div>
+  <commands-ui-output-area
+    [commandString]="getCommandString()"
+  ></commands-ui-output-area>
+</div>

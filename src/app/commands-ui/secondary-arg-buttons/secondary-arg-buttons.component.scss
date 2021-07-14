@@ -1,0 +1,70 @@
+@import "../../_variables.scss";
+
+.column-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.button-input-container {
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: #36393f $black;
+  scrollbar-width: thin;
+  //to allow for scrollbars
+  padding: 0 15px;
+}
+
+.button-input-container::-webkit-scrollbar {
+  width: 10px;
+  background-color: #182026;
+}
+
+.button-input-container::-webkit-scrollbar-track-piece {
+  border-radius: 10px;
+  background-color: $black;
+}
+
+.button-input-container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #36393f;
+}
+
+h4 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.button-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-header {
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-width: 64px;
+  line-height: 36px;
+  padding: 0 8px;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
+}

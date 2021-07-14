@@ -1,0 +1,41 @@
+@import "../../_variables.scss";
+
+.column-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.button-column {
+  display: flex;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: #36393f $black;
+  scrollbar-width: thin;
+  //to allow for scrollbars
+  padding: 0 15px;
+}
+
+.button-column::-webkit-scrollbar {
+  width: 10px;
+  background-color: #182026;
+}
+
+.button-column::-webkit-scrollbar-track-piece {
+  border-radius: 10px;
+  background-color: $black;
+}
+
+.button-column::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #36393f;
+}
+
+h4 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
