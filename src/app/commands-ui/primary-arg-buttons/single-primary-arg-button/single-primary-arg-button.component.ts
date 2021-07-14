@@ -6,7 +6,7 @@ import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 @Component({
   selector: "commands-ui-single-primary-arg-button",
   templateUrl: "./single-primary-arg-button.component.html",
-  styleUrls: ["./single-primary-arg-button.component.css"],
+  styleUrls: ["./single-primary-arg-button.component.scss"],
   animations: [trigger("color", primaryArgColors)],
 })
 export class SinglePrimaryArgButtonComponent implements OnInit {

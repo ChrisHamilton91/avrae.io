@@ -6,7 +6,7 @@ import { CommandButton } from "../command-buttons.component";
 @Component({
   selector: "commands-ui-single-command-button",
   templateUrl: "./single-command-button.component.html",
-  styleUrls: ["./single-command-button.component.css"],
+  styleUrls: ["./single-command-button.component.scss"],
   animations: [trigger("color", defaultButtonColors)],
 })
 export class SingleCommandButtonComponent implements OnInit {

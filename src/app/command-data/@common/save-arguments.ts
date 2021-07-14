@@ -83,7 +83,7 @@ const TITLE: SecondaryArgument = {
   name: "title",
   cmdString: "-title",
   valueType: ValueType.STRING,
-  desc: "Changes the title of the attack. Replaces [name] with attacker's name and [sname] with the save's name.",
+  desc: "Changes the title of the save. Replaces [name] with character's name and [sname] with the save's name.",
   example: "",
   ephemeral: false,
   category: null,
