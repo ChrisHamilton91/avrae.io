@@ -1,4 +1,4 @@
-import { sortByName } from "src/app/commands-ui/@common-functions";
+import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,

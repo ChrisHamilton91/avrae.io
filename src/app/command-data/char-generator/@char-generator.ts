@@ -1,7 +1,7 @@
 import { CommandModule } from "../../schemas/Commands";
 import { RANDNAME } from "./randname";
 import { RANDCHAR } from "./randchar";
-import { sortByName } from "src/app/commands-ui/@common-functions";
+import { sortByName } from "src/app/command-data/@common/@common-functions";
 
 export const CHAR_GENERATOR: CommandModule = {
   name: "CharGenerator",
