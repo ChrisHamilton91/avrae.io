@@ -9,6 +9,7 @@ import {
 } from "@angular/core";
 import { ValueType } from "src/app/schemas/Commands";
 import { hideAnimation, showAnimation } from "../../@animations";
+import { commandsUiSettings } from "../../@settings";
 import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 
 @Component({
@@ -60,6 +61,7 @@ export class SinglePrimaryArgInputComponent implements OnInit {
   }
 
   getTooltip(): string {
+    if (!commandsUiSettings.getEnableTooltips()) return undefined;
     const type = this.argValuePair.arg.valueType;
     if (type === ValueType.NUMBER) {
       return "This input takes a numeric value. Many arguments also support equations and dice rolls. All whitespace will be trimmed automatically.";

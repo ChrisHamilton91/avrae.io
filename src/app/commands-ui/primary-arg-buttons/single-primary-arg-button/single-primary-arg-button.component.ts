@@ -1,6 +1,8 @@
 import { trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ColorStates, primaryArgColors } from "../../@animations";
+import { commandsUiSettings } from "../../@settings";
+import { getShortest } from "../../commands-ui.component";
 import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 
 @Component({
@@ -24,12 +26,19 @@ export class SinglePrimaryArgButtonComponent implements OnInit {
     this.activeChange.emit();
   }
 
+  getLabel() {
+    if (commandsUiSettings.getShowCommandStrings())
+      return this.argValuePair.arg.signature;
+    return this.argValuePair.arg.name;
+  }
+
   getColor() {
     if (this.argValuePair.arg.required) return ColorStates.REQUIRED;
     return this.argValuePair.active ? ColorStates.ACTIVE : ColorStates.INACTIVE;
   }
 
   getTooltip(): string {
+    if (!commandsUiSettings.getEnableTooltips()) return undefined;
     return this.argValuePair.arg.desc;
   }
 }

@@ -2,6 +2,7 @@ import { trigger } from "@angular/animations";
 import { Component, Input, OnInit } from "@angular/core";
 import { CommandModule } from "src/app/schemas/Commands";
 import { ColorStates, defaultButtonColors } from "../../@animations";
+import { commandsUiSettings } from "../../@settings";
 
 @Component({
   selector: "commands-ui-single-module-button",
@@ -22,6 +23,7 @@ export class SingleModuleButtonComponent implements OnInit {
   }
 
   getTooltip(): string {
+    if (!commandsUiSettings.getEnableTooltips()) return undefined;
     return this.module.shortDesc;
   }
 }

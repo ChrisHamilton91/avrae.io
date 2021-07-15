@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { commandsUiSettings } from "src/app/commands-ui/@settings";
 import { ValueType } from "src/app/schemas/Commands";
 import { SecondaryArgValuePair } from "../../secondary-arg-buttons.component";
 
@@ -21,6 +22,7 @@ export class SingleSecondaryArgInputBoxComponent implements OnInit {
   }
 
   getTooltip(): string {
+    if (!commandsUiSettings.getEnableTooltips()) return undefined;
     const type = this.argValuePair.arg.valueType;
     if (type === ValueType.NUMBER) {
       return "This input takes a numeric value. Many arguments also support equations and dice rolls. All whitespace will be trimmed automatically.";

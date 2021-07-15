@@ -10,7 +10,7 @@
   display: flex;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: #36393f $black;
+  scrollbar-color: $gray5 $black;
   scrollbar-width: thin;
   //to allow for scrollbars
   padding: 0 15px;
@@ -18,7 +18,7 @@
 
 .button-column::-webkit-scrollbar {
   width: 10px;
-  background-color: #182026;
+  background-color: $gray-dark1;
 }
 
 .button-column::-webkit-scrollbar-track-piece {
@@ -28,7 +28,7 @@
 
 .button-column::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #36393f;
+  background-color: $gray5;
 }
 
 h4 {

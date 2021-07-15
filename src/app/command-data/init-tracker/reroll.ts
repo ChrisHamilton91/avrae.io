@@ -13,7 +13,7 @@ import {
 const RESTART: SecondaryArgument = {
   type: ClassTypes.SECONDARY_ARGUMENT,
   name: "reset counter",
-  cmdString: "",
+  cmdString: "-restart",
   valueType: ValueType.TRUE,
   desc: "Resets the round counter (effectively restarting initiative).",
   example: "",

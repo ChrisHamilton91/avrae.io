@@ -1,6 +1,7 @@
 import { trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ColorStates, defaultButtonColors } from "../../@animations";
+import { commandsUiSettings } from "../../@settings";
 import { SecondaryArgValuePair } from "../secondary-arg-buttons.component";
 
 @Component({
@@ -23,11 +24,18 @@ export class SingleSecondaryArgButtonComponent implements OnInit {
     this.activeChange.emit();
   }
 
+  getLabel() {
+    if (commandsUiSettings.getShowCommandStrings())
+      return this.argValuePair.arg.cmdString;
+    return this.argValuePair.arg.name;
+  }
+
   getColor() {
     return this.argValuePair.active ? ColorStates.ACTIVE : ColorStates.INACTIVE;
   }
 
   getTooltip(): string {
+    if (!commandsUiSettings.getEnableTooltips()) return undefined;
     return (
       this.argValuePair.arg.desc + ` [ ${this.argValuePair.arg.cmdString} ]`
     );

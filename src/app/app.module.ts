@@ -12,6 +12,7 @@ import { MaterialModule } from "./material/material.module";
 import { CommandsUiComponent } from "./commands-ui/commands-ui.component";
 import { MatButtonModule } from "@angular/material/button";
 import { ModuleButtonsComponent } from "./commands-ui/module-buttons/module-buttons.component";
+import { NavbarComponent } from "./navbar/navbar.component";
 import { CommandButtonsComponent } from "./commands-ui/command-buttons/command-buttons.component";
 import { SubcommandButtonsComponent } from "./commands-ui/command-buttons/subcommand-buttons/subcommand-buttons.component";
 import { PrimaryArgButtonsComponent } from "./commands-ui/primary-arg-buttons/primary-arg-buttons.component";
@@ -28,7 +29,9 @@ import { SingleSecondaryArgInputBoxComponent } from "./commands-ui/secondary-arg
 import { SingleSecondaryArgInputToggleComponent } from "./commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-toggle/single-secondary-arg-input-toggle.component";
 import { ToastrModule } from "ngx-toastr";
 import { SingleSecondaryArgInputHiddenComponent } from "./commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-hidden/single-secondary-arg-input-hidden.component";
-import { NavbarComponent } from "./navbar/navbar.component";
+import { SettingsComponent } from "./commands-ui/settings/settings.component";
+import { SettingsDialogComponent } from "./commands-ui/settings/settings-dialog/settings-dialog.component";
+import { SettingsInputComponent } from "./commands-ui/settings/settings-dialog/settings-input/settings-input.component";
 
 Sentry.init({
   dsn: "https://af2b06560981446bb55f64b6f79fd520@sentry.io/1486249",
@@ -55,6 +58,9 @@ Sentry.init({
     SingleSecondaryArgInputBoxComponent,
     SingleSecondaryArgInputToggleComponent,
     SingleSecondaryArgInputHiddenComponent,
+    SettingsComponent,
+    SettingsDialogComponent,
+    SettingsInputComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),
