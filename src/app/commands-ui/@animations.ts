@@ -4,7 +4,6 @@ import {
   state,
   style,
   transition,
-  trigger,
 } from "@angular/animations";
 
 export enum ColorStates {

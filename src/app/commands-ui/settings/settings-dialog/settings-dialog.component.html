@@ -1,0 +1,15 @@
+<div class="setting">
+  <span class="setting-label-input">Prefix</span>
+  <commands-ui-settings-input
+    [value]="settings.getPrefix()"
+    (valueChange)="settings.setPrefix($event)"
+  ></commands-ui-settings-input>
+</div>
+<div class="setting">
+  <span class="setting-label-toggle">Tooltips</span>
+  <mat-slide-toggle></mat-slide-toggle>
+</div>
+<div class="setting">
+  <span class="setting-label-toggle">Cmd Strings</span>
+  <mat-slide-toggle></mat-slide-toggle>
+</div>

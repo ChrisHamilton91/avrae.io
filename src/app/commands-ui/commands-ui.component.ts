@@ -27,6 +27,7 @@ import {
   SecondaryArgValuePair,
 } from "./secondary-arg-buttons/secondary-arg-buttons.component";
 import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
+import { commandsUiSettings } from "./@settings";
 
 @Component({
   selector: "avr-commands-ui",
@@ -44,7 +45,6 @@ export class CommandsUiComponent implements OnInit {
   title = "Avrae Commands User Interface";
   description = "A user interface for constructing avrae commands";
 
-  prefix = "!";
   modules: CommandModule[] = COMMAND_MODULES;
   commandComponentExists: boolean;
   primaryArgCompExists: boolean;
@@ -116,7 +116,7 @@ export class CommandsUiComponent implements OnInit {
 
   //#region output string building
   getCommandString(): string {
-    let cmdString = this.prefix;
+    let cmdString = commandsUiSettings.getPrefix();
     if (this.commandStack.length === 0) return cmdString;
     const lastIndex = this.commandStack.length - 1;
     cmdString += this.getShortest(this.commandStack[lastIndex].cmdStrings);

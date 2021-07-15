@@ -1,0 +1,20 @@
+@import "../../_variables.scss";
+
+.container {
+  position: relative;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: $gray-dark1;
+  padding: 10px;
+}
+
+svg {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  top: 5px;
+  right: 5px;
+  padding: 10px;
+  cursor: pointer;
+}

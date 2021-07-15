@@ -29,8 +29,9 @@
 }
 
 .button-area-container {
+  position: relative;
   flex: 1;
-  background: #182026;
+  background: $gray-dark1;
   overflow: hidden;
   padding: 8px 16px 16px 16px;
 }
@@ -41,13 +42,13 @@
   overflow: auto;
   height: 100%;
   padding-bottom: 7px; // to allow for scrollbar
-  scrollbar-color: #36393f $black;
+  scrollbar-color: $gray5 $black;
   scrollbar-width: thin;
 }
 
 .button-area::-webkit-scrollbar {
   height: 10px;
-  background-color: #182026;
+  background-color: $gray-dark1;
 }
 
 .button-area::-webkit-scrollbar-track-piece {
@@ -57,7 +58,7 @@
 
 .button-area::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #36393f;
+  background-color: $gray5;
 }
 
 .button-group-component {
@@ -69,7 +70,13 @@
 
 commands-ui-output-area {
   display: flex;
-  background: #182026;
+  background-color: $gray-dark1;
   padding: 16px;
   margin: 16px 0 0 0;
+}
+
+commands-ui-settings {
+  position: absolute;
+  right: 0;
+  top: 0;
 }

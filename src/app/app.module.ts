@@ -47,7 +47,10 @@ import { SingleSecondaryArgButtonComponent } from "./commands-ui/secondary-arg-b
 import { SingleSecondaryArgInputBoxComponent } from "./commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-box/single-secondary-arg-input-box.component";
 import { SingleSecondaryArgInputToggleComponent } from "./commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-toggle/single-secondary-arg-input-toggle.component";
 import { ToastrModule } from "ngx-toastr";
-import { SingleSecondaryArgInputHiddenComponent } from './commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-hidden/single-secondary-arg-input-hidden.component';
+import { SingleSecondaryArgInputHiddenComponent } from "./commands-ui/secondary-arg-buttons/single-secondary-arg-input/single-secondary-arg-input-hidden/single-secondary-arg-input-hidden.component";
+import { SettingsComponent } from "./commands-ui/settings/settings.component";
+import { SettingsDialogComponent } from "./commands-ui/settings/settings-dialog/settings-dialog.component";
+import { SettingsInputComponent } from "./commands-ui/settings/settings-dialog/settings-input/settings-input.component";
 
 Sentry.init({
   dsn: "https://af2b06560981446bb55f64b6f79fd520@sentry.io/1486249",
@@ -97,6 +100,9 @@ const monacoConfig = {
     SingleSecondaryArgInputBoxComponent,
     SingleSecondaryArgInputToggleComponent,
     SingleSecondaryArgInputHiddenComponent,
+    SettingsComponent,
+    SettingsDialogComponent,
+    SettingsInputComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),
