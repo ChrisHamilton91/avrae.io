@@ -29,6 +29,15 @@ import {
 import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
 import { commandsUiSettings } from "./@settings";
 
+export function getShortest(array: string[]): string {
+  if (array.length == 0) throw Error("There are no items in the array!");
+  let shortest = array[0];
+  for (let item of array) {
+    if (item.length < shortest.length) shortest = item;
+  }
+  return shortest;
+}
+
 @Component({
   selector: "avr-commands-ui",
   templateUrl: "./commands-ui.component.html",
@@ -119,22 +128,13 @@ export class CommandsUiComponent implements OnInit {
     let cmdString = commandsUiSettings.getPrefix();
     if (this.commandStack.length === 0) return cmdString;
     const lastIndex = this.commandStack.length - 1;
-    cmdString += this.getShortest(this.commandStack[lastIndex].cmdStrings);
+    cmdString += getShortest(this.commandStack[lastIndex].cmdStrings);
     for (let i = lastIndex - 1; i >= 0; i--) {
-      cmdString += " " + this.getShortest(this.commandStack[i].cmdStrings);
+      cmdString += " " + getShortest(this.commandStack[i].cmdStrings);
     }
     cmdString += this.getPrimaryArgsString();
     cmdString += this.getSecondaryArgsString();
     return cmdString;
-  }
-
-  getShortest(array: string[]): string {
-    if (array.length == 0) throw Error("There are no items in the array!");
-    let shortest = array[0];
-    for (let item of array) {
-      if (item.length < shortest.length) shortest = item;
-    }
-    return shortest;
   }
 
   getPrimaryArgsString(): string {

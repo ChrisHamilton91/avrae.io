@@ -16,9 +16,9 @@ class CommandsUiSettings {
   // 1. instance variable
   // 2. localStorage
   // 3. default value
-  prefix: string;
-  enableTooltips: boolean;
-  showCommandStrings: boolean;
+  private prefix: string;
+  private enableTooltips: boolean;
+  private showCommandStrings: boolean;
 
   setPrefix(prefix: string) {
     this.prefix = prefix;

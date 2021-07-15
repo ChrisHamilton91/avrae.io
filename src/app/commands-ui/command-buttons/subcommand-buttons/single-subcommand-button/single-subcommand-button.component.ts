@@ -6,6 +6,8 @@ import {
   shrinkUpAnimation,
   subcommandButtonColors,
 } from "src/app/commands-ui/@animations";
+import { commandsUiSettings } from "src/app/commands-ui/@settings";
+import { getShortest } from "src/app/commands-ui/commands-ui.component";
 import { CommandButton } from "../../command-buttons.component";
 import { SubcommandButton } from "../subcommand-buttons.component";
 
@@ -80,11 +82,18 @@ export class SingleSubcommandButtonComponent implements OnInit {
     }
   }
 
+  getLabel() {
+    if (commandsUiSettings.getShowCommandStrings())
+      return getShortest(this.button.command.cmdStrings);
+    return this.button.command.name;
+  }
+
   getColor() {
     return this.button.active ? ColorStates.ACTIVE : ColorStates.INACTIVE;
   }
 
   getTooltip(): string {
+    if (!commandsUiSettings.getEnableTooltips()) return undefined;
     let result = this.button.command.shortDesc + " [";
     const cmdStrings = this.button.command.cmdStrings;
     cmdStrings.forEach((cmd, i) => {
