@@ -7,7 +7,7 @@ import {
   subcommandButtonColors,
 } from "src/app/commands-ui/@animations";
 import { commandsUiSettings } from "src/app/commands-ui/@settings";
-import { getShortest } from "src/app/commands-ui/commands-ui.component";
+import { getShortest } from "src/app/commands-ui/@sorting";
 import { CommandButton } from "../../command-buttons.component";
 import { SubcommandButton } from "../subcommand-buttons.component";
 

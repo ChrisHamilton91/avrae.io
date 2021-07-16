@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -127,9 +126,7 @@ export const JOIN: Command = {
     "Adds the current active character to combat. A character must be loaded through the SheetManager module first.",
   longDesc: "",
   primaryArgs: [],
-  secondaryArgs: [ADV, DIS, B, PHRASE, THUMB, P, H, GROUP, NOTE].sort(
-    sortByName
-  ),
+  secondaryArgs: [ADV, DIS, B, PHRASE, THUMB, P, H, GROUP, NOTE],
   subcommands: [],
   examples: [],
 };

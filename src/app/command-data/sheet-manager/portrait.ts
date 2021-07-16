@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -55,7 +54,7 @@ export const PORTRAIT: Command = {
   longDesc: "",
   primaryArgs: [],
   secondaryArgs: [],
-  subcommands: [DELETE, EDIT].sort(sortByName),
+  subcommands: [DELETE, EDIT],
   examples: [],
 };
 //#endregion

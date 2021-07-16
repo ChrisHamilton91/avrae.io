@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -154,7 +153,7 @@ const CREATE: Subcommand = {
     CREATE_TYPE,
     CREATE_RESET_TO,
     CREATE_RESET_BY,
-  ].sort(sortByName),
+  ],
   subcommands: [],
   examples: [],
 };
@@ -242,7 +241,7 @@ export const CUSTOM_COUNTER: Command = {
   longDesc: "",
   primaryArgs: [NAME, SET, MOD],
   secondaryArgs: [],
-  subcommands: [CREATE, DELETE, RESET, LIST].sort(sortByName),
+  subcommands: [CREATE, DELETE, RESET, LIST],
   examples: [],
 };
 //#endregion

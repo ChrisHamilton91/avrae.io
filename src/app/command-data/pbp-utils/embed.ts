@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -110,9 +109,7 @@ export const EMBED: Command = {
   shortDesc: "Creates and prints an Embed.",
   longDesc: "",
   primaryArgs: [],
-  secondaryArgs: [TITLE, DESC, THUMB, IMAGE, FOOTER, F, COLOR, T].sort(
-    sortByName
-  ),
+  secondaryArgs: [TITLE, DESC, THUMB, IMAGE, FOOTER, F, COLOR, T],
   subcommands: [],
   examples: [],
 };

@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -219,5 +218,5 @@ export const CHECK_ARGS: SecondaryArgument[] = [
   F,
   THUMB,
   H,
-].sort(sortByName);
+];
 //#endregion

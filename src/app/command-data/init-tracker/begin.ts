@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -61,7 +60,7 @@ export const BEGIN: Command = {
   shortDesc: "Begins combat.",
   longDesc: "",
   primaryArgs: [],
-  secondaryArgs: [DYN, TURN_NOTIF, DEATH_DELETE, NAME].sort(sortByName),
+  secondaryArgs: [DYN, TURN_NOTIF, DEATH_DELETE, NAME],
   subcommands: [],
   examples: [],
 };

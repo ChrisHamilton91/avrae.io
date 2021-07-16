@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -91,7 +90,7 @@ export const BESTIARY: Command = {
   longDesc: "",
   primaryArgs: [NAME],
   secondaryArgs: [],
-  subcommands: [DELETE, IMPORT, LIST, BESTIARY_SERVER].sort(sortByName),
+  subcommands: [DELETE, IMPORT, LIST, BESTIARY_SERVER],
   examples: [],
 };
 //#endregion

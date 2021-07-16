@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -201,7 +200,7 @@ export const ADD: Command = {
     ADV,
     DIS,
     NOTE,
-  ].sort(sortByName),
+  ],
   subcommands: [],
   examples: [],
 };

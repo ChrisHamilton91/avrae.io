@@ -2,7 +2,7 @@ import { trigger } from "@angular/animations";
 import { Component, Input, OnInit } from "@angular/core";
 import { ColorStates, defaultButtonColors } from "../../@animations";
 import { commandsUiSettings } from "../../@settings";
-import { getShortest } from "../../commands-ui.component";
+import { getShortest } from "../../@sorting";
 import { CommandButton } from "../command-buttons.component";
 
 @Component({

@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -50,7 +49,7 @@ export const SETTINGS: Command = {
   shortDesc: "Changes settings for the lookup module.",
   longDesc: "",
   primaryArgs: [],
-  secondaryArgs: [REQ_DM, PM_DM, PM_RESULT].sort(sortByName),
+  secondaryArgs: [REQ_DM, PM_DM, PM_RESULT],
   subcommands: [],
   examples: [],
 };

@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import { CommandModule } from "../../schemas/Commands";
 import { BESTIARY } from "./bestiary";
 import { PACK } from "./pack";
@@ -8,5 +7,5 @@ export const HOMEBREW: CommandModule = {
   name: "Homebrew",
   shortDesc: "Commands to manage homebrew in Avrae.",
   longDesc: "",
-  commands: [BESTIARY, PACK, TOME].sort(sortByName),
+  commands: [BESTIARY, PACK, TOME],
 };

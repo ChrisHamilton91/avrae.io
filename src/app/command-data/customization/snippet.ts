@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -156,9 +155,7 @@ export const SNIPPET: Command = {
   longDesc: "",
   primaryArgs: [NAME, CODE],
   secondaryArgs: [],
-  subcommands: [AUTOFIX, DELETE, DELETE_ALL, LIST, RENAME, SUB].sort(
-    sortByName
-  ),
+  subcommands: [AUTOFIX, DELETE, DELETE_ALL, LIST, RENAME, SUB],
   examples: [],
 };
 //#endregion

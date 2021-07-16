@@ -2,7 +2,6 @@ import { trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ColorStates, primaryArgColors } from "../../@animations";
 import { commandsUiSettings } from "../../@settings";
-import { getShortest } from "../../commands-ui.component";
 import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 
 @Component({

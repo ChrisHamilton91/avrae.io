@@ -1,3 +1,5 @@
+import { sortDataByCmdString, sortDataByName } from "./@sorting";
+
 const keys = {
   prefix: "commands-ui-prefix",
   enableTooltips: "commands-ui-enable-tooltips",
@@ -47,6 +49,8 @@ class CommandsUiSettings {
   setShowCommandStrings(value: boolean) {
     this.showCommandStrings = value;
     localStorage.setItem(keys.showCommandStrings, value.toString());
+    if (value) sortDataByCmdString();
+    else sortDataByName();
   }
 
   getShowCommandStrings(): boolean {

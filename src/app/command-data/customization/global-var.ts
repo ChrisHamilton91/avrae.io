@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -149,7 +148,7 @@ export const GLOBAL_VAR: Command = {
     "\nSee http://avrae.io/cheatsheets/aliasing for more help.",
   primaryArgs: [NAME],
   secondaryArgs: [],
-  subcommands: [CREATE, EDIT, EDITOR, LIST, DELETE].sort(sortByName),
+  subcommands: [CREATE, EDIT, EDITOR, LIST, DELETE],
   examples: [],
 };
 //#endregion

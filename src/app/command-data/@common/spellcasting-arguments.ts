@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -69,6 +68,4 @@ const NOCONC: AttackArgument = {
 //#endregion
 
 //#region
-export const SPELL_ARGS: AttackArgument[] = [I, L, MOD, WITH, NOCONC].sort(
-  sortByName
-);
+export const SPELL_ARGS: AttackArgument[] = [I, L, MOD, WITH, NOCONC];

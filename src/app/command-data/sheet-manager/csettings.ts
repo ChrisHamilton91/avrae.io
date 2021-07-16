@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -98,15 +97,7 @@ export const CSETTINGS: Command = {
     "Updates personalization settings for the currently active character.",
   longDesc: "",
   primaryArgs: [],
-  secondaryArgs: [
-    COLOR,
-    CRITON,
-    REROLL,
-    SRSLOTS,
-    EMBEDIMAGE,
-    CRITDICE,
-    TALENT,
-  ].sort(sortByName),
+  secondaryArgs: [COLOR, CRITON, REROLL, SRSLOTS, EMBEDIMAGE, CRITDICE, TALENT],
   subcommands: [],
   examples: [],
 };
