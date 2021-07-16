@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { SettingsDialogComponent } from "./settings-dialog/settings-dialog.component";
 
@@ -15,7 +15,7 @@ export class SettingsComponent implements OnInit {
   openDialog() {
     this.dialog.open(SettingsDialogComponent, {
       autoFocus: false,
-      position: { top: "130px", right: "30px" },
+      position: { top: "130px", right: "15%" },
     });
   }
 }
