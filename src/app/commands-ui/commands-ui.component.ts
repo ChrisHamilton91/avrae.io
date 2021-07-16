@@ -28,15 +28,7 @@ import {
 } from "./secondary-arg-buttons/secondary-arg-buttons.component";
 import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
 import { commandsUiSettings } from "./@settings";
-
-export function getShortest(array: string[]): string {
-  if (array.length == 0) throw Error("There are no items in the array!");
-  let shortest = array[0];
-  for (let item of array) {
-    if (item.length < shortest.length) shortest = item;
-  }
-  return shortest;
-}
+import { getShortest, sortDataByCmdString, sortDataByName } from "./@sorting";
 
 @Component({
   selector: "avr-commands-ui",
@@ -78,7 +70,10 @@ export class CommandsUiComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (commandsUiSettings.showCommandStrings) sortDataByCmdString();
+    else sortDataByName();
+  }
 
   //#region setters
   setModule(module: CommandModule) {
@@ -125,7 +120,7 @@ export class CommandsUiComponent implements OnInit {
 
   //#region output string building
   getCommandString(): string {
-    let cmdString = commandsUiSettings.getPrefix();
+    let cmdString = commandsUiSettings.prefix;
     if (this.commandStack.length === 0) return cmdString;
     const lastIndex = this.commandStack.length - 1;
     cmdString += getShortest(this.commandStack[lastIndex].cmdStrings);

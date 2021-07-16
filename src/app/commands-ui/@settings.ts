@@ -1,12 +1,14 @@
+import { sortDataByCmdString, sortDataByName } from "./@sorting";
+
 const keys = {
   prefix: "commands-ui-prefix",
-  enableTooltips: "commands-ui-enable-tooltips",
+  tooltipsEnabled: "commands-ui-enable-tooltips",
   showCommandStrings: "commands-ui-show-cmd-strings",
 };
 
 const defaults = {
   prefix: "!",
-  enableTooltips: true,
+  tooltipsEnabled: true,
   showCommandStrings: false,
 };
 
@@ -16,41 +18,43 @@ class CommandsUiSettings {
   // 1. instance variable
   // 2. localStorage
   // 3. default value
-  private prefix: string;
-  private enableTooltips: boolean;
-  private showCommandStrings: boolean;
+  private _prefix: string;
+  private _tooltipsEnabled: boolean;
+  private _showCommandStrings: boolean;
 
-  setPrefix(prefix: string) {
-    this.prefix = prefix;
+  set prefix(prefix: string) {
+    this._prefix = prefix;
     localStorage.setItem(keys.prefix, prefix);
   }
 
-  getPrefix(): string {
-    if (this.prefix) return this.prefix;
+  get prefix(): string {
+    if (this._prefix) return this._prefix;
     const stored = localStorage.getItem(keys.prefix);
     return stored ? stored : defaults.prefix;
   }
 
-  setEnableTooltips(value: boolean) {
-    this.enableTooltips = value;
-    localStorage.setItem(keys.enableTooltips, value.toString());
+  set tooltipsEnabled(value: boolean) {
+    this._tooltipsEnabled = value;
+    localStorage.setItem(keys.tooltipsEnabled, value.toString());
   }
 
-  getEnableTooltips(): boolean {
-    if (this.enableTooltips) return this.enableTooltips;
-    const stored = localStorage.getItem(keys.enableTooltips);
+  get tooltipsEnabled(): boolean {
+    if (this._tooltipsEnabled) return this._tooltipsEnabled;
+    const stored = localStorage.getItem(keys.tooltipsEnabled);
     if (stored === "true") return true;
     if (stored === "false") return false;
-    return defaults.enableTooltips;
+    return defaults.tooltipsEnabled;
   }
 
-  setShowCommandStrings(value: boolean) {
-    this.showCommandStrings = value;
+  set showCommandStrings(value: boolean) {
+    this._showCommandStrings = value;
     localStorage.setItem(keys.showCommandStrings, value.toString());
+    if (value) sortDataByCmdString();
+    else sortDataByName();
   }
 
-  getShowCommandStrings(): boolean {
-    if (this.showCommandStrings) return this.showCommandStrings;
+  get showCommandStrings(): boolean {
+    if (this._showCommandStrings) return this._showCommandStrings;
     const stored = localStorage.getItem(keys.showCommandStrings);
     if (stored === "true") return true;
     if (stored === "false") return false;

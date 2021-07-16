@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -176,7 +175,7 @@ export const OPTS: Command = {
     GROUP,
     MAX,
     HP,
-  ].sort(sortByName),
+  ],
   subcommands: [],
   examples: [],
 };

@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -39,7 +38,7 @@ export const UPDATE: Command = {
   shortDesc: "Updates the current character sheet, preserving all settings.",
   longDesc: "",
   primaryArgs: [],
-  secondaryArgs: [V, NOCC].sort(sortByName),
+  secondaryArgs: [V, NOCC],
   subcommands: [],
   examples: [],
 };

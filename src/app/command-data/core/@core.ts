@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import { CommandModule } from "../../schemas/Commands";
 import { ABOUT } from "./about";
 import { CHANGELOG } from "./changelog";
@@ -10,5 +9,5 @@ export const CORE: CommandModule = {
   name: "Core",
   shortDesc: "Core utilty and general commands.",
   longDesc: "",
-  commands: [ABOUT, CHANGELOG, DDB, INVITE, PING].sort(sortByName),
+  commands: [ABOUT, CHANGELOG, DDB, INVITE, PING],
 };

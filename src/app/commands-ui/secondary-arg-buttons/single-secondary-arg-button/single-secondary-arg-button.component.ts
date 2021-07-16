@@ -25,7 +25,7 @@ export class SingleSecondaryArgButtonComponent implements OnInit {
   }
 
   getLabel() {
-    if (commandsUiSettings.getShowCommandStrings())
+    if (commandsUiSettings.showCommandStrings)
       return this.argValuePair.arg.cmdString;
     return this.argValuePair.arg.name;
   }
@@ -35,7 +35,7 @@ export class SingleSecondaryArgButtonComponent implements OnInit {
   }
 
   getTooltip(): string {
-    if (!commandsUiSettings.getEnableTooltips()) return undefined;
+    if (!commandsUiSettings.tooltipsEnabled) return undefined;
     return (
       this.argValuePair.arg.desc + ` [ ${this.argValuePair.arg.cmdString} ]`
     );

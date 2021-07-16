@@ -1,4 +1,3 @@
-import { sortByCategoryThenName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -463,7 +462,7 @@ const T: TargetArgument = {
     VULN,
     NEUTRAL,
     DUR,
-  ].sort(sortByCategoryThenName),
+  ],
   ephemeral: false,
 };
 //#endregion
@@ -507,5 +506,5 @@ export const ATTACK_ARGS: AttackArgument[] = [
   TITLE,
   F,
   THUMB,
-].sort(sortByCategoryThenName);
+];
 //#endregion

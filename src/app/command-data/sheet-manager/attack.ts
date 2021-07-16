@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -151,7 +150,7 @@ const ADD: Subcommand = {
     ADD_PHRASE,
     ADD_THUMB,
     ADD_C,
-  ].sort(sortByName),
+  ],
   subcommands: [],
   examples: [],
 };
@@ -220,7 +219,7 @@ export const ATTACK: Command = {
   longDesc: "",
   primaryArgs: [NAME],
   secondaryArgs: ATTACK_ARGS,
-  subcommands: [ADD, DELETE, IMPORT, LIST].sort(sortByName),
+  subcommands: [ADD, DELETE, IMPORT, LIST],
   examples: [],
 };
 //#endregion

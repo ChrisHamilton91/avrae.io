@@ -1,4 +1,3 @@
-import { sortByCategoryThenName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -52,7 +51,7 @@ export const AOO: Command = {
   shortDesc: "Rolls an attack of opportunity against another combatant.",
   longDesc: "",
   primaryArgs: [COMBATANT, ATTACK],
-  secondaryArgs: ATTACK_ARGS.concat([CUSTOM]).sort(sortByCategoryThenName),
+  secondaryArgs: ATTACK_ARGS.concat([CUSTOM]),
   subcommands: [],
   examples: [],
 };

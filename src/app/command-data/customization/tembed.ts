@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -122,9 +121,7 @@ export const TEMBED: Command = {
     "Parses a string as if it were in an alias, for testing, then creates and prints an Embed.",
   longDesc: "",
   primaryArgs: [STRING],
-  secondaryArgs: [TITLE, DESC, THUMB, IMAGE, FOOTER, F, COLOR, T].sort(
-    sortByName
-  ),
+  secondaryArgs: [TITLE, DESC, THUMB, IMAGE, FOOTER, F, COLOR, T],
   subcommands: [],
   examples: [],
 };

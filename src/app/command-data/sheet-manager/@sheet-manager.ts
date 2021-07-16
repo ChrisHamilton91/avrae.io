@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import { CommandModule } from "../../schemas/Commands";
 import { ATTACK } from "./attack";
 import { BEYOND } from "./beyond";
@@ -33,5 +32,5 @@ export const SHEET_MANAGER: CommandModule = {
     SHEET,
     TRANSFERCHAR,
     UPDATE,
-  ].sort(sortByName),
+  ],
 };

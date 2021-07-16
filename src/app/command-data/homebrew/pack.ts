@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -115,7 +114,7 @@ export const PACK: Command = {
   longDesc: "",
   primaryArgs: [NAME],
   secondaryArgs: [],
-  subcommands: [EDITOR, LIST, PACK_SERVER, SUB, UNSUB].sort(sortByName),
+  subcommands: [EDITOR, LIST, PACK_SERVER, SUB, UNSUB],
   examples: [],
 };
 //#endregion

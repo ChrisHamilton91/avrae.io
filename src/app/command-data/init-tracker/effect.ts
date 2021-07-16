@@ -1,4 +1,3 @@
-import { sortByCategoryThenName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -237,7 +236,7 @@ export const EFFECT: Command = {
     VULN,
     NEUTRAL,
     MAGICAL,
-  ].sort(sortByCategoryThenName),
+  ],
   subcommands: [],
   examples: [],
 };

@@ -61,7 +61,7 @@ export class SinglePrimaryArgInputComponent implements OnInit {
   }
 
   getTooltip(): string {
-    if (!commandsUiSettings.getEnableTooltips()) return undefined;
+    if (!commandsUiSettings.tooltipsEnabled) return undefined;
     const type = this.argValuePair.arg.valueType;
     if (type === ValueType.NUMBER) {
       return "This input takes a numeric value. Many arguments also support equations and dice rolls. All whitespace will be trimmed automatically.";

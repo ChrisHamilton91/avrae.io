@@ -1,4 +1,3 @@
-import { sortByName } from "src/app/command-data/@common/@common-functions";
 import {
   Command,
   Subcommand,
@@ -147,7 +146,7 @@ export const SERVER_ALIAS: Command = {
   longDesc: "",
   primaryArgs: [NAME, CODE],
   secondaryArgs: [],
-  subcommands: [AUTOFIX, DELETE, LIST, RENAME, SUB].sort(sortByName),
+  subcommands: [AUTOFIX, DELETE, LIST, RENAME, SUB],
   examples: [],
 };
 //#endregion
