@@ -65,7 +65,6 @@ function sortByCategoryThenCmdString(
 
 function sortCommandDataByName(command: Command) {
   command.subcommands.sort(sortByName);
-  command.primaryArgs.sort(sortByName);
   command.secondaryArgs.sort(sortByCategoryThenName);
   for (const subcommand of command.subcommands) {
     sortCommandDataByName(subcommand);
@@ -84,7 +83,6 @@ export function sortDataByName() {
 
 function sortCommandDataByCmdString(command: Command) {
   command.subcommands.sort(sortByShortestCmdString);
-  command.primaryArgs.sort(sortBySignature);
   command.secondaryArgs.sort(sortByCategoryThenCmdString);
   for (const subcommand of command.subcommands) {
     sortCommandDataByCmdString(subcommand);
