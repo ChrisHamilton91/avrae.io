@@ -26,7 +26,7 @@ export class SinglePrimaryArgButtonComponent implements OnInit {
   }
 
   getLabel() {
-    if (commandsUiSettings.getShowCommandStrings())
+    if (commandsUiSettings.showCommandStrings)
       return this.argValuePair.arg.signature;
     return this.argValuePair.arg.name;
   }
@@ -37,7 +37,7 @@ export class SinglePrimaryArgButtonComponent implements OnInit {
   }
 
   getTooltip(): string {
-    if (!commandsUiSettings.getEnableTooltips()) return undefined;
+    if (!commandsUiSettings.tooltipsEnabled) return undefined;
     return this.argValuePair.arg.desc;
   }
 }

@@ -23,7 +23,7 @@ export class SingleModuleButtonComponent implements OnInit {
   }
 
   getTooltip(): string {
-    if (!commandsUiSettings.getEnableTooltips()) return undefined;
+    if (!commandsUiSettings.tooltipsEnabled) return undefined;
     return this.module.shortDesc;
   }
 }

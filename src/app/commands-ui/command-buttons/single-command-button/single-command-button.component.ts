@@ -33,7 +33,7 @@ export class SingleCommandButtonComponent implements OnInit {
   }
 
   getLabel() {
-    if (commandsUiSettings.getShowCommandStrings())
+    if (commandsUiSettings.showCommandStrings)
       return getShortest(this.button.command.cmdStrings);
     return this.button.command.name;
   }
@@ -43,7 +43,7 @@ export class SingleCommandButtonComponent implements OnInit {
   }
 
   getTooltip(): string {
-    if (!commandsUiSettings.getEnableTooltips()) return undefined;
+    if (!commandsUiSettings.tooltipsEnabled) return undefined;
     let result = this.button.command.shortDesc + " [";
     const cmdStrings = this.button.command.cmdStrings;
     cmdStrings.forEach((cmd, i) => {

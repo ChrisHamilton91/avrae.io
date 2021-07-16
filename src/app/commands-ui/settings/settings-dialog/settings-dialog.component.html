@@ -1,21 +1,21 @@
 <div class="setting">
   <span class="setting-label-input">Prefix</span>
   <commands-ui-settings-input
-    [value]="settings.getPrefix()"
-    (valueChange)="settings.setPrefix($event)"
+    [value]="settings.prefix"
+    (valueChange)="settings.prefix = $event"
   ></commands-ui-settings-input>
 </div>
 <div class="setting">
   <span class="setting-label-toggle">Tooltips</span>
   <mat-slide-toggle
-    [checked]="settings.getEnableTooltips()"
-    (change)="settings.setEnableTooltips($event.checked)"
+    [checked]="settings.tooltipsEnabled"
+    (change)="settings.tooltipsEnabled = $event.checked"
   ></mat-slide-toggle>
 </div>
 <div class="setting">
   <span class="setting-label-toggle">Cmd Strings</span>
   <mat-slide-toggle
-    [checked]="settings.getShowCommandStrings()"
-    (change)="settings.setShowCommandStrings($event.checked)"
+    [checked]="settings.showCommandStrings"
+    (change)="settings.showCommandStrings = $event.checked"
   ></mat-slide-toggle>
 </div>

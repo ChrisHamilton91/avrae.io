@@ -71,7 +71,7 @@ export class CommandsUiComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (commandsUiSettings.getShowCommandStrings()) sortDataByCmdString();
+    if (commandsUiSettings.showCommandStrings) sortDataByCmdString();
     else sortDataByName();
   }
 
@@ -120,7 +120,7 @@ export class CommandsUiComponent implements OnInit {
 
   //#region output string building
   getCommandString(): string {
-    let cmdString = commandsUiSettings.getPrefix();
+    let cmdString = commandsUiSettings.prefix;
     if (this.commandStack.length === 0) return cmdString;
     const lastIndex = this.commandStack.length - 1;
     cmdString += getShortest(this.commandStack[lastIndex].cmdStrings);
