@@ -6,8 +6,8 @@
 @include mat-core();
 
 // Define the dark theme.
-$primary: mat-palette($just-black);
-$accent: mat-palette($just-yellow);
+$primary: mat-palette($commands-ui-primary);
+$accent: mat-palette($commands-ui-accent);
 
 $theme: mat-dark-theme($primary, $accent);
 @include angular-material-theme($theme);
