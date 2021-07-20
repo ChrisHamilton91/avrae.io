@@ -21,7 +21,7 @@ const STRING: PrimaryArgument = {
 
 export const TEST: Command = {
   name: "Test Alias",
-  cmdStrings: ["tembed"],
+  cmdStrings: ["test"],
   shortDesc: "Parses a string as if it were in an alias, for testing.",
   longDesc: "",
   primaryArgs: [STRING],
