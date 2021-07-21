@@ -175,6 +175,7 @@ export class CommandsUiComponent implements OnInit {
   }
 
   getPrimaryArgStringOfTypeCode(pair: PrimaryArgValuePair): string {
+    if (!pair.value) return "";
     return " " + pair.value;
   }
 
