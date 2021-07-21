@@ -149,9 +149,12 @@ const SUB: Subcommand = {
 
 //#region command
 export const SNIPPET: Command = {
-  name: "Snippets",
+  name: "Snippet",
   cmdStrings: ["snippet"],
-  shortDesc: "",
+  shortDesc:
+    `Creates a snippet to use in certain commands. ` +
+    `Ex: !snippet sneak -d "2d6[slashing]" can be used as !a sword sneak. ` +
+    `If a user and a server have snippets with the same name, the user snippet will take priority.`,
   longDesc: "",
   primaryArgs: [NAME, CODE],
   secondaryArgs: [],
