@@ -1,58 +1,46 @@
 import {
   Command,
-  Subcommand,
   PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
+  Subcommand,
   ValueType,
-  ClassTypes,
 } from "../../schemas/Commands";
 import { BESTIARY_SERVER } from "./bestiary-server";
 
 //#region primary arguments
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the bestiary to list monsters of.",
-};
+});
 //#endregion
 
 //#region subcommands
-const DELETE_NAME: PrimaryArgument = {
+const DELETE_NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the bestiary to delete.",
-};
+});
 
-const DELETE: Subcommand = {
+const DELETE = new Subcommand({
   name: "Delete Bestiary",
   cmdStrings: ["delete"],
   shortDesc: "Deletes a bestiary from Avrae.",
-  longDesc: "",
   primaryArgs: [DELETE_NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 
-const IMPORT_URL: PrimaryArgument = {
+const IMPORT_URL = new PrimaryArgument({
   name: "url",
   signature: "url",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Url of the bestiary to import.",
-};
+});
 
-const IMPORT: Subcommand = {
+const IMPORT = new Subcommand({
   name: "Import Bestiary",
   cmdStrings: ["import"],
   shortDesc: "Imports a bestiary from https://critterdb.com/.",
@@ -62,35 +50,24 @@ const IMPORT: Subcommand = {
     `\nIf your attacks don't seem to be importing properly, you can add a hidden line to the description to set it:` +
     `\n<avrae hidden>NAME|TOHITBONUS|DAMAGE</avrae>`,
   primaryArgs: [IMPORT_URL],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 
-const LIST: Subcommand = {
+const LIST = new Subcommand({
   name: "List Bestiaries",
   cmdStrings: ["list"],
   shortDesc: "Lists your available bestiaries.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region command
-export const BESTIARY: Command = {
+export const BESTIARY = new Command({
   name: "Bestiary",
   cmdStrings: ["bestiary"],
   shortDesc:
     "Commands to manage homebrew monsters. " +
     "When called without an argument, lists the current bestiary and the monsters in it. " +
     "When called with a name, switches to a different bestiary.",
-  longDesc: "",
   primaryArgs: [NAME],
-  secondaryArgs: [],
   subcommands: [DELETE, IMPORT, LIST, BESTIARY_SERVER],
-  examples: [],
-};
+});
 //#endregion

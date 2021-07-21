@@ -1,41 +1,25 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the combatant or group to remove the status effect from.",
-};
+});
 
-const EFFECT: PrimaryArgument = {
+const EFFECT = new PrimaryArgument({
   name: "effect",
   signature: "effect",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the effect to remove.",
-};
+});
 
-export const RE: Command = {
+export const RE = new Command({
   name: "Remove Effect",
   cmdStrings: ["init re", "i re"],
   shortDesc:
     "Removes a status effect from a combatant or group. Removes all if effect is not passed.",
-  longDesc: "",
   primaryArgs: [NAME, EFFECT],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

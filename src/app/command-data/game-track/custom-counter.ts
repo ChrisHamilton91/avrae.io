@@ -1,148 +1,115 @@
 import {
   Command,
-  Subcommand,
   PrimaryArgument,
   SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
+  Subcommand,
   ValueType,
-  ClassTypes,
 } from "../../schemas/Commands";
 
 //#region primary arguments
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "counter name",
   signature: "name",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the custom counter.",
-};
+});
 
-const SET: PrimaryArgument = {
+const SET = new PrimaryArgument({
   name: "set to",
   signature: "set",
   required: false,
   valueType: ValueType.TRUE,
-  default: null,
   desc: "Sets the counter to the modifier's value, as opposed to adding the modifier to the current value.",
-};
+});
 
-const MOD: PrimaryArgument = {
+const MOD = new PrimaryArgument({
   name: "modifier",
   signature: "modifier",
   required: false,
   valueType: ValueType.NUMBER,
-  default: null,
   desc: "The amount to add to or set the custom counter.",
-};
+});
 //#endregion
 
 //#region subcommands
 //#region create
-const CREATE_TITLE: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CREATE_TITLE = new SecondaryArgument({
   name: "title",
   cmdString: "-title",
   valueType: ValueType.STRING,
   desc: "Sets the title when setting or viewing the counter. [name] will be replaced with the player's name.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CREATE_DESC: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CREATE_DESC = new SecondaryArgument({
   name: "description",
   cmdString: "-desc",
   valueType: ValueType.STRING,
   desc: "Sets the description when setting or viewing the counter.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CREATE_RESET: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CREATE_RESET = new SecondaryArgument({
   name: "reset on",
   cmdString: "-reset",
   valueType: ValueType.STRING,
   desc: `Counter will reset to max on a short rest or long rest, or not ever when "none". Values: 'short', 'long', or 'none'`,
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CREATE_MAX: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CREATE_MAX = new SecondaryArgument({
   name: "maximum",
   cmdString: "-max",
   valueType: ValueType.NUMBER,
   desc: "The maximum value of the counter.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CREATE_MIN: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CREATE_MIN = new SecondaryArgument({
   name: "minimum",
   cmdString: "-min",
   valueType: ValueType.NUMBER,
   desc: "The minimum value of the counter.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CREATE_TYPE: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CREATE_TYPE = new SecondaryArgument({
   name: "counter type",
   cmdString: "-type",
   valueType: ValueType.STRING,
   desc: "Whether the counter displays as bubbles or the default: numbers. Values: 'bubble' or 'default'",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CREATE_RESET_TO: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CREATE_RESET_TO = new SecondaryArgument({
   name: "reset to",
   cmdString: "-resetto",
   valueType: ValueType.NUMBER,
   desc: "The value to reset the counter to. Default - maximum.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CREATE_RESET_BY: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CREATE_RESET_BY = new SecondaryArgument({
   name: "reset by",
   cmdString: "-resetby",
   valueType: ValueType.NUMBER,
   desc: "Rather than resetting to a certain value, modify the counter by this much per reset. Supports dice.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CREATE_NAME: PrimaryArgument = {
+const CREATE_NAME = new PrimaryArgument({
   name: "counter name",
   signature: "name",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the custom counter to create.",
-};
+});
 
-const CREATE: Subcommand = {
+const CREATE = new Subcommand({
   name: "Create Counter",
   cmdStrings: ["create"],
   shortDesc: "Creates a new custom counter.",
-  longDesc: "",
   primaryArgs: [CREATE_NAME],
   secondaryArgs: [
     CREATE_TITLE,
@@ -154,94 +121,72 @@ const CREATE: Subcommand = {
     CREATE_RESET_TO,
     CREATE_RESET_BY,
   ],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region delete
-const DELETE_NAME: PrimaryArgument = {
+const DELETE_NAME = new PrimaryArgument({
   name: "counter name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the custom counter to delete.",
-};
+});
 
-const DELETE: Subcommand = {
+const DELETE = new Subcommand({
   name: "Delete Counter",
   cmdStrings: ["delete", "remove"],
   shortDesc: "Deletes a custom counter.",
-  longDesc: "",
   primaryArgs: [DELETE_NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region reset
-const RESET_H: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const RESET_H = new SecondaryArgument({
   name: "hide output",
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides the character summary output.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const RESET_NAME: PrimaryArgument = {
+const RESET_NAME = new PrimaryArgument({
   name: "counter name",
   signature: "name",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the custom counter to reset.",
-};
+});
 
-const RESET: Subcommand = {
+const RESET = new Subcommand({
   name: "Reset Counter",
   cmdStrings: ["reset"],
   shortDesc:
     "Resets custom counters, hp, death saves, and spell slots. " +
     "Will reset all if name is not passed, otherwise the specific passed one.",
-  longDesc: "",
   primaryArgs: [RESET_NAME],
   secondaryArgs: [RESET_H],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region list
-const LIST: Subcommand = {
+const LIST = new Subcommand({
   name: "List Counters",
   cmdStrings: ["summary", "list"],
   shortDesc: "Prints a summary of all custom counters.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 //#endregion
 
 //#region command
-export const CUSTOM_COUNTER: Command = {
+export const CUSTOM_COUNTER = new Command({
   name: "Custom Counter",
   cmdStrings: ["customcounter", "cc"],
   shortDesc:
     "Commands to implement custom counters. " +
     "If a modifier is not supplied, prints the value and metadata of the counter name. " +
     "Otherwise, changes the counter name by modifier. Supports dice.",
-  longDesc: "",
   primaryArgs: [NAME, SET, MOD],
-  secondaryArgs: [],
   subcommands: [CREATE, DELETE, RESET, LIST],
-  examples: [],
-};
+});
 //#endregion

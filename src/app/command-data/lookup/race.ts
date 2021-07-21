@@ -1,31 +1,16 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the race to look up.",
-};
+});
 
-export const RACE: Command = {
+export const RACE = new Command({
   name: "Lookup Race",
   cmdStrings: ["race"],
   shortDesc: "Looks up a race.",
-  longDesc: "",
   primaryArgs: [NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

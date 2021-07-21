@@ -1,47 +1,36 @@
 import {
   Command,
-  Subcommand,
   PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
+  Subcommand,
   ValueType,
 } from "../../schemas/Commands";
 
 //#region primary arguments
-const CAMPAIGN_LINK: PrimaryArgument = {
+const CAMPAIGN_LINK = new PrimaryArgument({
   name: "campaign link",
   signature: "campaign_link",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The link to a D&D Beyond campaign.",
-};
+});
 //#endregion
 
 //#region subcommands
-const LIST: Subcommand = {
+const LIST = new Subcommand({
   name: "List Campaigns",
   cmdStrings: ["list"],
   shortDesc: "Lists all campaigns connected to this channel.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 
-const REMOVE_NAME: PrimaryArgument = {
+const REMOVE_NAME = new PrimaryArgument({
   name: "campaign name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the campaign to remove.",
-};
+});
 
-const REMOVE: Subcommand = {
+const REMOVE = new Subcommand({
   name: "Remove Campaign",
   cmdStrings: ["remove"],
   shortDesc: "Unlinks a campaign from this channel.",
@@ -49,14 +38,11 @@ const REMOVE: Subcommand = {
     "Unlinks a campaign from this channel." +
     "\nYou must be the DM of the campaign or have Manage Server permissions to remove it from a channel.",
   primaryArgs: [REMOVE_NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region command
-export const CAMPAIGN: Command = {
+export const CAMPAIGN = new Command({
   name: "Link Campaign",
   cmdStrings: ["campaign"],
   shortDesc:
@@ -66,8 +52,6 @@ export const CAMPAIGN: Command = {
     "\nYou must be the DM of the campaign to link it to a channel." +
     "\nNot seeing a player's rolls? Link their D&D Beyond and Discord accounts at https://www.dndbeyond.com/account, and check with the `!ddb` command!",
   primaryArgs: [CAMPAIGN_LINK],
-  secondaryArgs: [],
   subcommands: [LIST, REMOVE],
-  examples: [],
-};
+});
 //#endregion

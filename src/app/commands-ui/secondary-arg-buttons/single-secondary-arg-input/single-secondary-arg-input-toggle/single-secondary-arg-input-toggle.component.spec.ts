@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { SingleSecondaryArgInputToggleComponent } from "./single-secondary-arg-input-toggle.component";
 
-import { SingleSecondaryArgInputToggleComponent } from './single-secondary-arg-input-toggle.component';
-
-describe('SingleSecondaryArgInputToggleComponent', () => {
+describe("SingleSecondaryArgInputToggleComponent", () => {
   let component: SingleSecondaryArgInputToggleComponent;
   let fixture: ComponentFixture<SingleSecondaryArgInputToggleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleSecondaryArgInputToggleComponent ]
-    })
-    .compileComponents();
+      declarations: [SingleSecondaryArgInputToggleComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('SingleSecondaryArgInputToggleComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

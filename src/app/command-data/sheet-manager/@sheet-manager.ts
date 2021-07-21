@@ -13,11 +13,10 @@ import { SHEET } from "./sheet";
 import { TRANSFERCHAR } from "./transfer-char";
 import { UPDATE } from "./update";
 
-export const SHEET_MANAGER: CommandModule = {
+export const SHEET_MANAGER = new CommandModule({
   name: "SheetManager",
   shortDesc:
     "Commands to load a character sheet into Avrae, supporting commands to modify the character, and basic macros.",
-  longDesc: "",
   commands: [
     ATTACK,
     BEYOND,
@@ -33,4 +32,4 @@ export const SHEET_MANAGER: CommandModule = {
     TRANSFERCHAR,
     UPDATE,
   ],
-};
+});

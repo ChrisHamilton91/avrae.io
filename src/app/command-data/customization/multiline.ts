@@ -1,25 +1,14 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, MultilineArgument, ValueType } from "../../schemas/Commands";
 
-const CMDS: PrimaryArgument = {
+const CMDS = new MultilineArgument({
   name: "commands",
   signature: "commands",
   required: true,
   valueType: ValueType.MULTILINE,
-  default: null,
   desc: "A list of commands, each prefixed and on a new line.",
-};
+});
 
-export const MULTILINE: Command = {
+export const MULTILINE = new Command({
   name: "Multiline Commands",
   cmdStrings: ["multiline"],
   shortDesc:
@@ -33,7 +22,4 @@ export const MULTILINE: Command = {
     "\n!spell Fly" +
     "\n!monster Rat",
   primaryArgs: [CMDS],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

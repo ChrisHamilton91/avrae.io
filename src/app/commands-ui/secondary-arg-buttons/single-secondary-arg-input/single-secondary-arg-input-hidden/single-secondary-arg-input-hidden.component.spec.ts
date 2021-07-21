@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { SingleSecondaryArgInputHiddenComponent } from "./single-secondary-arg-input-hidden.component";
 
-import { SingleSecondaryArgInputHiddenComponent } from './single-secondary-arg-input-hidden.component';
-
-describe('SingleSecondaryArgInputHiddenComponent', () => {
+describe("SingleSecondaryArgInputHiddenComponent", () => {
   let component: SingleSecondaryArgInputHiddenComponent;
   let fixture: ComponentFixture<SingleSecondaryArgInputHiddenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleSecondaryArgInputHiddenComponent ]
-    })
-    .compileComponents();
+      declarations: [SingleSecondaryArgInputHiddenComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('SingleSecondaryArgInputHiddenComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

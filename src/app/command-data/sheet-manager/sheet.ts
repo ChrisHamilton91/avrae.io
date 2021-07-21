@@ -1,21 +1,7 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-} from "../../schemas/Commands";
+import { Command } from "../../schemas/Commands";
 
-export const SHEET: Command = {
+export const SHEET = new Command({
   name: "Character Sheet",
   cmdStrings: ["sheet"],
   shortDesc: "Prints the embed sheet of your currently active character.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

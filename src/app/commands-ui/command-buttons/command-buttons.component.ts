@@ -1,12 +1,7 @@
-import { AnimationEvent, trigger } from "@angular/animations";
+import { trigger } from "@angular/animations";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Subject } from "rxjs";
-import {
-  Argument,
-  Command,
-  CommandModule,
-  Subcommand,
-} from "src/app/schemas/Commands";
+import { Command, CommandModule } from "src/app/schemas/Commands";
 import { fadeInAnimation, fadeOutAnimation } from "../@animations";
 import { SubcommandButton } from "./subcommand-buttons/subcommand-buttons.component";
 

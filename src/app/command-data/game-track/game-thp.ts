@@ -1,31 +1,16 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const THP: PrimaryArgument = {
+const THP = new PrimaryArgument({
   name: "temporary HP",
   signature: "thp",
   required: false,
   valueType: ValueType.NUMBER,
-  default: null,
   desc: "Amount of temporary HP. Positive numbers will set thp to the value, negative numbers will subtract the value from current thp.",
-};
+});
 
-export const GAME_THP: Command = {
+export const GAME_THP = new Command({
   name: "Temporary HP",
   cmdStrings: ["g thp", "game thp"],
   shortDesc: "Modifies the temporary HP of the current active character.",
-  longDesc: "",
   primaryArgs: [THP],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

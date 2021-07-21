@@ -1,12 +1,5 @@
 import { trigger } from "@angular/animations";
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation,
-} from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ValueType } from "src/app/schemas/Commands";
 import { hideAnimation, showAnimation } from "../../@animations";
 import { commandsUiSettings } from "../../@settings";

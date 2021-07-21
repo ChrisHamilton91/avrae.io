@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { CommandButtonsComponent } from "./command-buttons.component";
 
-import { CommandButtonsComponent } from './command-buttons.component';
-
-describe('CommandButtonsComponent', () => {
+describe("CommandButtonsComponent", () => {
   let component: CommandButtonsComponent;
   let fixture: ComponentFixture<CommandButtonsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CommandButtonsComponent ]
-    })
-    .compileComponents();
+      declarations: [CommandButtonsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('CommandButtonsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

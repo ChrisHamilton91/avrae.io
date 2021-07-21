@@ -1,30 +1,16 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const MESSAGE: PrimaryArgument = {
+const MESSAGE = new PrimaryArgument({
   name: "message",
   signature: "msg",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The message to echo.",
-};
+});
 
-export const ECHO: Command = {
+export const ECHO = new Command({
   name: "Echo",
   cmdStrings: ["echo"],
   shortDesc: "Echos a message.",
-  longDesc: "",
   primaryArgs: [MESSAGE],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

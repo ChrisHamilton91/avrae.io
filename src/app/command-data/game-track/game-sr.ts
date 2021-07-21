@@ -1,33 +1,16 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, SecondaryArgument, ValueType } from "../../schemas/Commands";
 
-const H: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const H = new SecondaryArgument({
   name: "hide output",
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides the character summary output.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-export const GAME_SR: Command = {
+export const GAME_SR = new Command({
   name: "Short Rest",
   cmdStrings: ["g shortrest", "game shortrest", "g sr", "game sr"],
   shortDesc: "Performs a short rest, resetting applicable counters.",
-  longDesc: "",
-  primaryArgs: [],
   secondaryArgs: [H],
-  subcommands: [],
-  examples: [],
-};
+});

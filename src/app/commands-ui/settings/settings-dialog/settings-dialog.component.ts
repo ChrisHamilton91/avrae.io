@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
-import { MatSlideToggleChange } from "@angular/material/slide-toggle";
 import { commandsUiSettings } from "../../@settings";
 
 @Component({
@@ -15,9 +14,5 @@ export class SettingsDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.dialogRef.addPanelClass("commands-ui-settings-dialog");
-  }
-
-  enableTooltipChange(event: MatSlideToggleChange) {
-    console.log(event.checked);
   }
 }

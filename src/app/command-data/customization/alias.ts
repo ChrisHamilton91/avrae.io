@@ -1,154 +1,116 @@
 import {
   Command,
-  Subcommand,
   PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
+  Subcommand,
   ValueType,
-  ClassTypes,
 } from "../../schemas/Commands";
 
 //#region primary arguments
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the alias. This name will become a usable command.",
-};
+});
 
-const CODE: PrimaryArgument = {
+const CODE = new PrimaryArgument({
   name: "commands",
   signature: "code",
   required: false,
   valueType: ValueType.CODE,
-  default: null,
   desc: "The commands that will be executed by the alias.",
-};
+});
 //#endregion
 
 //#region subcommands
 //#region autofix
-const AUTOFIX: Subcommand = {
+const AUTOFIX = new Subcommand({
   name: "Autofix",
   cmdStrings: ["autofix"],
   shortDesc:
     "Ensures that all server and subscribed workshop aliases have unique names.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region delete
-const DELETE_NAME: PrimaryArgument = {
+const DELETE_NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the alias to delete.",
-};
+});
 
-const DELETE: Subcommand = {
+const DELETE = new Subcommand({
   name: "Delete Alias",
   cmdStrings: ["delete", "remove"],
   shortDesc: "Deletes an alias.",
-  longDesc: "",
   primaryArgs: [DELETE_NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region delete all
-const DELETE_ALL: Subcommand = {
+const DELETE_ALL = new Subcommand({
   name: "Delete All Aliases",
   cmdStrings: ["deleteall", "removeall"],
   shortDesc: "Deletes ALL user aliases.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region list
-const LIST: Subcommand = {
+const LIST = new Subcommand({
   name: "List Aliases",
   cmdStrings: ["list"],
   shortDesc: "Lists all aliases.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region rename
-const RENAME_OLD: PrimaryArgument = {
+const RENAME_OLD = new PrimaryArgument({
   name: "old name",
   signature: "old_name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The current name of the alias to rename.",
-};
+});
 
-const RENAME_NEW: PrimaryArgument = {
+const RENAME_NEW = new PrimaryArgument({
   name: "new name",
   signature: "old_name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name to rename the alias to.",
-};
+});
 
-const RENAME: Subcommand = {
+const RENAME = new Subcommand({
   name: "Rename Alias",
   cmdStrings: ["rename"],
   shortDesc: "Renames an alias or subscribed workshop alias to a new name.",
-  longDesc: "",
   primaryArgs: [RENAME_OLD, RENAME_NEW],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region subscribe
-const SUB_URL: PrimaryArgument = {
+const SUB_URL = new PrimaryArgument({
   name: "url",
   signature: "url",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The url of the workshop collection.",
-};
+});
 
-const SUB: Subcommand = {
+const SUB = new Subcommand({
   name: "Subscribe",
   cmdStrings: ["subscribe", "sub"],
   shortDesc: "Subscribes to all aliases and snippets in a workshop collection.",
-  longDesc: "",
   primaryArgs: [SUB_URL],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 //#endregion
 
 //#region command
-export const ALIAS: Command = {
+export const ALIAS = new Command({
   name: "Alias",
   cmdStrings: ["alias"],
   shortDesc:
@@ -159,8 +121,6 @@ export const ALIAS: Command = {
     "\nNote that aliases cannot call other aliases." +
     "\nCheck out the documentation at https://avrae.readthedocs.io for more information.",
   primaryArgs: [NAME, CODE],
-  secondaryArgs: [],
   subcommands: [AUTOFIX, DELETE, DELETE_ALL, LIST, RENAME, SUB],
-  examples: [],
-};
+});
 //#endregion

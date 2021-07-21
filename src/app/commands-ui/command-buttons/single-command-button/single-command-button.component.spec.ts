@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { SingleCommandButtonComponent } from "./single-command-button.component";
 
-import { SingleCommandButtonComponent } from './single-command-button.component';
-
-describe('SingleCommandButtonComponent', () => {
+describe("SingleCommandButtonComponent", () => {
   let component: SingleCommandButtonComponent;
   let fixture: ComponentFixture<SingleCommandButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleCommandButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [SingleCommandButtonComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('SingleCommandButtonComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

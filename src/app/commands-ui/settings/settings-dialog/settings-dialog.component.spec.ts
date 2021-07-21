@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { SettingsDialogComponent } from "./settings-dialog.component";
 
-import { SettingsDialogComponent } from './settings-dialog.component';
-
-describe('SettingsDialogComponent', () => {
+describe("SettingsDialogComponent", () => {
   let component: SettingsDialogComponent;
   let fixture: ComponentFixture<SettingsDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SettingsDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [SettingsDialogComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('SettingsDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

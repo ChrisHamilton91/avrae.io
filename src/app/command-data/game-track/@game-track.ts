@@ -10,10 +10,9 @@ import { GAME_STATUS } from "./game-status";
 import { GAME_THP } from "./game-thp";
 import { SPELLBOOK } from "./spellbook";
 
-export const GAMETRACK: CommandModule = {
+export const GAMETRACK = new CommandModule({
   name: "GameTrack",
   shortDesc: "Commands to help track game resources.",
-  longDesc: "",
   commands: [
     CAST,
     CUSTOM_COUNTER,
@@ -26,4 +25,4 @@ export const GAMETRACK: CommandModule = {
     GAME_THP,
     SPELLBOOK,
   ],
-};
+});

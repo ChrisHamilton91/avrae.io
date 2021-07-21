@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { SinglePrimaryArgInputComponent } from "./single-primary-arg-input.component";
 
-import { SinglePrimaryArgInputComponent } from './single-primary-arg-input.component';
-
-describe('SinglePrimaryArgInputComponent', () => {
+describe("SinglePrimaryArgInputComponent", () => {
   let component: SinglePrimaryArgInputComponent;
   let fixture: ComponentFixture<SinglePrimaryArgInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SinglePrimaryArgInputComponent ]
-    })
-    .compileComponents();
+      declarations: [SinglePrimaryArgInputComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('SinglePrimaryArgInputComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

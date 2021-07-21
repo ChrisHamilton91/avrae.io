@@ -34,14 +34,6 @@ export const EffectCategories = {
   RESISTS: { name: "Resists", index: 2 },
 };
 
-/** Use these enums to check for class types at runtime - necessary for differentiating secondary arguments */
-export enum ClassTypes {
-  SECONDARY_ARGUMENT,
-  ATTACK_ARGUMENT,
-  TARGET_ARGUMENT,
-  EFFECT_ARGUMENT,
-}
-
 /** Represents a collection of Avrae commands */
 export class CommandModule {
   /** The name of the command module */
@@ -49,9 +41,15 @@ export class CommandModule {
   /** A short description of the command module */
   shortDesc: string;
   /** An optional, more in-depth description */
-  longDesc: string;
+  longDesc?: string;
   /** An array of all commands within the module*/
   commands: Command[];
+  constructor(module: CommandModule) {
+    this.name = module.name;
+    this.shortDesc = module.shortDesc;
+    this.longDesc = module.longDesc;
+    this.commands = module.commands;
+  }
 }
 
 /** Represents a top level Avrae command */
@@ -63,18 +61,22 @@ export class Command {
   /** A short description of the command */
   shortDesc: string;
   /** An optional, more in-depth description */
-  longDesc: string;
+  longDesc?: string;
   /** An array of primary arguments - these must be in the proper order in the array */
-  primaryArgs: PrimaryArgument[];
+  primaryArgs?: PrimaryArgument[];
   /** An array of secondary arguments */
-  secondaryArgs: SecondaryArgument[];
+  secondaryArgs?: SecondaryArgument[];
   /** An array of subcommands */
-  subcommands: Subcommand[];
-  /**
-   * An array of examples showing the user how to use the command.
-   * Should display all combinations of primary arguments.
-   */
-  examples: string[];
+  subcommands?: Subcommand[];
+  constructor(command: Command) {
+    this.name = command.name;
+    this.cmdStrings = command.cmdStrings;
+    this.shortDesc = command.shortDesc;
+    this.longDesc = command.longDesc;
+    this.primaryArgs = command.primaryArgs ?? [];
+    this.secondaryArgs = command.secondaryArgs ?? [];
+    this.subcommands = command.subcommands ?? [];
+  }
 }
 
 /**
@@ -92,6 +94,11 @@ export class Argument {
   desc: string;
   /** The type of value that is passed to the command */
   valueType: ValueType;
+  constructor(arg: Argument) {
+    this.name = arg.name;
+    this.desc = arg.desc;
+    this.valueType = arg.valueType;
+  }
 }
 
 /**
@@ -105,11 +112,20 @@ export class PrimaryArgument extends Argument {
    * Used as a command string for arguments with valueType: TRUE
    */
   signature: string;
-  /** Whether or not this argument is requied for the command to execute */
+  /** Whether or not this argument is required for the command to execute */
   required: boolean;
   /** The default value of the argument if no value is passed by the user */
-  default: null | number | string;
+  default?: number | string;
+  constructor(arg: PrimaryArgument) {
+    super(arg);
+    this.signature = arg.signature;
+    this.required = arg.required;
+    this.default = arg.default;
+  }
 }
+
+/** Represents the code passed to the multiline command */
+export class MultilineArgument extends PrimaryArgument {}
 
 /**
  * Represents arguments that appear after primary arguments, and in any order.
@@ -117,12 +133,8 @@ export class PrimaryArgument extends Argument {
  * Avrae recognizes these arguments by the their keys, which are stored in the cmdString property.
  */
 export class SecondaryArgument extends Argument {
-  /** For checking the class type at runtime */
-  type: ClassTypes;
   /** The command string that lets Avrae recognize this argument. ie. The key of the key-value pair. */
   cmdString: string;
-  /** An optional example of how to use this argument */
-  example: string;
   /**
    * Whether or not the argument is ephemeral, meaning an integer can be appended to the argument's key,
    * and the argument will only apply to that many iterations.
@@ -130,7 +142,13 @@ export class SecondaryArgument extends Argument {
    */
   ephemeral: boolean;
   /** Optional category for organization */
-  category: null | { name: string; index: number };
+  category?: { name: string; index: number };
+  constructor(arg: SecondaryArgument) {
+    super(arg);
+    this.cmdString = arg.cmdString;
+    this.ephemeral = arg.ephemeral;
+    this.category = arg.category;
+  }
 }
 
 /** An argument specifically for the attack command */
@@ -147,6 +165,10 @@ export class AttackArgument extends SecondaryArgument {
 export class TargetArgument extends AttackArgument {
   /** An array of arguments that can be passed to this argument, besides the target itself. */
   secondaryArgs: SecondaryArgument[];
+  constructor(arg: TargetArgument) {
+    super(arg);
+    this.secondaryArgs = arg.secondaryArgs;
+  }
 }
 
 /** An argument specifically for the effect command */

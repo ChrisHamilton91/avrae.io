@@ -7,9 +7,8 @@ import { MONSAVE } from "./monsave";
 import { MULTIROLL } from "./multiroll";
 import { ROLL } from "./roll";
 
-export const DICE: CommandModule = {
+export const DICE = new CommandModule({
   name: "Dice",
   shortDesc: "Dice and math related commands. Also has rolls for monsters.",
-  longDesc: "",
   commands: [ITERROLL, MONATTACK, MONCAST, MONCHECK, MONSAVE, MULTIROLL, ROLL],
-};
+});

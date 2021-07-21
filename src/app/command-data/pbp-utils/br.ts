@@ -1,21 +1,7 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-} from "../../schemas/Commands";
+import { Command } from "../../schemas/Commands";
 
-export const BR: Command = {
+export const BR = new Command({
   name: "Scene Break",
   cmdStrings: ["br"],
   shortDesc: "Prints a scene break.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

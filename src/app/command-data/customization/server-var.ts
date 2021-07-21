@@ -1,70 +1,53 @@
 import {
   Command,
-  Subcommand,
   PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
+  Subcommand,
   ValueType,
-  ClassTypes,
 } from "../../schemas/Commands";
 
 //#region primary arguments
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the server variable to create.",
-};
+});
 
-const VALUE: PrimaryArgument = {
+const VALUE = new PrimaryArgument({
   name: "value",
   signature: "value",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The value to assign to the server variable.",
-};
+});
 //#endregion
 
 //#region subcommands
-const LIST: Subcommand = {
+const LIST = new Subcommand({
   name: "List Server Variables",
   cmdStrings: ["list"],
   shortDesc: "Lists all svars for the server.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 
-const DELETE_NAME: PrimaryArgument = {
+const DELETE_NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the server variable to delete.",
-};
+});
 
-const DELETE: Subcommand = {
+const DELETE = new Subcommand({
   name: "Delete Server Variable",
   cmdStrings: ["delete", "remove"],
   shortDesc: "Deletes an svar from the server.",
-  longDesc: "",
   primaryArgs: [DELETE_NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region command
-export const SERVER_VAR: Command = {
+export const SERVER_VAR = new Command({
   name: "Server Variables",
   cmdStrings: ["servervar", "svar"],
   shortDesc:
@@ -76,8 +59,6 @@ export const SERVER_VAR: Command = {
     "\nThese are usually used to set server-wide defaults for aliases without editing the code." +
     "\nSee http://avrae.io/cheatsheets/aliasing for more help.",
   primaryArgs: [NAME, VALUE],
-  secondaryArgs: [],
   subcommands: [LIST, DELETE],
-  examples: [],
-};
+});
 //#endregion

@@ -15,10 +15,9 @@ import { SPELL } from "./spell";
 import { SUBCLASS } from "./subclass";
 import { TOKEN } from "./token";
 
-export const LOOKUP: CommandModule = {
+export const LOOKUP = new CommandModule({
   name: "Lookup",
   shortDesc: "Commands to help look up items, status effects, rules, etc.",
-  longDesc: "",
   commands: [
     BACKGROUND,
     CLASS,
@@ -36,4 +35,4 @@ export const LOOKUP: CommandModule = {
     SUBCLASS,
     TOKEN,
   ],
-};
+});

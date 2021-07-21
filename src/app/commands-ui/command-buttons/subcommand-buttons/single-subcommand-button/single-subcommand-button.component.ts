@@ -1,5 +1,5 @@
-import { AnimationEvent, trigger } from "@angular/animations";
-import { Component, Input, OnInit, Output } from "@angular/core";
+import { trigger } from "@angular/animations";
+import { Component, Input, OnInit } from "@angular/core";
 import {
   ColorStates,
   dropDownAnimation,

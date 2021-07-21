@@ -2,22 +2,18 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 import { COMMAND_MODULES } from "../command-data/command-modules";
 import {
-  CommandModule,
   Command,
+  CommandModule,
   Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
   ValueType,
-  Argument,
-  ClassTypes,
 } from "../schemas/Commands";
+import { commandsUiSettings } from "./@settings";
+import { getShortest, sortDataByCmdString, sortDataByName } from "./@sorting";
 import {
   CommandButton,
   CommandButtonsComponent,
 } from "./command-buttons/command-buttons.component";
+import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
 import {
   PrimaryArgButtonsComponent,
   PrimaryArgValuePair,
@@ -26,9 +22,6 @@ import {
   SecondaryArgButtonsComponent,
   SecondaryArgValuePair,
 } from "./secondary-arg-buttons/secondary-arg-buttons.component";
-import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
-import { commandsUiSettings } from "./@settings";
-import { getShortest, sortDataByCmdString, sortDataByName } from "./@sorting";
 
 @Component({
   selector: "avr-commands-ui",

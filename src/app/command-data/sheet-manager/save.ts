@@ -1,36 +1,22 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 import { SAVE_ARGS } from "../@common/save-arguments";
 
 //#region primary arguments
-const ABILITY: PrimaryArgument = {
+const ABILITY = new PrimaryArgument({
   name: "ability",
   signature: "ability",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The ability of the saving throw. (ie. dexterity, strength, charisma)",
-};
+});
 //#endregion
 
 //#region command
-export const SAVE: Command = {
+export const SAVE = new Command({
   name: "Saving Throw",
   cmdStrings: ["s", "save"],
   shortDesc: "Rolls a save for your current active character.",
-  longDesc: "",
   primaryArgs: [ABILITY],
   secondaryArgs: SAVE_ARGS,
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion

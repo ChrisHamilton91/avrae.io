@@ -1,11 +1,9 @@
 import { COMMAND_MODULES } from "../command-data/command-modules";
 import {
-  CommandModule,
-  Command,
   Argument,
+  Command,
+  CommandModule,
   SecondaryArgument,
-  PrimaryArgument,
-  Subcommand,
 } from "../schemas/Commands";
 
 export function getShortest(array: string[]): string {
@@ -41,12 +39,6 @@ function sortByShortestCmdString(a: Command, b: Command) {
   const cmdStringB = getShortest(b.cmdStrings);
   if (cmdStringA < cmdStringB) return -1;
   if (cmdStringA > cmdStringB) return 1;
-  return 0;
-}
-
-function sortBySignature(a: PrimaryArgument, b: PrimaryArgument) {
-  if (a.signature < b.signature) return -1;
-  if (a.signature > b.signature) return 1;
   return 0;
 }
 
