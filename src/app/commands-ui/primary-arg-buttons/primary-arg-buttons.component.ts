@@ -14,7 +14,7 @@ import { fadeInAnimation, fadeOutAnimation } from "../@animations";
 
 export class PrimaryArgValuePair {
   arg: PrimaryArgument;
-  value: string | boolean;
+  value: string | string[] | boolean;
   active: boolean;
   activeChange = new Subject();
   constructor(arg: PrimaryArgument) {

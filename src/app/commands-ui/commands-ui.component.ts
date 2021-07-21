@@ -145,6 +145,12 @@ export class CommandsUiComponent implements OnInit {
         case ValueType.TRUE:
           cmdString += this.getPrimaryArgStringOfTypeTrue(pair);
           break;
+        case ValueType.CODE:
+          cmdString += this.getPrimaryArgStringOfTypeCode(pair);
+          break;
+        case ValueType.MULTILINE:
+          cmdString += this.getPrimaryArgStringOfTypeMultiline(pair);
+          break;
         default:
           throw Error(
             `ValueType: ${
@@ -173,6 +179,18 @@ export class CommandsUiComponent implements OnInit {
 
   getPrimaryArgStringOfTypeTrue(pair: PrimaryArgValuePair): string {
     return " " + pair.arg.signature;
+  }
+
+  getPrimaryArgStringOfTypeCode(pair: PrimaryArgValuePair): string {
+    return " " + pair.value;
+  }
+
+  getPrimaryArgStringOfTypeMultiline(pair: PrimaryArgValuePair): string {
+    let result = "";
+    for (const line of pair.value as string[]) {
+      result += "\n" + commandsUiSettings.prefix + line;
+    }
+    return result;
   }
 
   getSecondaryArgsString(): string {

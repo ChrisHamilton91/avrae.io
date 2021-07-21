@@ -69,5 +69,17 @@ export class SinglePrimaryArgInputComponent implements OnInit {
     if (type === ValueType.STRING) {
       return "This input takes a string value (text). If there is whitespace, the text will be surrounded in quotations automatically.";
     }
+    if (type === ValueType.CODE) {
+      return (
+        "This input takes code as a value, such as other commands. " +
+        "If you are making an alias, you can instead use the alias button above the output box, and build your command using buttons."
+      );
+    }
+    if (type === ValueType.MULTILINE) {
+      return (
+        "This input takes a single command. Click the plus symbol to add more lines. " +
+        "You can also use the multiline button above the output box to build each line using buttons."
+      );
+    }
   }
 }
