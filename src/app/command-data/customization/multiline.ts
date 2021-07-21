@@ -14,7 +14,7 @@ const CMDS: PrimaryArgument = {
   name: "commands",
   signature: "commands",
   required: true,
-  valueType: ValueType.STRING,
+  valueType: ValueType.MULTILINE,
   default: null,
   desc: "A list of commands, each prefixed and on a new line.",
 };

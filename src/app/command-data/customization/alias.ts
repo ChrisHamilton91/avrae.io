@@ -24,7 +24,7 @@ const CODE: PrimaryArgument = {
   name: "commands",
   signature: "code",
   required: false,
-  valueType: ValueType.STRING,
+  valueType: ValueType.CODE,
   default: null,
   desc: "The commands that will be executed by the alias.",
 };

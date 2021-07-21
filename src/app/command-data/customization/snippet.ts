@@ -17,7 +17,7 @@ const NAME: PrimaryArgument = {
   required: false,
   valueType: ValueType.STRING,
   default: null,
-  desc: "The name of the snippet.",
+  desc: "The name of the snippet. This name will now always be replaced with the provided code.",
 };
 
 const CODE: PrimaryArgument = {
@@ -26,7 +26,7 @@ const CODE: PrimaryArgument = {
   required: false,
   valueType: ValueType.STRING,
   default: null,
-  desc: "The code encapsulated in the snippet.",
+  desc: "The code that will always replace the given name. This can be any text.",
 };
 //#endregion
 
@@ -56,7 +56,7 @@ const DELETE_NAME: PrimaryArgument = {
 };
 
 const DELETE: Subcommand = {
-  name: "Delete Alias",
+  name: "Delete Snippet",
   cmdStrings: ["delete", "remove"],
   shortDesc: "Deletes a snippet.",
   longDesc: "",
@@ -69,7 +69,7 @@ const DELETE: Subcommand = {
 
 //#region delete all
 const DELETE_ALL: Subcommand = {
-  name: "Delete All Aliases",
+  name: "Delete All Snippets",
   cmdStrings: ["deleteall", "removeall"],
   shortDesc: "Deletes ALL user snippets.",
   longDesc: "",
@@ -82,7 +82,7 @@ const DELETE_ALL: Subcommand = {
 
 //#region list
 const LIST: Subcommand = {
-  name: "List Aliases",
+  name: "List Snippets",
   cmdStrings: ["list"],
   shortDesc: "Lists all snippets.",
   longDesc: "",
@@ -113,7 +113,7 @@ const RENAME_NEW: PrimaryArgument = {
 };
 
 const RENAME: Subcommand = {
-  name: "Rename Alias",
+  name: "Rename Snippet",
   cmdStrings: ["rename"],
   shortDesc: "Renames a snippet or subscribed workshop snippet to a new name.",
   longDesc: "",

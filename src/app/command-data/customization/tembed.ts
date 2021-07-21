@@ -15,7 +15,7 @@ const STRING: PrimaryArgument = {
   name: "test alias",
   signature: "test_alias",
   required: true,
-  valueType: ValueType.STRING,
+  valueType: ValueType.CODE,
   default: null,
   desc: "The commands to test as if they were an alias.",
 };

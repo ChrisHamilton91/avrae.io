@@ -17,7 +17,7 @@ const NAME: PrimaryArgument = {
   required: false,
   valueType: ValueType.STRING,
   default: null,
-  desc: "The name of the server snippet.",
+  desc: "The name of the server snippet. This name will now always be replaced with the provided code.",
 };
 
 const CODE: PrimaryArgument = {
@@ -26,7 +26,7 @@ const CODE: PrimaryArgument = {
   required: false,
   valueType: ValueType.STRING,
   default: null,
-  desc: "The code encapsulated in the snippet.",
+  desc: "The code that will always replace the given name. This can be any text.",
 };
 //#endregion
 

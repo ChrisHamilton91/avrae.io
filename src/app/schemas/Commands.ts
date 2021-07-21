@@ -8,6 +8,10 @@ export enum ValueType {
   STRING,
   /** For arguments that accept 'true' or 'false' */
   BOOLEAN,
+  /** For arguments that accept code or other commands */
+  CODE,
+  /** For the multiline code argument */
+  MULTILINE,
 }
 
 /** These are categories to sort out the list of attack arguments */
