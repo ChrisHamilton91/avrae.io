@@ -3,6 +3,7 @@ import { Clipboard } from "@angular/cdk/clipboard";
 import { Component, Input, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { visibilityAnimation } from "../@animations";
+import { commandsUiSettings } from "../@settings";
 
 @Component({
   selector: "commands-ui-output-area",
@@ -13,6 +14,8 @@ import { visibilityAnimation } from "../@animations";
 export class OutputAreaComponent implements OnInit {
   @Input() commandString: string;
   aliasMode = false;
+  aliasName = "";
+  aliasPlaceholder = "aliasName";
   multilineMode = false;
 
   constructor(private clipboard: Clipboard, private toastr: ToastrService) {}
@@ -41,5 +44,17 @@ export class OutputAreaComponent implements OnInit {
 
   getAliasInputState() {
     return this.aliasMode ? "visible" : "hidden";
+  }
+
+  changeAliasName(input: HTMLInputElement) {
+    this.aliasName = input.value;
+  }
+
+  getOutput() {
+    let result = commandsUiSettings.prefix;
+    if (this.aliasMode)
+      result += `alias ${this.aliasName || this.aliasPlaceholder} `;
+    result += this.commandString;
+    return result;
   }
 }

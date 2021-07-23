@@ -113,7 +113,7 @@ export class CommandsUiComponent implements OnInit {
 
   //#region output string building
   getCommandString(): string {
-    let cmdString = commandsUiSettings.prefix;
+    let cmdString = "";
     if (this.commandStack.length === 0) return cmdString;
     const lastIndex = this.commandStack.length - 1;
     cmdString += getShortest(this.commandStack[lastIndex].cmdStrings);

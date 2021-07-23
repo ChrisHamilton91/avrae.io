@@ -32,16 +32,17 @@
       [@visibility]="getAliasInputState()"
       type="input"
       class="alias-input"
-      placeholder="alias name"
+      [placeholder]="aliasPlaceholder"
       spellcheck="false"
       autocomplete="off"
+      (input)="changeAliasName($event.target)"
     />
   </div>
 
   <input
     class="output-box"
     spellcheck="false"
-    [value]="commandString"
+    [value]="getOutput()"
     (input)="userInput($event.target)"
   />
 
