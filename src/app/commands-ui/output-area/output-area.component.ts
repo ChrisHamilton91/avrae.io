@@ -1,6 +1,6 @@
 import { trigger } from "@angular/animations";
 import { Clipboard } from "@angular/cdk/clipboard";
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { visibilityAnimation } from "../@animations";
 import { commandsUiSettings } from "../@settings";
@@ -12,6 +12,7 @@ import { commandsUiSettings } from "../@settings";
   animations: [trigger("visibility", visibilityAnimation)],
 })
 export class OutputAreaComponent implements OnInit {
+  @ViewChild("outputBox") outputBoxRef: ElementRef;
   @Input() commandString: string;
   aliasMode = false;
   aliasName = "";
@@ -23,13 +24,11 @@ export class OutputAreaComponent implements OnInit {
   ngOnInit(): void {}
 
   copyToClipboard() {
-    const success = this.clipboard.copy(this.commandString);
+    const value = (this.outputBoxRef.nativeElement as HTMLInputElement).value;
+    if (!value) return this.toastr.warning("Nothing to copy...");
+    const success = this.clipboard.copy(value);
     if (success) this.toastr.success("Copied to clipboard");
     else this.toastr.error("Could not copy to clipboard...");
-  }
-
-  userInput(input: HTMLInputElement) {
-    this.commandString = input.value;
   }
 
   toggleAliasMode() {
