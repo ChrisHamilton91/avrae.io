@@ -13,18 +13,26 @@ import { commandsUiSettings } from "../@settings";
 })
 export class OutputAreaComponent implements OnInit {
   @ViewChild("outputBox") outputBoxRef: ElementRef;
+  @ViewChild("aliasInput") aliasInputRef: ElementRef;
   @Input() commandString: string;
   aliasMode = false;
-  aliasName = "";
   aliasPlaceholder = "aliasName";
   multilineMode = false;
+
+  get outputBox(): HTMLInputElement {
+    return this.outputBoxRef.nativeElement as HTMLInputElement;
+  }
+
+  get aliasInput(): HTMLInputElement {
+    return this.aliasInputRef?.nativeElement as HTMLInputElement;
+  }
 
   constructor(private clipboard: Clipboard, private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
   copyToClipboard() {
-    const value = (this.outputBoxRef.nativeElement as HTMLInputElement).value;
+    const value = this.outputBox.value;
     if (!value) return this.toastr.warning("Nothing to copy...");
     const success = this.clipboard.copy(value);
     if (success) this.toastr.success("Copied to clipboard");
@@ -34,29 +42,25 @@ export class OutputAreaComponent implements OnInit {
   toggleAliasMode() {
     this.aliasMode = !this.aliasMode;
     if (this.aliasMode) this.multilineMode = false;
-    else this.aliasName = "";
   }
 
   toggleMultilineMode() {
     this.multilineMode = !this.multilineMode;
-    if (this.multilineMode) {
-      this.aliasMode = false;
-      this.aliasName = "";
-    }
+    if (this.multilineMode) this.aliasMode = false;
   }
 
   getAliasVisibilityState() {
     return this.aliasMode ? "visible" : "hidden";
   }
 
-  changeAliasName(input: HTMLInputElement) {
-    this.aliasName = input.value.replace(/\s/g, "");
+  trimAliasName(input: HTMLInputElement) {
+    input.value = input.value.replace(/\s/g, "");
   }
 
   getOutput() {
     let result = commandsUiSettings.prefix;
     if (this.aliasMode)
-      result += `alias ${this.aliasName || this.aliasPlaceholder} `;
+      result += `alias ${this.aliasInput?.value || this.aliasPlaceholder} `;
     result += this.commandString;
     return result;
   }
@@ -73,12 +77,12 @@ export class OutputAreaComponent implements OnInit {
 
   getAliasInputTooltip() {
     if (!commandsUiSettings.tooltipsEnabled) return "";
-    return `Type in a name for your alias. Alias names cannot have spaces, whitespace will be removed automatically.`;
+    return `Type in a name for your alias. Alias names cannot have spaces.`;
   }
 
   getAliasInlineTip() {
     return `Call this command with: ${commandsUiSettings.prefix}${
-      this.aliasName || this.aliasPlaceholder
+      this.aliasInput?.value || this.aliasPlaceholder
     }`;
   }
 

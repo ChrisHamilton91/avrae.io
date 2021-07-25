@@ -33,13 +33,14 @@
     </svg>
 
     <input
+      #aliasInput
       [@visibility]="getAliasVisibilityState()"
       type="input"
       class="alias-input"
       [placeholder]="aliasPlaceholder"
       spellcheck="false"
       autocomplete="off"
-      (input)="changeAliasName($event.target)"
+      (input)="trimAliasName($event.target)"
       [matTooltip]="getAliasInputTooltip()"
       matTooltipPosition="above"
     />
