@@ -66,6 +66,19 @@
   opacity: 0;
 }
 
+.alias-inline-tip {
+  position: absolute;
+  top: 5px;
+  left: 170px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  color: $gray-light1;
+}
+
 .copy-button {
   position: absolute;
   width: 30px;

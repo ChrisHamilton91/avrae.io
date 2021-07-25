@@ -34,19 +34,23 @@ export class OutputAreaComponent implements OnInit {
   toggleAliasMode() {
     this.aliasMode = !this.aliasMode;
     if (this.aliasMode) this.multilineMode = false;
+    else this.aliasName = "";
   }
 
   toggleMultilineMode() {
     this.multilineMode = !this.multilineMode;
-    if (this.multilineMode) this.aliasMode = false;
+    if (this.multilineMode) {
+      this.aliasMode = false;
+      this.aliasName = "";
+    }
   }
 
-  getAliasInputState() {
+  getAliasVisibilityState() {
     return this.aliasMode ? "visible" : "hidden";
   }
 
   changeAliasName(input: HTMLInputElement) {
-    this.aliasName = input.value;
+    this.aliasName = input.value.replace(/\s/g, "");
   }
 
   getOutput() {
@@ -55,5 +59,31 @@ export class OutputAreaComponent implements OnInit {
       result += `alias ${this.aliasName || this.aliasPlaceholder} `;
     result += this.commandString;
     return result;
+  }
+
+  getMultilineTooltip() {
+    if (!commandsUiSettings.tooltipsEnabled) return "";
+    return "TODO: Multiline tooltip";
+  }
+
+  getAliasTooltip() {
+    if (!commandsUiSettings.tooltipsEnabled) return "";
+    return `Turn this command into an alias. Input a name, then paste into discord. You will then be able to call this command using ${commandsUiSettings.prefix}<aliasName>`;
+  }
+
+  getAliasInputTooltip() {
+    if (!commandsUiSettings.tooltipsEnabled) return "";
+    return `Type in a name for your alias. Alias names cannot have spaces, whitespace will be removed automatically.`;
+  }
+
+  getAliasInlineTip() {
+    return `Call this command with: ${commandsUiSettings.prefix}${
+      this.aliasName || this.aliasPlaceholder
+    }`;
+  }
+
+  getCopyTooltip() {
+    if (!commandsUiSettings.tooltipsEnabled) return "";
+    return "Copy to clipboard";
   }
 }
