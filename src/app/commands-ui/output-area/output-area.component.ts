@@ -12,19 +12,18 @@ import { commandsUiSettings } from "../@settings";
   animations: [trigger("visibility", visibilityAnimation)],
 })
 export class OutputAreaComponent implements OnInit {
-  @ViewChild("outputBox") outputBoxRef: ElementRef;
-  @ViewChild("aliasInput") aliasInputRef: ElementRef;
+  @ViewChild("outputBox") outputBoxRef: ElementRef<HTMLInputElement>;
+  @ViewChild("aliasInput") aliasInputRef: ElementRef<HTMLInputElement>;
   @Input() commandString: string;
   aliasMode = false;
   aliasPlaceholder = "aliasName";
   multilineMode = false;
 
   get outputBox(): HTMLInputElement {
-    return this.outputBoxRef.nativeElement as HTMLInputElement;
+    return this.outputBoxRef.nativeElement;
   }
-
   get aliasInput(): HTMLInputElement {
-    return this.aliasInputRef?.nativeElement as HTMLInputElement;
+    return this.aliasInputRef?.nativeElement;
   }
 
   constructor(private clipboard: Clipboard, private toastr: ToastrService) {}
@@ -41,12 +40,10 @@ export class OutputAreaComponent implements OnInit {
 
   toggleAliasMode() {
     this.aliasMode = !this.aliasMode;
-    if (this.aliasMode) this.multilineMode = false;
   }
 
   toggleMultilineMode() {
     this.multilineMode = !this.multilineMode;
-    if (this.multilineMode) this.aliasMode = false;
   }
 
   getAliasVisibilityState() {
@@ -61,7 +58,8 @@ export class OutputAreaComponent implements OnInit {
     let result = commandsUiSettings.prefix;
     if (this.aliasMode)
       result += `alias ${this.aliasInput?.value || this.aliasPlaceholder} `;
-    result += this.commandString;
+    if (this.multilineMode) result += "multiline";
+    else result += this.commandString;
     return result;
   }
 
