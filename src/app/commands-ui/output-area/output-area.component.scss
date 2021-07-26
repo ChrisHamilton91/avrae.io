@@ -8,6 +8,7 @@
 
 .top-bar {
   display: flex;
+  user-select: none;
   flex-direction: row;
   align-items: center;
   position: absolute;
@@ -79,9 +80,9 @@
 
 .copy-button {
   position: absolute;
-  top: 2px;
-  right: 7px;
-  width: 30px;
+  top: 3px;
+  right: 5px;
+  width: 28px;
 }
 
 .clickable {
