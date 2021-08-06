@@ -1,10 +1,7 @@
 <div
   *ngIf="!permaHidden"
   class="input-component"
-  [@show]="fadingIn"
-  (@show.done)="showDone($event.toState)"
-  [@hide]="fadingOut"
-  (@hide.done)="hideDone($event.toState)"
+  [@visibility]="getVisibilityState()"
 >
   <commands-ui-single-secondary-arg-input-box
     *ngIf="isInputBox()"

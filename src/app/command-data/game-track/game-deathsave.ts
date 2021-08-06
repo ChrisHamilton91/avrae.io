@@ -1,60 +1,32 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, Subcommand } from "../../schemas/Commands";
 import { SAVE_ARGS } from "../@common/save-arguments";
 
 //#region subcommands
-const FAIL: Subcommand = {
+const FAIL = new Subcommand({
   name: "Fail Deathsave",
   cmdStrings: ["fail", "f"],
   shortDesc: "Adds a failed death save.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 
-const RESET: Subcommand = {
+const RESET = new Subcommand({
   name: "Reset Deathsaves",
   cmdStrings: ["reset"],
   shortDesc: "Resets all death saves.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 
-const SUCCESS: Subcommand = {
+const SUCCESS = new Subcommand({
   name: "Succeed Deathsave",
   cmdStrings: ["success", "s", "save"],
   shortDesc: "Adds a successful death save.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region command
-export const GAME_DEATHSAVE: Command = {
+export const GAME_DEATHSAVE = new Command({
   name: "Deathsave",
   cmdStrings: ["g deathsave", "game deathsave", "g ds", "game ds"],
   shortDesc: "Make a deathsave.",
-  longDesc: "",
-  primaryArgs: [],
   secondaryArgs: SAVE_ARGS,
   subcommands: [FAIL, RESET, SUCCESS],
-  examples: [],
-};
+});
 //#endregion

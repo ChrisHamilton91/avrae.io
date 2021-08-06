@@ -1,81 +1,59 @@
 import {
   Command,
-  Subcommand,
   PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
+  Subcommand,
   ValueType,
-  ClassTypes,
 } from "../../schemas/Commands";
 
 //#region primary arguments
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the user variable to create.",
-};
+});
 
-const VALUE: PrimaryArgument = {
+const VALUE = new PrimaryArgument({
   name: "value",
   signature: "value",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The value to assign to the user variable.",
-};
+});
 //#endregion
 
 //#region subcommands
-const LIST: Subcommand = {
+const LIST = new Subcommand({
   name: "List Server Variables",
   cmdStrings: ["list"],
   shortDesc: "Lists all uvars for the user.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 
-const DELETE_NAME: PrimaryArgument = {
+const DELETE_NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The name of the user variable to delete.",
-};
+});
 
-const DELETE: Subcommand = {
+const DELETE = new Subcommand({
   name: "Delete Server Variable",
   cmdStrings: ["delete", "remove"],
   shortDesc: "Deletes a uvar from the user.",
-  longDesc: "",
   primaryArgs: [DELETE_NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 
-const DELETE_ALL: Subcommand = {
+const DELETE_ALL = new Subcommand({
   name: "Delete All Aliases",
   cmdStrings: ["deleteall", "removeall"],
   shortDesc: "Deletes ALL user variables.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});
 //#endregion
 
 //#region command
-export const USER_VAR: Command = {
+export const USER_VAR = new Command({
   name: "User Variables",
   cmdStrings: ["uservar", "uvar"],
   shortDesc:
@@ -86,8 +64,6 @@ export const USER_VAR: Command = {
     "\nArguments surrounded with {{}} will be evaluated as a custom script." +
     "\nSee http://avrae.io/cheatsheets/aliasing for more help.",
   primaryArgs: [NAME, VALUE],
-  secondaryArgs: [],
   subcommands: [LIST, DELETE, DELETE_ALL],
-  examples: [],
-};
+});
 //#endregion

@@ -1,25 +1,14 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const NUM_ROUNDS: PrimaryArgument = {
+const NUM_ROUNDS = new PrimaryArgument({
   name: "rounds",
   signature: "rounds",
   required: false,
   valueType: ValueType.NUMBER,
-  default: null,
   desc: "Number of rounds to skip. Defaults to 1.",
-};
+});
 
-export const SKIP: Command = {
+export const SKIP = new Command({
   name: "Skip Rounds",
   cmdStrings: [
     "init skipround",
@@ -30,9 +19,5 @@ export const SKIP: Command = {
     "i skiprounds",
   ],
   shortDesc: "Skips one or more rounds of initiative.",
-  longDesc: "",
   primaryArgs: [NUM_ROUNDS],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

@@ -12,10 +12,9 @@ import { TEMBED } from "./tembed";
 import { TEST } from "./test";
 import { USER_VAR } from "./user-var";
 
-export const CUSTOMIZATION: CommandModule = {
+export const CUSTOMIZATION = new CommandModule({
   name: "Customization",
   shortDesc: "Commands to help streamline using the bot.",
-  longDesc: "",
   commands: [
     ALIAS,
     CHARACTER_VAR,
@@ -30,4 +29,4 @@ export const CUSTOMIZATION: CommandModule = {
     TEST,
     USER_VAR,
   ],
-};
+});

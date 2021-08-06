@@ -1,31 +1,16 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the subclass to look up.",
-};
+});
 
-export const SUBCLASS: Command = {
+export const SUBCLASS = new Command({
   name: "Lookup Subclass",
   cmdStrings: ["subclass"],
   shortDesc: "Looks up a subclass.",
-  longDesc: "",
   primaryArgs: [NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

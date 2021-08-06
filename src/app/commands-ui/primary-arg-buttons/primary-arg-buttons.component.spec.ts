@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { PrimaryArgButtonsComponent } from "./primary-arg-buttons.component";
 
-import { PrimaryArgButtonsComponent } from './primary-arg-buttons.component';
-
-describe('PrimaryArgButtonsComponent', () => {
+describe("PrimaryArgButtonsComponent", () => {
   let component: PrimaryArgButtonsComponent;
   let fixture: ComponentFixture<PrimaryArgButtonsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PrimaryArgButtonsComponent ]
-    })
-    .compileComponents();
+      declarations: [PrimaryArgButtonsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('PrimaryArgButtonsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { SinglePrimaryArgButtonComponent } from "./single-primary-arg-button.component";
 
-import { SinglePrimaryArgButtonComponent } from './single-primary-arg-button.component';
-
-describe('SinglePrimaryArgButtonComponent', () => {
+describe("SinglePrimaryArgButtonComponent", () => {
   let component: SinglePrimaryArgButtonComponent;
   let fixture: ComponentFixture<SinglePrimaryArgButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SinglePrimaryArgButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [SinglePrimaryArgButtonComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('SinglePrimaryArgButtonComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,14 +1,14 @@
 import { trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ValueType } from "src/app/schemas/Commands";
-import { hideAnimation, showAnimation } from "../../@animations";
+import { visibilityAnimation } from "../../@animations";
 import { SecondaryArgValuePair } from "../secondary-arg-buttons.component";
 
 @Component({
   selector: "commands-ui-single-secondary-arg-input",
   templateUrl: "./single-secondary-arg-input.component.html",
   styleUrls: ["./single-secondary-arg-input.component.css"],
-  animations: [trigger("show", showAnimation), trigger("hide", hideAnimation)],
+  animations: [trigger("visibility", visibilityAnimation)],
 })
 export class SingleSecondaryArgInputComponent implements OnInit {
   @Input() argValuePair: SecondaryArgValuePair;
@@ -24,12 +24,10 @@ export class SingleSecondaryArgInputComponent implements OnInit {
     if (this.permaHidden) return; // For hidden inputs next to headers
     this.valueType = this.argValuePair.arg.valueType;
     this.permaHidden = this.valueType === ValueType.TRUE;
-    this.argValuePair.activeChange.subscribe(() => this.activeChange());
   }
 
-  activeChange() {
-    if (this.argValuePair.active) this.show();
-    else this.hide();
+  getVisibilityState() {
+    return this.argValuePair.active ? "visible" : "hidden";
   }
 
   isInputBox() {
@@ -40,25 +38,5 @@ export class SingleSecondaryArgInputComponent implements OnInit {
 
   isToggle() {
     return this.valueType === ValueType.BOOLEAN;
-  }
-
-  show() {
-    this.fadingOut = false; //animation cancel
-    this.fadingIn = true;
-  }
-
-  hide() {
-    this.fadingIn = false; //animation cancel
-    this.fadingOut = true;
-  }
-
-  showDone(showWasSetToTrue: boolean) {
-    if (!this.fadingIn) return; //animation has been cancelled
-    if (showWasSetToTrue) this.fadingIn = false;
-  }
-
-  hideDone(hideWasSetToTrue: boolean) {
-    if (!this.fadingOut) return; //animation has been cancelled
-    if (hideWasSetToTrue) this.fadingOut = false;
   }
 }

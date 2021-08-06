@@ -1,30 +1,16 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const USER: PrimaryArgument = {
+const USER = new PrimaryArgument({
   name: "user",
   signature: "user",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The user to transfer the character to.",
-};
+});
 
-export const TRANSFERCHAR: Command = {
+export const TRANSFERCHAR = new Command({
   name: "Transfer Character",
   cmdStrings: ["transferchar"],
   shortDesc: "Gives a copy of the active character to another user.",
-  longDesc: "",
   primaryArgs: [USER],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { OutputAreaComponent } from "./output-area.component";
 
-import { OutputAreaComponent } from './output-area.component';
-
-describe('OutputAreaComponent', () => {
+describe("OutputAreaComponent", () => {
   let component: OutputAreaComponent;
   let fixture: ComponentFixture<OutputAreaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OutputAreaComponent ]
-    })
-    .compileComponents();
+      declarations: [OutputAreaComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('OutputAreaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

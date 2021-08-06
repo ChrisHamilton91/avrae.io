@@ -1,40 +1,24 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the combatant.",
-};
+});
 
-const VALUE: PrimaryArgument = {
+const VALUE = new PrimaryArgument({
   name: "thp",
   signature: "thp",
   required: true,
   valueType: ValueType.NUMBER,
-  default: null,
   desc: "Amount of temporary hit points. Modifies if starts with +/- or sets otherwise.",
-};
+});
 
-export const THP: Command = {
+export const THP = new Command({
   name: "Temporary HP",
   cmdStrings: ["init thp", "i thp"],
   shortDesc: "Modifies the temporary hit points of a combatant.",
-  longDesc: "",
   primaryArgs: [NAME, VALUE],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

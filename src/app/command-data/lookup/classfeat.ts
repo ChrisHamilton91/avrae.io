@@ -1,31 +1,16 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the class feature to look up.",
-};
+});
 
-export const CLASSFEAT: Command = {
+export const CLASSFEAT = new Command({
   name: "Lookup Class Feature",
   cmdStrings: ["classfeat"],
   shortDesc: "Looks up a class feature.",
-  longDesc: "",
   primaryArgs: [NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

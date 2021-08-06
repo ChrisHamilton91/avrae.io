@@ -65,14 +65,9 @@ export const shrinkUpAnimation: AnimationMetadata[] = [
   transition("* => true", animate("0.15s ease-out")),
 ];
 
-export const showAnimation: AnimationMetadata[] = [
-  state("true", style({ opacity: 1, visibility: "visible" })),
-  state("false", style({})),
-  transition("* => true", animate("0.15s ease-in")),
-];
-
-export const hideAnimation: AnimationMetadata[] = [
-  state("true", style({ opacity: 0, visibility: "hidden" })),
-  state("false", style({})),
-  transition("* => true", animate("0.15s ease-out")),
+export const visibilityAnimation: AnimationMetadata[] = [
+  state("visible", style({ opacity: 1, visibility: "visible" })),
+  state("hidden", style({ opacity: 0, visibility: "hidden" })),
+  transition("* => visible", animate("0.15s ease-in")),
+  transition("* => hidden", animate("0.15s ease-out")),
 ];

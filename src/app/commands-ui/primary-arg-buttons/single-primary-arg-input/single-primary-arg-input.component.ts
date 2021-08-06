@@ -1,14 +1,7 @@
 import { trigger } from "@angular/animations";
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewEncapsulation,
-} from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ValueType } from "src/app/schemas/Commands";
-import { hideAnimation, showAnimation } from "../../@animations";
+import { visibilityAnimation } from "../../@animations";
 import { commandsUiSettings } from "../../@settings";
 import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 
@@ -16,7 +9,7 @@ import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
   selector: "commands-ui-single-primary-arg-input",
   templateUrl: "./single-primary-arg-input.component.html",
   styleUrls: ["./single-primary-arg-input.component.scss"],
-  animations: [trigger("show", showAnimation), trigger("hide", hideAnimation)],
+  animations: [trigger("visibility", visibilityAnimation)],
 })
 export class SinglePrimaryArgInputComponent implements OnInit {
   @Input() argValuePair: PrimaryArgValuePair;
@@ -26,38 +19,15 @@ export class SinglePrimaryArgInputComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.argValuePair.activeChange.subscribe(() => this.activeChange());
-  }
+  ngOnInit(): void {}
 
-  activeChange() {
-    if (this.argValuePair.active) this.show();
-    else this.hide();
+  getVisibilityState() {
+    return this.argValuePair.active ? "visible" : "hidden";
   }
 
   changeValue(input: HTMLInputElement) {
     this.argValuePair.value = input.value;
     this.valueChange.emit();
-  }
-
-  show() {
-    this.fadingOut = false; //animation cancel
-    this.fadingIn = true;
-  }
-
-  hide() {
-    this.fadingIn = false; //animation cancel
-    this.fadingOut = true;
-  }
-
-  showDone(showWasSetToTrue: boolean) {
-    if (!this.fadingIn) return; //animation has been cancelled
-    if (showWasSetToTrue) this.fadingIn = false;
-  }
-
-  hideDone(hideWasSetToTrue: boolean) {
-    if (!this.fadingOut) return; //animation has been cancelled
-    if (hideWasSetToTrue) this.fadingOut = false;
   }
 
   getTooltip(): string {
@@ -68,6 +38,18 @@ export class SinglePrimaryArgInputComponent implements OnInit {
     }
     if (type === ValueType.STRING) {
       return "This input takes a string value (text). If there is whitespace, the text will be surrounded in quotations automatically.";
+    }
+    if (type === ValueType.CODE) {
+      return (
+        "This input takes code as a value, such as other commands. " +
+        "If you are making an alias, you can instead use the alias button above the output box, and build your command using buttons."
+      );
+    }
+    if (type === ValueType.MULTILINE) {
+      return (
+        "This input takes a single command. Click the plus symbol to add more lines. " +
+        "You can also use the multiline button above the output box to build each line using buttons."
+      );
     }
   }
 }

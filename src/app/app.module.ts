@@ -32,6 +32,7 @@ import { SingleSecondaryArgInputHiddenComponent } from "./commands-ui/secondary-
 import { SettingsComponent } from "./commands-ui/settings/settings.component";
 import { SettingsDialogComponent } from "./commands-ui/settings/settings-dialog/settings-dialog.component";
 import { SettingsInputComponent } from "./commands-ui/settings/settings-dialog/settings-input/settings-input.component";
+import { MultilineOutputComponent } from './commands-ui/output-area/multiline-output/multiline-output.component';
 
 Sentry.init({
   dsn: "https://af2b06560981446bb55f64b6f79fd520@sentry.io/1486249",
@@ -61,6 +62,7 @@ Sentry.init({
     SettingsComponent,
     SettingsDialogComponent,
     SettingsInputComponent,
+    MultilineOutputComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),

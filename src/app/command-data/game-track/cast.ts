@@ -1,33 +1,19 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
-import { SPELL_ARGS } from "../@common/spellcasting-arguments";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 import { ATTACK_ARGS } from "../@common/attack-arguments";
+import { SPELL_ARGS } from "../@common/spellcasting-arguments";
 
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "spell name",
   signature: "spell_name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the spell to cast.",
-};
+});
 
-export const CAST: Command = {
+export const CAST = new Command({
   name: "Cast Spell",
   cmdStrings: ["cast"],
   shortDesc: "Casts a spell.",
-  longDesc: "",
   primaryArgs: [NAME],
   secondaryArgs: SPELL_ARGS.concat(ATTACK_ARGS),
-  subcommands: [],
-  examples: [],
-};
+});

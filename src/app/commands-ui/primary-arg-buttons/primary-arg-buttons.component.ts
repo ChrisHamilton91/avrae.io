@@ -1,20 +1,14 @@
 import { trigger } from "@angular/animations";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Subject } from "rxjs";
-import {
-  Argument,
-  Command,
-  CommandModule,
-  PrimaryArgument,
-  Subcommand,
-} from "src/app/schemas/Commands";
+import { Command, PrimaryArgument, Subcommand } from "src/app/schemas/Commands";
+import { fadeInAnimation, fadeOutAnimation } from "../@animations";
 import { CommandButton } from "../command-buttons/command-buttons.component";
 import { SubcommandButton } from "../command-buttons/subcommand-buttons/subcommand-buttons.component";
-import { fadeInAnimation, fadeOutAnimation } from "../@animations";
 
 export class PrimaryArgValuePair {
   arg: PrimaryArgument;
-  value: string | boolean;
+  value: string | string[] | boolean;
   active: boolean;
   activeChange = new Subject();
   constructor(arg: PrimaryArgument) {

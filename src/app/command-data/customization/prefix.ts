@@ -1,25 +1,14 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const CHARS: PrimaryArgument = {
+const CHARS = new PrimaryArgument({
   name: "prefix",
   signature: "prefix",
   required: false,
   valueType: ValueType.STRING,
-  default: null,
   desc: "The character(s) to set the prefix to.",
-};
+});
 
-export const PREFIX: Command = {
+export const PREFIX = new Command({
   name: "Set Prefix",
   cmdStrings: ["prefix"],
   shortDesc: "Sets the bot's prefix for this server.",
@@ -29,7 +18,4 @@ export const PREFIX: Command = {
     `\nDue to a possible Discord conflict, a prefix beginning with / will require confirmation.` +
     `\nForgot the prefix? Reset it with "@Avrae#6944 prefix !".`,
   primaryArgs: [CHARS],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

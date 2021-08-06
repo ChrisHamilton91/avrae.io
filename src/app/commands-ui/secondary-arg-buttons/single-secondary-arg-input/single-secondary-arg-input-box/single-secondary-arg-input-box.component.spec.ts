@@ -1,16 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { SingleSecondaryArgInputBoxComponent } from "./single-secondary-arg-input-box.component";
 
-import { SingleSecondaryArgInputBoxComponent } from './single-secondary-arg-input-box.component';
-
-describe('SingleSecondaryArgInputBoxComponent', () => {
+describe("SingleSecondaryArgInputBoxComponent", () => {
   let component: SingleSecondaryArgInputBoxComponent;
   let fixture: ComponentFixture<SingleSecondaryArgInputBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleSecondaryArgInputBoxComponent ]
-    })
-    .compileComponents();
+      declarations: [SingleSecondaryArgInputBoxComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +17,7 @@ describe('SingleSecondaryArgInputBoxComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,202 +1,141 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { SecondaryArgument, ValueType } from "../../schemas/Commands";
 
 //#region arguments
-const ADV: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const ADV = new SecondaryArgument({
   name: "advantage",
   cmdString: "adv",
   valueType: ValueType.TRUE,
   desc: "Give advantage to the check roll(s)",
-  example: "",
   ephemeral: true,
-  category: null,
-};
+});
 
-const DIS: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const DIS = new SecondaryArgument({
   name: "disadvantage",
   cmdString: "dis",
   valueType: ValueType.TRUE,
   desc: "Give disadvantage to the check roll(s)",
-  example: "",
   ephemeral: true,
-  category: null,
-};
+});
 
-const B: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const B = new SecondaryArgument({
   name: "bonus to hit",
   cmdString: "-b",
   valueType: ValueType.NUMBER,
   desc: "Adds a bonus to the check.",
-  example: "",
   ephemeral: true,
-  category: null,
-};
+});
 
-const DC: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const DC = new SecondaryArgument({
   name: "set check dc",
   cmdString: "-dc",
   valueType: ValueType.NUMBER,
   desc: "Sets a DC (difficulty class) and counts successes/failures.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const MC: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const MC = new SecondaryArgument({
   name: "minimum roll",
   cmdString: "-mc",
   valueType: ValueType.NUMBER,
   desc: "Sets the minimum roll on the dice (e.g. Reliable Talent, Glibness)",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const RR: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const RR = new SecondaryArgument({
   name: "re-roll",
   cmdString: "-rr",
   valueType: ValueType.NUMBER,
   desc: "How many checks to roll.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const STR: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const STR = new SecondaryArgument({
   name: "base: strength",
   cmdString: "str",
   valueType: ValueType.TRUE,
   desc: "Rolls using a strength base instead of the regular skill base for the check.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const DEX: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const DEX = new SecondaryArgument({
   name: "base: dexterity",
   cmdString: "dex",
   valueType: ValueType.TRUE,
   desc: "Rolls using a dexterity base instead of the regular skill base for the check.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CON: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CON = new SecondaryArgument({
   name: "base: constitution",
   cmdString: "con",
   valueType: ValueType.TRUE,
   desc: "Rolls using a constitution base instead of the regular skill base for the check.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const INT: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const INT = new SecondaryArgument({
   name: "base: intelligence",
   cmdString: "int",
   valueType: ValueType.TRUE,
   desc: "Rolls using a intelligence base instead of the regular skill base for the check.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const WIS: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const WIS = new SecondaryArgument({
   name: "base: wisdom",
   cmdString: "wis",
   valueType: ValueType.TRUE,
   desc: "Rolls using a wisdom base instead of the regular skill base for the check.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const CHA: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const CHA = new SecondaryArgument({
   name: "base: charisma",
   cmdString: "cha",
   valueType: ValueType.TRUE,
   desc: "Rolls using a charisma base instead of the regular skill base for the check.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const PHRASE: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const PHRASE = new SecondaryArgument({
   name: "flavor text",
   cmdString: "-phrase",
   valueType: ValueType.STRING,
   desc: "Adds flavor text.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const TITLE: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const TITLE = new SecondaryArgument({
   name: "title",
   cmdString: "-title",
   valueType: ValueType.STRING,
   desc: "Changes the title of the attack. Replaces [name] with attacker's name and [cname] with the check's name.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const F: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const F = new SecondaryArgument({
   name: "create field",
   cmdString: "-f",
   valueType: ValueType.STRING,
   desc: `Creates a field in the embed with the given title and text. Syntax: "Field Title|Field Text."`,
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const THUMB: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const THUMB = new SecondaryArgument({
   name: "add thumbnail",
   cmdString: "-thumb",
   valueType: ValueType.STRING,
   desc: "Pass in an image url to add a thumbnail to the check.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 
-const H: SecondaryArgument = {
-  type: ClassTypes.SECONDARY_ARGUMENT,
+const H = new SecondaryArgument({
   name: "hide name",
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides the name and image of the character performing the check.",
-  example: "",
   ephemeral: false,
-  category: null,
-};
+});
 //#endregion
 
 //#region export

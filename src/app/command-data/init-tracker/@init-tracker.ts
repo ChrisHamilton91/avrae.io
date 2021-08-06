@@ -26,7 +26,7 @@ import { SKIP } from "./skip";
 import { STATUS } from "./status";
 import { THP } from "./thp";
 
-export const INIT_TRACKER: CommandModule = {
+export const INIT_TRACKER = new CommandModule({
   name: "InitTracker",
   shortDesc: "Initiative tracking commands. Use !help init for more details.",
   longDesc:
@@ -66,4 +66,4 @@ export const INIT_TRACKER: CommandModule = {
     STATUS,
     THP,
   ],
-};
+});

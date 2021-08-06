@@ -11,7 +11,7 @@
 
   <div class="button-input-container">
     <div class="button-column">
-      <div *ngFor="let pair of argValuePairs; index as i">
+      <ng-container *ngFor="let pair of argValuePairs; index as i">
         <div class="category-header" *ngIf="isFirstOfCategory(i)">
           {{ pair.arg.category.name }}
         </div>
@@ -20,11 +20,11 @@
           [argValuePair]="pair"
           (activeChange)="emitArgs()"
         ></commands-ui-single-secondary-arg-button>
-      </div>
+      </ng-container>
     </div>
 
     <div class="input-column">
-      <div *ngFor="let pair of argValuePairs; index as i">
+      <ng-container *ngFor="let pair of argValuePairs; index as i">
         <!-- Hidden input element next to header -->
         <commands-ui-single-secondary-arg-input
           *ngIf="isFirstOfCategory(i)"
@@ -35,7 +35,7 @@
           [argValuePair]="pair"
           (valueChange)="emitArgs()"
         ></commands-ui-single-secondary-arg-input>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>

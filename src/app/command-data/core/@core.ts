@@ -5,9 +5,8 @@ import { DDB } from "./ddb";
 import { INVITE } from "./invite";
 import { PING } from "./ping";
 
-export const CORE: CommandModule = {
+export const CORE = new CommandModule({
   name: "Core",
   shortDesc: "Core utilty and general commands.",
-  longDesc: "",
   commands: [ABOUT, CHANGELOG, DDB, INVITE, PING],
-};
+});

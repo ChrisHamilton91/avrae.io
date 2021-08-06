@@ -1,16 +1,6 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command } from "../../schemas/Commands";
 
-export const PREV: Command = {
+export const PREV = new Command({
   name: "Previous Turn",
   cmdStrings: [
     "init prev",
@@ -21,9 +11,4 @@ export const PREV: Command = {
     "i rewind",
   ],
   shortDesc: "Moves to the previous turn in initiative order.",
-  longDesc: "",
-  primaryArgs: [],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

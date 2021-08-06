@@ -1,31 +1,16 @@
-import {
-  Command,
-  Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
-  ValueType,
-  ClassTypes,
-} from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
 
-const NAME: PrimaryArgument = {
+const NAME = new PrimaryArgument({
   name: "name",
   signature: "name",
   required: true,
   valueType: ValueType.STRING,
-  default: null,
   desc: "Name of the feat to look up.",
-};
+});
 
-export const FEAT: Command = {
+export const FEAT = new Command({
   name: "Lookup Feat",
   cmdStrings: ["feat"],
   shortDesc: "Looks up a feat.",
-  longDesc: "",
   primaryArgs: [NAME],
-  secondaryArgs: [],
-  subcommands: [],
-  examples: [],
-};
+});

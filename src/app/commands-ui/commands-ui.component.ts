@@ -2,22 +2,18 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
 import { COMMAND_MODULES } from "../command-data/command-modules";
 import {
-  CommandModule,
   Command,
+  CommandModule,
   Subcommand,
-  PrimaryArgument,
-  SecondaryArgument,
-  AttackArgument,
-  TargetArgument,
-  AttackCategories,
   ValueType,
-  Argument,
-  ClassTypes,
 } from "../schemas/Commands";
+import { commandsUiSettings } from "./@settings";
+import { getShortest, sortDataByCmdString, sortDataByName } from "./@sorting";
 import {
   CommandButton,
   CommandButtonsComponent,
 } from "./command-buttons/command-buttons.component";
+import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
 import {
   PrimaryArgButtonsComponent,
   PrimaryArgValuePair,
@@ -26,9 +22,6 @@ import {
   SecondaryArgButtonsComponent,
   SecondaryArgValuePair,
 } from "./secondary-arg-buttons/secondary-arg-buttons.component";
-import { SubcommandButton } from "./command-buttons/subcommand-buttons/subcommand-buttons.component";
-import { commandsUiSettings } from "./@settings";
-import { getShortest, sortDataByCmdString, sortDataByName } from "./@sorting";
 
 @Component({
   selector: "avr-commands-ui",
@@ -120,7 +113,7 @@ export class CommandsUiComponent implements OnInit {
 
   //#region output string building
   getCommandString(): string {
-    let cmdString = commandsUiSettings.prefix;
+    let cmdString = "";
     if (this.commandStack.length === 0) return cmdString;
     const lastIndex = this.commandStack.length - 1;
     cmdString += getShortest(this.commandStack[lastIndex].cmdStrings);
@@ -144,6 +137,12 @@ export class CommandsUiComponent implements OnInit {
           break;
         case ValueType.TRUE:
           cmdString += this.getPrimaryArgStringOfTypeTrue(pair);
+          break;
+        case ValueType.CODE:
+          cmdString += this.getPrimaryArgStringOfTypeCode(pair);
+          break;
+        case ValueType.MULTILINE:
+          cmdString += this.getPrimaryArgStringOfTypeMultiline(pair);
           break;
         default:
           throw Error(
@@ -173,6 +172,19 @@ export class CommandsUiComponent implements OnInit {
 
   getPrimaryArgStringOfTypeTrue(pair: PrimaryArgValuePair): string {
     return " " + pair.arg.signature;
+  }
+
+  getPrimaryArgStringOfTypeCode(pair: PrimaryArgValuePair): string {
+    if (!pair.value) return "";
+    return " " + pair.value;
+  }
+
+  getPrimaryArgStringOfTypeMultiline(pair: PrimaryArgValuePair): string {
+    let result = "";
+    for (const line of pair.value as string[]) {
+      result += "\n" + commandsUiSettings.prefix + line;
+    }
+    return result;
   }
 
   getSecondaryArgsString(): string {
