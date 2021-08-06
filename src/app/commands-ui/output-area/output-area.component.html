@@ -75,6 +75,7 @@
 
     <div *ngIf="multilineMode" class="multiline-container">
       <commands-ui-multiline-output
+        #multilineOutput
         [commandString]="commandString"
       ></commands-ui-multiline-output>
     </div>

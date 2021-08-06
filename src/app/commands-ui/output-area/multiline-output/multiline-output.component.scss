@@ -17,6 +17,11 @@
   background: $gray5;
 }
 
+.active-line {
+  border-radius: 6px;
+  border: 2px solid $gray-light1;
+}
+
 .minus-button {
   width: 20px;
   cursor: pointer;

@@ -4,6 +4,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { visibilityAnimation } from "../@animations";
 import { commandsUiSettings } from "../@settings";
+import { MultilineOutputComponent } from "./multiline-output/multiline-output.component";
 
 @Component({
   selector: "commands-ui-output-area",
@@ -14,6 +15,7 @@ import { commandsUiSettings } from "../@settings";
 export class OutputAreaComponent implements OnInit {
   @ViewChild("outputBox") outputBoxRef: ElementRef<HTMLInputElement>;
   @ViewChild("aliasInput") aliasInputRef: ElementRef<HTMLInputElement>;
+  @ViewChild("multilineOutput") multilineComp: MultilineOutputComponent;
   @Input() commandString: string;
   aliasMode = false;
   aliasPlaceholder = "aliasName";
@@ -31,11 +33,20 @@ export class OutputAreaComponent implements OnInit {
   ngOnInit(): void {}
 
   copyToClipboard() {
-    const value = this.outputBox.value;
-    if (!value) return this.toastr.warning("Nothing to copy...");
+    const value = this.getClipboardValue();
+    if (!value) {
+      this.toastr.warning("Nothing to copy...");
+      return;
+    }
     const success = this.clipboard.copy(value);
     if (success) this.toastr.success("Copied to clipboard");
     else this.toastr.error("Could not copy to clipboard...");
+  }
+
+  getClipboardValue(): string {
+    let result = this.outputBox.value;
+    if (!this.multilineMode) return result;
+    else return result + "\n" + this.multilineComp.getMultilineCmdString();
   }
 
   toggleAliasMode() {
@@ -65,12 +76,12 @@ export class OutputAreaComponent implements OnInit {
 
   getMultilineTooltip() {
     if (!commandsUiSettings.tooltipsEnabled) return "";
-    return "TODO: Multiline tooltip";
+    return "Start creating a multiline command.";
   }
 
   getAliasTooltip() {
     if (!commandsUiSettings.tooltipsEnabled) return "";
-    return `Turn this command into an alias. Input a name, then paste into discord. You will then be able to call this command using ${commandsUiSettings.prefix}<aliasName>`;
+    return `Turn this command into an alias. Input a name, then paste into discord. You will then be able to call this command using ${commandsUiSettings.prefix}<aliasName>.`;
   }
 
   getAliasInputTooltip() {

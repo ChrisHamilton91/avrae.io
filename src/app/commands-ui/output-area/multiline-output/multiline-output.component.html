@@ -1,14 +1,21 @@
 <div
   class="line-container"
-  *ngFor="let item of [].constructor(numLines); let index = index"
+  *ngFor="let cmdString of cmdStrings; let index = index"
 >
-  <input class="output-box" spellcheck="false" [value]="getLine(index)" />
+  <input
+    #outputBox
+    class="output-box"
+    spellcheck="false"
+    [class.active-line]="index === activeIndex"
+    [value]="getLine(index)"
+  />
   <!-- SVG is based on the one below -->
   <svg
     class="minus-button"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 48 48"
     enable-background="new 0 0 48 48"
+    (click)="deleteLine(index)"
   >
     <circle fill="#aa3333" cx="24" cy="24" r="21" />
     <g fill="#fff">
@@ -22,6 +29,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 48 48"
     enable-background="new 0 0 48 48"
+    (click)="addLine(index)"
   >
     <circle fill="#4CAF50" cx="24" cy="24" r="21" />
     <g fill="#fff">
