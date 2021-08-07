@@ -1,9 +1,46 @@
 @import "../../../variables.scss";
 
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-height: 140px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-top: 5px;
+  scrollbar-color: $gray-light1 $gray5;
+  scrollbar-width: thin;
+  padding-right: 4px;
+}
+
+.container::-webkit-scrollbar {
+  width: 10px;
+  background-color: $gray5;
+}
+
+.container::-webkit-scrollbar-track-piece {
+  border-radius: 10px;
+  background-color: $gray5;
+}
+
+.container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: $gray-light1;
+}
+
 .line-container {
   display: flex;
+  flex-grow: 1;
   align-items: center;
-  padding-top: 3px;
+  padding-bottom: 2px;
+}
+
+.output-box-border {
+  flex-grow: 1;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  margin-right: 4px;
 }
 
 .output-box {
@@ -13,23 +50,34 @@
   font-weight: 400;
   font-family: inherit;
   border: 0;
+  border-radius: 6px;
   outline: 0;
   background: $gray5;
+  padding: 0;
+  padding-left: 2px;
 }
 
 .active-line {
-  border-radius: 6px;
   border: 2px solid $gray-light1;
 }
 
 .minus-button {
   width: 20px;
-  cursor: pointer;
+  margin-right: 2px;
+  fill: #aa3333;
 }
 
 .plus-button {
-  position: relative;
-  left: 2px;
+  fill: #33aa33;
   width: 20px;
+}
+
+.clickable {
   cursor: pointer;
+  filter: brightness(0.5);
+  transition: filter 0.5s;
+}
+
+.clickable:hover {
+  filter: brightness(1);
 }
