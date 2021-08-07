@@ -56,9 +56,9 @@ export class MultilineOutputComponent implements OnInit {
       return;
     }
     this.cmdStrings.splice(clickedIndex, 1);
-    // Don't let activeIndex go out of bounds
     if (this.activeIndex >= this.cmdStrings.length)
       this.activeIndex = this.cmdStrings.length - 1;
+    this.commandString = this.cmdStrings[this.activeIndex];
   }
 
   getMultilineCmdString() {
