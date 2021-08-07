@@ -73,11 +73,12 @@
       />
     </svg>
 
-    <div *ngIf="multilineMode" class="multiline-container">
+    <ng-container *ngIf="multilineMode">
       <commands-ui-multiline-output
         #multilineOutput
         [commandString]="commandString"
+        (deactivate)="multilineMode = false"
       ></commands-ui-multiline-output>
-    </div>
+    </ng-container>
   </div>
 </div>

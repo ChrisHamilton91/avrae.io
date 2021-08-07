@@ -1,11 +1,14 @@
 import {
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   QueryList,
   ViewChildren,
 } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
 import { commandsUiSettings } from "../../@settings";
 
 @Component({
@@ -18,10 +21,12 @@ export class MultilineOutputComponent implements OnInit {
     ElementRef<HTMLInputElement>
   >;
   @Input() commandString: string;
+  @Output() deactivate = new EventEmitter();
   cmdStrings: string[] = [""];
   activeIndex = 0;
+  multilineMax = 20;
 
-  constructor() {}
+  constructor(private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
@@ -36,13 +41,20 @@ export class MultilineOutputComponent implements OnInit {
   }
 
   addLine(clickedIndex: number) {
+    if (this.cmdStrings.length >= this.multilineMax) {
+      this.toastr.warning(`Maximum ${this.multilineMax} multiline commands.`);
+      return;
+    }
     this.storeActiveCmdString();
     this.activeIndex = ++clickedIndex;
     this.cmdStrings.splice(this.activeIndex, 0, "");
   }
 
   deleteLine(clickedIndex: number) {
-    if (this.cmdStrings.length <= 1) return;
+    if (this.cmdStrings.length <= 1) {
+      this.deactivate.emit();
+      return;
+    }
     this.cmdStrings.splice(clickedIndex, 1);
     // Don't let activeIndex go out of bounds
     if (this.activeIndex >= this.cmdStrings.length)
