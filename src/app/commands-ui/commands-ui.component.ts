@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
-import { Meta } from "@angular/platform-browser";
+import { Meta, Title } from "@angular/platform-browser";
 import { COMMAND_MODULES } from "../command-data/command-modules";
 import {
   Command,
@@ -36,9 +36,6 @@ export class CommandsUiComponent implements OnInit {
   @ViewChild(SecondaryArgButtonsComponent)
   secondaryArgComponent: SecondaryArgButtonsComponent;
 
-  title = "Avrae Commands User Interface";
-  description = "A user interface for constructing avrae commands";
-
   modules: CommandModule[] = COMMAND_MODULES;
   commandComponentExists: boolean;
   primaryArgCompExists: boolean;
@@ -47,21 +44,7 @@ export class CommandsUiComponent implements OnInit {
   primaryArgValuePairs: PrimaryArgValuePair[] = [];
   secondaryArgValuePairs: SecondaryArgValuePair[] = [];
 
-  constructor(
-    private meta: Meta,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {
-    this.meta.updateTag({ name: "description", content: this.description });
-    this.meta.updateTag({ property: "og:title", content: this.title });
-    this.meta.updateTag({
-      property: "og:description",
-      content: this.description,
-    });
-    this.meta.updateTag({
-      property: "og:url",
-      content: "",
-    });
-  }
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     if (commandsUiSettings.showCommandStrings) sortDataByCmdString();
