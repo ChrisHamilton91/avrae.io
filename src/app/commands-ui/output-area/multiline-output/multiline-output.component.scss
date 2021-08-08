@@ -5,10 +5,10 @@
 }
 
 .container {
-  max-height: 140px;
+  max-height: 130px;
   overflow-x: hidden;
   overflow-y: scroll;
-  margin-top: 5px;
+  margin-top: 4px;
   scrollbar-color: $gray-light1 $gray5;
   scrollbar-width: thin;
   padding-right: 4px;
@@ -33,14 +33,6 @@
   display: flex;
   flex-grow: 1;
   align-items: center;
-  padding-bottom: 2px;
-}
-
-.output-box-border {
-  flex-grow: 1;
-  border-radius: 6px;
-  border: 2px solid transparent;
-  margin-right: 4px;
 }
 
 .output-box {
@@ -53,8 +45,10 @@
   border-radius: 6px;
   outline: 0;
   background: $gray5;
-  padding: 0;
-  padding-left: 2px;
+  padding: 0 0 0 2px;
+  flex-grow: 1;
+  border: 2px solid transparent;
+  cursor: text;
 }
 
 .active-line {
@@ -62,12 +56,17 @@
 }
 
 .minus-button {
-  width: 20px;
-  margin-right: 2px;
+  position: relative;
+  left: 4px;
   fill: #aa3333;
+  width: 20px;
+  left: 2px;
 }
 
 .plus-button {
+  position: relative;
+  left: 4px;
+  margin-right: 4px;
   fill: #33aa33;
   width: 20px;
 }
