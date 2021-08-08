@@ -34,6 +34,10 @@ export class MultilineOutputComponent implements OnInit {
     this.cmdStrings[this.activeIndex] = this.commandString;
   }
 
+  retrieveActiveCmdString() {
+    this.commandString = this.cmdStrings[this.activeIndex];
+  }
+
   getLine(index: number) {
     const prefix = commandsUiSettings.prefix;
     if (index === this.activeIndex) return prefix + this.commandString;
@@ -58,7 +62,13 @@ export class MultilineOutputComponent implements OnInit {
     this.cmdStrings.splice(clickedIndex, 1);
     if (this.activeIndex >= this.cmdStrings.length)
       this.activeIndex = this.cmdStrings.length - 1;
-    this.commandString = this.cmdStrings[this.activeIndex];
+    this.retrieveActiveCmdString();
+  }
+
+  changeLine(clickedIndex: number) {
+    this.storeActiveCmdString();
+    this.activeIndex = clickedIndex;
+    this.retrieveActiveCmdString();
   }
 
   getMultilineCmdString() {

@@ -3,14 +3,14 @@
     class="line-container"
     *ngFor="let cmdString of cmdStrings; let index = index"
   >
-    <div class="output-box-border" [class.active-line]="index === activeIndex">
-      <input
-        #outputBox
-        class="output-box"
-        spellcheck="false"
-        [value]="getLine(index)"
-      />
-    </div>
+    <input
+      #outputBox
+      class="output-box"
+      spellcheck="false"
+      [value]="getLine(index)"
+      [class.active-line]="index === activeIndex"
+      (click)="changeLine(index)"
+    />
     <!-- SVG is based on the one below -->
     <svg
       class="minus-button clickable"
