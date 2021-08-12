@@ -98,6 +98,24 @@
   flex-grow: 1;
 }
 
+@keyframes pulse {
+  0% {
+  }
+  50% {
+    filter: drop-shadow(0 0 15px hsl(180, 100%, 20%));
+  }
+  100% {
+  }
+}
+
+.copy-button-backdrop {
+  animation: pulse 4s infinite;
+}
+
+.copy-button-backdrop:hover {
+  animation: none;
+}
+
 .copy-button {
   width: 26px;
 }
