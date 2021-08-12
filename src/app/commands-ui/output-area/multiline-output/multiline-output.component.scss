@@ -13,6 +13,7 @@
   scrollbar-color: $gray-light1 $gray-dark1;
   scrollbar-width: thin;
   padding-right: 18px;
+  user-select: none;
 }
 
 .container::-webkit-scrollbar {
