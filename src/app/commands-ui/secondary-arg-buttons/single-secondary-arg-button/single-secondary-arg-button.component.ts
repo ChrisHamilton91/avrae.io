@@ -36,8 +36,6 @@ export class SingleSecondaryArgButtonComponent implements OnInit {
 
   getTooltip(): string {
     if (!commandsUiSettings.tooltipsEnabled) return undefined;
-    return (
-      this.argValuePair.arg.desc + ` [ ${this.argValuePair.arg.cmdString} ]`
-    );
+    return this.argValuePair.arg.desc + ` [${this.argValuePair.arg.cmdString}]`;
   }
 }
