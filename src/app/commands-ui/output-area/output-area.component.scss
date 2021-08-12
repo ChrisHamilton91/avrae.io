@@ -1,5 +1,9 @@
 @import "../../variables.scss";
 
+* {
+  box-sizing: border-box;
+}
+
 .container {
   display: flex;
   position: relative;
@@ -12,20 +16,30 @@
   flex-direction: row;
   align-items: center;
   position: absolute;
+  width: calc(100% - 14px);
   top: 0;
-  left: 10px;
 }
 
 .output-box-container {
   position: relative;
   width: 100%;
   padding: 5px;
+  padding-right: 0;
+}
+
+.output-box-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 16px);
+  height: 100%;
   border-radius: 4px;
   background: $gray5;
 }
 
 .output-box {
-  width: calc(100% - 38px);
+  position: relative;
+  width: calc(100% - 24px);
   color: $gray-light1;
   font-size: 18px;
   font-weight: 400;
@@ -53,7 +67,7 @@
 .alias-input {
   position: relative;
   left: 20px;
-  width: 70px;
+  width: 75px;
   height: 20px;
   font-size: 12px;
   font-weight: 500;
@@ -80,11 +94,30 @@
   color: $gray-light1;
 }
 
+.flex-spacer {
+  flex-grow: 1;
+}
+
+@keyframes pulse {
+  0% {
+  }
+  50% {
+    filter: drop-shadow(0 0 15px hsl(180, 100%, 20%));
+  }
+  100% {
+  }
+}
+
+.copy-button-backdrop {
+  animation: pulse 4s infinite;
+}
+
+.copy-button-backdrop:hover {
+  animation: none;
+}
+
 .copy-button {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 24px;
+  width: 26px;
 }
 
 .clickable {
@@ -102,4 +135,8 @@
 .active {
   fill: $gray-light1;
   stroke: $gray-light1;
+}
+
+commands-ui-multiline-output {
+  position: relative;
 }

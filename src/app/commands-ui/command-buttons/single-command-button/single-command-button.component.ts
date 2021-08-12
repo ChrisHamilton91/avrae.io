@@ -47,10 +47,11 @@ export class SingleCommandButtonComponent implements OnInit {
     let result = this.button.command.shortDesc + " [";
     const cmdStrings = this.button.command.cmdStrings;
     cmdStrings.forEach((cmd, i) => {
-      result += " " + cmd;
+      if (i > 0) result += " ";
+      result += cmd;
       if (i < cmdStrings.length - 1) result += ",";
     });
-    result += " ]";
+    result += "]";
     return result;
   }
 }
