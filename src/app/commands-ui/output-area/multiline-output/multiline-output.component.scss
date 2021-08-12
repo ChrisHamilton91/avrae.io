@@ -5,23 +5,24 @@
 }
 
 .container {
+  position: relative;
   max-height: 130px;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  margin-top: 4px;
-  scrollbar-color: $gray-light1 $gray5;
+  scrollbar-color: $gray-light1 $gray-dark1;
   scrollbar-width: thin;
-  padding-right: 4px;
+  padding-right: 18px;
 }
 
 .container::-webkit-scrollbar {
   width: 10px;
-  background-color: $gray5;
+  background-color: $gray-dark1;
 }
 
 .container::-webkit-scrollbar-track-piece {
   border-radius: 10px;
-  background-color: $gray5;
+  background-color: $gray-dark1;
 }
 
 .container::-webkit-scrollbar-thumb {
@@ -31,7 +32,6 @@
 
 .line-container {
   display: flex;
-  flex-grow: 1;
   align-items: center;
 }
 
@@ -66,7 +66,6 @@
 .plus-button {
   position: relative;
   left: 4px;
-  margin-right: 4px;
   fill: #33aa33;
   width: 20px;
 }

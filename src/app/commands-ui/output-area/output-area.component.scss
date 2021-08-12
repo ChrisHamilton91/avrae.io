@@ -16,7 +16,7 @@
   flex-direction: row;
   align-items: center;
   position: absolute;
-  width: 100%;
+  width: calc(100% - 14px);
   top: 0;
 }
 
@@ -24,12 +24,22 @@
   position: relative;
   width: 100%;
   padding: 5px;
+  padding-right: 0;
+}
+
+.output-box-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 16px);
+  height: 100%;
   border-radius: 4px;
   background: $gray5;
 }
 
 .output-box {
-  width: calc(100% - 38px);
+  position: relative;
+  width: calc(100% - 24px);
   color: $gray-light1;
   font-size: 18px;
   font-weight: 400;
@@ -107,4 +117,8 @@
 .active {
   fill: $gray-light1;
   stroke: $gray-light1;
+}
+
+commands-ui-multiline-output {
+  position: relative;
 }
