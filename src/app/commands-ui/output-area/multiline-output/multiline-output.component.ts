@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -26,7 +27,10 @@ export class MultilineOutputComponent implements OnInit {
   activeIndex = 0;
   multilineMax = 20;
 
-  constructor(private toastr: ToastrService) {}
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -52,6 +56,9 @@ export class MultilineOutputComponent implements OnInit {
     this.storeActiveCmdString();
     this.activeIndex = ++clickedIndex;
     this.cmdStrings.splice(this.activeIndex, 0, "");
+    this.commandString = "";
+    this.changeDetectorRef.detectChanges();
+    this.outputBoxes.get(this.activeIndex).nativeElement.focus();
   }
 
   deleteLine(clickedIndex: number) {
@@ -60,15 +67,19 @@ export class MultilineOutputComponent implements OnInit {
       return;
     }
     this.cmdStrings.splice(clickedIndex, 1);
-    if (this.activeIndex >= this.cmdStrings.length)
-      this.activeIndex = this.cmdStrings.length - 1;
-    this.retrieveActiveCmdString();
+    if (clickedIndex < this.activeIndex) {
+      this.activeIndex--;
+    } else if (clickedIndex === this.activeIndex) {
+      if (this.activeIndex >= this.cmdStrings.length) this.activeIndex--;
+      this.retrieveActiveCmdString();
+    }
   }
 
   changeLine(clickedIndex: number) {
     this.storeActiveCmdString();
     this.activeIndex = clickedIndex;
     this.retrieveActiveCmdString();
+    this.outputBoxes.get(this.activeIndex).nativeElement.focus();
   }
 
   getMultilineCmdString() {
