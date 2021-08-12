@@ -1,5 +1,9 @@
 @import "../../variables.scss";
 
+* {
+  box-sizing: border-box;
+}
+
 .container {
   display: flex;
   position: relative;
@@ -12,8 +16,8 @@
   flex-direction: row;
   align-items: center;
   position: absolute;
+  width: 100%;
   top: 0;
-  left: 10px;
 }
 
 .output-box-container {
@@ -53,7 +57,7 @@
 .alias-input {
   position: relative;
   left: 20px;
-  width: 70px;
+  width: 75px;
   height: 20px;
   font-size: 12px;
   font-weight: 500;
@@ -80,11 +84,12 @@
   color: $gray-light1;
 }
 
+.flex-spacer {
+  flex-grow: 1;
+}
+
 .copy-button {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 24px;
+  width: 26px;
 }
 
 .clickable {
