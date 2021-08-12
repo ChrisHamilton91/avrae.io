@@ -5,6 +5,7 @@
 }
 
 .container {
+  user-select: none;
   position: relative;
   max-height: 130px;
   width: 100%;
@@ -32,6 +33,7 @@
 }
 
 .line-container {
+  user-select: none;
   display: flex;
   align-items: center;
 }
