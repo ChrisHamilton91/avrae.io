@@ -82,20 +82,8 @@
   opacity: 0;
 }
 
-.alias-inline-tip {
-  position: relative;
-  left: 30px;
-  font-size: 12px;
-  font-weight: 500;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  white-space: nowrap;
-  visibility: hidden;
-  opacity: 0;
-  color: $gray-light1;
-}
-
 .flex-spacer {
-  flex-grow: 1;
+  flex: 1;
 }
 
 @keyframes pulse {
