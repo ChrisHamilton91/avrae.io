@@ -89,12 +89,6 @@ export class OutputAreaComponent implements OnInit {
     return `Type in a name for your alias. Alias names cannot have spaces.`;
   }
 
-  getAliasInlineTip() {
-    return `Call this command with: ${commandsUiSettings.prefix}${
-      this.aliasInput?.value || this.aliasPlaceholder
-    }`;
-  }
-
   getCopyTooltip() {
     if (!commandsUiSettings.tooltipsEnabled) return "";
     return "Copy to clipboard";
