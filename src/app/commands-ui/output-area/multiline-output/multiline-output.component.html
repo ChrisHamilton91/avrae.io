@@ -3,6 +3,10 @@
     class="line-container"
     *ngFor="let cmdString of cmdStrings; let index = index"
   >
+    <div class="line-number" (click)="changeLine(index)">{{ index + 1 }}</div>
+
+    <div class="output-box-spacer"></div>
+
     <input
       #outputBox
       class="output-box"
@@ -11,6 +15,9 @@
       [class.active-line]="index === activeIndex"
       (click)="changeLine(index)"
     />
+
+    <div class="flex-spacer"></div>
+
     <!-- SVG is based on the one below -->
     <svg
       class="minus-button clickable"
@@ -22,6 +29,8 @@
       <circle cx="24" cy="24" r="21" />
       <rect fill="#36393f" x="14" y="21" width="20" height="6" />
     </svg>
+
+    <div class="flex-spacer"></div>
 
     <!-- SVG from Free Preloaders on freeicons.io (modified) -->
     <svg
