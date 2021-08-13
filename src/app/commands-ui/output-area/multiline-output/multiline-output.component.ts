@@ -79,6 +79,7 @@ export class MultilineOutputComponent implements OnInit {
     this.storeActiveCmdString();
     this.activeIndex = clickedIndex;
     this.retrieveActiveCmdString();
+    this.changeDetectorRef.detectChanges();
     this.outputBoxes.get(this.activeIndex).nativeElement.focus();
   }
 

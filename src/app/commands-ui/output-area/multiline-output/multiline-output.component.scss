@@ -5,6 +5,7 @@
 }
 
 .container {
+  user-select: none;
   position: relative;
   max-height: 130px;
   width: 100%;
@@ -12,7 +13,6 @@
   overflow-y: scroll;
   scrollbar-color: $gray-light1 $gray-dark1;
   scrollbar-width: thin;
-  padding-right: 18px;
   user-select: none;
 }
 
@@ -32,8 +32,24 @@
 }
 
 .line-container {
+  user-select: none;
   display: flex;
   align-items: center;
+  position: relative;
+  width: calc(100% - 20px);
+}
+
+.line-number {
+  position: absolute;
+  left: 4px;
+  user-select: none;
+  width: 14px;
+  color: $gray-light1;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: inherit;
+  text-align: right;
+  cursor: pointer;
 }
 
 .output-box {
@@ -49,7 +65,7 @@
   padding: 0 0 0 2px;
   flex-grow: 1;
   border: 2px solid transparent;
-  cursor: text;
+  cursor: pointer;
 }
 
 .active-line {
@@ -57,16 +73,12 @@
 }
 
 .minus-button {
-  position: relative;
-  left: 4px;
   fill: #aa3333;
   width: 20px;
   left: 2px;
 }
 
 .plus-button {
-  position: relative;
-  left: 4px;
   fill: #33aa33;
   width: 20px;
 }
@@ -79,4 +91,12 @@
 
 .clickable:hover {
   filter: brightness(1);
+}
+
+.flex-spacer {
+  width: 6px;
+}
+
+.output-box-spacer {
+  width: 30px;
 }
