@@ -3,7 +3,7 @@ import {
   AttackCategories,
   TargetArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 //#region to hit
 const ADV = new AttackArgument({

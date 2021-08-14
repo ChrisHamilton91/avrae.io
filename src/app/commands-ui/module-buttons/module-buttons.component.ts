@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { CommandModule } from "src/app/schemas/Commands";
+import { CommandModule } from "src/app/command-data/command-schema";
 
 @Component({
   selector: "commands-ui-module-buttons",

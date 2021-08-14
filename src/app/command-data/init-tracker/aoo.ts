@@ -4,7 +4,7 @@ import {
   Command,
   PrimaryArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 import { ATTACK_ARGS } from "../@common/attack-arguments";
 
 //#region secondary arguments

@@ -3,7 +3,7 @@ import {
   PrimaryArgument,
   Subcommand,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 import { PACK_SERVER } from "./pack-server";
 
 //#region primary arguments

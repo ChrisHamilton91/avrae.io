@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { ATTACK } from "./attack";
 import { BEYOND } from "./beyond";
 import { CHARACTER } from "./character";

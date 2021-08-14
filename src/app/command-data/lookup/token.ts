@@ -3,7 +3,7 @@ import {
   PrimaryArgument,
   SecondaryArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 const BORDER = new SecondaryArgument({
   name: "override border",

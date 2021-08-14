@@ -1,4 +1,4 @@
-import { Command } from "../../schemas/Commands";
+import { Command } from "../command-schema";
 
 export const NEXT = new Command({
   name: "Next Turn",

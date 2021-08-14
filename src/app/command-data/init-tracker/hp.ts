@@ -3,7 +3,7 @@ import {
   PrimaryArgument,
   Subcommand,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 // #region primary arguments
 const NAME = new PrimaryArgument({

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { commandsUiSettings } from "src/app/commands-ui/@settings";
-import { ValueType } from "src/app/schemas/Commands";
+import { ValueType } from "src/app/command-data/command-schema";
 import { SecondaryArgValuePair } from "../../secondary-arg-buttons.component";
 
 @Component({

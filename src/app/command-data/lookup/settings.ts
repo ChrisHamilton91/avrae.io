@@ -1,4 +1,4 @@
-import { Command, SecondaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, SecondaryArgument, ValueType } from "../command-schema";
 
 const REQ_DM = new SecondaryArgument({
   name: "require dm for monsters",

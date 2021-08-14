@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { ITERROLL } from "./iterroll";
 import { MONATTACK } from "./monattack";
 import { MONCAST } from "./moncast";

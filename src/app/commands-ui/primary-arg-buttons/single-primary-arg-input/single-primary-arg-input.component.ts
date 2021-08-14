@@ -1,6 +1,6 @@
 import { trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { ValueType } from "src/app/schemas/Commands";
+import { ValueType } from "src/app/command-data/command-schema";
 import { visibilityAnimation } from "../../@animations";
 import { commandsUiSettings } from "../../@settings";
 import { PrimaryArgValuePair } from "../primary-arg-buttons.component";

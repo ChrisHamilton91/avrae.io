@@ -4,7 +4,7 @@ import {
   SecondaryArgument,
   Subcommand,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 //#region subcommands
 //#region add

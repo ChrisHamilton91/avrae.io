@@ -1,24 +1,34 @@
-import {isPlatformBrowser} from '@angular/common';
-import {AfterViewInit, Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Command, PrimaryArgument} from '../../schemas/Commands';
-import {debrace} from '../../shared/DisplayUtils';
+import { isPlatformBrowser } from "@angular/common";
+import {
+  AfterViewInit,
+  Component,
+  Inject,
+  Input,
+  OnInit,
+  PLATFORM_ID,
+} from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Command, CommandArgument } from "../../schemas/Commands";
+import { debrace } from "../../shared/DisplayUtils";
 
 @Component({
-  selector: 'avr-command-display',
-  templateUrl: './command-display.component.html',
-  styleUrls: ['./command-display.component.scss']
+  selector: "avr-command-display",
+  templateUrl: "./command-display.component.html",
+  styleUrls: ["./command-display.component.scss"],
 })
 export class CommandDisplayComponent implements OnInit, AfterViewInit {
   // exports
   debrace = debrace;
 
-  @Input() command: any;
+  @Input() command: Command;
   @Input() parentId: string;
   isBrowser: boolean;
   isOpen: boolean;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object, private activatedRoute: ActivatedRoute) {
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -27,14 +37,21 @@ export class CommandDisplayComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.isBrowser && this.getQualifiedId() === this.activatedRoute.snapshot.fragment) {
+    if (
+      this.isBrowser &&
+      this.getQualifiedId() === this.activatedRoute.snapshot.fragment
+    ) {
       const el = document.getElementById(this.getQualifiedId());
-      window.requestAnimationFrame(() => el.scrollIntoView({behavior: 'smooth', block: 'center'}));
+      window.requestAnimationFrame(() =>
+        el.scrollIntoView({ behavior: "smooth", block: "center" })
+      );
     }
   }
 
   canBeOpened() {
-    return /* this.command.args.length || */ this.command.docs !== this.command.short;
+    return (
+      /* this.command.args.length || */ this.command.docs !== this.command.short
+    );
   }
 
   toggleOpen() {
@@ -44,13 +61,13 @@ export class CommandDisplayComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getArgDescriptors(arg: PrimaryArgument): string {
+  getArgDescriptors(arg: CommandArgument): string {
     if (!arg.required && arg.default) {
       return ` (optional, default ${arg.default})`;
     } else if (!arg.required) {
-      return ' (optional)';
+      return " (optional)";
     }
-    return '';
+    return "";
   }
 
   shouldBeExpanded() {
@@ -63,11 +80,17 @@ export class CommandDisplayComponent implements OnInit, AfterViewInit {
 
   setHash() {
     if (this.isBrowser) {
-      history.pushState(null, null, `${window.location.pathname}#${this.getQualifiedId()}`);
+      history.pushState(
+        null,
+        null,
+        `${window.location.pathname}#${this.getQualifiedId()}`
+      );
     }
   }
 
   getQualifiedId() {
-    return this.parentId ? `${this.parentId}-${this.command.name}` : this.command.name;
+    return this.parentId
+      ? `${this.parentId}-${this.command.name}`
+      : this.command.name;
   }
 }

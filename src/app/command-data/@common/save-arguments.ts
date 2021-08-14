@@ -1,4 +1,4 @@
-import { SecondaryArgument, ValueType } from "../../schemas/Commands";
+import { SecondaryArgument, ValueType } from "../command-schema";
 
 //#region arguments
 const ADV = new SecondaryArgument({

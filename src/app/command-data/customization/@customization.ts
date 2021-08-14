@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { ALIAS } from "./alias";
 import { CHARACTER_VAR } from "./character-var";
 import { GLOBAL_VAR } from "./global-var";

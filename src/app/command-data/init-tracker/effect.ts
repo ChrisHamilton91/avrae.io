@@ -4,7 +4,7 @@ import {
   EffectCategories,
   PrimaryArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 //#region secondary arguments
 const DUR = new EffectArgument({

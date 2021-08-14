@@ -1,4 +1,4 @@
-import { Command, SecondaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, SecondaryArgument, ValueType } from "../command-schema";
 
 const V = new SecondaryArgument({
   name: "show after update",

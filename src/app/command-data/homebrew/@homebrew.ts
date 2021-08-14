@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { BESTIARY } from "./bestiary";
 import { PACK } from "./pack";
 import { TOME } from "./tome";

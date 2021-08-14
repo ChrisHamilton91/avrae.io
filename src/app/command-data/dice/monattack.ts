@@ -3,7 +3,7 @@ import {
   PrimaryArgument,
   Subcommand,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 import { ATTACK_ARGS } from "../@common/attack-arguments";
 
 //#region primary arguments

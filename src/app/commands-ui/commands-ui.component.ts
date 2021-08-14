@@ -6,7 +6,7 @@ import {
   CommandModule,
   Subcommand,
   ValueType,
-} from "../schemas/Commands";
+} from "../command-data/command-schema";
 import { commandsUiSettings } from "./@settings";
 import { getShortest, sortDataByCmdString, sortDataByName } from "./@sorting";
 import {

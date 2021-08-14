@@ -1,4 +1,4 @@
-import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../command-schema";
 import { ATTACK_ARGS } from "../@common/attack-arguments";
 import { SPELL_ARGS } from "../@common/spellcasting-arguments";
 

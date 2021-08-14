@@ -1,8 +1,4 @@
-import {
-  AttackArgument,
-  AttackCategories,
-  ValueType,
-} from "../../schemas/Commands";
+import { AttackArgument, AttackCategories, ValueType } from "../command-schema";
 
 //#region arguments
 const I = new AttackArgument({
