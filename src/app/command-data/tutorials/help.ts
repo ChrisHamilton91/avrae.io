@@ -11,7 +11,6 @@ const HERE = new SecondaryArgument({
   cmdString: "-here",
   valueType: ValueType.TRUE,
   desc: "Sends help to the channel instead of PMs.",
-  ephemeral: false,
 });
 //#endregion
 

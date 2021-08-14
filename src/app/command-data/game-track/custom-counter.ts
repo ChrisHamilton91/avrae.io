@@ -39,7 +39,6 @@ const CREATE_TITLE = new SecondaryArgument({
   cmdString: "-title",
   valueType: ValueType.STRING,
   desc: "Sets the title when setting or viewing the counter. [name] will be replaced with the player's name.",
-  ephemeral: false,
 });
 
 const CREATE_DESC = new SecondaryArgument({
@@ -47,7 +46,6 @@ const CREATE_DESC = new SecondaryArgument({
   cmdString: "-desc",
   valueType: ValueType.STRING,
   desc: "Sets the description when setting or viewing the counter.",
-  ephemeral: false,
 });
 
 const CREATE_RESET = new SecondaryArgument({
@@ -55,7 +53,6 @@ const CREATE_RESET = new SecondaryArgument({
   cmdString: "-reset",
   valueType: ValueType.STRING,
   desc: `Counter will reset to max on a short rest or long rest, or not ever when "none". Values: 'short', 'long', or 'none'`,
-  ephemeral: false,
 });
 
 const CREATE_MAX = new SecondaryArgument({
@@ -63,7 +60,6 @@ const CREATE_MAX = new SecondaryArgument({
   cmdString: "-max",
   valueType: ValueType.NUMBER,
   desc: "The maximum value of the counter.",
-  ephemeral: false,
 });
 
 const CREATE_MIN = new SecondaryArgument({
@@ -71,7 +67,6 @@ const CREATE_MIN = new SecondaryArgument({
   cmdString: "-min",
   valueType: ValueType.NUMBER,
   desc: "The minimum value of the counter.",
-  ephemeral: false,
 });
 
 const CREATE_TYPE = new SecondaryArgument({
@@ -79,7 +74,6 @@ const CREATE_TYPE = new SecondaryArgument({
   cmdString: "-type",
   valueType: ValueType.STRING,
   desc: "Whether the counter displays as bubbles or the default: numbers. Values: 'bubble' or 'default'",
-  ephemeral: false,
 });
 
 const CREATE_RESET_TO = new SecondaryArgument({
@@ -87,7 +81,6 @@ const CREATE_RESET_TO = new SecondaryArgument({
   cmdString: "-resetto",
   valueType: ValueType.NUMBER,
   desc: "The value to reset the counter to. Default - maximum.",
-  ephemeral: false,
 });
 
 const CREATE_RESET_BY = new SecondaryArgument({
@@ -95,7 +88,6 @@ const CREATE_RESET_BY = new SecondaryArgument({
   cmdString: "-resetby",
   valueType: ValueType.NUMBER,
   desc: "Rather than resetting to a certain value, modify the counter by this much per reset. Supports dice.",
-  ephemeral: false,
 });
 
 const CREATE_NAME = new PrimaryArgument({
@@ -147,7 +139,6 @@ const RESET_H = new SecondaryArgument({
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides the character summary output.",
-  ephemeral: false,
 });
 
 const RESET_NAME = new PrimaryArgument({

@@ -6,7 +6,6 @@ const ADV = new SecondaryArgument({
   cmdString: "adv",
   valueType: ValueType.TRUE,
   desc: "Give advantage to the initiative roll.",
-  ephemeral: false,
 });
 
 const DIS = new SecondaryArgument({
@@ -14,7 +13,6 @@ const DIS = new SecondaryArgument({
   cmdString: "dis",
   valueType: ValueType.TRUE,
   desc: "Give disadvantage to the initiative roll.",
-  ephemeral: false,
 });
 
 const B = new SecondaryArgument({
@@ -22,7 +20,6 @@ const B = new SecondaryArgument({
   cmdString: "-b",
   valueType: ValueType.NUMBER,
   desc: "Adds a bonus to the combatants' Initiative roll.",
-  ephemeral: false,
 });
 
 const PHRASE = new SecondaryArgument({
@@ -30,7 +27,6 @@ const PHRASE = new SecondaryArgument({
   cmdString: "-phrase",
   valueType: ValueType.STRING,
   desc: "Adds flavor text.",
-  ephemeral: false,
 });
 
 const THUMB = new SecondaryArgument({
@@ -38,7 +34,6 @@ const THUMB = new SecondaryArgument({
   cmdString: "-thumb",
   valueType: ValueType.STRING,
   desc: "Pass in a url to add a thumbnail to the initiative roll.",
-  ephemeral: false,
 });
 
 const P = new SecondaryArgument({
@@ -46,7 +41,6 @@ const P = new SecondaryArgument({
   cmdString: "-p",
   valueType: ValueType.NUMBER,
   desc: "Places combatant at the given value, instead of rolling.",
-  ephemeral: false,
 });
 
 const H = new SecondaryArgument({
@@ -54,7 +48,6 @@ const H = new SecondaryArgument({
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides HP, AC, Resists, etc.",
-  ephemeral: false,
 });
 
 const GROUP = new SecondaryArgument({
@@ -62,7 +55,6 @@ const GROUP = new SecondaryArgument({
   cmdString: "-group",
   valueType: ValueType.STRING,
   desc: "Adds the combatant to a group.",
-  ephemeral: false,
 });
 
 const NOTE = new SecondaryArgument({
@@ -70,7 +62,6 @@ const NOTE = new SecondaryArgument({
   cmdString: "-note",
   valueType: ValueType.STRING,
   desc: "Sets the combatant's note.",
-  ephemeral: false,
 });
 //#endregion
 

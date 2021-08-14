@@ -5,7 +5,6 @@ const PRIVATE = new SecondaryArgument({
   cmdString: "private",
   valueType: ValueType.TRUE,
   desc: "Sends the list in a private message.",
-  ephemeral: false,
 });
 
 export const LIST = new Command({

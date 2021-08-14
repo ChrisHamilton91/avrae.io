@@ -10,7 +10,6 @@ const H = new SecondaryArgument({
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Shows the obfuscated stat block, even if you can see the full stat block.",
-  ephemeral: false,
 });
 
 const NAME = new PrimaryArgument({

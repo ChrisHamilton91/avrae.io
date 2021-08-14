@@ -11,7 +11,6 @@ const H = new SecondaryArgument({
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides HP, AC, resistances.",
-  ephemeral: false,
 });
 
 const P = new SecondaryArgument({
@@ -19,7 +18,6 @@ const P = new SecondaryArgument({
   cmdString: "-p",
   valueType: ValueType.NUMBER,
   desc: "Changes the combatants' placement in the initiative. Modifies if starts with +/- or sets otherwise.",
-  ephemeral: false,
 });
 
 const NAME = new SecondaryArgument({
@@ -27,7 +25,6 @@ const NAME = new SecondaryArgument({
   cmdString: "-name",
   valueType: ValueType.STRING,
   desc: "Changes the combatants' name.",
-  ephemeral: false,
 });
 
 const CONTROLLER = new SecondaryArgument({
@@ -35,7 +32,6 @@ const CONTROLLER = new SecondaryArgument({
   cmdString: "-controller",
   valueType: ValueType.STRING,
   desc: "Pings a different person on turn.",
-  ephemeral: false,
 });
 
 const AC = new SecondaryArgument({
@@ -43,7 +39,6 @@ const AC = new SecondaryArgument({
   cmdString: "-ac",
   valueType: ValueType.NUMBER,
   desc: "Changes combatants' AC. Modifies if starts with +/- or sets otherwise.",
-  ephemeral: false,
 });
 
 const RESIST = new SecondaryArgument({
@@ -51,7 +46,6 @@ const RESIST = new SecondaryArgument({
   cmdString: "-resist",
   valueType: ValueType.STRING,
   desc: "Gives the combatant resistance to the given damage type.",
-  ephemeral: false,
 });
 
 const IMMUNE = new SecondaryArgument({
@@ -59,7 +53,6 @@ const IMMUNE = new SecondaryArgument({
   cmdString: "-immune",
   valueType: ValueType.STRING,
   desc: "Gives the combatant immunity to the given damage type.",
-  ephemeral: false,
 });
 
 const VULN = new SecondaryArgument({
@@ -67,7 +60,6 @@ const VULN = new SecondaryArgument({
   cmdString: "-vuln",
   valueType: ValueType.STRING,
   desc: "Gives the combatant vulnerability to the given damage type.",
-  ephemeral: false,
 });
 
 const NEUTRAL = new SecondaryArgument({
@@ -75,7 +67,6 @@ const NEUTRAL = new SecondaryArgument({
   cmdString: "-neutral",
   valueType: ValueType.STRING,
   desc: "Removes the combatants' immunity, resistance, or vulnerability to the given damage type.",
-  ephemeral: false,
 });
 
 const GROUP = new SecondaryArgument({
@@ -83,7 +74,6 @@ const GROUP = new SecondaryArgument({
   cmdString: "-group",
   valueType: ValueType.STRING,
   desc: "Adds the combatant to a group. To remove them from a group, pass in 'None'.",
-  ephemeral: false,
 });
 
 const MAX = new SecondaryArgument({
@@ -91,7 +81,6 @@ const MAX = new SecondaryArgument({
   cmdString: "-max",
   valueType: ValueType.NUMBER,
   desc: "Changes current maximum HP. Modifies if starts with +/- or sets otherwise.",
-  ephemeral: false,
 });
 
 const HP = new SecondaryArgument({
@@ -99,7 +88,6 @@ const HP = new SecondaryArgument({
   cmdString: "-hp",
   valueType: ValueType.NUMBER,
   desc: "Changes current HP. Modifies if starts with +/- or sets otherwise.",
-  ephemeral: false,
 });
 //#endregion
 

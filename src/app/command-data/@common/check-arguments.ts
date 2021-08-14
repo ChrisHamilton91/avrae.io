@@ -30,7 +30,6 @@ const DC = new SecondaryArgument({
   cmdString: "-dc",
   valueType: ValueType.NUMBER,
   desc: "Sets a DC (difficulty class) and counts successes/failures.",
-  ephemeral: false,
 });
 
 const MC = new SecondaryArgument({
@@ -38,7 +37,6 @@ const MC = new SecondaryArgument({
   cmdString: "-mc",
   valueType: ValueType.NUMBER,
   desc: "Sets the minimum roll on the dice (e.g. Reliable Talent, Glibness)",
-  ephemeral: false,
 });
 
 const RR = new SecondaryArgument({
@@ -46,7 +44,6 @@ const RR = new SecondaryArgument({
   cmdString: "-rr",
   valueType: ValueType.NUMBER,
   desc: "How many checks to roll.",
-  ephemeral: false,
 });
 
 const STR = new SecondaryArgument({
@@ -54,7 +51,6 @@ const STR = new SecondaryArgument({
   cmdString: "str",
   valueType: ValueType.TRUE,
   desc: "Rolls using a strength base instead of the regular skill base for the check.",
-  ephemeral: false,
 });
 
 const DEX = new SecondaryArgument({
@@ -62,7 +58,6 @@ const DEX = new SecondaryArgument({
   cmdString: "dex",
   valueType: ValueType.TRUE,
   desc: "Rolls using a dexterity base instead of the regular skill base for the check.",
-  ephemeral: false,
 });
 
 const CON = new SecondaryArgument({
@@ -70,7 +65,6 @@ const CON = new SecondaryArgument({
   cmdString: "con",
   valueType: ValueType.TRUE,
   desc: "Rolls using a constitution base instead of the regular skill base for the check.",
-  ephemeral: false,
 });
 
 const INT = new SecondaryArgument({
@@ -78,7 +72,6 @@ const INT = new SecondaryArgument({
   cmdString: "int",
   valueType: ValueType.TRUE,
   desc: "Rolls using a intelligence base instead of the regular skill base for the check.",
-  ephemeral: false,
 });
 
 const WIS = new SecondaryArgument({
@@ -86,7 +79,6 @@ const WIS = new SecondaryArgument({
   cmdString: "wis",
   valueType: ValueType.TRUE,
   desc: "Rolls using a wisdom base instead of the regular skill base for the check.",
-  ephemeral: false,
 });
 
 const CHA = new SecondaryArgument({
@@ -94,7 +86,6 @@ const CHA = new SecondaryArgument({
   cmdString: "cha",
   valueType: ValueType.TRUE,
   desc: "Rolls using a charisma base instead of the regular skill base for the check.",
-  ephemeral: false,
 });
 
 const PHRASE = new SecondaryArgument({
@@ -102,7 +93,6 @@ const PHRASE = new SecondaryArgument({
   cmdString: "-phrase",
   valueType: ValueType.STRING,
   desc: "Adds flavor text.",
-  ephemeral: false,
 });
 
 const TITLE = new SecondaryArgument({
@@ -110,7 +100,6 @@ const TITLE = new SecondaryArgument({
   cmdString: "-title",
   valueType: ValueType.STRING,
   desc: "Changes the title of the attack. Replaces [name] with attacker's name and [cname] with the check's name.",
-  ephemeral: false,
 });
 
 const F = new SecondaryArgument({
@@ -118,7 +107,6 @@ const F = new SecondaryArgument({
   cmdString: "-f",
   valueType: ValueType.STRING,
   desc: `Creates a field in the embed with the given title and text. Syntax: "Field Title|Field Text."`,
-  ephemeral: false,
 });
 
 const THUMB = new SecondaryArgument({
@@ -126,7 +114,6 @@ const THUMB = new SecondaryArgument({
   cmdString: "-thumb",
   valueType: ValueType.STRING,
   desc: "Pass in an image url to add a thumbnail to the check.",
-  ephemeral: false,
 });
 
 const H = new SecondaryArgument({
@@ -134,7 +121,6 @@ const H = new SecondaryArgument({
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides the name and image of the character performing the check.",
-  ephemeral: false,
 });
 //#endregion
 

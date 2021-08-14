@@ -5,7 +5,6 @@ const RESTART = new SecondaryArgument({
   cmdString: "-restart",
   valueType: ValueType.TRUE,
   desc: "Resets the round counter (effectively restarting initiative).",
-  ephemeral: false,
 });
 
 export const REROLL = new Command({

@@ -66,7 +66,6 @@ const AC = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Overrides target AC (armor class).",
   category: AttackCategories.TO_HIT,
-  ephemeral: false,
 });
 
 const B = new AttackArgument({
@@ -84,7 +83,6 @@ const CRITON = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "The number the attack crits on if rolled on or above.",
   category: AttackCategories.TO_HIT,
-  ephemeral: false,
 });
 //#endregion
 
@@ -113,7 +111,6 @@ const SADV = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Gives the target advantage on the saving throw.",
   category: AttackCategories.SAVES,
-  ephemeral: false,
 });
 
 const SDIS = new AttackArgument({
@@ -122,7 +119,6 @@ const SDIS = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Gives the target disadvantage on the saving throw.",
   category: AttackCategories.SAVES,
-  ephemeral: false,
 });
 
 const DC = new AttackArgument({
@@ -131,7 +127,6 @@ const DC = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Overrides the DC of the save. Prefix the number with '+' or '-' to increment or decrement dc instead.",
   category: AttackCategories.SAVES,
-  ephemeral: false,
 });
 
 const SAVE = new AttackArgument({
@@ -140,7 +135,6 @@ const SAVE = new AttackArgument({
   valueType: ValueType.STRING,
   desc: "Overrides the spell save type (e.g. -save str).",
   category: AttackCategories.SAVES,
-  ephemeral: false,
 });
 //#endregion
 
@@ -254,7 +248,6 @@ const DUR = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Overrides the duration of any effect applied by the attack.",
   category: AttackCategories.EFFECTS,
-  ephemeral: false,
 });
 //#endregion
 
@@ -265,7 +258,6 @@ const AMT = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Overrides the amount of the resource used.",
   category: AttackCategories.COUNTERS,
-  ephemeral: false,
 });
 
 const L = new AttackArgument({
@@ -274,7 +266,6 @@ const L = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Specifies the level of the spell slot to use.",
   category: AttackCategories.COUNTERS,
-  ephemeral: false,
 });
 
 const I = new AttackArgument({
@@ -283,7 +274,6 @@ const I = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Skips using any resources.",
   category: AttackCategories.COUNTERS,
-  ephemeral: false,
 });
 //#endregion
 
@@ -294,7 +284,6 @@ const H = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Hides rolled values.",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 
 const PHRASE = new AttackArgument({
@@ -303,7 +292,6 @@ const PHRASE = new AttackArgument({
   valueType: ValueType.STRING,
   desc: "Adds flavor text.",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 
 const TITLE = new AttackArgument({
@@ -312,7 +300,6 @@ const TITLE = new AttackArgument({
   valueType: ValueType.STRING,
   desc: "Changes the title of the attack. Replaces [name] with attacker's name and [aname] with the attack's name.",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 
 const F = new AttackArgument({
@@ -321,7 +308,6 @@ const F = new AttackArgument({
   valueType: ValueType.STRING,
   desc: `Creates a field in the embed with the given title and text. Syntax: "Field Title|Field Text"`,
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 
 const THUMB = new AttackArgument({
@@ -330,7 +316,6 @@ const THUMB = new AttackArgument({
   valueType: ValueType.STRING,
   desc: "Pass in an image url to add a thumbnail to the attack",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 //#endregion
 
@@ -341,7 +326,6 @@ const RR = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "How many attacks to make at each target.",
   category: AttackCategories.TARGETING,
-  ephemeral: false,
 });
 
 const T = new TargetArgument({
@@ -383,7 +367,6 @@ const T = new TargetArgument({
     NEUTRAL,
     DUR,
   ],
-  ephemeral: false,
 });
 //#endregion
 

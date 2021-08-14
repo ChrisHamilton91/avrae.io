@@ -21,7 +21,6 @@ const TITLE = new SecondaryArgument({
   cmdString: "-title",
   valueType: ValueType.STRING,
   desc: "The title of the embed.",
-  ephemeral: false,
 });
 
 const DESC = new SecondaryArgument({
@@ -29,7 +28,6 @@ const DESC = new SecondaryArgument({
   cmdString: "-desc",
   valueType: ValueType.STRING,
   desc: "The text description of the embed.",
-  ephemeral: false,
 });
 
 const THUMB = new SecondaryArgument({
@@ -37,7 +35,6 @@ const THUMB = new SecondaryArgument({
   cmdString: "-thumb",
   valueType: ValueType.STRING,
   desc: "The url of an image to embed as a thumbnail.",
-  ephemeral: false,
 });
 
 const IMAGE = new SecondaryArgument({
@@ -45,7 +42,6 @@ const IMAGE = new SecondaryArgument({
   cmdString: "-image",
   valueType: ValueType.STRING,
   desc: "The url of an image to embed.",
-  ephemeral: false,
 });
 
 const FOOTER = new SecondaryArgument({
@@ -53,7 +49,6 @@ const FOOTER = new SecondaryArgument({
   cmdString: "-footer",
   valueType: ValueType.STRING,
   desc: "The text of the embed footer.",
-  ephemeral: false,
 });
 
 const F = new SecondaryArgument({
@@ -63,7 +58,6 @@ const F = new SecondaryArgument({
   desc:
     `Creates a field in the embed with the given title and text. Syntax: "Field Title|Field Text[|inline]". ` +
     `(e.g. "Donuts|I have 15 donuts|inline" for an inline field, or "Donuts|I have 15 donuts" for one with its own line.)`,
-  ephemeral: false,
 });
 
 const COLOR = new SecondaryArgument({
@@ -71,7 +65,6 @@ const COLOR = new SecondaryArgument({
   cmdString: "-color",
   valueType: ValueType.STRING,
   desc: "Color of the embed. Pass in a hex color like #da291c",
-  ephemeral: false,
 });
 
 const T = new SecondaryArgument({
@@ -79,7 +72,6 @@ const T = new SecondaryArgument({
   cmdString: "-t",
   valueType: ValueType.NUMBER,
   desc: "Time to show the embed for in seconds (from 0 to 600).",
-  ephemeral: false,
 });
 //#endregion
 

@@ -44,6 +44,7 @@ export class CommandModule {
   longDesc?: string;
   /** An array of all commands within the module*/
   commands: Command[];
+
   constructor(module: CommandModule) {
     this.name = module.name;
     this.shortDesc = module.shortDesc;
@@ -68,6 +69,7 @@ export class Command {
   secondaryArgs?: SecondaryArgument[];
   /** An array of subcommands */
   subcommands?: Subcommand[];
+
   constructor(command: Command) {
     this.name = command.name;
     this.cmdStrings = command.cmdStrings;
@@ -94,6 +96,7 @@ export class Argument {
   desc: string;
   /** The type of value that is passed to the command */
   valueType: ValueType;
+
   constructor(arg: Argument) {
     this.name = arg.name;
     this.desc = arg.desc;
@@ -114,6 +117,7 @@ export class PrimaryArgument extends Argument {
   signature: string;
   /** Whether or not this argument is required for the command to execute */
   required: boolean;
+
   constructor(arg: PrimaryArgument) {
     super(arg);
     this.signature = arg.signature;
@@ -137,13 +141,17 @@ export class SecondaryArgument extends Argument {
    * and the argument will only apply to that many iterations.
    * For example !a dagger -rr 4 -d2 10 rolls four times and applies 10 extra damage to the first two attacks.
    */
-  ephemeral: boolean;
+  ephemeral? = false;
+  /** Whether or not the argument can appear multiple times in the same command. */
+  repeatable? = false;
   /** Optional category for organization */
   category?: { name: string; index: number };
+
   constructor(arg: SecondaryArgument) {
     super(arg);
     this.cmdString = arg.cmdString;
     this.ephemeral = arg.ephemeral;
+    this.repeatable = arg.repeatable;
     this.category = arg.category;
   }
 }
@@ -162,6 +170,7 @@ export class AttackArgument extends SecondaryArgument {
 export class TargetArgument extends AttackArgument {
   /** An array of arguments that can be passed to this argument, besides the target itself. */
   secondaryArgs: SecondaryArgument[];
+
   constructor(arg: TargetArgument) {
     super(arg);
     this.secondaryArgs = arg.secondaryArgs;

@@ -7,7 +7,6 @@ const I = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Ignores Spellbook restrictions (e.g. when casting from an item, as a ritual, etc.).",
   category: AttackCategories.SPELLCASTING,
-  ephemeral: false,
 });
 
 const L = new AttackArgument({
@@ -16,7 +15,6 @@ const L = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Specifies the level to cast the spell at.",
   category: AttackCategories.SPELLCASTING,
-  ephemeral: false,
 });
 
 const MOD = new AttackArgument({
@@ -25,7 +23,6 @@ const MOD = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Overrides the value of the spellcasting ability modifier.",
   category: AttackCategories.SPELLCASTING,
-  ephemeral: false,
 });
 
 const WITH = new AttackArgument({
@@ -34,7 +31,6 @@ const WITH = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Uses a different ability base for DC/AB (int, wis, cha... will not account for extra bonuses).",
   category: AttackCategories.SPELLCASTING,
-  ephemeral: false,
 });
 
 const NOCONC = new AttackArgument({
@@ -43,7 +39,6 @@ const NOCONC = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Ignores concentration requirements.",
   category: AttackCategories.SPELLCASTING,
-  ephemeral: false,
 });
 //#endregion
 

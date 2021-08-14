@@ -11,7 +11,6 @@ const B = new SecondaryArgument({
   cmdString: "-b",
   valueType: ValueType.NUMBER,
   desc: "Adds a bonus to the combatant's initiative roll.",
-  ephemeral: false,
 });
 
 const N = new SecondaryArgument({
@@ -19,7 +18,6 @@ const N = new SecondaryArgument({
   cmdString: "-n",
   valueType: ValueType.NUMBER,
   desc: "Adds more than one of that monster. Supports dice.",
-  ephemeral: false,
 });
 
 const P = new SecondaryArgument({
@@ -27,7 +25,6 @@ const P = new SecondaryArgument({
   cmdString: "-p",
   valueType: ValueType.NUMBER,
   desc: "Places combatant at the given modifier, instead of rolling.",
-  ephemeral: false,
 });
 
 const NAME = new SecondaryArgument({
@@ -35,7 +32,6 @@ const NAME = new SecondaryArgument({
   cmdString: "-name",
   valueType: ValueType.NUMBER,
   desc: `Sets the combatant's name. Use "#" for auto-numbering, e.g. "Orc#"`,
-  ephemeral: false,
 });
 
 const H = new SecondaryArgument({
@@ -43,7 +39,6 @@ const H = new SecondaryArgument({
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Unhides HP, AC, and resistances.",
-  ephemeral: false,
 });
 
 const GROUP = new SecondaryArgument({
@@ -51,7 +46,6 @@ const GROUP = new SecondaryArgument({
   cmdString: "-group",
   valueType: ValueType.STRING,
   desc: "Adds the combatant to a given group.",
-  ephemeral: false,
 });
 
 const ROLL_HP = new SecondaryArgument({
@@ -59,7 +53,6 @@ const ROLL_HP = new SecondaryArgument({
   cmdString: "-rollhp",
   valueType: ValueType.TRUE,
   desc: "Rolls the monsters HP, instead of using the default value.",
-  ephemeral: false,
 });
 
 const HP = new SecondaryArgument({
@@ -67,7 +60,6 @@ const HP = new SecondaryArgument({
   cmdString: "-hp",
   valueType: ValueType.NUMBER,
   desc: "Sets starting hit points.",
-  ephemeral: false,
 });
 
 const THP = new SecondaryArgument({
@@ -75,7 +67,6 @@ const THP = new SecondaryArgument({
   cmdString: "-thp",
   valueType: ValueType.NUMBER,
   desc: "Sets starting temporary hit points.",
-  ephemeral: false,
 });
 
 const AC = new SecondaryArgument({
@@ -83,7 +74,6 @@ const AC = new SecondaryArgument({
   cmdString: "-ac",
   valueType: ValueType.NUMBER,
   desc: "Sets the combatant's armor class (AC)",
-  ephemeral: false,
 });
 
 const NOTE = new SecondaryArgument({
@@ -91,7 +81,6 @@ const NOTE = new SecondaryArgument({
   cmdString: "-note",
   valueType: ValueType.STRING,
   desc: "Sets the combatant's note.",
-  ephemeral: false,
 });
 //#endregion
 

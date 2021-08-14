@@ -10,7 +10,6 @@ const NOCC = new SecondaryArgument({
   cmdString: "-nocc",
   valueType: ValueType.TRUE,
   desc: "Do not automatically create custom counters for limited use features.",
-  ephemeral: false,
 });
 
 const URL = new PrimaryArgument({

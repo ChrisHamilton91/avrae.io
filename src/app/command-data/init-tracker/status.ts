@@ -10,7 +10,6 @@ const PRIVATE = new SecondaryArgument({
   cmdString: "private",
   valueType: ValueType.TRUE,
   desc: "PMs the controller of the combatant a more detailed status.",
-  ephemeral: false,
 });
 
 const NAME = new PrimaryArgument({

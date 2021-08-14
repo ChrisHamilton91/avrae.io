@@ -5,7 +5,6 @@ const H = new SecondaryArgument({
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides the character summary output.",
-  ephemeral: false,
 });
 
 export const GAME_LR = new Command({

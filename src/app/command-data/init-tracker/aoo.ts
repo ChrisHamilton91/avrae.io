@@ -14,7 +14,6 @@ const CUSTOM = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Makes a custom attack with 0 to hit and base damage. Use -b and -d to add to hit and damage.",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 //#endregion
 

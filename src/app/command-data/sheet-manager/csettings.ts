@@ -6,7 +6,6 @@ const COLOR = new SecondaryArgument({
   cmdString: "color",
   valueType: ValueType.STRING,
   desc: "Colors all embeds this color. Pass in a hex color like #ec1c24",
-  ephemeral: false,
 });
 
 const CRITON = new SecondaryArgument({
@@ -14,7 +13,6 @@ const CRITON = new SecondaryArgument({
   cmdString: "criton",
   valueType: ValueType.NUMBER,
   desc: "Makes attacks crit on something other than a 20.",
-  ephemeral: false,
 });
 
 const REROLL = new SecondaryArgument({
@@ -22,7 +20,6 @@ const REROLL = new SecondaryArgument({
   cmdString: "reroll",
   valueType: ValueType.NUMBER,
   desc: "Defines a number that a check will automatically reroll on, for cases such as Halfling Luck.",
-  ephemeral: false,
 });
 
 const SRSLOTS = new SecondaryArgument({
@@ -30,7 +27,6 @@ const SRSLOTS = new SecondaryArgument({
   cmdString: "srslots",
   valueType: ValueType.BOOLEAN,
   desc: "Enables / disables whether spell slots reset on a Short Rest.",
-  ephemeral: false,
 });
 
 const EMBEDIMAGE = new SecondaryArgument({
@@ -38,7 +34,6 @@ const EMBEDIMAGE = new SecondaryArgument({
   cmdString: "embedimage",
   valueType: ValueType.BOOLEAN,
   desc: "Enables / disables whether a character's image is automatically embedded.",
-  ephemeral: false,
 });
 
 const CRITDICE = new SecondaryArgument({
@@ -46,7 +41,6 @@ const CRITDICE = new SecondaryArgument({
   cmdString: "critdice",
   valueType: ValueType.NUMBER,
   desc: "Adds additional damage dice to roll on critical attacks, on top of the doubled dice.",
-  ephemeral: false,
 });
 
 const TALENT = new SecondaryArgument({
@@ -54,7 +48,6 @@ const TALENT = new SecondaryArgument({
   cmdString: "talent",
   valueType: ValueType.BOOLEAN,
   desc: "Enables / disables whether to apply a rogue's Reliable Talent on checks you're proficient with.",
-  ephemeral: false,
 });
 //#endregion
 

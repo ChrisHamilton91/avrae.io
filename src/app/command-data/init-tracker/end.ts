@@ -5,7 +5,6 @@ const FORCE = new SecondaryArgument({
   cmdString: "-force",
   valueType: ValueType.TRUE,
   desc: "Forces an init to end, in case it's erroring.",
-  ephemeral: false,
 });
 
 export const END = new Command({
