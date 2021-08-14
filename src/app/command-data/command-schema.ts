@@ -156,7 +156,7 @@ export class SecondaryArgument extends Argument {
   }
 }
 
-/** An argument specifically for the attack command */
+/** An argument specifically for the attack command - enforces categories */
 export class AttackArgument extends SecondaryArgument {
   /** The category of attack argument, for organization */
   category: { name: string; index: number };
@@ -177,7 +177,7 @@ export class TargetArgument extends AttackArgument {
   }
 }
 
-/** An argument specifically for the effect command */
+/** An argument specifically for the effect command - enforces categories */
 export class EffectArgument extends SecondaryArgument {
   /** The category of effect argument, for organization */
   category: { name: string; index: number };

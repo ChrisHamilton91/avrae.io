@@ -161,7 +161,7 @@ const D = new AttackArgument({
   name: "add damage",
   cmdString: "-d",
   valueType: ValueType.NUMBER,
-  desc: "Adds additional damage",
+  desc: "Adds additional damage. To specify damage type use square brackets. ex. 1d4[fire].",
   category: AttackCategories.DAMAGE,
   ephemeral: true,
 });
@@ -202,6 +202,7 @@ const DTYPE = new AttackArgument({
   desc: "Changes all damage types to a new damage type. Separate two types with '>' to only modify one damage type (e.g. -dtype fire>cold)",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 
 const RESIST = new AttackArgument({
@@ -211,6 +212,7 @@ const RESIST = new AttackArgument({
   desc: "Gives the target resistance to the given damage type.",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 
 const IMMUNE = new AttackArgument({
@@ -220,6 +222,7 @@ const IMMUNE = new AttackArgument({
   desc: "Gives the target immunity to the given damage type.",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 
 const VULN = new AttackArgument({
@@ -229,6 +232,7 @@ const VULN = new AttackArgument({
   desc: "Gives the target vulnerability to the given damage type.",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 
 const NEUTRAL = new AttackArgument({
@@ -238,6 +242,7 @@ const NEUTRAL = new AttackArgument({
   desc: "Removes the target's immunity, resistance, or vulnerability to the given damage type.",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 //#endregion
 
@@ -337,6 +342,7 @@ const T = new TargetArgument({
     `Repeat this command to target multiple enemies. ` +
     `Allows for specific args to apply to each target. (e.g, -t "OR1|hit" to force the attack against OR1 to hit)`,
   category: AttackCategories.TARGETING,
+  repeatable: true,
   secondaryArgs: [
     RR,
     ADV,
