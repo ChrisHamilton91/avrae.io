@@ -13,12 +13,12 @@ import { SubcommandButton } from "../command-buttons/subcommand-buttons/subcomma
 export class SecondaryArgValuePair {
   arg: SecondaryArgument;
   value: string | boolean = null;
-  index: number;
-  active: boolean = false;
+  active = false;
   activeChange = new Subject();
-  constructor(arg: SecondaryArgument, index: number) {
+  repeated: boolean;
+  constructor(arg: SecondaryArgument, repeated = false) {
     this.arg = arg;
-    this.index = index;
+    this.repeated = repeated;
   }
 }
 
@@ -80,9 +80,8 @@ export class SecondaryArgButtonsComponent implements OnInit {
 
   setArgs() {
     this.argValuePairs = [];
-    let index = 0;
     for (const arg of this.command.secondaryArgs) {
-      this.argValuePairs.push(new SecondaryArgValuePair(arg, index++));
+      this.argValuePairs.push(new SecondaryArgValuePair(arg));
     }
   }
 
@@ -130,5 +129,14 @@ export class SecondaryArgButtonsComponent implements OnInit {
       "Secondary args appear after primary args (if any). " +
       "Their order does not matter relative to other secondary args. "
     );
+  }
+
+  repeatArg(i: number) {
+    const arg = this.argValuePairs[i].arg;
+    this.argValuePairs.splice(i + 1, 0, new SecondaryArgValuePair(arg, true));
+  }
+
+  deleteArg(i: number) {
+    this.argValuePairs.splice(i, 1);
   }
 }

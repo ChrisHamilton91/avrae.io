@@ -1,9 +1,43 @@
-<button
-  [@color]="getColor()"
-  mat-raised-button
-  [matTooltip]="getTooltip()"
-  matTooltipPosition="right"
-  (click)="toggleActive()"
->
-  {{ getLabel() }}
-</button>
+<div class="container">
+  <button
+    [@color]="getColor()"
+    [class.extra-padding]="argValuePair.arg.repeatable"
+    mat-raised-button
+    [matTooltip]="getTooltip()"
+    matTooltipPosition="right"
+    (click)="toggleActive()"
+  >
+    {{ getLabel() }}
+  </button>
+
+  <!-- SVG is based on the one below -->
+  <svg
+    class="minus-button clickable"
+    [class.visible]="showMinusButton()"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 48 48"
+    enable-background="new 0 0 48 48"
+    (click)="emitDeleteArg()"
+  >
+    <circle cx="24" cy="24" r="21" />
+    <rect fill="#36393f" x="14" y="21" width="20" height="6" />
+  </svg>
+
+  <div class="flex-spacer"></div>
+
+  <!-- SVG from Free Preloaders on freeicons.io (modified) -->
+  <svg
+    class="plus-button clickable"
+    [class.visible]="showPlusButton()"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 48 48"
+    enable-background="new 0 0 48 48"
+    (click)="emitRepeatArg()"
+  >
+    <circle cx="24" cy="24" r="21" />
+    <g fill="#36393f">
+      <rect x="21" y="14" width="6" height="20" />
+      <rect x="14" y="21" width="20" height="6" />
+    </g>
+  </svg>
+</div>

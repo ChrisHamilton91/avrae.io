@@ -187,7 +187,7 @@ const MI = new AttackArgument({
 
 //#region damage types
 const MAGICAL = new AttackArgument({
-  name: "magical damage type",
+  name: "magical damage",
   cmdString: "magical",
   valueType: ValueType.TRUE,
   desc: "Makes the damage type of the attack magical.",
@@ -206,7 +206,7 @@ const DTYPE = new AttackArgument({
 });
 
 const RESIST = new AttackArgument({
-  name: "resist damage type",
+  name: "resistance",
   cmdString: "-resist",
   valueType: ValueType.STRING,
   desc: "Gives the target resistance to the given damage type.",
@@ -216,7 +216,7 @@ const RESIST = new AttackArgument({
 });
 
 const IMMUNE = new AttackArgument({
-  name: "immune to damage type",
+  name: "immune to",
   cmdString: "-immune",
   valueType: ValueType.STRING,
   desc: "Gives the target immunity to the given damage type.",
@@ -226,7 +226,7 @@ const IMMUNE = new AttackArgument({
 });
 
 const VULN = new AttackArgument({
-  name: "vulnerable to damage type",
+  name: "vulnerable to",
   cmdString: "-vuln",
   valueType: ValueType.STRING,
   desc: "Gives the target vulnerability to the given damage type.",
@@ -236,7 +236,7 @@ const VULN = new AttackArgument({
 });
 
 const NEUTRAL = new AttackArgument({
-  name: "neutral to damage type",
+  name: "neutral to",
   cmdString: "-neutral",
   valueType: ValueType.STRING,
   desc: "Removes the target's immunity, resistance, or vulnerability to the given damage type.",

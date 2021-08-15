@@ -19,6 +19,8 @@
         <commands-ui-single-secondary-arg-button
           [argValuePair]="pair"
           (activeChange)="emitArgs()"
+          (repeatArg)="repeatArg(i)"
+          (deleteArg)="deleteArg(i)"
         ></commands-ui-single-secondary-arg-button>
       </ng-container>
     </div>
