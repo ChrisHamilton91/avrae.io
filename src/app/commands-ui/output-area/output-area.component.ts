@@ -61,6 +61,10 @@ export class OutputAreaComponent implements OnInit {
     return this.aliasMode ? "visible" : "hidden";
   }
 
+  getRefreshVisibilityState() {
+    return this.multilineMode ? "visible" : "hidden";
+  }
+
   trimAliasName(input: HTMLInputElement) {
     input.value = input.value.replace(/\s/g, "");
   }
@@ -72,6 +76,10 @@ export class OutputAreaComponent implements OnInit {
     if (this.multilineMode) result += "multiline";
     else result += this.commandString;
     return result;
+  }
+
+  refreshMultilineOutput() {
+    this.multilineComp.commandString = this.commandString;
   }
 
   getMultilineTooltip() {
@@ -92,5 +100,10 @@ export class OutputAreaComponent implements OnInit {
   getCopyTooltip() {
     if (!commandsUiSettings.tooltipsEnabled) return "";
     return "Copy to clipboard";
+  }
+
+  getRefreshTooltip() {
+    if (!commandsUiSettings.tooltipsEnabled) return "";
+    return "Refresh active line";
   }
 }
