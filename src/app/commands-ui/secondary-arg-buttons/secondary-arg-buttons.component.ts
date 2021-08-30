@@ -83,6 +83,7 @@ export class SecondaryArgButtonsComponent implements OnInit {
     for (const arg of this.command.secondaryArgs) {
       this.argValuePairs.push(new SecondaryArgValuePair(arg));
     }
+    this.emitArgs();
   }
 
   isFirstOfCategory(i: number): boolean {

@@ -94,15 +94,13 @@
   position: relative;
   right: 10px;
   width: 26px;
+  visibility: hidden;
+  opacity: 0;
 }
 
 @keyframes pulse {
-  0% {
-  }
   50% {
     filter: drop-shadow(0 0 15px hsl(180, 100%, 20%));
-  }
-  100% {
   }
 }
 

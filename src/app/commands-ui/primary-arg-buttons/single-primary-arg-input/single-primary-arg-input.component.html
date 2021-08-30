@@ -1,6 +1,10 @@
 <input
+  #input
   [@visibility]="getVisibilityState()"
-  [ngClass]="{ required: argValuePair.arg.required }"
+  [ngClass]="{
+    required: argValuePair.arg.required,
+    'required-and-empty': isRequiredAndEmpty()
+  }"
   [matTooltip]="getTooltip()"
   matTooltipPosition="right"
   type="input"

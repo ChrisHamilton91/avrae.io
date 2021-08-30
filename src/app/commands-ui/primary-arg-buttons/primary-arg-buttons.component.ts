@@ -83,6 +83,7 @@ export class PrimaryArgButtonsComponent implements OnInit {
     for (const arg of this.command.primaryArgs) {
       this.argValuePairs.push(new PrimaryArgValuePair(arg));
     }
+    this.emitArgs();
   }
 
   getInputVisibility(pair: PrimaryArgValuePair): string {

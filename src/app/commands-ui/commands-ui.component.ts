@@ -238,4 +238,13 @@ export class CommandsUiComponent implements OnInit {
     return " " + pair.arg.cmdString + " " + pair.value;
   }
   //#endregion
+
+  //#region other
+  areEmptyRequiredArgs(): boolean {
+    for (const pair of this.primaryArgValuePairs) {
+      if (pair.arg.required && !pair.value) return true;
+    }
+    return false;
+  }
+  //#endregion
 }

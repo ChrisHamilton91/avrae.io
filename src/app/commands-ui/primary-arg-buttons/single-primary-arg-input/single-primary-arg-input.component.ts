@@ -1,5 +1,13 @@
 import { trigger } from "@angular/animations";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from "@angular/core";
 import { ValueType } from "src/app/command-data/command-schema";
 import { visibilityAnimation } from "../../@animations";
 import { commandsUiSettings } from "../../@settings";
@@ -12,6 +20,7 @@ import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
   animations: [trigger("visibility", visibilityAnimation)],
 })
 export class SinglePrimaryArgInputComponent implements OnInit {
+  @ViewChild("input") inputRef: ElementRef<HTMLInputElement>;
   @Input() argValuePair: PrimaryArgValuePair;
   @Output() valueChange = new EventEmitter();
   fadingIn: boolean;
@@ -28,6 +37,12 @@ export class SinglePrimaryArgInputComponent implements OnInit {
   changeValue(input: HTMLInputElement) {
     this.argValuePair.value = input.value;
     this.valueChange.emit();
+  }
+
+  isRequiredAndEmpty() {
+    return (
+      this.argValuePair.arg.required && !this.inputRef?.nativeElement.value
+    );
   }
 
   getTooltip(): string {

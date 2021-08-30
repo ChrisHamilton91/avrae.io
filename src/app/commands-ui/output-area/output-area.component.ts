@@ -17,6 +17,7 @@ export class OutputAreaComponent implements OnInit {
   @ViewChild("aliasInput") aliasInputRef: ElementRef<HTMLInputElement>;
   @ViewChild("multilineOutput") multilineComp: MultilineOutputComponent;
   @Input() commandString: string;
+  @Input() areEmptyRequiredArgs: boolean;
   aliasMode = false;
   aliasPlaceholder = "aliasName";
   multilineMode = false;
@@ -39,8 +40,15 @@ export class OutputAreaComponent implements OnInit {
       return;
     }
     const success = this.clipboard.copy(value);
-    if (success) this.toastr.success("Copied to clipboard");
-    else this.toastr.error("Could not copy to clipboard...");
+    if (!success) {
+      this.toastr.error("Could not copy to clipboard...");
+      return;
+    }
+    if (this.areEmptyRequiredArgs) {
+      this.toastr.warning("A required input is empty. Copied anyway.");
+      return;
+    }
+    this.toastr.success("Copied to clipboard");
   }
 
   getClipboardValue(): string {
