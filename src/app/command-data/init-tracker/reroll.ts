@@ -1,11 +1,10 @@
-import { Command, SecondaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, SecondaryArgument, ValueType } from "../command-schema";
 
 const RESTART = new SecondaryArgument({
   name: "reset counter",
   cmdString: "-restart",
   valueType: ValueType.TRUE,
   desc: "Resets the round counter (effectively restarting initiative).",
-  ephemeral: false,
 });
 
 export const REROLL = new Command({

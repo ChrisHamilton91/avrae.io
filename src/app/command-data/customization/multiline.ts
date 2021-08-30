@@ -1,4 +1,4 @@
-import { Command, MultilineArgument, ValueType } from "../../schemas/Commands";
+import { Command, MultilineArgument, ValueType } from "../command-schema";
 
 const CMDS = new MultilineArgument({
   name: "commands",

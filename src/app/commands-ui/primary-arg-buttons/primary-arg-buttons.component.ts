@@ -1,7 +1,11 @@
 import { trigger } from "@angular/animations";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Subject } from "rxjs";
-import { Command, PrimaryArgument, Subcommand } from "src/app/schemas/Commands";
+import {
+  Command,
+  PrimaryArgument,
+  Subcommand,
+} from "src/app/command-data/command-schema";
 import { fadeInAnimation, fadeOutAnimation } from "../@animations";
 import { CommandButton } from "../command-buttons/command-buttons.component";
 import { SubcommandButton } from "../command-buttons/subcommand-buttons/subcommand-buttons.component";
@@ -79,6 +83,7 @@ export class PrimaryArgButtonsComponent implements OnInit {
     for (const arg of this.command.primaryArgs) {
       this.argValuePairs.push(new PrimaryArgValuePair(arg));
     }
+    this.emitArgs();
   }
 
   getInputVisibility(pair: PrimaryArgValuePair): string {

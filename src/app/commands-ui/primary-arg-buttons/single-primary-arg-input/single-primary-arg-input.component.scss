@@ -1,3 +1,7 @@
+$height: 36px;
+$padding: 8px;
+$border-width: 3px;
+
 input {
   margin-top: 1px;
   margin-bottom: 1px;
@@ -8,7 +12,7 @@ input {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-width: 64px;
   line-height: 36px;
-  padding: 0 8px;
+  padding: 0 $padding;
   border: 0;
   outline: 0;
   border-radius: 4px;
@@ -22,4 +26,17 @@ input {
 input.required {
   visibility: visible;
   opacity: 1;
+}
+
+input.required-and-empty {
+  line-height: calc(#{$height} - 2 * #{$border-width});
+  padding: 0 calc(#{$padding} - #{$border-width});
+  border: $border-width solid white;
+  animation: blink 2s infinite 2s ease-in;
+}
+
+@keyframes blink {
+  50% {
+    border-color: hsl(0, 100%, 43%);
+  }
 }

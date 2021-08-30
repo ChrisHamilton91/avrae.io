@@ -1,11 +1,10 @@
-import { Command, SecondaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, SecondaryArgument, ValueType } from "../command-schema";
 
 const PRIVATE = new SecondaryArgument({
   name: "private message",
   cmdString: "private",
   valueType: ValueType.TRUE,
   desc: "Sends the list in a private message.",
-  ephemeral: false,
 });
 
 export const LIST = new Command({

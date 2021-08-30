@@ -3,14 +3,13 @@ import {
   PrimaryArgument,
   SecondaryArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 const BORDER = new SecondaryArgument({
   name: "override border",
   cmdString: "-border",
   valueType: ValueType.STRING,
   desc: "(For player token only) Overrides the token border. Values: 'plain' or 'none'",
-  ephemeral: false,
 });
 
 const NAME = new PrimaryArgument({

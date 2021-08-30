@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { ABOUT } from "./about";
 import { CHANGELOG } from "./changelog";
 import { DDB } from "./ddb";

@@ -1,7 +1,7 @@
 <div class="container">
   <div
     class="line-container"
-    *ngFor="let cmdString of cmdStrings; let index = index"
+    *ngFor="let line of lines; let index = index"
   >
     <div class="line-number" (click)="changeLine(index)">{{ index + 1 }}</div>
 
@@ -10,6 +10,7 @@
     <input
       #outputBox
       class="output-box"
+      readonly
       spellcheck="false"
       [value]="getLine(index)"
       [class.active-line]="index === activeIndex"

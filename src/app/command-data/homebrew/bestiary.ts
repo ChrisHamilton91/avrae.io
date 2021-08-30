@@ -3,7 +3,7 @@ import {
   PrimaryArgument,
   Subcommand,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 import { BESTIARY_SERVER } from "./bestiary-server";
 
 //#region primary arguments

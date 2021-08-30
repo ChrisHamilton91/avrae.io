@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { HELP } from "./help";
 import { TUTORIAL } from "./tutorial";
 

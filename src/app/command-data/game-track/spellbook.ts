@@ -4,7 +4,7 @@ import {
   SecondaryArgument,
   Subcommand,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 //#region subcommands
 //#region add
@@ -13,7 +13,6 @@ const ADD_DC = new SecondaryArgument({
   cmdString: "-dc",
   valueType: ValueType.NUMBER,
   desc: "When cast, this spell always uses this DC.",
-  ephemeral: false,
 });
 
 const ADD_B = new SecondaryArgument({
@@ -21,7 +20,6 @@ const ADD_B = new SecondaryArgument({
   cmdString: "-b",
   valueType: ValueType.NUMBER,
   desc: "When cast, this spell always uses this spell attack bonus.",
-  ephemeral: false,
 });
 
 const ADD_MOD = new SecondaryArgument({
@@ -29,7 +27,6 @@ const ADD_MOD = new SecondaryArgument({
   cmdString: "-mod",
   valueType: ValueType.NUMBER,
   desc: "When cast, this spell always uses this as the value of its casting stat (usually for healing spells).",
-  ephemeral: false,
 });
 
 const ADD_NAME = new PrimaryArgument({

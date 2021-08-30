@@ -3,14 +3,13 @@ import {
   PrimaryArgument,
   SecondaryArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 const NOCC = new SecondaryArgument({
   name: "no custom counters",
   cmdString: "-nocc",
   valueType: ValueType.TRUE,
   desc: "Do not automatically create custom counters for limited use features.",
-  ephemeral: false,
 });
 
 const URL = new PrimaryArgument({

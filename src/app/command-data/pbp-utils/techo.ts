@@ -1,4 +1,4 @@
-import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../command-schema";
 
 //#region primary arguments
 const SECONDS = new PrimaryArgument({

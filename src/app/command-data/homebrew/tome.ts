@@ -3,7 +3,7 @@ import {
   PrimaryArgument,
   Subcommand,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 import { TOME_SERVER } from "./tome-server";
 
 //#region primary arguments

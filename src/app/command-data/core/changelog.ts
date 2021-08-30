@@ -1,4 +1,4 @@
-import { Command, Subcommand } from "../../schemas/Commands";
+import { Command, Subcommand } from "../command-schema";
 
 const FOLLOW = new Subcommand({
   name: "Follow",

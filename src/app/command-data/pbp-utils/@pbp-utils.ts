@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { BR } from "./br";
 import { ECHO } from "./echo";
 import { EMBED } from "./embed";

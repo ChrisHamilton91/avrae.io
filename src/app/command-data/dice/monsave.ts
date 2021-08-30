@@ -1,4 +1,4 @@
-import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../command-schema";
 import { SAVE_ARGS } from "../@common/save-arguments";
 
 const NAME = new PrimaryArgument({

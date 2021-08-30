@@ -3,7 +3,7 @@ import {
   PrimaryArgument,
   SecondaryArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 //#region secondary arguments
 const H = new SecondaryArgument({
@@ -11,7 +11,6 @@ const H = new SecondaryArgument({
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides HP, AC, resistances, and attack list.",
-  ephemeral: false,
 });
 
 const P = new SecondaryArgument({
@@ -19,7 +18,6 @@ const P = new SecondaryArgument({
   cmdString: "-p",
   valueType: ValueType.TRUE,
   desc: "Places combatant at the given modifier, instead of rolling.",
-  ephemeral: false,
 });
 
 const CONTROLLER = new SecondaryArgument({
@@ -27,7 +25,6 @@ const CONTROLLER = new SecondaryArgument({
   cmdString: "-controller",
   valueType: ValueType.STRING,
   desc: "Pings a different person on turn.",
-  ephemeral: false,
 });
 
 const GROUP = new SecondaryArgument({
@@ -35,7 +32,6 @@ const GROUP = new SecondaryArgument({
   cmdString: "-group",
   valueType: ValueType.STRING,
   desc: "Adds the combatant to a given group.",
-  ephemeral: false,
 });
 
 const HP = new SecondaryArgument({
@@ -43,7 +39,6 @@ const HP = new SecondaryArgument({
   cmdString: "-hp",
   valueType: ValueType.NUMBER,
   desc: "Sets starting hit points.",
-  ephemeral: false,
 });
 
 const THP = new SecondaryArgument({
@@ -51,7 +46,6 @@ const THP = new SecondaryArgument({
   cmdString: "-thp",
   valueType: ValueType.NUMBER,
   desc: "Sets starting temporary hit points.",
-  ephemeral: false,
 });
 
 const AC = new SecondaryArgument({
@@ -59,7 +53,6 @@ const AC = new SecondaryArgument({
   cmdString: "-ac",
   valueType: ValueType.NUMBER,
   desc: "Sets the combatant's armor class (AC)",
-  ephemeral: false,
 });
 
 const RESIST = new SecondaryArgument({
@@ -67,7 +60,6 @@ const RESIST = new SecondaryArgument({
   cmdString: "-resist",
   valueType: ValueType.STRING,
   desc: "Gives the combatant resistance to the given damage type.",
-  ephemeral: false,
 });
 
 const IMMUNE = new SecondaryArgument({
@@ -75,7 +67,6 @@ const IMMUNE = new SecondaryArgument({
   cmdString: "-immune",
   valueType: ValueType.STRING,
   desc: "Gives the combatant immunity to the given damage type.",
-  ephemeral: false,
 });
 
 const VULN = new SecondaryArgument({
@@ -83,7 +74,6 @@ const VULN = new SecondaryArgument({
   cmdString: "-vuln",
   valueType: ValueType.STRING,
   desc: "Gives the combatant vulnerability to the given damage type.",
-  ephemeral: false,
 });
 
 const ADV = new SecondaryArgument({
@@ -91,7 +81,6 @@ const ADV = new SecondaryArgument({
   cmdString: "adv",
   valueType: ValueType.TRUE,
   desc: " Rolls the initiative check with advantage.",
-  ephemeral: false,
 });
 
 const DIS = new SecondaryArgument({
@@ -99,7 +88,6 @@ const DIS = new SecondaryArgument({
   cmdString: "dis",
   valueType: ValueType.TRUE,
   desc: " Rolls the initiative check with disadvantage.",
-  ephemeral: false,
 });
 
 const NOTE = new SecondaryArgument({
@@ -107,7 +95,6 @@ const NOTE = new SecondaryArgument({
   cmdString: "-note",
   valueType: ValueType.STRING,
   desc: "Sets the combatant's note.",
-  ephemeral: false,
 });
 //#endregion
 

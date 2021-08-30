@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { CAST } from "./cast";
 import { CUSTOM_COUNTER } from "./custom-counter";
 import { GAME_DEATHSAVE } from "./game-deathsave";

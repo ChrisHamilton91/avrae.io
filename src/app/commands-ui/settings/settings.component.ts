@@ -15,7 +15,7 @@ export class SettingsComponent implements OnInit {
   openDialog() {
     this.dialog.open(SettingsDialogComponent, {
       autoFocus: false,
-      position: { top: "130px", right: "15%" },
+      position: { top: "0", right: "0" },
     });
   }
 }

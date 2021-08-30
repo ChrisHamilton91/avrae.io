@@ -17,6 +17,7 @@ export class OutputAreaComponent implements OnInit {
   @ViewChild("aliasInput") aliasInputRef: ElementRef<HTMLInputElement>;
   @ViewChild("multilineOutput") multilineComp: MultilineOutputComponent;
   @Input() commandString: string;
+  @Input() areEmptyRequiredArgs: boolean;
   aliasMode = false;
   aliasPlaceholder = "aliasName";
   multilineMode = false;
@@ -39,8 +40,15 @@ export class OutputAreaComponent implements OnInit {
       return;
     }
     const success = this.clipboard.copy(value);
-    if (success) this.toastr.success("Copied to clipboard");
-    else this.toastr.error("Could not copy to clipboard...");
+    if (!success) {
+      this.toastr.error("Could not copy to clipboard...");
+      return;
+    }
+    if (this.areEmptyRequiredArgs) {
+      this.toastr.warning("A required input is empty. Copied anyway.");
+      return;
+    }
+    this.toastr.success("Copied to clipboard");
   }
 
   getClipboardValue(): string {
@@ -61,6 +69,10 @@ export class OutputAreaComponent implements OnInit {
     return this.aliasMode ? "visible" : "hidden";
   }
 
+  getRefreshVisibilityState() {
+    return this.multilineMode ? "visible" : "hidden";
+  }
+
   trimAliasName(input: HTMLInputElement) {
     input.value = input.value.replace(/\s/g, "");
   }
@@ -72,6 +84,10 @@ export class OutputAreaComponent implements OnInit {
     if (this.multilineMode) result += "multiline";
     else result += this.commandString;
     return result;
+  }
+
+  refreshMultilineOutput() {
+    this.multilineComp.commandString = this.commandString;
   }
 
   getMultilineTooltip() {
@@ -92,5 +108,10 @@ export class OutputAreaComponent implements OnInit {
   getCopyTooltip() {
     if (!commandsUiSettings.tooltipsEnabled) return "";
     return "Copy to clipboard";
+  }
+
+  getRefreshTooltip() {
+    if (!commandsUiSettings.tooltipsEnabled) return "";
+    return "Refresh active line";
   }
 }

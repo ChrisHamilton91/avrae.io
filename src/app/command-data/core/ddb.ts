@@ -1,4 +1,4 @@
-import { Command } from "../../schemas/Commands";
+import { Command } from "../command-schema";
 
 export const DDB = new Command({
   name: "D&D Beyond Info",

@@ -6,7 +6,7 @@ import {
   CommandModule,
   Subcommand,
   ValueType,
-} from "../schemas/Commands";
+} from "../command-data/command-schema";
 import { commandsUiSettings } from "./@settings";
 import { getShortest, sortDataByCmdString, sortDataByName } from "./@sorting";
 import {
@@ -219,6 +219,15 @@ export class CommandsUiComponent implements OnInit {
 
   getSecondaryArgStringOfTypeBoolean(pair: SecondaryArgValuePair): string {
     return " " + pair.arg.cmdString + " " + pair.value;
+  }
+  //#endregion
+
+  //#region other
+  areEmptyRequiredArgs(): boolean {
+    for (const pair of this.primaryArgValuePairs) {
+      if (pair.arg.required && !pair.value) return true;
+    }
+    return false;
   }
   //#endregion
 }

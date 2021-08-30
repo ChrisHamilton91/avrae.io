@@ -5,7 +5,7 @@ import {
   PrimaryArgument,
   Subcommand,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 import { ATTACK_ARGS } from "../@common/attack-arguments";
 
 const CUSTOM = new AttackArgument({
@@ -14,7 +14,6 @@ const CUSTOM = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Makes a custom attack with 0 to hit and base damage. Use -b and -d to add to hit and damage.",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 
 const NAME = new PrimaryArgument({

@@ -3,7 +3,7 @@ import {
   PrimaryArgument,
   SecondaryArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 //#region secondary arguments
 const NOCC = new SecondaryArgument({
@@ -11,7 +11,6 @@ const NOCC = new SecondaryArgument({
   cmdString: "-nocc",
   valueType: ValueType.TRUE,
   desc: "Do not automatically create custom counters for limited use features.",
-  ephemeral: false,
 });
 //#endregion
 

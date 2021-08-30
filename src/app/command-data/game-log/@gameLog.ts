@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { CAMPAIGN } from "./campaign";
 
 export const GAMELOG = new CommandModule({

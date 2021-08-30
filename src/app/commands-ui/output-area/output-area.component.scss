@@ -58,13 +58,13 @@
 .multiline-button {
   position: relative;
   top: 1px;
-  width: 25px;
+  width: 26px;
   stroke: black;
 }
 
 .alias-button {
   position: relative;
-  width: 25px;
+  width: 26px;
   left: 10px;
 }
 
@@ -90,17 +90,22 @@
   flex: 1;
 }
 
+.refresh-button {
+  position: relative;
+  right: 10px;
+  width: 26px;
+  visibility: hidden;
+  opacity: 0;
+}
+
 @keyframes pulse {
-  0% {
-  }
   50% {
     filter: drop-shadow(0 0 15px hsl(180, 100%, 20%));
-  }
-  100% {
   }
 }
 
 .copy-button-backdrop {
+  position: relative;
   animation: pulse 4s infinite 2s;
 }
 
@@ -109,6 +114,8 @@
 }
 
 .copy-button {
+  position: relative;
+  top: 1px;
   width: 26px;
 }
 

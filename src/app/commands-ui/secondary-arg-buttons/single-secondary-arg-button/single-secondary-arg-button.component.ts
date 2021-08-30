@@ -1,5 +1,6 @@
 import { trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { SecondaryArgument } from "src/app/command-data/command-schema";
 import { ColorStates, defaultButtonColors } from "../../@animations";
 import { commandsUiSettings } from "../../@settings";
 import { SecondaryArgValuePair } from "../secondary-arg-buttons.component";
@@ -13,6 +14,8 @@ import { SecondaryArgValuePair } from "../secondary-arg-buttons.component";
 export class SingleSecondaryArgButtonComponent implements OnInit {
   @Input() argValuePair: SecondaryArgValuePair;
   @Output() activeChange = new EventEmitter();
+  @Output() repeatArg = new EventEmitter();
+  @Output() deleteArg = new EventEmitter();
 
   constructor() {}
 
@@ -37,5 +40,21 @@ export class SingleSecondaryArgButtonComponent implements OnInit {
   getTooltip(): string {
     if (!commandsUiSettings.tooltipsEnabled) return undefined;
     return this.argValuePair.arg.desc + ` [${this.argValuePair.arg.cmdString}]`;
+  }
+
+  showPlusButton(): boolean {
+    return this.argValuePair.arg.repeatable;
+  }
+
+  showMinusButton(): boolean {
+    return this.argValuePair.repeated;
+  }
+
+  emitRepeatArg() {
+    this.repeatArg.emit();
+  }
+
+  emitDeleteArg() {
+    this.deleteArg.emit();
   }
 }

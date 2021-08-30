@@ -1,6 +1,6 @@
 import { trigger } from "@angular/animations";
 import { Component, Input, OnInit } from "@angular/core";
-import { CommandModule } from "src/app/schemas/Commands";
+import { CommandModule } from "src/app/command-data/command-schema";
 import { ColorStates, defaultButtonColors } from "../../@animations";
 import { commandsUiSettings } from "../../@settings";
 

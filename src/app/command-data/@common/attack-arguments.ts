@@ -3,7 +3,7 @@ import {
   AttackCategories,
   TargetArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 //#region to hit
 const ADV = new AttackArgument({
@@ -66,7 +66,6 @@ const AC = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Overrides target AC (armor class).",
   category: AttackCategories.TO_HIT,
-  ephemeral: false,
 });
 
 const B = new AttackArgument({
@@ -84,7 +83,6 @@ const CRITON = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "The number the attack crits on if rolled on or above.",
   category: AttackCategories.TO_HIT,
-  ephemeral: false,
 });
 //#endregion
 
@@ -113,7 +111,6 @@ const SADV = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Gives the target advantage on the saving throw.",
   category: AttackCategories.SAVES,
-  ephemeral: false,
 });
 
 const SDIS = new AttackArgument({
@@ -122,7 +119,6 @@ const SDIS = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Gives the target disadvantage on the saving throw.",
   category: AttackCategories.SAVES,
-  ephemeral: false,
 });
 
 const DC = new AttackArgument({
@@ -131,7 +127,6 @@ const DC = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Overrides the DC of the save. Prefix the number with '+' or '-' to increment or decrement dc instead.",
   category: AttackCategories.SAVES,
-  ephemeral: false,
 });
 
 const SAVE = new AttackArgument({
@@ -140,7 +135,6 @@ const SAVE = new AttackArgument({
   valueType: ValueType.STRING,
   desc: "Overrides the spell save type (e.g. -save str).",
   category: AttackCategories.SAVES,
-  ephemeral: false,
 });
 //#endregion
 
@@ -167,7 +161,7 @@ const D = new AttackArgument({
   name: "add damage",
   cmdString: "-d",
   valueType: ValueType.NUMBER,
-  desc: "Adds additional damage",
+  desc: "Adds additional damage. To specify damage type use square brackets. ex. 1d4[fire].",
   category: AttackCategories.DAMAGE,
   ephemeral: true,
 });
@@ -193,7 +187,7 @@ const MI = new AttackArgument({
 
 //#region damage types
 const MAGICAL = new AttackArgument({
-  name: "magical damage type",
+  name: "magical damage",
   cmdString: "magical",
   valueType: ValueType.TRUE,
   desc: "Makes the damage type of the attack magical.",
@@ -208,42 +202,47 @@ const DTYPE = new AttackArgument({
   desc: "Changes all damage types to a new damage type. Separate two types with '>' to only modify one damage type (e.g. -dtype fire>cold)",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 
 const RESIST = new AttackArgument({
-  name: "resist damage type",
+  name: "resistance",
   cmdString: "-resist",
   valueType: ValueType.STRING,
   desc: "Gives the target resistance to the given damage type.",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 
 const IMMUNE = new AttackArgument({
-  name: "immune to damage type",
+  name: "immune to",
   cmdString: "-immune",
   valueType: ValueType.STRING,
   desc: "Gives the target immunity to the given damage type.",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 
 const VULN = new AttackArgument({
-  name: "vulnerable to damage type",
+  name: "vulnerable to",
   cmdString: "-vuln",
   valueType: ValueType.STRING,
   desc: "Gives the target vulnerability to the given damage type.",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 
 const NEUTRAL = new AttackArgument({
-  name: "neutral to damage type",
+  name: "neutral to",
   cmdString: "-neutral",
   valueType: ValueType.STRING,
   desc: "Removes the target's immunity, resistance, or vulnerability to the given damage type.",
   category: AttackCategories.DAMAGE_TYPES,
   ephemeral: true,
+  repeatable: true,
 });
 //#endregion
 
@@ -254,7 +253,6 @@ const DUR = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Overrides the duration of any effect applied by the attack.",
   category: AttackCategories.EFFECTS,
-  ephemeral: false,
 });
 //#endregion
 
@@ -265,7 +263,6 @@ const AMT = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Overrides the amount of the resource used.",
   category: AttackCategories.COUNTERS,
-  ephemeral: false,
 });
 
 const L = new AttackArgument({
@@ -274,7 +271,6 @@ const L = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "Specifies the level of the spell slot to use.",
   category: AttackCategories.COUNTERS,
-  ephemeral: false,
 });
 
 const I = new AttackArgument({
@@ -283,7 +279,6 @@ const I = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Skips using any resources.",
   category: AttackCategories.COUNTERS,
-  ephemeral: false,
 });
 //#endregion
 
@@ -294,7 +289,6 @@ const H = new AttackArgument({
   valueType: ValueType.TRUE,
   desc: "Hides rolled values.",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 
 const PHRASE = new AttackArgument({
@@ -303,7 +297,6 @@ const PHRASE = new AttackArgument({
   valueType: ValueType.STRING,
   desc: "Adds flavor text.",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 
 const TITLE = new AttackArgument({
@@ -312,7 +305,6 @@ const TITLE = new AttackArgument({
   valueType: ValueType.STRING,
   desc: "Changes the title of the attack. Replaces [name] with attacker's name and [aname] with the attack's name.",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 
 const F = new AttackArgument({
@@ -321,7 +313,6 @@ const F = new AttackArgument({
   valueType: ValueType.STRING,
   desc: `Creates a field in the embed with the given title and text. Syntax: "Field Title|Field Text"`,
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 
 const THUMB = new AttackArgument({
@@ -330,7 +321,6 @@ const THUMB = new AttackArgument({
   valueType: ValueType.STRING,
   desc: "Pass in an image url to add a thumbnail to the attack",
   category: AttackCategories.OTHER,
-  ephemeral: false,
 });
 //#endregion
 
@@ -341,7 +331,6 @@ const RR = new AttackArgument({
   valueType: ValueType.NUMBER,
   desc: "How many attacks to make at each target.",
   category: AttackCategories.TARGETING,
-  ephemeral: false,
 });
 
 const T = new TargetArgument({
@@ -353,6 +342,7 @@ const T = new TargetArgument({
     `Repeat this command to target multiple enemies. ` +
     `Allows for specific args to apply to each target. (e.g, -t "OR1|hit" to force the attack against OR1 to hit)`,
   category: AttackCategories.TARGETING,
+  repeatable: true,
   secondaryArgs: [
     RR,
     ADV,
@@ -383,7 +373,6 @@ const T = new TargetArgument({
     NEUTRAL,
     DUR,
   ],
-  ephemeral: false,
 });
 //#endregion
 

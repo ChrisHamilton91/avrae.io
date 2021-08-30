@@ -1,4 +1,4 @@
-import { CommandModule } from "../schemas/Commands";
+import { CommandModule } from "./command-schema";
 import { CHAR_GENERATOR } from "./char-generator/@char-generator";
 import { CORE } from "./core/@core";
 import { CUSTOMIZATION } from "./customization/@customization";

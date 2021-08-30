@@ -3,14 +3,13 @@ import {
   PrimaryArgument,
   SecondaryArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 const PRIVATE = new SecondaryArgument({
   name: "private message",
   cmdString: "private",
   valueType: ValueType.TRUE,
   desc: "PMs the controller of the combatant a more detailed status.",
-  ephemeral: false,
 });
 
 const NAME = new PrimaryArgument({

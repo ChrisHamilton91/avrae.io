@@ -1,4 +1,4 @@
-import { Command } from "../../schemas/Commands";
+import { Command } from "../command-schema";
 
 export const BR = new Command({
   name: "Scene Break",

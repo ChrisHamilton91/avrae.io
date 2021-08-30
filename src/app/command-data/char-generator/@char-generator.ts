@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { RANDCHAR } from "./randchar";
 import { RANDNAME } from "./randname";
 

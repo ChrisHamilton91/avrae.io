@@ -21,11 +21,14 @@ export class MultilineOutputComponent implements OnInit {
   @ViewChildren("outputBox") outputBoxes: QueryList<
     ElementRef<HTMLInputElement>
   >;
-  @Input() commandString: string;
   @Output() deactivate = new EventEmitter();
-  cmdStrings: string[] = [""];
+  lines: string[] = [];
   activeIndex = 0;
   multilineMax = 20;
+
+  @Input() set commandString(commandString: string) {
+    this.lines[this.activeIndex] = commandString;
+  }
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
@@ -34,51 +37,37 @@ export class MultilineOutputComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  storeActiveCmdString() {
-    this.cmdStrings[this.activeIndex] = this.commandString;
-  }
-
-  retrieveActiveCmdString() {
-    this.commandString = this.cmdStrings[this.activeIndex];
-  }
-
   getLine(index: number) {
-    const prefix = commandsUiSettings.prefix;
-    if (index === this.activeIndex) return prefix + this.commandString;
-    else return prefix + this.cmdStrings[index];
+    return commandsUiSettings.prefix + this.lines[index];
   }
 
   addLine(clickedIndex: number) {
-    if (this.cmdStrings.length >= this.multilineMax) {
+    if (this.lines.length >= this.multilineMax) {
       this.toastr.warning(`Maximum ${this.multilineMax} multiline commands.`);
       return;
     }
-    this.storeActiveCmdString();
     this.activeIndex = ++clickedIndex;
-    this.cmdStrings.splice(this.activeIndex, 0, "");
-    this.commandString = "";
+    this.lines.splice(this.activeIndex, 0, "");
     this.changeDetectorRef.detectChanges();
-    this.outputBoxes.get(this.activeIndex).nativeElement.focus();
+    const newBox = this.outputBoxes.get(this.activeIndex).nativeElement;
+    newBox.focus();
   }
 
   deleteLine(clickedIndex: number) {
-    if (this.cmdStrings.length <= 1) {
+    if (this.lines.length <= 1) {
       this.deactivate.emit();
       return;
     }
-    this.cmdStrings.splice(clickedIndex, 1);
+    this.lines.splice(clickedIndex, 1);
     if (clickedIndex < this.activeIndex) {
       this.activeIndex--;
     } else if (clickedIndex === this.activeIndex) {
-      if (this.activeIndex >= this.cmdStrings.length) this.activeIndex--;
-      this.retrieveActiveCmdString();
+      if (this.activeIndex >= this.lines.length) this.activeIndex--;
     }
   }
 
   changeLine(clickedIndex: number) {
-    this.storeActiveCmdString();
     this.activeIndex = clickedIndex;
-    this.retrieveActiveCmdString();
     this.changeDetectorRef.detectChanges();
     this.outputBoxes.get(this.activeIndex).nativeElement.focus();
   }

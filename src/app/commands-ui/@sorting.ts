@@ -4,7 +4,7 @@ import {
   Command,
   CommandModule,
   SecondaryArgument,
-} from "../schemas/Commands";
+} from "../command-data/command-schema";
 
 export function getShortest(array: string[]): string {
   if (array.length == 0) throw Error("There are no items in the array!");

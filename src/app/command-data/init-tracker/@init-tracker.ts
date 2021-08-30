@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { ADD } from "./add";
 import { AOO } from "./aoo";
 import { ATTACK } from "./attack";

@@ -1,4 +1,4 @@
-import { PrimaryArgument, Subcommand, ValueType } from "../../schemas/Commands";
+import { PrimaryArgument, Subcommand, ValueType } from "../command-schema";
 
 //#region subcommands
 const LIST = new Subcommand({

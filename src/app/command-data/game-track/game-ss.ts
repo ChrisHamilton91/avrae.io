@@ -1,4 +1,4 @@
-import { Command, PrimaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, PrimaryArgument, ValueType } from "../command-schema";
 
 const LEVEL = new PrimaryArgument({
   name: "level",

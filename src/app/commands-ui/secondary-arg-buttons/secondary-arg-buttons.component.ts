@@ -5,7 +5,7 @@ import {
   Command,
   SecondaryArgument,
   Subcommand,
-} from "src/app/schemas/Commands";
+} from "src/app/command-data/command-schema";
 import { fadeInAnimation, fadeOutAnimation } from "../@animations";
 import { CommandButton } from "../command-buttons/command-buttons.component";
 import { SubcommandButton } from "../command-buttons/subcommand-buttons/subcommand-buttons.component";
@@ -13,12 +13,12 @@ import { SubcommandButton } from "../command-buttons/subcommand-buttons/subcomma
 export class SecondaryArgValuePair {
   arg: SecondaryArgument;
   value: string | boolean = null;
-  index: number;
-  active: boolean = false;
+  active = false;
   activeChange = new Subject();
-  constructor(arg: SecondaryArgument, index: number) {
+  repeated: boolean;
+  constructor(arg: SecondaryArgument, repeated = false) {
     this.arg = arg;
-    this.index = index;
+    this.repeated = repeated;
   }
 }
 
@@ -80,10 +80,10 @@ export class SecondaryArgButtonsComponent implements OnInit {
 
   setArgs() {
     this.argValuePairs = [];
-    let index = 0;
     for (const arg of this.command.secondaryArgs) {
-      this.argValuePairs.push(new SecondaryArgValuePair(arg, index++));
+      this.argValuePairs.push(new SecondaryArgValuePair(arg));
     }
+    this.emitArgs();
   }
 
   isFirstOfCategory(i: number): boolean {
@@ -130,5 +130,14 @@ export class SecondaryArgButtonsComponent implements OnInit {
       "Secondary args appear after primary args (if any). " +
       "Their order does not matter relative to other secondary args. "
     );
+  }
+
+  repeatArg(i: number) {
+    const arg = this.argValuePairs[i].arg;
+    this.argValuePairs.splice(i + 1, 0, new SecondaryArgValuePair(arg, true));
+  }
+
+  deleteArg(i: number) {
+    this.argValuePairs.splice(i, 1);
   }
 }

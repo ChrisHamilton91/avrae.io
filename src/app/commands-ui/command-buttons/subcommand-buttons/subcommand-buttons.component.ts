@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Subject } from "rxjs";
-import { Subcommand } from "src/app/schemas/Commands";
+import { Subcommand } from "src/app/command-data/command-schema";
 import { CommandButton } from "../command-buttons.component";
 
 export class SubcommandButton {

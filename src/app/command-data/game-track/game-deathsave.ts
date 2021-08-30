@@ -1,4 +1,4 @@
-import { Command, Subcommand } from "../../schemas/Commands";
+import { Command, Subcommand } from "../command-schema";
 import { SAVE_ARGS } from "../@common/save-arguments";
 
 //#region subcommands

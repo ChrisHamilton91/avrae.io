@@ -3,14 +3,13 @@ import {
   PrimaryArgument,
   SecondaryArgument,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 
 const H = new SecondaryArgument({
   name: "hide stat block",
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Shows the obfuscated stat block, even if you can see the full stat block.",
-  ephemeral: false,
 });
 
 const NAME = new PrimaryArgument({

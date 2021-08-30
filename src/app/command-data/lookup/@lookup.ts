@@ -1,4 +1,4 @@
-import { CommandModule } from "../../schemas/Commands";
+import { CommandModule } from "../command-schema";
 import { BACKGROUND } from "./background";
 import { CLASS } from "./class";
 import { CLASSFEAT } from "./classfeat";

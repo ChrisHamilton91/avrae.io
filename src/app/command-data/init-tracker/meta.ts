@@ -1,11 +1,10 @@
-import { Command, SecondaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, SecondaryArgument, ValueType } from "../command-schema";
 
 const DYN = new SecondaryArgument({
   name: "dynamic initiative",
   cmdString: "dyn",
   valueType: ValueType.TRUE,
   desc: "Rerolls all initiatives at the start of a round.",
-  ephemeral: false,
 });
 
 const TURN_NOTIF = new SecondaryArgument({
@@ -13,7 +12,6 @@ const TURN_NOTIF = new SecondaryArgument({
   cmdString: "turnnotif",
   valueType: ValueType.TRUE,
   desc: "Notifies the controller of the next combatant in initiative.",
-  ephemeral: false,
 });
 
 const DEATH_DELETE = new SecondaryArgument({
@@ -21,7 +19,6 @@ const DEATH_DELETE = new SecondaryArgument({
   cmdString: "deathdelete",
   valueType: ValueType.TRUE,
   desc: "Disables deleting monsters below 0 hp.",
-  ephemeral: false,
 });
 
 const NAME = new SecondaryArgument({
@@ -29,7 +26,6 @@ const NAME = new SecondaryArgument({
   cmdString: "-name",
   valueType: ValueType.STRING,
   desc: "Sets a name for the combat instance.",
-  ephemeral: false,
 });
 
 export const META = new Command({

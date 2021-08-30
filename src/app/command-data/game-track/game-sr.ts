@@ -1,11 +1,10 @@
-import { Command, SecondaryArgument, ValueType } from "../../schemas/Commands";
+import { Command, SecondaryArgument, ValueType } from "../command-schema";
 
 const H = new SecondaryArgument({
   name: "hide output",
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides the character summary output.",
-  ephemeral: false,
 });
 
 export const GAME_SR = new Command({

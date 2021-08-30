@@ -1,4 +1,4 @@
-import { SecondaryArgument, ValueType } from "../../schemas/Commands";
+import { SecondaryArgument, ValueType } from "../command-schema";
 
 //#region arguments
 const ADV = new SecondaryArgument({
@@ -30,7 +30,6 @@ const DC = new SecondaryArgument({
   cmdString: "-dc",
   valueType: ValueType.NUMBER,
   desc: "Sets a DC (difficulty class) and counts successes/failures.",
-  ephemeral: false,
 });
 
 const RR = new SecondaryArgument({
@@ -38,7 +37,6 @@ const RR = new SecondaryArgument({
   cmdString: "-rr",
   valueType: ValueType.NUMBER,
   desc: "How many saves to roll.",
-  ephemeral: false,
 });
 
 const PHRASE = new SecondaryArgument({
@@ -46,7 +44,6 @@ const PHRASE = new SecondaryArgument({
   cmdString: "-phrase",
   valueType: ValueType.STRING,
   desc: "Adds flavor text.",
-  ephemeral: false,
 });
 
 const TITLE = new SecondaryArgument({
@@ -54,7 +51,6 @@ const TITLE = new SecondaryArgument({
   cmdString: "-title",
   valueType: ValueType.STRING,
   desc: "Changes the title of the save. Replaces [name] with character's name and [sname] with the save's name.",
-  ephemeral: false,
 });
 
 const F = new SecondaryArgument({
@@ -62,7 +58,6 @@ const F = new SecondaryArgument({
   cmdString: "-f",
   valueType: ValueType.STRING,
   desc: `Creates a field in the embed with the given title and text. Syntax: "Field Title|Field Text."`,
-  ephemeral: false,
 });
 
 const THUMB = new SecondaryArgument({
@@ -70,7 +65,6 @@ const THUMB = new SecondaryArgument({
   cmdString: "-thumb",
   valueType: ValueType.STRING,
   desc: "Pass in an image url to add a thumbnail to the save.",
-  ephemeral: false,
 });
 
 const H = new SecondaryArgument({
@@ -78,7 +72,6 @@ const H = new SecondaryArgument({
   cmdString: "-h",
   valueType: ValueType.TRUE,
   desc: "Hides the name and image of the character performing the save.",
-  ephemeral: false,
 });
 //#endregion
 

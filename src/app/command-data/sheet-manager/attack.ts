@@ -4,7 +4,7 @@ import {
   SecondaryArgument,
   Subcommand,
   ValueType,
-} from "../../schemas/Commands";
+} from "../command-schema";
 import { ATTACK_ARGS } from "../@common/attack-arguments";
 
 //#region primary arguments
@@ -25,7 +25,6 @@ const ADD_D = new SecondaryArgument({
   cmdString: "-d",
   valueType: ValueType.NUMBER,
   desc: "How much damage the attack should do.",
-  ephemeral: false,
 });
 
 const ADD_B = new SecondaryArgument({
@@ -33,7 +32,6 @@ const ADD_B = new SecondaryArgument({
   cmdString: "-b",
   valueType: ValueType.NUMBER,
   desc: "The to-hit bonus of the attack.",
-  ephemeral: false,
 });
 
 const ADD_DESC = new SecondaryArgument({
@@ -41,7 +39,6 @@ const ADD_DESC = new SecondaryArgument({
   cmdString: "-desc",
   valueType: ValueType.STRING,
   desc: "A description of the attack.",
-  ephemeral: false,
 });
 
 const ADD_VERB = new SecondaryArgument({
@@ -49,7 +46,6 @@ const ADD_VERB = new SecondaryArgument({
   cmdString: "-verb",
   valueType: ValueType.STRING,
   desc: `The verb to use for this attack. (e.g. "Padellis <verb> a dagger!")`,
-  ephemeral: false,
 });
 
 const ADD_PROPER = new SecondaryArgument({
@@ -57,7 +53,6 @@ const ADD_PROPER = new SecondaryArgument({
   cmdString: "-proper",
   valueType: ValueType.TRUE,
   desc: "This attack's name is a proper noun.",
-  ephemeral: false,
 });
 
 const ADD_CRITON = new SecondaryArgument({
@@ -65,7 +60,6 @@ const ADD_CRITON = new SecondaryArgument({
   cmdString: "-criton",
   valueType: ValueType.NUMBER,
   desc: "This attack crits on a number other than a natural 20.",
-  ephemeral: false,
 });
 
 const ADD_PHRASE = new SecondaryArgument({
@@ -73,7 +67,6 @@ const ADD_PHRASE = new SecondaryArgument({
   cmdString: "-phrase",
   valueType: ValueType.STRING,
   desc: "Some flavor text to add to each attack with this attack.",
-  ephemeral: false,
 });
 
 const ADD_THUMB = new SecondaryArgument({
@@ -81,7 +74,6 @@ const ADD_THUMB = new SecondaryArgument({
   cmdString: "-thumb",
   valueType: ValueType.STRING,
   desc: "The url of an image to embed with the attack.",
-  ephemeral: false,
 });
 
 const ADD_C = new SecondaryArgument({
@@ -89,7 +81,6 @@ const ADD_C = new SecondaryArgument({
   cmdString: "-c",
   valueType: ValueType.NUMBER,
   desc: "How much extra damage (beyond doubling dice) this attack does on a crit.",
-  ephemeral: false,
 });
 //#endregion
 
