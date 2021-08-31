@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
-import { COMMAND_MODULES } from "../command-data/command-modules";
+import { COMMAND_MODULES } from "../command-data/original-modules";
 import {
   Command,
   CommandModule,
