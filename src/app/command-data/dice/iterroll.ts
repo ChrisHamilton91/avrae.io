@@ -28,9 +28,10 @@ const DC = new PrimaryArgument({
 
 //#region command
 export const ITERROLL = new Command({
-  name: "Iterative Roll",
+  name: "DC Roll",
   cmdStrings: ["iterroll", "rrr"],
-  shortDesc: "Rolls dice in xdy format, given a set dc.",
+  shortDesc:
+    "Rolls dice in xdy format a given number of times, given a set dc.",
   primaryArgs: [ITERATIONS, ROLLSTR, DC],
 });
 //#endregion

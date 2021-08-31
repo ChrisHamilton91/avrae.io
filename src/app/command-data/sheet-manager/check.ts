@@ -10,7 +10,7 @@ const ABILITY = new PrimaryArgument({
 });
 
 export const CHECK = new Command({
-  name: "Ability Check",
+  name: "Check",
   cmdStrings: ["c", "check"],
   shortDesc: "Rolls a check for your current active character.",
   primaryArgs: [ABILITY],
