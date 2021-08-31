@@ -53,7 +53,7 @@ const TALENT = new SecondaryArgument({
 
 //#region command
 export const CSETTINGS = new Command({
-  name: "Character Settings",
+  name: "Settings",
   cmdStrings: ["csettings"],
   shortDesc:
     "Updates personalization settings for the currently active character.",

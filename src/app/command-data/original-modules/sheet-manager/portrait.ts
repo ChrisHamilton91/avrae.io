@@ -34,7 +34,7 @@ const EDIT = new Subcommand({
 
 //#region command
 export const PORTRAIT = new Command({
-  name: "Character Portrait",
+  name: "Portrait",
   cmdStrings: ["portrait"],
   shortDesc: "Shows or edits the image of your currently active character.",
   subcommands: [DELETE, EDIT],

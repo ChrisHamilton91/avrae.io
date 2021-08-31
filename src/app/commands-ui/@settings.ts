@@ -1,3 +1,4 @@
+import { Subject } from "rxjs";
 import { sortDataByCmdString, sortDataByName } from "./@sorting";
 
 const keys = {
@@ -24,6 +25,7 @@ class CommandsUiSettings {
   private _tooltipsEnabled: boolean;
   private _showCommandStrings: boolean;
   private _altModules: boolean;
+  altModulesChange = new Subject();
 
   set prefix(prefix: string) {
     this._prefix = prefix;
@@ -67,6 +69,9 @@ class CommandsUiSettings {
   set altModules(value: boolean) {
     this._altModules = value;
     localStorage.setItem(keys.altModules, value.toString());
+    if (this.showCommandStrings) sortDataByCmdString();
+    else sortDataByName();
+    this.altModulesChange.next();
   }
 
   get altModules(): boolean {

@@ -64,6 +64,9 @@ export class CommandsUiComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    commandsUiSettings.altModulesChange.subscribe(() => {
+      this.modules = getCommandModules();
+    });
     if (commandsUiSettings.showCommandStrings) sortDataByCmdString();
     else sortDataByName();
   }

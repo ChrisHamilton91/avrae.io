@@ -34,7 +34,7 @@ const EDIT = new Subcommand({
 
 //#region command
 export const DESC = new Command({
-  name: "Character Description",
+  name: "Description",
   cmdStrings: ["desc"],
   shortDesc:
     "Prints or edits a description of your currently active character.",
