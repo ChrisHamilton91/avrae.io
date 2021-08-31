@@ -13,7 +13,7 @@ const ABILITY = new PrimaryArgument({
 
 //#region command
 export const SAVE = new Command({
-  name: "Saving Throw",
+  name: "Save",
   cmdStrings: ["s", "save"],
   shortDesc: "Rolls a save for your current active character.",
   primaryArgs: [ABILITY],

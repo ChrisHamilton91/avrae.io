@@ -10,7 +10,7 @@ const ABILITY = new PrimaryArgument({
 });
 
 export const SAVE = new Command({
-  name: "Saving Throw",
+  name: "Save",
   cmdStrings: ["init save", "init s", "i save", "i s"],
   shortDesc: "Rolls an ability save as the current combatant.",
   primaryArgs: [ABILITY],

@@ -1,6 +1,6 @@
 import { CommandModule } from "../command-schema";
 import { CHARACTER_SHEET } from "./@character-sheet";
-import { ADVANCED_COMMANDS } from "./@advanced-commands";
+import { ADVANCED } from "./@advanced";
 import { DICE_ROLLS } from "./@dice-rolls";
 import { IMPORT } from "./@import";
 import { INITIATIVE } from "./@initiative";
@@ -16,7 +16,7 @@ export const ALT_COMMAND_MODULES: CommandModule[] = [
   LOOKUP,
   MONSTER_ROLLS,
   PLAY_BY_POST,
-  ADVANCED_COMMANDS,
+  ADVANCED,
   IMPORT,
   MISCELLANEOUS,
 ];

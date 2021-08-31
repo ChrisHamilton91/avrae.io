@@ -1,4 +1,4 @@
-import { CommandModule } from "./command-schema";
+import { CommandModule } from "../command-schema";
 import { CHAR_GENERATOR } from "./char-generator/@char-generator";
 import { CORE } from "./core/@core";
 import { CUSTOMIZATION } from "./customization/@customization";
@@ -12,7 +12,7 @@ import { PBP_UTILS } from "./pbp-utils/@pbp-utils";
 import { SHEET_MANAGER } from "./sheet-manager/@sheet-manager";
 import { TUTORIALS } from "./tutorials/@tutorials";
 
-export const COMMAND_MODULES: CommandModule[] = [
+export const OG_COMMAND_MODULES: CommandModule[] = [
   CHAR_GENERATOR,
   CORE,
   CUSTOMIZATION,

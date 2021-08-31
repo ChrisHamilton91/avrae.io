@@ -11,8 +11,8 @@ import { TEMBED } from "../original-modules/customization/tembed";
 import { TEST } from "../original-modules/customization/test";
 import { USER_VAR } from "../original-modules/customization/user-var";
 
-export const ADVANCED_COMMANDS = new CommandModule({
-  name: "Advanced Commands",
+export const ADVANCED = new CommandModule({
+  name: "Advanced",
   shortDesc:
     "Commands to help streamline using the bot, for more advanced users.",
   commands: [

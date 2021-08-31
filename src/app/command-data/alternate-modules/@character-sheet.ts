@@ -6,7 +6,6 @@ import { PORTRAIT } from "../original-modules/sheet-manager/portrait";
 import { SHEET } from "../original-modules/sheet-manager/sheet";
 import { UPDATE } from "../original-modules/sheet-manager/update";
 import { CUSTOM_COUNTER } from "../original-modules/game-track/custom-counter";
-import { GAME_DEATHSAVE } from "../original-modules/game-track/game-deathsave";
 import { GAME_HP } from "../original-modules/game-track/game-hp";
 import { GAME_LR } from "../original-modules/game-track/game-lr";
 import { GAME_SR } from "../original-modules/game-track/game-sr";
@@ -26,7 +25,6 @@ export const CHARACTER_SHEET = new CommandModule({
     SHEET,
     UPDATE,
     CUSTOM_COUNTER,
-    GAME_DEATHSAVE,
     GAME_HP,
     GAME_LR,
     GAME_SR,
