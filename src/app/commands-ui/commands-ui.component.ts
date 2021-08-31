@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { Meta } from "@angular/platform-browser";
-import { COMMAND_MODULES } from "../command-data/original-modules";
+import { getCommandModules } from "./@sorting";
 import {
   Command,
   CommandModule,
@@ -39,7 +39,7 @@ export class CommandsUiComponent implements OnInit {
   title = "Avrae Commands User Interface";
   description = "A user interface for constructing avrae commands";
 
-  modules: CommandModule[] = COMMAND_MODULES;
+  modules: CommandModule[] = getCommandModules();
   commandComponentExists: boolean;
   primaryArgCompExists: boolean;
   secondaryArgCompExists: boolean;
