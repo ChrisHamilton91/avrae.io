@@ -1,18 +1,18 @@
 import { CommandModule } from "../command-schema";
-import { BACKGROUND } from "../lookup/background";
-import { CLASS } from "../lookup/class";
-import { CLASSFEAT } from "../lookup/classfeat";
-import { CONDITION } from "../lookup/condition";
-import { FEAT } from "../lookup/feat";
-import { ITEM } from "../lookup/item";
-import { MONIMAGE } from "../lookup/monimage";
-import { MONSTER } from "../lookup/monster";
-import { RACE } from "../lookup/race";
-import { RACEFEAT } from "../lookup/racefeat";
-import { RULE } from "../lookup/rule";
-import { SETTINGS } from "../lookup/settings";
-import { SPELL } from "../lookup/spell";
-import { SUBCLASS } from "../lookup/subclass";
+import { BACKGROUND } from "../original-modules/lookup/background";
+import { CLASS } from "../original-modules/lookup/class";
+import { CLASSFEAT } from "../original-modules/lookup/classfeat";
+import { CONDITION } from "../original-modules/lookup/condition";
+import { FEAT } from "../original-modules/lookup/feat";
+import { ITEM } from "../original-modules/lookup/item";
+import { MONIMAGE } from "../original-modules/lookup/monimage";
+import { MONSTER } from "../original-modules/lookup/monster";
+import { RACE } from "../original-modules/lookup/race";
+import { RACEFEAT } from "../original-modules/lookup/racefeat";
+import { RULE } from "../original-modules/lookup/rule";
+import { SETTINGS } from "../original-modules/lookup/settings";
+import { SPELL } from "../original-modules/lookup/spell";
+import { SUBCLASS } from "../original-modules/lookup/subclass";
 
 export const LOOKUP = new CommandModule({
   name: "Lookup",

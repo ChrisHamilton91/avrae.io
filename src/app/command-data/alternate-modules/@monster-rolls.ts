@@ -1,9 +1,9 @@
 import { CommandModule } from "../command-schema";
-import { MONATTACK } from "../dice/monattack";
-import { MONCAST } from "../dice/moncast";
-import { MONCHECK } from "../dice/moncheck";
-import { MONSAVE } from "../dice/monsave";
-import { MULTIROLL } from "../dice/multiroll";
+import { MONATTACK } from "../original-modules/dice/monattack";
+import { MONCAST } from "../original-modules/dice/moncast";
+import { MONCHECK } from "../original-modules/dice/moncheck";
+import { MONSAVE } from "../original-modules/dice/monsave";
+import { MULTIROLL } from "../original-modules/dice/multiroll";
 
 export const MONSTER_ROLLS = new CommandModule({
   name: "Monster Rolls",

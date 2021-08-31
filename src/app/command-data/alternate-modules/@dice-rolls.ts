@@ -1,12 +1,12 @@
 import { CommandModule } from "../command-schema";
-import { ATTACK } from "../sheet-manager/attack";
-import { CHECK } from "../sheet-manager/check";
-import { SAVE } from "../sheet-manager/save";
-import { ITERROLL } from "../dice/iterroll";
-import { MULTIROLL } from "../dice/multiroll";
-import { ROLL } from "../dice/roll";
-import { GAME_DEATHSAVE } from "../game-track/game-deathsave";
-import { CAST } from "../game-track/cast";
+import { ATTACK } from "../original-modules/sheet-manager/attack";
+import { CHECK } from "../original-modules/sheet-manager/check";
+import { SAVE } from "../original-modules/sheet-manager/save";
+import { ITERROLL } from "../original-modules/dice/iterroll";
+import { MULTIROLL } from "../original-modules/dice/multiroll";
+import { ROLL } from "../original-modules/dice/roll";
+import { GAME_DEATHSAVE } from "../original-modules/game-track/game-deathsave";
+import { CAST } from "../original-modules/game-track/cast";
 
 export const DICE_ROLLS = new CommandModule({
   name: "Dice Rolls",
