@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
-import { Meta, Title } from "@angular/platform-browser";
-import { COMMAND_MODULES } from "../command-data/command-modules";
+import { getCommandModules } from "./@sorting";
 import {
   Command,
   CommandModule,
@@ -36,7 +35,7 @@ export class CommandsUiComponent implements OnInit {
   @ViewChild(SecondaryArgButtonsComponent)
   secondaryArgComponent: SecondaryArgButtonsComponent;
 
-  modules: CommandModule[] = COMMAND_MODULES;
+  modules: CommandModule[] = getCommandModules();
   commandComponentExists: boolean;
   primaryArgCompExists: boolean;
   secondaryArgCompExists: boolean;
@@ -47,6 +46,9 @@ export class CommandsUiComponent implements OnInit {
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    commandsUiSettings.altModulesChange.subscribe(() => {
+      this.modules = getCommandModules();
+    });
     if (commandsUiSettings.showCommandStrings) sortDataByCmdString();
     else sortDataByName();
   }

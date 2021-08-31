@@ -1,10 +1,12 @@
-import { COMMAND_MODULES } from "../command-data/command-modules";
+import { OG_COMMAND_MODULES } from "../command-data/original-modules/original-modules";
+import { ALT_COMMAND_MODULES } from "../command-data/alternate-modules/alternate-modules";
 import {
   Argument,
   Command,
   CommandModule,
   SecondaryArgument,
 } from "../command-data/command-schema";
+import { commandsUiSettings } from "./@settings";
 
 export function getShortest(array: string[]): string {
   if (array.length == 0) throw Error("There are no items in the array!");
@@ -13,6 +15,12 @@ export function getShortest(array: string[]): string {
     if (item.length < shortest.length) shortest = item;
   }
   return shortest;
+}
+
+export function getCommandModules(): CommandModule[] {
+  return commandsUiSettings.altModules
+    ? ALT_COMMAND_MODULES
+    : OG_COMMAND_MODULES;
 }
 
 function sortByName(
@@ -64,8 +72,9 @@ function sortCommandDataByName(command: Command) {
 }
 
 export function sortDataByName() {
-  COMMAND_MODULES.sort(sortByName);
-  for (const module of COMMAND_MODULES) {
+  const modules = getCommandModules();
+  if (modules !== ALT_COMMAND_MODULES) modules.sort(sortByName);
+  for (const module of modules) {
     module.commands.sort(sortByName);
     for (const command of module.commands) {
       sortCommandDataByName(command);
@@ -82,8 +91,9 @@ function sortCommandDataByCmdString(command: Command) {
 }
 
 export function sortDataByCmdString() {
-  COMMAND_MODULES.sort(sortByName);
-  for (const module of COMMAND_MODULES) {
+  const modules = getCommandModules();
+  if (modules !== ALT_COMMAND_MODULES) modules.sort(sortByName);
+  for (const module of modules) {
     module.commands.sort(sortByShortestCmdString);
     for (const command of module.commands) {
       sortCommandDataByCmdString(command);

@@ -19,3 +19,10 @@
     (change)="settings.showCommandStrings = $event.checked"
   ></mat-slide-toggle>
 </div>
+<div class="setting">
+  <span class="setting-label-toggle">Alt Modules</span>
+  <mat-slide-toggle
+    [checked]="settings.altModules"
+    (change)="settings.altModules = $event.checked"
+  ></mat-slide-toggle>
+</div>
