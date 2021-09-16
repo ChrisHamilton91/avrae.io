@@ -59,13 +59,19 @@
   position: relative;
   top: 1px;
   width: 26px;
-  stroke: black;
+  stroke: hsl(220, 8%, 35%);
 }
 
 .alias-button {
   position: relative;
   width: 26px;
   left: 10px;
+  fill: hsl(220, 8%, 35%);
+}
+
+.active {
+  fill: $gray-light1;
+  stroke: $gray-light1;
 }
 
 .alias-input {
@@ -96,6 +102,8 @@
   width: 26px;
   visibility: hidden;
   opacity: 0;
+  fill: $gray-light1;
+  stroke: $gray-light1;
 }
 
 @keyframes pulse {
@@ -117,6 +125,8 @@
   position: relative;
   top: 1px;
   width: 26px;
+  fill: $gray-light1;
+  stroke: $gray-light1;
 }
 
 .clickable {
@@ -129,11 +139,6 @@
   filter: drop-shadow(0 0 20px $glowy-blue);
   fill: $glowy-blue;
   stroke: $glowy-blue;
-}
-
-.active {
-  fill: $gray-light1;
-  stroke: $gray-light1;
 }
 
 commands-ui-multiline-output {
