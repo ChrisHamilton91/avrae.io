@@ -1,0 +1,80 @@
+@import "../../../variables.scss";
+
+//Overrides the dialog style (class is added in about.component.ts)
+::ng-deep .commands-ui-about-dialog {
+  //Hack to stop scroll-bar from causing unnecessary word-wrap
+  width: max-content;
+  mat-dialog-container {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    border-radius: 20px;
+    padding: 24px 24px 0 24px;
+    background-color: $gray5;
+    //Hack to stop scroll-bar from causing unnecessary word-wrap
+    position: relative;
+    right: 14px;
+    width: calc(100% + 28px);
+    flex-shrink: 0;
+  }
+
+  mat-dialog-actions {
+    min-height: 0;
+    margin: 0;
+    padding: 5px 0;
+  }
+}
+
+.content {
+  overflow-y: auto;
+  max-height: 75vh;
+}
+
+.title {
+  margin-top: 0;
+}
+
+li {
+  padding: 2px 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 2px 0;
+}
+
+.icon {
+  width: 35px;
+}
+
+.half-margin {
+  margin: 7px 0;
+}
+
+.copy-icon {
+  width: 26px;
+  fill: $gray-light1;
+}
+
+.settings-icon {
+  width: 25px;
+  fill: $gray-light1;
+}
+
+.multiline-icon {
+  width: 26px;
+  stroke: $gray-light1;
+}
+
+.alias-icon {
+  width: 26px;
+  fill: $gray-light1;
+}
+
+.about-icon {
+  width: 22px;
+  fill: $gray-light1;
+}

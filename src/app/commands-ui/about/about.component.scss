@@ -2,7 +2,7 @@
 
 .container {
   position: absolute;
-  right: 0;
+  right: 40px;
   top: 0;
   height: 35px;
   width: 35px;
@@ -13,9 +13,9 @@
 
 svg {
   position: absolute;
-  width: 25px;
-  top: 5px;
-  right: 5px;
+  width: 22px;
+  top: 6px;
+  right: 7px;
   padding: 10px;
   cursor: pointer;
   fill: $gray-light1;

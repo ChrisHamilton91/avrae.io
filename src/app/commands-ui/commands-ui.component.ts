@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { getCommandModules } from "./@sorting";
 import {
   Command,
@@ -21,19 +27,22 @@ import {
   SecondaryArgButtonsComponent,
   SecondaryArgValuePair,
 } from "./secondary-arg-buttons/secondary-arg-buttons.component";
+import { AboutComponent } from "./about/about.component";
 
 @Component({
   selector: "avr-commands-ui",
   templateUrl: "./commands-ui.component.html",
   styleUrls: ["./commands-ui.component.scss"],
 })
-export class CommandsUiComponent implements OnInit {
+export class CommandsUiComponent implements OnInit, AfterViewInit {
   @ViewChild(CommandButtonsComponent)
   commandComponent: CommandButtonsComponent;
   @ViewChild(PrimaryArgButtonsComponent)
   primaryArgComponent: PrimaryArgButtonsComponent;
   @ViewChild(SecondaryArgButtonsComponent)
   secondaryArgComponent: SecondaryArgButtonsComponent;
+  @ViewChild(AboutComponent)
+  aboutComponent: AboutComponent;
 
   modules: CommandModule[] = getCommandModules();
   commandComponentExists: boolean;
@@ -51,6 +60,15 @@ export class CommandsUiComponent implements OnInit {
     });
     if (commandsUiSettings.showCommandStrings) sortDataByCmdString();
     else sortDataByName();
+  }
+
+  ngAfterViewInit(): void {
+    //Open about dialog if it's the first time visiting
+    const hereBeforeKey = "commands-ui-been-here-before";
+    if (!localStorage.getItem(hereBeforeKey)) {
+      this.aboutComponent.openDialog();
+      localStorage.setItem(hereBeforeKey, "true");
+    }
   }
 
   //#region setters
