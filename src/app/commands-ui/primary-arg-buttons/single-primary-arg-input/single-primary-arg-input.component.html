@@ -18,5 +18,6 @@
 
   <commands-ui-dice-roll-builder
     *ngIf="hasDiceRollBuilder()"
+    (rollStringEmitter)="diceRollStringReceived($event)"
   ></commands-ui-dice-roll-builder>
 </div>

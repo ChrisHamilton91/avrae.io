@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { DiceRollBuilderDialogComponent } from "./dice-roll-builder-dialog/dice-roll-builder-dialog.component";
 
 @Component({
   selector: "commands-ui-dice-roll-builder",
@@ -6,7 +8,20 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./dice-roll-builder.component.scss"],
 })
 export class DiceRollBuilderComponent implements OnInit {
-  constructor() {}
+  @Output() rollStringEmitter = new EventEmitter<string>();
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DiceRollBuilderDialogComponent, {
+      autoFocus: false,
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.rollStringEmitter.emit(result);
+    });
+  }
 }
