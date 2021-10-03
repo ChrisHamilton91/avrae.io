@@ -12,7 +12,7 @@ const ROLLSTR = new PrimaryArgument({
   name: "roll string",
   signature: "rollStr",
   required: true,
-  valueType: ValueType.NUMBER,
+  valueType: ValueType.DICE,
   desc: "The roll string (ie. 1d6, 2d4+3, 2d10kh1).",
 });
 

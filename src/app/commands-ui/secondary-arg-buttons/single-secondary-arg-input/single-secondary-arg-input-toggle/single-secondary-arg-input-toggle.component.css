@@ -1,8 +1,9 @@
 .container {
+  box-sizing: border-box;
   margin-top: 1px;
   margin-bottom: 1px;
   margin-left: 5px;
-  width: 100px;
+  width: 120px;
   font-size: 14px;
   font-weight: 500;
   font-family: Roboto, "Helvetica Neue", sans-serif;

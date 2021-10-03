@@ -1,8 +1,9 @@
 div {
+  box-sizing: border-box;
   margin-top: 1px;
   margin-bottom: 1px;
   margin-left: 5px;
-  width: 100px;
+  width: 120px;
   min-width: 64px;
   line-height: 36px;
   padding: 0 8px;

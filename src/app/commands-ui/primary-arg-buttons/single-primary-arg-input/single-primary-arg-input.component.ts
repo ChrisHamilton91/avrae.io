@@ -45,6 +45,10 @@ export class SinglePrimaryArgInputComponent implements OnInit {
     );
   }
 
+  hasDiceRollBuilder() {
+    return this.argValuePair.arg.valueType === ValueType.DICE;
+  }
+
   getTooltip(): string {
     if (!commandsUiSettings.tooltipsEnabled) return undefined;
     const type = this.argValuePair.arg.valueType;
