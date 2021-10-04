@@ -51,6 +51,8 @@ export class SinglePrimaryArgInputComponent implements OnInit {
 
   diceRollStringReceived(rollString: string) {
     this.inputRef.nativeElement.value = rollString;
+    this.argValuePair.value = rollString;
+    this.valueChange.emit();
   }
 
   getTooltip(): string {
