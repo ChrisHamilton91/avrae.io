@@ -18,6 +18,7 @@ export class DiceRollBuilderComponent implements OnInit {
     const dialogRef = this.dialog.open(DiceRollBuilderDialogComponent, {
       autoFocus: false,
       disableClose: true,
+      position: { top: "15vh" },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

@@ -1,9 +1,9 @@
 <h1 mat-dialog-title>Dice Roll Builder</h1>
 <div mat-dialog-content>
   <div class="flex-row">
-    <button class="clear-button">Clear</button>
+    <button class="clear-button" (click)="clear()">Clear</button>
     <span class="flex-spacer"></span>
-    <button class="backspace-button">
+    <button class="backspace-button" (click)="backspace()">
       <svg
         class="backspace-icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -21,63 +21,73 @@
   </div>
 
   <div class="flex-row">
-    <button class="math-operator">+</button>
-    <button class="math-operator">-</button>
-    <button class="math-operator">x</button>
-    <button class="math-operator">/</button>
-    <button class="math-operator">(</button>
-    <button class="math-operator">,</button>
-    <button class="math-operator">)</button>
+    <button class="math-operator" (click)="math('+')">+</button>
+    <button class="math-operator" (click)="math('-')">-</button>
+    <button class="math-operator" (click)="math('*')">x</button>
+    <button class="math-operator" (click)="math('/')">/</button>
+    <button class="math-operator" (click)="openBracket()">(</button>
+    <button class="math-operator" (click)="comma()">,</button>
+    <button class="math-operator" (click)="closeBracket()">)</button>
   </div>
 
-  <div class="flex-row">
+  <div class="flex-row" *ngIf="diceOrNumberAvailable()">
     <button class="dice-button" (click)="toggleDiceActive()">Dice</button>
-    <input
-      type="number"
-      class="dice-quantity"
-      [(ngModel)]="diceRoll.quantity"
-      (ngModelChange)="update()"
-    />
-    <p class="dice-d">d</p>
-    <input
-      type="number"
-      class="dice-sides"
-      [(ngModel)]="diceRoll.sides"
-      (ngModelChange)="update()"
-    />
+    <ng-container *ngIf="diceActive">
+      <input
+        type="number"
+        class="dice-quantity"
+        [(ngModel)]="diceRoll.quantity"
+        (ngModelChange)="update()" />
+      <p class="dice-d">d</p>
+      <input
+        type="number"
+        class="dice-sides"
+        [(ngModel)]="diceRoll.sides"
+        (ngModelChange)="update()"
+    /></ng-container>
+
     <button class="number-button" (click)="toggleNumberActive()">Number</button>
-    <input
-      type="number"
-      class="number-input"
-      [(ngModel)]="number"
-      (ngModelChange)="update()"
-    />
+    <ng-container *ngIf="numberActive">
+      <input
+        type="number"
+        class="number-input"
+        [(ngModel)]="number"
+        (ngModelChange)="update()"
+    /></ng-container>
   </div>
 
-  <div class="flex-row" *ngFor="let operation of operations; index as index">
-    <button class="operator-button" (click)="toggleOperation(index)">
-      {{ operation.operator.name }}
-    </button>
-    <select
-      class="selector-dropdown"
-      [(ngModel)]="operation.selector"
-      (ngModelChange)="update()"
-    >
-      <option *ngFor="let selector of selectors" [ngValue]="selector">
-        {{ selector.name }}
-      </option>
-    </select>
-    <input
-      class="selector-input"
-      type="number"
-      [(ngModel)]="operation.value"
-      (ngModelChange)="update()"
-    />
-  </div>
+  <ng-container *ngFor="let operation of operations; index as index">
+    <div class="flex-row" *ngIf="operationAvailable(index)">
+      <button class="operator-button" (click)="toggleOperation(index)">
+        {{ operation.operator.name }}
+      </button>
+      <ng-container *ngIf="operation.active">
+        <select
+          class="selector-dropdown"
+          [(ngModel)]="operation.selector"
+          (ngModelChange)="update()"
+          *ngIf="operation.operator.hasSelectors"
+        >
+          <option *ngFor="let selector of selectors" [ngValue]="selector">
+            {{ selector.name }}
+          </option>
+        </select>
+        <input
+          class="selector-input"
+          type="number"
+          [(ngModel)]="operation.value"
+          (ngModelChange)="update()"
+      /></ng-container></div
+  ></ng-container>
 
-  <div class="flex-row">
+  <div class="flex-row" *ngIf="diceActive || numberActive">
     <button class="tag-button" (click)="toggleTag()">[tag]</button>
-    <input class="tag-input" [(ngModel)]="tag" (ngModelChange)="update()" />
+    <input
+      class="tag-input"
+      [(ngModel)]="tag"
+      (ngModelChange)="update()"
+      *ngIf="tagActive"
+    />
   </div>
 </div>
 <div mat-dialog-actions>

@@ -25,14 +25,14 @@ const ADV = new SecondaryArgument({
   name: "advantage",
   cmdString: "adv",
   valueType: ValueType.TRUE,
-  desc: "Give advantage to the roll(s)",
+  desc: "Give advantage to a 1d20 roll (Only valid if the first roll is 1d20)",
 });
 
 const DIS = new SecondaryArgument({
   name: "disadvantage",
   cmdString: "dis",
   valueType: ValueType.TRUE,
-  desc: "Give disadvantage to the roll(s)",
+  desc: "Give disadvantage to a 1d20 roll (Only valid if the first roll is 1d20)",
 });
 
 export const ROLL = new Command({
