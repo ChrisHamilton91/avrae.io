@@ -2,7 +2,7 @@
   <h1 class="title">Dice Roll Builder</h1>
 
   <div class="flex-row">
-    <button class="clear-button" (click)="clear()">Clear</button>
+    <button class="clear-button generic-button" (click)="clear()">Clear</button>
     <div class="flex-spacer"></div>
     <svg
       class="backspace-button"
@@ -23,25 +23,41 @@
   </div>
 
   <div class="flex-row math-op-row">
-    <button class="math-operator" (click)="math('+')">+</button>
+    <button class="math-operator generic-button" (click)="math('+')">+</button>
     <div class="math-op-spacer"></div>
-    <button class="math-operator" (click)="math('-')">-</button>
+    <button class="math-operator generic-button" (click)="math('-')">-</button>
     <div class="math-op-spacer"></div>
-    <button class="math-operator" (click)="math('*')">x</button>
+    <button class="math-operator generic-button" (click)="math('*')">x</button>
     <div class="math-op-spacer"></div>
-    <button class="math-operator" (click)="math('/')">/</button>
+    <button class="math-operator generic-button" (click)="math('/')">/</button>
     <div class="math-op-spacer"></div>
-    <button class="math-operator" (click)="openBracket()">(</button>
+    <button class="math-operator generic-button" (click)="openBracket()">
+      (
+    </button>
     <div class="math-op-spacer"></div>
-    <button class="math-operator" (click)="comma()">,</button>
+    <button class="math-operator generic-button" (click)="comma()">,</button>
     <div class="math-op-spacer"></div>
-    <button class="math-operator" (click)="closeBracket()">)</button>
+    <button class="math-operator generic-button" (click)="closeBracket()">
+      )
+    </button>
   </div>
 
   <div class="flex-row dice-number-row" *ngIf="diceOrNumberAvailable()">
-    <button class="dice-button" (click)="toggleDiceActive()">Dice</button>
+    <button
+      class="dice-button generic-button"
+      (click)="toggleDiceActive()"
+      [class.active]="diceActive"
+    >
+      Dice
+    </button>
     <div class="dice-number-spacer"></div>
-    <button class="number-button" (click)="toggleNumberActive()">Number</button>
+    <button
+      class="number-button generic-button"
+      (click)="toggleNumberActive()"
+      [class.active]="numberActive"
+    >
+      Number
+    </button>
   </div>
 
   <div class="flex-row roll-value-row">
@@ -50,14 +66,16 @@
         type="number"
         class="dice-quantity"
         [(ngModel)]="diceRoll.quantity"
-        (ngModelChange)="update()" />
+        (ngModelChange)="update()"
+      />
       <p class="dice-d">d</p>
       <input
         type="number"
         class="dice-sides"
         [(ngModel)]="diceRoll.sides"
         (ngModelChange)="update()"
-    /></div>
+      />
+    </div>
 
     <ng-container *ngIf="numberActive">
       <input
@@ -70,7 +88,11 @@
 
   <ng-container *ngFor="let operation of operations; index as index">
     <div class="flex-row operation-row" *ngIf="operationAvailable(index)">
-      <button class="operator-button" (click)="toggleOperation(index)">
+      <button
+        class="operator-button generic-button"
+        (click)="toggleOperation(index)"
+        [class.active]="operation.active"
+      >
         {{ operation.operator.name }}
       </button>
       <ng-container *ngIf="operation.active">
@@ -98,7 +120,13 @@
   ></ng-container>
 
   <div class="flex-row" *ngIf="diceActive || numberActive">
-    <button class="tag-button" (click)="toggleTag()">[tag]</button>
+    <button
+      class="tag-button generic-button"
+      (click)="toggleTag()"
+      [class.active]="tagActive"
+    >
+      [tag]
+    </button>
     <div class="operation-spacer"></div>
     <input
       class="tag-input"

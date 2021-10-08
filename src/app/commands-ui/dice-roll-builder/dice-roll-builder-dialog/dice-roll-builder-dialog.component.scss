@@ -12,13 +12,17 @@
   }
 }
 
-.content button {
+.generic-button {
   font-family: inherit;
   cursor: pointer;
   border: none;
-  background-color: $gray5;
+  background-color: hsl(220, 8%, 23%);
   border-radius: 6px;
   color: white;
+}
+
+.generic-button:hover {
+  background-color: hsl(220, 8%, 30%);
 }
 
 .flex-row {
@@ -41,16 +45,19 @@
   width: 60px;
   height: 30px;
   font-size: 16px;
-  font-weight: 900;
 }
 
 .backspace-button {
   cursor: pointer;
   position: relative;
   padding: 0;
-  width: 50px;
+  width: 45px;
   height: 30px;
-  fill: hsl(0, 80%, 40%);
+  fill: hsl(40, 80%, 50%);
+}
+
+.backspace-button:hover {
+  fill: hsl(40, 80%, 60%);
 }
 
 .roll-string-container {
@@ -63,7 +70,6 @@
   color: white;
   border: none;
   border-radius: 6px;
-  user-select: none;
   box-sizing: border-box;
   width: 100%;
   margin-top: 10px;
@@ -198,4 +204,13 @@
   width: 100px;
   padding: 0 6px;
   outline: none;
+}
+
+.active {
+  background-color: hsl(40, 80%, 50%);
+  color: black;
+}
+
+.active:hover {
+  background-color: hsl(40, 80%, 60%);
 }
