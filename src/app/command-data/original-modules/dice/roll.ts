@@ -36,7 +36,7 @@ const DIS = new SecondaryArgument({
 });
 
 export const ROLL = new Command({
-  name: "Dice Roll",
+  name: "Roll",
   cmdStrings: ["roll", "r"],
   shortDesc:
     "Roll any combination of dice in the XdY format. Multiple rolls can be added together as an equation.",
