@@ -323,7 +323,7 @@ export class DiceRollBuilderDialogComponent implements OnInit {
     this.errorMessage = "";
     if (this.bracketStack.length > 0)
       this.errorMessage = "There are unclosed brackets.";
-    if (this.lastSegment?.type === SegmentType.MATH)
+    if (!this.currString && this.lastSegment?.type === SegmentType.MATH)
       this.errorMessage = "Cannot end with a math operator.";
     if (this.errorMessage) return;
     this.dialogRef.close(this.fullString);
