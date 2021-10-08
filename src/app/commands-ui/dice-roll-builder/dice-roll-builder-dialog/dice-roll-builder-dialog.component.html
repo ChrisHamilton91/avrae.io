@@ -17,7 +17,11 @@
   </div>
 
   <div class="flex-row">
-    <input class="roll-string" [(ngModel)]="fullString" />
+    <input class="roll-string" [(ngModel)]="fullString" readonly />
+  </div>
+
+  <div class="flex-row">
+    <p>{{ errorMessage }}</p>
   </div>
 
   <div class="flex-row">

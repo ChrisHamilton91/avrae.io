@@ -85,7 +85,9 @@ export class DiceRollBuilderDialogComponent implements OnInit {
   numberActive: boolean;
   tag: string;
   tagActive: boolean;
-  operations: Operation[];
+  operations: Operation[] = [];
+  bracketStack: true[] = []; //Used for bracket validation - each slot represents an unclosed bracket
+  errorMessage = "";
   operators = operators;
   selectors = selectors;
 
@@ -101,14 +103,9 @@ export class DiceRollBuilderDialogComponent implements OnInit {
   }
 
   math(operator: string) {
-    if (!this.currString) {
-      if (!this.lastSegment) return;
-      if (
-        this.lastSegment.type !== SegmentType.ROLL &&
-        this.lastSegment.type !== SegmentType.CLOSE_BRACKET
-      )
-        return;
-    } else {
+    this.errorMessage = this.getMathErrorMessage();
+    if (this.errorMessage) return;
+    if (this.currString) {
       this.segmentStack.push({
         type: SegmentType.ROLL,
         value: this.currString,
@@ -118,26 +115,39 @@ export class DiceRollBuilderDialogComponent implements OnInit {
     this.reset();
   }
 
-  //TODO: Enforce bracket and comma correctness
-  openBracket() {
-    if (
-      this.lastSegment?.type === SegmentType.ROLL ||
-      this.lastSegment?.type === SegmentType.CLOSE_BRACKET
-    )
-      return;
-    this.segmentStack.push({ type: SegmentType.OPEN_BRACKET, value: "(" });
-    this.update();
-  }
-
-  comma() {
+  getMathErrorMessage(): string {
     if (!this.currString) {
-      if (!this.lastSegment) return;
+      if (!this.lastSegment) return "Cannot begin with a math operator.";
       if (
         this.lastSegment.type !== SegmentType.ROLL &&
         this.lastSegment.type !== SegmentType.CLOSE_BRACKET
       )
-        return;
-    } else {
+        return "Math operators must follow a value or a closed bracket.";
+    }
+    return "";
+  }
+
+  openBracket() {
+    this.errorMessage = this.getOpenBracketErrorMessage();
+    if (this.errorMessage) return;
+    this.segmentStack.push({ type: SegmentType.OPEN_BRACKET, value: "(" });
+    this.bracketStack.push(true);
+    this.update();
+  }
+
+  getOpenBracketErrorMessage(): string {
+    if (
+      this.lastSegment?.type === SegmentType.ROLL ||
+      this.lastSegment?.type === SegmentType.CLOSE_BRACKET
+    )
+      return "Open brackets cannot follow a value or a closed bracket.";
+    return "";
+  }
+
+  comma() {
+    this.errorMessage = this.getCommaErrorMessage();
+    if (this.errorMessage) return;
+    if (this.currString) {
       this.segmentStack.push({
         type: SegmentType.ROLL,
         value: this.currString,
@@ -147,31 +157,63 @@ export class DiceRollBuilderDialogComponent implements OnInit {
     this.reset();
   }
 
-  closeBracket() {
+  getCommaErrorMessage(): string {
+    if (this.bracketStack.length === 0)
+      return "Commas may only appear inside brackets.";
     if (!this.currString) {
-      if (!this.lastSegment) return;
+      if (!this.lastSegment) return "Cannot begin with a comma.";
       if (
         this.lastSegment.type !== SegmentType.ROLL &&
         this.lastSegment.type !== SegmentType.CLOSE_BRACKET
       )
-        return;
-    } else {
+        return "Commas may only appear after a value or a closed bracket.";
+    }
+    return "";
+  }
+
+  closeBracket() {
+    this.errorMessage = this.getCloseBracketErrorMessage();
+    if (this.errorMessage) return;
+    if (this.currString) {
       this.segmentStack.push({
         type: SegmentType.ROLL,
         value: this.currString,
       });
     }
     this.segmentStack.push({ type: SegmentType.CLOSE_BRACKET, value: ")" });
+    this.bracketStack.pop();
     this.reset();
   }
 
+  getCloseBracketErrorMessage() {
+    if (this.bracketStack.length === 0)
+      return "There are no unclosed brackets.";
+    if (!this.currString) {
+      if (!this.lastSegment) return "Cannot begin with a closed bracket.";
+      if (
+        this.lastSegment.type !== SegmentType.ROLL &&
+        this.lastSegment.type !== SegmentType.CLOSE_BRACKET
+      )
+        return "Closed brackets must appear after a value or another closed bracket.";
+    }
+    return "";
+  }
+
   backspace() {
-    if (!this.currString) this.segmentStack.pop();
+    if (this.currString) {
+      this.reset();
+      return;
+    }
+    const popped = this.segmentStack.pop();
+    if (popped?.type === SegmentType.OPEN_BRACKET) this.bracketStack.pop();
+    if (popped?.type === SegmentType.CLOSE_BRACKET)
+      this.bracketStack.push(true);
     this.reset();
   }
 
   clear() {
     this.segmentStack = [];
+    this.bracketStack = [];
     this.reset();
   }
 
@@ -234,9 +276,9 @@ export class DiceRollBuilderDialogComponent implements OnInit {
   }
 
   operationAvailable(index: number): boolean {
-    const op = this.operations[index];
     if (this.diceActive) return true;
     if (this.numberActive) return false;
+    const op = this.operations[index];
     if (
       this.lastSegment?.type === SegmentType.CLOSE_BRACKET &&
       op.operator.onSets
