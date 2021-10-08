@@ -24,9 +24,9 @@ const operators: Operator[] = [
     onSets: false,
     hasSelectors: true,
   },
+  { name: "explode on", cmdString: "e", onSets: false, hasSelectors: true },
   { name: "minimum", cmdString: "mi", onSets: false, hasSelectors: false },
   { name: "maximum", cmdString: "ma", onSets: false, hasSelectors: false },
-  { name: "explode on", cmdString: "e", onSets: false, hasSelectors: true },
 ];
 
 type Selector = {
@@ -137,6 +137,7 @@ export class DiceRollBuilderDialogComponent implements OnInit {
 
   getOpenBracketErrorMessage(): string {
     if (
+      this.currString ||
       this.lastSegment?.type === SegmentType.ROLL ||
       this.lastSegment?.type === SegmentType.CLOSE_BRACKET
     )
@@ -260,6 +261,7 @@ export class DiceRollBuilderDialogComponent implements OnInit {
     this.diceRoll = new DiceRoll();
     this.number = 1;
     this.tag = "";
+    this.errorMessage = "";
     this.update();
   }
 

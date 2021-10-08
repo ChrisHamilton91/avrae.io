@@ -12,6 +12,11 @@
   }
 }
 
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -22,14 +27,129 @@
   flex-grow: 1;
 }
 
-.roll-string {
-  width: 100%;
+.title {
+  margin: 0;
+  margin-bottom: 10px;
 }
 
-.dice-d {
-  margin: 0;
+.clear-button {
+  padding: 0;
+  width: 60px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.backspace-button {
+  position: relative;
+  padding: 0;
+  width: 50px;
+  height: 30px;
 }
 
 .backspace-icon {
-  width: 25px;
+  position: absolute;
+  right: 8%;
+  top: 0;
+  width: 85%;
+  height: 100%;
+}
+
+.roll-string-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.roll-string {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.error-message {
+  margin: 0;
+  padding: 2px;
+  min-height: 16px;
+  font-size: 12px;
+  color: hsl(40, 80%, 50%);
+}
+
+.math-op-spacer {
+  width: 4px;
+}
+
+.math-operator {
+  flex-grow: 1;
+  height: 30px;
+}
+
+.math-op-row,
+.dice-number-row {
+  margin-bottom: 10px;
+}
+
+.dice-button,
+.number-button {
+  height: 30px;
+  flex-grow: 1;
+}
+
+.dice-number-spacer {
+  width: 4px;
+}
+
+.number-button {
+  margin-left: 4px;
+}
+
+.dice-quantity {
+  text-align: right;
+  width: 35px;
+  font-size: 14px;
+}
+
+.dice-sides {
+  width: 45px;
+  font-size: 14px;
+}
+
+.dice-d {
+  margin: 0 2px;
+}
+
+.number-input {
+  text-align: right;
+  width: 45px;
+  font-size: 14px;
+}
+
+.roll-value-row {
+  margin-bottom: 10px;
+  align-items: baseline;
+}
+
+.operator-button,
+.tag-button {
+  width: 100px;
+}
+
+.operation-spacer {
+  width: 4px;
+}
+
+.selector-dropdown {
+  width: 100px;
+}
+
+.selector-input {
+  width: 45px;
+}
+
+.operation-row {
+  margin-bottom: 4px;
+}
+
+.tag-input {
+  width: 100px;
 }

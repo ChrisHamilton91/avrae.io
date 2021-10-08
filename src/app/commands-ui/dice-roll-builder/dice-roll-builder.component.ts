@@ -19,6 +19,8 @@ export class DiceRollBuilderComponent implements OnInit {
       autoFocus: false,
       disableClose: true,
       position: { top: "15vh" },
+      maxWidth: "400px",
+      width: "90vw",
     });
 
     dialogRef.afterClosed().subscribe((result) => {
