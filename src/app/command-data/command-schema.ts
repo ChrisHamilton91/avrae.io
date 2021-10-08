@@ -2,8 +2,10 @@
 export enum ValueType {
   /** For arguments that implicitly have a value of 'true' (adv, nocrit etc.) */
   TRUE,
-  /** For arguments that accept numbers or dice rolls */
+  /** For arguments that accept numbers or basic dice rolls */
   NUMBER,
+  /** For arguments that accept advanced dice rolls*/
+  DICE,
   /** For arguments that accept strings */
   STRING,
   /** For arguments that accept 'true' or 'false' */

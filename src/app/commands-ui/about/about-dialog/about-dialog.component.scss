@@ -1,6 +1,6 @@
 @import "../../../variables.scss";
 
-//Overrides the dialog style (class is added in about.component.ts)
+//Overrides the dialog style
 ::ng-deep .commands-ui-about-dialog {
   //Hack to stop scroll-bar from causing unnecessary word-wrap
   width: max-content;

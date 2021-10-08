@@ -2,18 +2,23 @@ $height: 36px;
 $padding: 8px;
 $border-width: 3px;
 
+.container {
+  position: relative;
+}
+
 input {
+  box-sizing: border-box;
   margin-top: 1px;
   margin-bottom: 1px;
   margin-left: 5px;
-  width: 100px;
+  width: 120px;
   font-size: 14px;
   font-weight: 500;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   min-width: 64px;
-  line-height: 36px;
-  padding: 0 $padding;
-  border: 0;
+  line-height: calc(#{$height} - 2 * #{$border-width});
+  padding: 0 5px;
+  border: $border-width solid white;
   outline: 0;
   border-radius: 4px;
   background: white;
@@ -29,9 +34,6 @@ input.required {
 }
 
 input.required-and-empty {
-  line-height: calc(#{$height} - 2 * #{$border-width});
-  padding: 0 calc(#{$padding} - #{$border-width});
-  border: $border-width solid white;
   animation: blink 2s infinite 2s ease-in;
 }
 
@@ -39,4 +41,14 @@ input.required-and-empty {
   50% {
     border-color: hsl(0, 100%, 43%);
   }
+}
+
+commands-ui-dice-roll-builder {
+  position: absolute;
+  right: 0;
+  top: 4px;
+}
+
+input.has-dice-roll-builder {
+  padding-right: 30px;
 }

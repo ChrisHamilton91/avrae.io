@@ -1,15 +1,23 @@
-<input
-  #input
-  [@visibility]="getVisibilityState()"
-  [ngClass]="{
-    required: argValuePair.arg.required,
-    'required-and-empty': isRequiredAndEmpty()
-  }"
-  [matTooltip]="getTooltip()"
-  matTooltipPosition="right"
-  type="input"
-  class="input-box"
-  spellcheck="false"
-  autocomplete="off"
-  (input)="changeValue($event.target)"
-/>
+<div class="container">
+  <input
+    #input
+    [@visibility]="getVisibilityState()"
+    [ngClass]="{
+      required: argValuePair.arg.required,
+      'required-and-empty': isRequiredAndEmpty(),
+      'has-dice-roll-builder': hasDiceRollBuilder()
+    }"
+    [matTooltip]="getTooltip()"
+    matTooltipPosition="right"
+    type="input"
+    class="input-box"
+    spellcheck="false"
+    autocomplete="off"
+    (input)="changeValue($event.target)"
+  />
+
+  <commands-ui-dice-roll-builder
+    *ngIf="hasDiceRollBuilder()"
+    (rollStringEmitter)="diceRollStringReceived($event)"
+  ></commands-ui-dice-roll-builder>
+</div>

@@ -136,6 +136,7 @@ export class CommandsUiComponent implements OnInit, AfterViewInit {
           cmdString += this.getPrimaryArgStringOfTypeString(pair);
           break;
         case ValueType.NUMBER:
+        case ValueType.DICE:
           cmdString += this.getPrimaryArgStringOfTypeNumber(pair);
           break;
         case ValueType.TRUE:

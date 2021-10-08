@@ -35,6 +35,8 @@ import { SettingsInputComponent } from "./commands-ui/settings/settings-dialog/s
 import { MultilineOutputComponent } from './commands-ui/output-area/multiline-output/multiline-output.component';
 import { AboutComponent } from './commands-ui/about/about.component';
 import { AboutDialogComponent } from './commands-ui/about/about-dialog/about-dialog.component';
+import { DiceRollBuilderComponent } from './commands-ui/dice-roll-builder/dice-roll-builder.component';
+import { DiceRollBuilderDialogComponent } from './commands-ui/dice-roll-builder/dice-roll-builder-dialog/dice-roll-builder-dialog.component';
 
 Sentry.init({
   dsn: "https://af2b06560981446bb55f64b6f79fd520@sentry.io/1486249",
@@ -67,6 +69,8 @@ Sentry.init({
     MultilineOutputComponent,
     AboutComponent,
     AboutDialogComponent,
+    DiceRollBuilderComponent,
+    DiceRollBuilderDialogComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "serverApp" }),

@@ -1,0 +1,216 @@
+@import "../../../variables.scss";
+
+//Overrides the dialog style
+::ng-deep .dice-roll-builder-dialog {
+  mat-dialog-container {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    border-radius: 20px;
+    background-color: $gray-dark1;
+  }
+}
+
+.generic-button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background-color: hsl(220, 8%, 23%);
+  border-radius: 6px;
+  color: white;
+}
+
+.generic-button:hover {
+  background-color: hsl(220, 8%, 30%);
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-spacer {
+  flex-grow: 1;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.clear-button {
+  padding: 0;
+  width: 60px;
+  height: 30px;
+  font-size: 16px;
+}
+
+.backspace-button {
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  width: 45px;
+  height: 30px;
+  fill: hsl(40, 80%, 50%);
+}
+
+.backspace-button:hover {
+  fill: hsl(40, 80%, 60%);
+}
+
+.roll-string-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.roll-string {
+  background-color: $gray5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 16px;
+  padding: 4px;
+}
+
+.error-message {
+  margin: 0;
+  padding: 2px;
+  min-height: 16px;
+  font-size: 12px;
+  color: hsl(40, 80%, 50%);
+}
+
+.math-op-spacer {
+  width: 4px;
+}
+
+.math-operator {
+  flex-grow: 1;
+  height: 35px;
+  font-size: 16px;
+}
+
+.math-op-row,
+.dice-number-row {
+  margin-bottom: 10px;
+}
+
+.dice-button,
+.number-button {
+  height: 30px;
+  width: 50%;
+  font-size: 16px;
+}
+
+.dice-number-spacer {
+  width: 4px;
+}
+
+.number-button {
+  margin-left: 4px;
+}
+
+.dice-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  background-color: $gray5;
+  border-radius: 6px;
+}
+
+.dice-quantity,
+.dice-sides,
+.number-input {
+  background-color: $gray5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 4px;
+  height: 30px;
+  width: 45px;
+  font-size: 16px;
+}
+
+.dice-quantity,
+.number-input {
+  text-align: right;
+}
+
+.dice-d {
+  margin: 0 2px;
+  font-size: 16px;
+}
+
+.roll-value-row {
+  margin-bottom: 10px;
+  align-items: baseline;
+}
+
+.operator-button,
+.tag-button {
+  width: 100px;
+  height: 25px;
+  font-size: 14px;
+}
+
+.operation-spacer {
+  width: 4px;
+}
+
+.selector-dropdown,
+.selector-input,
+.tag-input {
+  background-color: $gray5;
+  color: white;
+  border: none;
+  height: 25px;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 0;
+}
+
+.selector-dropdown {
+  width: 100px;
+  background-color: $gray5;
+  color: white;
+  border: none;
+  height: 25px;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 2px;
+}
+
+.selector-input {
+  background-color: $gray5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 4px;
+  width: 45px;
+  height: 25px;
+  font-size: 14px;
+}
+
+.operation-row {
+  margin-bottom: 6px;
+}
+
+.tag-input {
+  width: 100px;
+  padding: 0 6px;
+  outline: none;
+}
+
+.active {
+  background-color: hsl(40, 80%, 50%);
+  color: black;
+}
+
+.active:hover {
+  background-color: hsl(40, 80%, 60%);
+}

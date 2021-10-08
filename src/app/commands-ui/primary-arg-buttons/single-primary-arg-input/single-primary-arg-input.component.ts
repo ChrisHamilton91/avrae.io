@@ -45,6 +45,16 @@ export class SinglePrimaryArgInputComponent implements OnInit {
     );
   }
 
+  hasDiceRollBuilder() {
+    return this.argValuePair.arg.valueType === ValueType.DICE;
+  }
+
+  diceRollStringReceived(rollString: string) {
+    this.inputRef.nativeElement.value = rollString;
+    this.argValuePair.value = rollString;
+    this.valueChange.emit();
+  }
+
   getTooltip(): string {
     if (!commandsUiSettings.tooltipsEnabled) return undefined;
     const type = this.argValuePair.arg.valueType;

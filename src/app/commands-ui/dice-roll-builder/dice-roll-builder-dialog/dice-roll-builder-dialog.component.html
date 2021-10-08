@@ -1,0 +1,143 @@
+<div class="content" mat-dialog-content>
+  <h1 class="title">Dice Roll Builder</h1>
+
+  <div class="flex-row">
+    <button class="clear-button generic-button" (click)="clear()">Clear</button>
+    <div class="flex-spacer"></div>
+    <svg
+      class="backspace-button"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 640 512"
+      preserveAspectRatio="none"
+      (click)="backspace()"
+    >
+      <path
+        d="M576 64H205.26A63.97 63.97 0 0 0 160 82.75L9.37 233.37c-12.5 12.5-12.5 32.76 0 45.25L160 429.25c12 12 28.28 18.75 45.25 18.75H576c35.35 0 64-28.65 64-64V128c0-35.35-28.65-64-64-64zm-84.69 254.06c6.25 6.25 6.25 16.38 0 22.63l-22.62 22.62c-6.25 6.25-16.38 6.25-22.63 0L384 301.25l-62.06 62.06c-6.25 6.25-16.38 6.25-22.63 0l-22.62-22.62c-6.25-6.25-6.25-16.38 0-22.63L338.75 256l-62.06-62.06c-6.25-6.25-6.25-16.38 0-22.63l22.62-22.62c6.25-6.25 16.38-6.25 22.63 0L384 210.75l62.06-62.06c6.25-6.25 16.38-6.25 22.63 0l22.62 22.62c6.25 6.25 6.25 16.38 0 22.63L429.25 256l62.06 62.06z"
+      />
+    </svg>
+  </div>
+
+  <div class="roll-string-container">
+    <input class="roll-string" [(ngModel)]="fullString" readonly />
+    <p class="error-message">{{ errorMessage }}</p>
+  </div>
+
+  <div class="flex-row math-op-row">
+    <button class="math-operator generic-button" (click)="math('+')">+</button>
+    <div class="math-op-spacer"></div>
+    <button class="math-operator generic-button" (click)="math('-')">-</button>
+    <div class="math-op-spacer"></div>
+    <button class="math-operator generic-button" (click)="math('*')">x</button>
+    <div class="math-op-spacer"></div>
+    <button class="math-operator generic-button" (click)="math('/')">/</button>
+    <div class="math-op-spacer"></div>
+    <button class="math-operator generic-button" (click)="openBracket()">
+      (
+    </button>
+    <div class="math-op-spacer"></div>
+    <button class="math-operator generic-button" (click)="comma()">,</button>
+    <div class="math-op-spacer"></div>
+    <button class="math-operator generic-button" (click)="closeBracket()">
+      )
+    </button>
+  </div>
+
+  <div class="flex-row dice-number-row" *ngIf="diceOrNumberAvailable()">
+    <button
+      class="dice-button generic-button"
+      (click)="toggleDiceActive()"
+      [class.active]="diceActive"
+    >
+      Dice
+    </button>
+    <div class="dice-number-spacer"></div>
+    <button
+      class="number-button generic-button"
+      (click)="toggleNumberActive()"
+      [class.active]="numberActive"
+    >
+      Number
+    </button>
+  </div>
+
+  <div class="flex-row roll-value-row">
+    <div *ngIf="diceActive" class="dice-container">
+      <input
+        type="number"
+        class="dice-quantity"
+        [(ngModel)]="diceRoll.quantity"
+        (ngModelChange)="update()"
+      />
+      <p class="dice-d">d</p>
+      <input
+        type="number"
+        class="dice-sides"
+        [(ngModel)]="diceRoll.sides"
+        (ngModelChange)="update()"
+      />
+    </div>
+
+    <ng-container *ngIf="numberActive">
+      <input
+        type="number"
+        class="number-input"
+        [(ngModel)]="number"
+        (ngModelChange)="update()"
+    /></ng-container>
+  </div>
+
+  <ng-container *ngFor="let operation of operations; index as index">
+    <div class="flex-row operation-row" *ngIf="operationAvailable(index)">
+      <button
+        class="operator-button generic-button"
+        (click)="toggleOperation(index)"
+        [class.active]="operation.active"
+      >
+        {{ operation.operator.name }}
+      </button>
+      <ng-container *ngIf="operation.active">
+        <div
+          class="operation-spacer"
+          *ngIf="operation.operator.hasSelectors"
+        ></div>
+        <select
+          class="selector-dropdown"
+          [(ngModel)]="operation.selector"
+          (ngModelChange)="update()"
+          *ngIf="operation.operator.hasSelectors"
+        >
+          <option *ngFor="let selector of selectors" [ngValue]="selector">
+            {{ selector.name }}
+          </option>
+        </select>
+        <div class="operation-spacer"></div>
+        <input
+          class="selector-input"
+          type="number"
+          [(ngModel)]="operation.value"
+          (ngModelChange)="update()"
+      /></ng-container></div
+  ></ng-container>
+
+  <div class="flex-row" *ngIf="diceActive || numberActive">
+    <button
+      class="tag-button generic-button"
+      (click)="toggleTag()"
+      [class.active]="tagActive"
+    >
+      [tag]
+    </button>
+    <div class="operation-spacer"></div>
+    <input
+      class="tag-input"
+      [(ngModel)]="tag"
+      (ngModelChange)="update()"
+      *ngIf="tagActive"
+    />
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <div class="flex-spacer"></div>
+  <button mat-button (click)="onSubmit()">Submit</button>
+</div>
