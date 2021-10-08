@@ -8,13 +8,17 @@
     font-weight: 500;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     border-radius: 20px;
-    background-color: $gray5;
+    background-color: $gray-dark1;
   }
 }
 
-button {
+.content button {
   font-family: inherit;
   cursor: pointer;
+  border: none;
+  background-color: $gray5;
+  border-radius: 6px;
+  color: white;
 }
 
 .flex-row {
@@ -41,18 +45,12 @@ button {
 }
 
 .backspace-button {
+  cursor: pointer;
   position: relative;
   padding: 0;
   width: 50px;
   height: 30px;
-}
-
-.backspace-icon {
-  position: absolute;
-  right: 8%;
-  top: 0;
-  width: 85%;
-  height: 100%;
+  fill: hsl(0, 80%, 40%);
 }
 
 .roll-string-container {
@@ -61,10 +59,16 @@ button {
 }
 
 .roll-string {
+  background-color: $gray5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  user-select: none;
   box-sizing: border-box;
   width: 100%;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
+  padding: 4px;
 }
 
 .error-message {
@@ -81,7 +85,8 @@ button {
 
 .math-operator {
   flex-grow: 1;
-  height: 30px;
+  height: 35px;
+  font-size: 16px;
 }
 
 .math-op-row,
@@ -92,7 +97,8 @@ button {
 .dice-button,
 .number-button {
   height: 30px;
-  flex-grow: 1;
+  width: 50%;
+  font-size: 16px;
 }
 
 .dice-number-spacer {
@@ -103,25 +109,35 @@ button {
   margin-left: 4px;
 }
 
-.dice-quantity {
-  text-align: right;
-  width: 35px;
-  font-size: 14px;
+.dice-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  background-color: $gray5;
+  border-radius: 6px;
 }
 
-.dice-sides {
+.dice-quantity,
+.dice-sides,
+.number-input {
+  background-color: $gray5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 4px;
+  height: 30px;
   width: 45px;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+.dice-quantity,
+.number-input {
+  text-align: right;
 }
 
 .dice-d {
   margin: 0 2px;
-}
-
-.number-input {
-  text-align: right;
-  width: 45px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .roll-value-row {
@@ -132,24 +148,54 @@ button {
 .operator-button,
 .tag-button {
   width: 100px;
+  height: 25px;
+  font-size: 14px;
 }
 
 .operation-spacer {
   width: 4px;
 }
 
+.selector-dropdown,
+.selector-input,
+.tag-input {
+  background-color: $gray5;
+  color: white;
+  border: none;
+  height: 25px;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 0;
+}
+
 .selector-dropdown {
   width: 100px;
+  background-color: $gray5;
+  color: white;
+  border: none;
+  height: 25px;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 2px;
 }
 
 .selector-input {
+  background-color: $gray5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0 4px;
   width: 45px;
+  height: 25px;
+  font-size: 14px;
 }
 
 .operation-row {
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .tag-input {
   width: 100px;
+  padding: 0 6px;
+  outline: none;
 }
