@@ -193,6 +193,7 @@ export class CommandsUiComponent implements OnInit, AfterViewInit {
   }
 
   getPrimaryArgStringOfTypeTrue(pair: PrimaryArgValuePair): string {
+    if (!pair.active) return "";
     return " " + pair.arg.signature;
   }
 

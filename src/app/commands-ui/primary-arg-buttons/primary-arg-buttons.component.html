@@ -20,6 +20,7 @@
     <div class="input-column">
       <div *ngFor="let pair of argValuePairs">
         <commands-ui-single-primary-arg-input
+          [permaHidden]="isInputPermaHidden(pair)"
           [argValuePair]="pair"
           (valueChange)="emitArgs()"
         ></commands-ui-single-primary-arg-input>

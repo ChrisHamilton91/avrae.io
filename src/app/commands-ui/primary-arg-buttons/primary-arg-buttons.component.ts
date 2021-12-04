@@ -5,6 +5,7 @@ import {
   Command,
   PrimaryArgument,
   Subcommand,
+  ValueType,
 } from "src/app/command-data/command-schema";
 import { fadeInAnimation, fadeOutAnimation } from "../@animations";
 import { CommandButton } from "../command-buttons/command-buttons.component";
@@ -86,12 +87,8 @@ export class PrimaryArgButtonsComponent implements OnInit {
     this.emitArgs();
   }
 
-  getInputVisibility(pair: PrimaryArgValuePair): string {
-    return pair.active ? "visible" : "hidden";
-  }
-
-  getInputOpacity(pair: PrimaryArgValuePair): string {
-    return pair.active ? "1" : "0";
+  isInputPermaHidden(pair: PrimaryArgValuePair): boolean {
+    return pair.arg.valueType === ValueType.TRUE;
   }
 
   emitArgs() {
