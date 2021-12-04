@@ -21,6 +21,7 @@ import { PrimaryArgValuePair } from "../primary-arg-buttons.component";
 })
 export class SinglePrimaryArgInputComponent implements OnInit {
   @ViewChild("input") inputRef: ElementRef<HTMLInputElement>;
+  @Input() permaHidden: boolean;
   @Input() argValuePair: PrimaryArgValuePair;
   @Output() valueChange = new EventEmitter();
   fadingIn: boolean;
@@ -30,7 +31,8 @@ export class SinglePrimaryArgInputComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getVisibilityState() {
+  getVisibilityState(): "visible" | "hidden" {
+    if (this.permaHidden) return "hidden";
     return this.argValuePair.active ? "visible" : "hidden";
   }
 
