@@ -19,7 +19,7 @@ export const ADVANCED = new CommandModule({
     ALIAS,
     CHARACTER_VAR,
     GLOBAL_VAR,
-    MULTILINE,
+    // MULTILINE,
     SERVER_ALIAS,
     SERVER_VAR,
     SERVER_SNIPPET,

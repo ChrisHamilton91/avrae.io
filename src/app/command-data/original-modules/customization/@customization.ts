@@ -19,7 +19,7 @@ export const CUSTOMIZATION = new CommandModule({
     ALIAS,
     CHARACTER_VAR,
     GLOBAL_VAR,
-    MULTILINE,
+    // MULTILINE,
     PREFIX,
     SERVER_ALIAS,
     SERVER_VAR,
